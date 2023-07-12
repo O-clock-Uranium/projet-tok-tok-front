@@ -1,0 +1,28 @@
+.menu {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: 15rem;
+    top: 91px;
+    height: -webkit-fill-available;
+
+
+
+    & ul {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+    }
+    & li {
+        background-color: #49C2AC;
+        border-radius: 25%;
+        margin-bottom: 1rem;
+        padding: 3rem 0;
+        font-size: 1.6rem;
+        text-align: center;
+    }
+    & a {
+        text-decoration: none;
+        color: black;
+    }
+}
