@@ -6,7 +6,7 @@ function Menu() {
     <nav className="menu">
       <ul>
         <li>
-          <a href="/home">Home</a>
+          <NavLink to="/">Home</NavLink>
         </li>
         <li>
           <a href="/profil/{id}">Profil</a>
@@ -15,7 +15,7 @@ function Menu() {
           <a href="/annonces">annonces</a>
         </li>
         <li>
-          <a href="/favoris">Favoris</a>
+          <NavLink to="/favoris">Favoris</NavLink>
         </li>
         <li>
           <a href="/messagerie">Messages Privées</a>
