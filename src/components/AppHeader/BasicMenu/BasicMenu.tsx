@@ -2,7 +2,9 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import * as React from 'react';
-import logo from '../../../../public/logo192.png';
+
+// eslint-disable-next-line import/no-absolute-path
+import logo from '/public/fakedata/logo192.png';
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);

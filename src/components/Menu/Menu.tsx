@@ -4,6 +4,8 @@ import './Menu.scss';
 
 function Menu() {
   return (
+    // menu-container est là parce que Footer doit être entouré d'une div parente... <></> marcherait tout aussi bien
+    // mais vu que l'on va fixé la position du menu et du Footer, la div est inutile.
     <div className="menu-container">
       <nav className="menu">
         <ul>

@@ -1,8 +1,9 @@
 .footer{
     position : fixed;
     top: 85%;
-    width : 15rem;
-    
+    width: inherit;
+    z-index: 900;
+
     & span{
 }
     & li {
