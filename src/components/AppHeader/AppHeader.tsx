@@ -1,4 +1,4 @@
-import logo from '../../assets/Tok-Tok-Logo.png';
+import logo from '../../assets/logo-v2.png';
 import BasicMenu from '../BasicMenu/BasicMenu';
 import Footer from '../Footer/Footer';
 import Menu from '../Menu/Menu';

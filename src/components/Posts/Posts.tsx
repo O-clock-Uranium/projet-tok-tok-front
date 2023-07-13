@@ -1,6 +1,6 @@
 import Stack from '@mui/material/Stack';
 // import { Stack } from '@mui/system'; // ne sait pas lequel des deux est le mieux
-import Post from '../Post/Post';
+import Post from './Post/Post';
 
 import './Posts.scss';
 

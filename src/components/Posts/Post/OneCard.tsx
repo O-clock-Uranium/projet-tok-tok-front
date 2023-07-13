@@ -12,9 +12,8 @@ import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
-import { Stack } from '@mui/system';
 import * as React from 'react';
-import Commentaire from './Commentaire';
+import AddCommentary from './AddCommentary';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -39,10 +38,10 @@ export default function OneCard() {
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 900, minWidth: 600 }}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+          <Avatar sx={{ bgcolor: red[500] }} aria-label="Avatar">
             JJG
           </Avatar>
         }
@@ -56,7 +55,7 @@ export default function OneCard() {
       />
       <CardMedia
         component="img"
-        height="194"
+        height="400"
         image="fakedata/banane-chat.jpg"
         alt="banana cat"
       />
@@ -87,7 +86,7 @@ export default function OneCard() {
           <Typography paragraph>blablablabl bla bla bla</Typography>
           <Typography>bla bla bla bla</Typography>
         </CardContent>
-        <Commentaire />
+        <AddCommentary />
       </Collapse>
     </Card>
   );
