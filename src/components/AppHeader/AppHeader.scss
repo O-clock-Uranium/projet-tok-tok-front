@@ -9,6 +9,7 @@
     align-items: center;
     width: 100vw;
     height: 10%;
+    z-index: 900;
 
 }
 
@@ -73,7 +74,7 @@
         width: 1px;
         overflow: hidden;
       }
-      
+
 }
 
 .account-logo {
