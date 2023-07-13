@@ -1,33 +1,46 @@
+@use '../../styles/variables' as v;
+
 .menu-container{
     display: flex;
     position: relative;
     top: 8rem;
     height: calc(100vh - 8rem);
-    width: 200px;
+    width: 10rem;
     flex-direction: column;
     justify-content: center;
 }
 .menu {
     display: flex;
-    // align-items: center;
+    justify-content: center;
     position: fixed;
-    // top: 91px;
-    // height: -webkit-fill-available;
     width: inherit;
     z-index: 900;
-    
+    // align-items: center;
+    // top: 91px;
+    // height: -webkit-fill-available;
+
     & ul {
+        list-style: none;
+        padding-inline-start: 0;
         // display: flex;
         // flex-direction: column;
-        list-style: none;
     }
     & li {
-        background-color: #49C2AC;
-        border-radius: 25%;
-        margin-bottom: 1rem;
-        padding: 3rem 0;
-        font-size: 1.6rem;
-        text-align: center;
+    background-color: v.$color-primary;
+    border-radius: 25%;
+    margin-bottom: 1rem;
+    padding: 8px;
+    transition: all 300ms;
+    // display: flex;
+    // border-radius: 25%;
+    // margin-bottom: 1rem;
+    // font-size: 1.6rem;
+    // text-align: center;
+    // width: 50px;
+    // height: 48px;
+    // justify-content: center;
+    // align-items: center;
+    // padding: 3rem 0;
     }
     & a {
         text-decoration: none;

@@ -1,3 +1,4 @@
+import { Icon } from '@iconify/react';
 import { NavLink } from 'react-router-dom';
 import Footer from './Footer/Footer';
 import './Menu.scss';
@@ -10,19 +11,45 @@ function Menu() {
       <nav className="menu">
         <ul>
           <li>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/">
+              <Icon icon="la:home" color="white" width="36" height="36" />
+            </NavLink>
           </li>
           <li>
-            <a href="/profil/{id}">Profil</a>
+            <a href="/profil/{id}">
+              <Icon icon="prime:user" color="white" width="36" height="36" />
+            </a>
           </li>
           <li>
-            <NavLink to="/posts">annonces</NavLink>
+            <NavLink to="/posts">
+              <Icon
+                icon="mdi:tag-outline"
+                color="white"
+                width="36"
+                height="36"
+              />
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/favoris">Favoris</NavLink>
+            <NavLink to="/favoris">
+              <Icon
+                icon="mdi:heart-outline"
+                color="white"
+                width="36"
+                height="36"
+              />
+            </NavLink>
           </li>
           <li>
-            <a href="/messagerie">Messages Privées</a>
+            <a href="/messagerie">
+              {' '}
+              <Icon
+                icon="pepicons-pencil:letter"
+                color="white"
+                width="36"
+                height="36"
+              />
+            </a>
           </li>
         </ul>
       </nav>

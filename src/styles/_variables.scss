@@ -10,6 +10,13 @@
     --bez: cubic-bezier(0, 0, 0.43, 1.49);
   }
 
-$color: #fff;
-$color-primary: #61dafb;
-$color-bg: #282c34;
+// $color: #fff; --------------Anciennes couleurs ???
+// $color-primary: #61dafb;
+// $color-bg: #282c34;
+
+$color-white: #fff;
+$color-primary: hsl(170, 49%, 52%);
+$color-primary-lighter: hsl(170, 49%, 67%);
+$color-primary-darker: hsl(170, 49%, 37%);
+$color-grey: hsl(225, 9%, 70%);
+$color-dark: #141518;
