@@ -1,3 +1,9 @@
+.content-container {
+    position :relative;
+    top: 8rem;
+    height:calc(100vh - 8rem);
+    left:15rem;
+}
 .posts{
     display: flex;
     flex-direction: column;
@@ -7,3 +13,5 @@
     width: 100vw;
 
 }
+
+// height: calc(100vh - var(--desktop-header-bar-height-refresh, 66px));
