@@ -3,6 +3,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import * as React from 'react';
 import logo from '/logo192.png';
+import * as React from 'react';
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -23,7 +24,7 @@ export default function BasicMenu() {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        <img className="account-logo" src={logo} />
+        <img className="account-logo" src={logo} alt="logo compte" />
       </Button>
       <Menu
         id="basic-menu"

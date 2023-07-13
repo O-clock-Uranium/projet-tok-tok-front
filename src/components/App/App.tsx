@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import AppHeader from '../AppHeader/AppHeader';
+import Posts from '../Posts/Posts';
 import './App.scss';
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <div className="App">
       <AppHeader />
       <Outlet />
+      <Posts />
     </div>
   );
 }
