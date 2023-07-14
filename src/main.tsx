@@ -11,8 +11,11 @@ import store from './store';
 
 import App from './components/App/App';
 import Error from './components/Error/Error';
-import Favorites from './components/Favorites/Favorites';
+import Favourites from './components/Favourites/Favourites';
 import Posts from './components/Posts/Posts';
+import Profile from './components/Profile/Profile';
+import Adverts from './components/Averts/Adverts';
+import Messages from './components/Messages/Messages';
 
 import './styles/index.scss';
 
@@ -21,7 +24,10 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />} errorElement={<Error />}>
       <Route errorElement={<Error />}>
         <Route index element={<Posts />} />
-        <Route path="/favoris" element={<Favorites />} />
+        <Route path="/profil" element={<Profile />} />
+        <Route path="/annonces" element={<Adverts />} />
+        <Route path="/favoris" element={<Favourites />} />
+        <Route path="/messagerie" element={<Messages />} />
       </Route>
     </Route>
   )
