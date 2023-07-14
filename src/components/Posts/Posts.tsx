@@ -1,12 +1,10 @@
 import Stack from '@mui/material/Stack';
-import Page from '../Page/Page';
 import Post from './Post/Post';
 
 import './Posts.scss';
 
 function Posts() {
   return (
-    // <Page>
     <div className="content-container">
       <div className="posts">
         <Stack
@@ -21,7 +19,6 @@ function Posts() {
         </Stack>
       </div>
     </div>
-    // </Page>
   );
 }
 

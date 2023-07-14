@@ -1,17 +1,20 @@
+import * as React from 'react';
+
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import * as React from 'react';
 
-// eslint-disable-next-line import/no-absolute-path
-import logo from '/public/fakedata/logo192.png';
+import { Avatar } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -25,7 +28,11 @@ export default function BasicMenu() {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        <img className="account-logo" src={logo} alt="logo compte" />
+        <Avatar
+          alt="Celiiiiine"
+          src="public/fakedata/cd.jpg"
+          sx={{ marginRight: 9, width: 45, height: 45 }}
+        />
       </Button>
       <Menu
         id="basic-menu"
@@ -36,7 +43,9 @@ export default function BasicMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Link to="profil">Profile</Link>
+        </MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>

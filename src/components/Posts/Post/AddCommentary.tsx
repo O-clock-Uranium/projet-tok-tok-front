@@ -2,7 +2,6 @@ import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import FormControl from '@mui/joy/FormControl';
 import Textarea from '@mui/joy/Textarea';
-import * as React from 'react';
 
 export default function AddCommentary() {
   return (
@@ -22,11 +21,24 @@ export default function AddCommentary() {
               margin: '1px',
             }}
           >
-            <Button sx={{ ml: 'auto' }}>Send</Button>
+            <Button
+              sx={{
+                ml: 'auto',
+                fontSize: 13,
+                backgroundColor: '#49c1ad',
+                '&:hover': {
+                  bgcolor: '#82d4c6',
+                },
+              }}
+            >
+              Send
+            </Button>
           </Box>
         }
         sx={{
+          m: 1,
           minWidth: 300,
+          fontSize: 13,
         }}
       />
     </FormControl>
