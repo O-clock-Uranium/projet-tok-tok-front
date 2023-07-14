@@ -1,29 +1,60 @@
+import { Icon } from '@iconify/react';
 import { NavLink } from 'react-router-dom';
+import Footer from './Footer/Footer';
 import './Menu.scss';
 
 function Menu() {
   return (
-    <nav className="menu">
-      <ul>
-        <li>
-          <NavLink to="/">Home</NavLink>
-        </li>
-        <li>
-          <a href="/profil/{id}">Profil</a>
-        </li>
-        <li>
-          <a href="/annonces">annonces</a>
-        </li>
-        <li>
-          <NavLink to="/favoris">Favoris</NavLink>
-        </li>
-        <li>
-          <a href="/messagerie">Messages Privées</a>
-        </li>
-      </ul>
-      {/* <NavLink to="/home"> home </NavLink>
-      <NavLink to="/profile"> profile </NavLink> */}
-    </nav>
+    // menu-container est là parce que Footer doit être entouré d'une div parente... <></> marcherait tout aussi bien
+    // mais vu que l'on va fixé la position du menu et du Footer, la div est inutile.
+    <div className="menu-container">
+      <nav className="menu">
+        <ul>
+          <li>
+            <NavLink to="/">
+              <Icon icon="la:home" color="white" width="36" height="36" />
+            </NavLink>
+          </li>
+          <li>
+            <a href="/profil/{id}">
+              <Icon icon="prime:user" color="white" width="36" height="36" />
+            </a>
+          </li>
+          <li>
+            <NavLink to="/posts">
+              <Icon
+                icon="mdi:tag-outline"
+                color="white"
+                width="36"
+                height="36"
+              />
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/favoris">
+              <Icon
+                icon="mdi:heart-outline"
+                color="white"
+                width="36"
+                height="36"
+              />
+            </NavLink>
+          </li>
+          <li>
+            <a href="/messagerie">
+              {' '}
+              <Icon
+                icon="pepicons-pencil:letter"
+                color="white"
+                width="36"
+                height="36"
+              />
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <Footer />
+    </div>
   );
 }
 

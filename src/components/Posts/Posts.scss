@@ -1,9 +1,16 @@
+.content-container {
+    position :absolute; // Bonne idée OU PAS ?
+    top: 8rem;
+    height:calc(100vh - 8rem);
+}
 .posts{
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     position:relative;
-    top: 20vh;
+    // top: 20vh;
     width: 100vw;
-
+    padding: 2rem 0rem;
 }
+
+// height: calc(100vh - var(--desktop-header-bar-height-refresh, 66px));

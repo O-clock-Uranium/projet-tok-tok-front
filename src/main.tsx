@@ -4,7 +4,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
-  RouterProvider
+  RouterProvider,
 } from 'react-router-dom';
 
 import store from './store';
@@ -12,6 +12,7 @@ import store from './store';
 import App from './components/App/App';
 import Error from './components/Error/Error';
 import Favorites from './components/Favorites/Favorites';
+import Posts from './components/Posts/Posts';
 
 import './styles/index.scss';
 
@@ -19,6 +20,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />} errorElement={<Error />}>
       <Route errorElement={<Error />}>
+        <Route index element={<Posts />} />
         <Route path="/favoris" element={<Favorites />} />
       </Route>
     </Route>

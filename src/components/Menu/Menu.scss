@@ -1,26 +1,79 @@
+@use '../../styles/variables' as v;
+
+.menu-container{
+    display: flex;
+    position: relative;
+    top: 8rem;
+    height: calc(100vh - 8rem);
+    width: 10rem;
+    flex-direction: column;
+    justify-content: center;
+}
 .menu {
     display: flex;
-    align-items: center;
+    justify-content: center;
     position: fixed;
-    width: 15rem;
-    top: 91px;
-    height: -webkit-fill-available;
-
-
+    width: inherit;
+    z-index: 900;
+    // align-items: center;
+    // top: 91px;
+    // height: -webkit-fill-available;
 
     & ul {
-        display: flex;
-        flex-direction: column;
         list-style: none;
+        padding-inline-start: 0;
+        // display: flex;
+        // flex-direction: column;
     }
     & li {
-        background-color: #49C2AC;
-        border-radius: 25%;
-        margin-bottom: 1rem;
-        padding: 3rem 0;
-        font-size: 1.6rem;
-        text-align: center;
+    background-color: v.$color-primary;
+    border-radius: 25%;
+    margin-bottom: 1rem;
+    padding: 8px;
+    transition: all 300ms;
+    // display: flex;
+    // border-radius: 25%;
+    // margin-bottom: 1rem;
+    // font-size: 1.6rem;
+    // text-align: center;
+    // width: 50px;
+    // height: 48px;
+    // justify-content: center;
+    // align-items: center;
+    // padding: 3rem 0;
+        &:hover {
+        background-color: v.$color-primary-lighter;
+        // padding: 10px;
+        }
+        //troll rainbow
+        // &:hover{
+        //     background-image:     linear-gradient(
+        //        to right,
+        //        #E7484F,
+        //        #E7484F 16.65%,
+        //        #F68B1D 16.65%,
+        //        #F68B1D 33.3%,
+        //        #FCED00 33.3%,
+        //        #FCED00 49.95%,
+        //        #009E4F 49.95%,
+        //        #009E4F 66.6%,
+        //        #00AAC3 66.6%,
+        //        #00AAC3 83.25%,
+        //        #732982 83.25%,
+        //        #732982 100%,
+        //        #E7484F 100%
+
+        //      );
+        //    animation:slidebg 8s linear infinite;
+        //  }
+
+        //  @keyframes slidebg {
+        //    to {
+        //      background-position:20vw;
+        //    }
+        //  }
     }
+
     & a {
         text-decoration: none;
         color: black;
