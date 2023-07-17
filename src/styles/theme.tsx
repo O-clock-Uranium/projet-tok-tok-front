@@ -20,7 +20,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'DM Sans',
+    fontFamily: 'DM Sans, Manrope',
   },
 });
 
