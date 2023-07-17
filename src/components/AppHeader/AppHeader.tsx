@@ -1,18 +1,26 @@
-import { Icon } from '@iconify/react';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {
   Avatar,
   Badge,
   Box,
+  Button,
   CardMedia,
   IconButton,
   IconButtonProps,
+  Menu,
+  MenuItem,
   Stack,
   Typography,
   styled,
 } from '@mui/material';
 import * as React from 'react';
+
+import bell from '../../assets/icons/bell.svg';
+import profile from '../../assets/icons/profile.svg';
+import settings from '../../assets/icons/settings.svg';
+import signout from '../../assets/icons/signout.svg';
 import logo from '../../assets/toktok_logo.svg';
+
 import SearchBar from './SearchBar';
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -32,9 +40,18 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 export default function AppHeader() {
   const [expanded, setExpanded] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
+  };
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
   return (
@@ -42,10 +59,12 @@ export default function AppHeader() {
       sx={{
         backgroundColor: 'white',
         height: 100,
-        p: 3,
+        py: 3, // padding haut/bas
+        px: 10, // padding gauche/droite
       }}
     >
       <Stack direction="row" justifyContent="space-between">
+        {/* logo */}
         <CardMedia
           component="img"
           height="55.75"
@@ -57,7 +76,7 @@ export default function AppHeader() {
 
         <SearchBar />
 
-        {/* Icone */}
+        {/* Icone cloche */}
         <Stack spacing={2} direction="row">
           <IconButton
             size="large"
@@ -66,7 +85,7 @@ export default function AppHeader() {
             sx={{ mr: 2 }}
           >
             <Badge badgeContent={17} color="primary">
-              <Icon icon="lucide:bell" />
+              <img alt="notification icon" src={bell} height={26} width={26} />
             </Badge>
           </IconButton>
 
@@ -96,7 +115,59 @@ export default function AppHeader() {
               aria-expanded={expanded}
               aria-label="show more"
             >
-              <ExpandMoreIcon sx={{ fontSize: '25px', color: 'black' }} />
+              {/* Button + Menu = menu déroulant */}
+              <Button
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+                onClick={handleClick}
+              >
+                <ExpandMoreIcon sx={{ fontSize: '25px', color: 'black' }} />
+              </Button>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+                sx={{
+                  mt: 5.5,
+                }}
+              >
+                <MenuItem onClick={handleClose}>
+                  {' '}
+                  <IconButton type="button" sx={{}} aria-label="paramètres">
+                    <img
+                      alt="search icon"
+                      src={profile}
+                      height={18}
+                      width={18}
+                    />
+                  </IconButton>
+                  Profile
+                </MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <IconButton type="button" sx={{}} aria-label="paramètres">
+                    <img
+                      alt="search icon"
+                      src={settings}
+                      height={18}
+                      width={18}
+                    />
+                  </IconButton>
+                  Settings
+                </MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <IconButton type="button" sx={{}} aria-label="paramètres">
+                    <img
+                      alt="search icon"
+                      src={signout}
+                      height={18}
+                      width={18}
+                    />
+                  </IconButton>
+                  Logout
+                </MenuItem>
+              </Menu>
             </ExpandMore>
           </Typography>
         </Stack>

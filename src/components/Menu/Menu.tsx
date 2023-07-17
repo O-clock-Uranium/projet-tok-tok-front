@@ -1,61 +1,88 @@
-import { Icon } from '@iconify/react';
+import {
+  Badge,
+  IconButton,
+  ListItemIcon,
+  MenuItem,
+  MenuList,
+  Paper,
+} from '@mui/material';
 import { NavLink } from 'react-router-dom';
-import Footer from './Footer/Footer';
+
+import bookmark from '../../assets/icons/bookmark.svg';
+import conversation from '../../assets/icons/conversation.svg';
+import home from '../../assets/icons/home.svg';
+import megaphone from '../../assets/icons/megaphone.svg';
+import profile from '../../assets/icons/profile.svg';
+
 // import './Menu.scss';
 
-function Menu() {
+export default function Menu() {
   return (
-    // menu-container est là parce que Footer doit être entouré d'une div parente... <></> marcherait tout aussi bien
-    // mais vu que l'on va fixé la position du menu et du Footer, la div est inutile.
-    <div className="menu-container">
-      <nav className="menu">
-        <ul>
-          <li>
+    <Paper
+      sx={{
+        maxWidth: '100%',
+        borderRadius: 4,
+        backgroundColor: '#FFF',
+        position: 'fixed',
+        top: 250,
+        left: 90,
+      }}
+    >
+      <MenuList sx={{ gap: 20 }}>
+        <MenuItem
+          sx={{
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            gap: 2,
+          }}
+        >
+          <ListItemIcon
+            sx={{ p: 1.2, backgroundColor: '#03665C', borderRadius: 3 }}
+          >
             <NavLink to="/">
-              <Icon icon="la:home" color="white" width="36" height="36" />
+              <IconButton type="button" aria-label="paramètres">
+                <img alt="search icon" src={home} height={25} width={25} />
+              </IconButton>
             </NavLink>
-          </li>
-          <li>
+          </ListItemIcon>
+          <ListItemIcon sx={{ p: 1 }}>
             <NavLink to="/profil">
-              <Icon icon="prime:user" color="white" width="36" height="36" />
+              <IconButton type="button" sx={{}} aria-label="paramètres">
+                <img alt="search icon" src={profile} />
+              </IconButton>
             </NavLink>
-          </li>
-          <li>
+          </ListItemIcon>
+          <ListItemIcon sx={{ p: 1 }}>
             <NavLink to="/annonces">
-              <Icon
-                icon="mdi:tag-outline"
-                color="white"
-                width="36"
-                height="36"
-              />
+              <IconButton type="button" sx={{}} aria-label="paramètres">
+                <img alt="search icon" src={megaphone} height={25} width={25} />
+              </IconButton>
             </NavLink>
-          </li>
-          <li>
+          </ListItemIcon>
+          <ListItemIcon sx={{ p: 1 }}>
             <NavLink to="/favoris">
-              <Icon
-                icon="mdi:heart-outline"
-                color="white"
-                width="36"
-                height="36"
-              />
+              <IconButton type="button" sx={{}} aria-label="paramètres">
+                <img alt="search icon" src={bookmark} height={25} width={25} />
+              </IconButton>
             </NavLink>
-          </li>
-          <li>
+          </ListItemIcon>
+          <ListItemIcon sx={{ p: 1 }}>
             <NavLink to="/messagerie">
               {' '}
-              <Icon
-                icon="pepicons-pencil:letter"
-                color="white"
-                width="36"
-                height="36"
-              />
+              <Badge badgeContent={5477} color="primary">
+                <IconButton type="button" sx={{}} aria-label="paramètres">
+                  <img
+                    alt="search icon"
+                    src={conversation}
+                    height={25}
+                    width={25}
+                  />
+                </IconButton>
+              </Badge>
             </NavLink>
-          </li>
-        </ul>
-      </nav>
-      <Footer />
-    </div>
+          </ListItemIcon>
+        </MenuItem>
+      </MenuList>
+    </Paper>
   );
 }
-
-export default Menu;

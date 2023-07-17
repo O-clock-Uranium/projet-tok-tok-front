@@ -1,22 +1,29 @@
-import SearchIcon from '@mui/icons-material/Search';
+import * as React from 'react';
+
 import IconButton from '@mui/material/IconButton';
 import InputBase from '@mui/material/InputBase';
 import Paper from '@mui/material/Paper';
-import * as React from 'react';
+import search from '../../assets/icons/search.svg';
 
 export default function SearchBar() {
-  //   const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = React.useState('');
 
-  //   const handleChange = (event: {
-  //     target: { value: SetStateAction<string> };
-  //   }) => {
-  //     setSearchTerm(event.target.value);
-  //   };
+  const handleChange = (event: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
+    setSearchTerm(event.target.value);
+  };
+
+  function handleSubmit(event: any) {
+    if (!searchTerm.trim().length) {
+      //   return;
+    }
+    // fetchqqc(); // Changer quand branché au back
+  }
 
   return (
     <Paper
       elevation={0}
-      component="form"
       sx={{
         p: '0px 0px 0px 10px',
         display: 'flex',
@@ -26,15 +33,13 @@ export default function SearchBar() {
         border: 1,
         borderColor: 'rgba(85,85,85,0.2)',
       }}
-      //   value={searchTerm}
-      //   onChange={handleChange}
     >
       <IconButton
         type="button"
         sx={{ m: '0px 0px 0px 10px', color: 'primary.dark' }}
         aria-label="search"
       >
-        <SearchIcon />
+        <img alt="search icon" src={search} height={18} width={18} />
       </IconButton>
       <InputBase
         sx={{
@@ -47,6 +52,9 @@ export default function SearchBar() {
         }}
         placeholder="Rechercher..."
         inputProps={{ 'aria-label': 'Rechercher...' }}
+        value={searchTerm}
+        onChange={handleChange}
+        onSubmit={handleSubmit}
       />
     </Paper>
   );

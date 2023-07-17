@@ -42,8 +42,8 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   height: '100%',
   position: 'absolute',
   pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
+  di: 'flex',
+  alignItesplayms: 'center',
   justifyContent: 'center',
 }));
 
