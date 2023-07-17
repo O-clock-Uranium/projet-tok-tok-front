@@ -16,12 +16,12 @@ function Menu() {
             </NavLink>
           </li>
           <li>
-            <a href="/profil/{id}">
+            <NavLink to="/profil">
               <Icon icon="prime:user" color="white" width="36" height="36" />
-            </a>
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/posts">
+            <NavLink to="/annonces">
               <Icon
                 icon="mdi:tag-outline"
                 color="white"
@@ -41,7 +41,7 @@ function Menu() {
             </NavLink>
           </li>
           <li>
-            <a href="/messagerie">
+            <NavLink to="/messagerie">
               {' '}
               <Icon
                 icon="pepicons-pencil:letter"
@@ -49,7 +49,7 @@ function Menu() {
                 width="36"
                 height="36"
               />
-            </a>
+            </NavLink>
           </li>
         </ul>
       </nav>

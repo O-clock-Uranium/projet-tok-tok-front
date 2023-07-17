@@ -6,6 +6,7 @@
     top: 85%;
     width: inherit;
     z-index: 900;
+    color: rgb(150, 150, 150);
 
     & ul{
         padding-inline-start: 0;
@@ -16,6 +17,6 @@
     }
     & a {
         text-decoration: none;
-        color: black;
+        color: rgb(150, 150, 150);
     }
 }

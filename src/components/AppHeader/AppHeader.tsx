@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import logo from '../../assets/logo-v2.png';
 import BasicMenu from './BasicMenu/BasicMenu';
 
@@ -7,7 +8,9 @@ function AppHeader() {
   return (
     <div className="appheader">
       <div className="appheader-logo">
-        <img src={logo} alt="logo tok tok" />
+        <Link to="/">
+          <img src={logo} alt="logo tok tok" />
+        </Link>
       </div>
       <div className="appheader-searchbar">
         <form role="search">
