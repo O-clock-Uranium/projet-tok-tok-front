@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logo-v2.png';
+import logo from '../../assets/toktok_logo.svg';
 import BasicMenu from './BasicMenu/BasicMenu';
 
 import './AppHeader.scss';

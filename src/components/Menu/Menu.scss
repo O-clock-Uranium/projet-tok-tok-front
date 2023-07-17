@@ -15,15 +15,10 @@
     position: fixed;
     width: inherit;
     z-index: 900;
-    // align-items: center;
-    // top: 91px;
-    // height: -webkit-fill-available;
 
     & ul {
         list-style: none;
         padding-inline-start: 0;
-        // display: flex;
-        // flex-direction: column;
     }
     & li {
     background-color: v.$color-primary;
@@ -31,19 +26,9 @@
     margin-bottom: 1rem;
     padding: 8px;
     transition: all 300ms;
-    // display: flex;
-    // border-radius: 25%;
-    // margin-bottom: 1rem;
-    // font-size: 1.6rem;
-    // text-align: center;
-    // width: 50px;
-    // height: 48px;
-    // justify-content: center;
-    // align-items: center;
-    // padding: 3rem 0;
+
         &:hover {
         background-color: v.$color-primary-lighter;
-        // padding: 10px;
         }
         //troll rainbow
         // &:hover{
