@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/toktok_logo.svg';
 import BasicMenu from './BasicMenu/BasicMenu';
 
-import './AppHeader.scss';
+// import './AppHeader.scss';
 
 function AppHeader() {
   return (
