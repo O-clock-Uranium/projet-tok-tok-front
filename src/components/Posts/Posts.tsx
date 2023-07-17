@@ -1,7 +1,7 @@
 import Stack from '@mui/material/Stack';
 import Post from './Post/Post';
 
-import './Posts.scss';
+// import './Posts.scss';
 
 function Posts() {
   return (

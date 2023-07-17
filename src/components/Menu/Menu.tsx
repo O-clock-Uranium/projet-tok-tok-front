@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 import { NavLink } from 'react-router-dom';
 import Footer from './Footer/Footer';
-import './Menu.scss';
+// import './Menu.scss';
 
 function Menu() {
   return (
