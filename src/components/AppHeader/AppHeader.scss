@@ -2,7 +2,7 @@
 
 .appheader {
     position: fixed;
-    background-color: #49C2AC;
+    background-color: #ffffff;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -24,6 +24,7 @@
         width: 30rem;
         background: var(--color-brand);
         border-radius: var(--rad);
+        border: 1px solid grey;
       }
       input, button {
         height: var(--height);

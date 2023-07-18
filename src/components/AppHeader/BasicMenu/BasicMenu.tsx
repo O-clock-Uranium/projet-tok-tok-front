@@ -44,7 +44,7 @@ export default function BasicMenu() {
         }}
       >
         <MenuItem onClick={handleClose}>
-          <Link to="profil">Profile</Link>
+          <Link to="/profil">Profile</Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>
         <MenuItem onClick={handleClose}>Logout</MenuItem>

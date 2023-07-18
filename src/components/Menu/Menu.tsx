@@ -11,20 +11,20 @@ function Menu() {
       <nav className="menu">
         <ul>
           <li>
-            <NavLink to="/">
-              <Icon icon="la:home" color="white" width="36" height="36" />
+            <NavLink to="/home">
+              <Icon icon="la:home" color="black" width="36" height="36" />
             </NavLink>
           </li>
           <li>
             <NavLink to="/profil">
-              <Icon icon="prime:user" color="white" width="36" height="36" />
+              <Icon icon="prime:user" color="black" width="36" height="36" />
             </NavLink>
           </li>
           <li>
             <NavLink to="/annonces">
               <Icon
                 icon="mdi:tag-outline"
-                color="white"
+                color="black"
                 width="36"
                 height="36"
               />
@@ -34,7 +34,7 @@ function Menu() {
             <NavLink to="/favoris">
               <Icon
                 icon="mdi:heart-outline"
-                color="white"
+                color="black"
                 width="36"
                 height="36"
               />
@@ -45,7 +45,7 @@ function Menu() {
               {' '}
               <Icon
                 icon="pepicons-pencil:letter"
-                color="white"
+                color="black"
                 width="36"
                 height="36"
               />
