@@ -14,12 +14,13 @@ import {
   styled,
 } from '@mui/material';
 import * as React from 'react';
+import { NavLink } from 'react-router-dom';
 
 import bell from '../../assets/icons/bell.svg';
 import profile from '../../assets/icons/profile.svg';
 import settings from '../../assets/icons/settings.svg';
 import signout from '../../assets/icons/signout.svg';
-import logo from '../../assets/toktok_logo.svg';
+import logo from '../../assets/logo.svg';
 
 import SearchBar from './SearchBar';
 
@@ -61,18 +62,22 @@ export default function AppHeader() {
         height: 100,
         py: 3, // padding haut/bas
         px: 10, // padding gauche/droite
+        position: 'fixed',
+        width: 1,
       }}
     >
       <Stack direction="row" justifyContent="space-between">
         {/* logo */}
-        <CardMedia
-          component="img"
-          height="55.75"
-          width="85"
-          image={logo}
-          alt="Logo TokTok"
-          sx={{ width: '85px' }}
-        />
+        <NavLink to="/home">
+          <CardMedia
+            component="img"
+            height="55.75"
+            width="85"
+            image={logo}
+            alt="Logo TokTok"
+            sx={{ width: '85px' }}
+          />
+        </NavLink>
 
         <SearchBar />
 

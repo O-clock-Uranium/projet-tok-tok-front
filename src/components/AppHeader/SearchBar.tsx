@@ -49,6 +49,7 @@ export default function SearchBar() {
           fontWeight: 600,
           lineHeight: 26 /* 173.333% */,
           letterSpacing: -0.15,
+          width: 1,
         }}
         placeholder="Rechercher..."
         inputProps={{ 'aria-label': 'Rechercher...' }}

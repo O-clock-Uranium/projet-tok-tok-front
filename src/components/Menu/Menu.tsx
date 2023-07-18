@@ -14,8 +14,6 @@ import home from '../../assets/icons/home.svg';
 import megaphone from '../../assets/icons/megaphone.svg';
 import profile from '../../assets/icons/profile.svg';
 
-// import './Menu.scss';
-
 export default function Menu() {
   return (
     <Paper
@@ -39,7 +37,7 @@ export default function Menu() {
           <ListItemIcon
             sx={{ p: 1.2, backgroundColor: '#03665C', borderRadius: 3 }}
           >
-            <NavLink to="/">
+            <NavLink to="/home">
               <IconButton type="button" aria-label="paramètres">
                 <img alt="search icon" src={home} height={25} width={25} />
               </IconButton>
