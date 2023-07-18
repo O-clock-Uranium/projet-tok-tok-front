@@ -1,9 +1,9 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {
+  AccordionSummary,
   Avatar,
   Badge,
   Box,
-  Button,
   CardMedia,
   IconButton,
   IconButtonProps,
@@ -47,7 +47,7 @@ export default function AppHeader() {
     setExpanded(!expanded);
   };
 
-  const handleClick = (event) => {
+  const handleClick = (event: any) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -59,7 +59,7 @@ export default function AppHeader() {
     <Box
       sx={{
         backgroundColor: 'white',
-        height: 100,
+        height: '10rem',
         py: 3, // padding haut/bas
         px: 10, // padding gauche/droite
         position: 'fixed',
@@ -82,12 +82,11 @@ export default function AppHeader() {
         <SearchBar />
 
         {/* Icone cloche */}
-        <Stack spacing={2} direction="row">
+        <Stack direction="row" alignItems="center">
           <IconButton
             size="large"
             aria-label="show 17 new notifications"
             color="inherit"
-            sx={{ mr: 2 }}
           >
             <Badge badgeContent={17} color="primary">
               <img alt="notification icon" src={bell} height={26} width={26} />
@@ -97,8 +96,8 @@ export default function AppHeader() {
           {/* Avatar */}
           <Avatar
             alt="Jean-Jacques"
-            src="public/fakedata/jjg.jpg"
-            sx={{ width: 47, height: 47, mr: 10 }}
+            src="src/fakedata/jjg.jpg"
+            sx={{ mx: 2, p: 0, width: 47, height: 47 }}
           />
 
           {/* Nom du gars + flèche */}
@@ -114,20 +113,24 @@ export default function AppHeader() {
             }}
           >
             JJ Goldman
-            <ExpandMore
-              expand={expanded}
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show more"
+          </Typography>
+
+          {/* Button + Menu = menu déroulant */}
+          <ExpandMore
+            sx={{ m: 0, p: 0, height: 25 }}
+            expand={expanded}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <AccordionSummary
+              sx={{ ml: 0, p: 0 }}
+              expandIcon={
+                <ExpandMoreIcon onClick={handleClick} sx={{ color: 'black' }} />
+              }
+              aria-controls="panel1a-content"
+              id="panel1a-header"
             >
-              {/* Button + Menu = menu déroulant */}
-              <Button
-                aria-controls="simple-menu"
-                aria-haspopup="true"
-                onClick={handleClick}
-              >
-                <ExpandMoreIcon sx={{ fontSize: '25px', color: 'black' }} />
-              </Button>
               <Menu
                 id="simple-menu"
                 anchorEl={anchorEl}
@@ -140,18 +143,20 @@ export default function AppHeader() {
               >
                 <MenuItem onClick={handleClose}>
                   {' '}
-                  <IconButton type="button" sx={{}} aria-label="paramètres">
-                    <img
-                      alt="search icon"
-                      src={profile}
-                      height={18}
-                      width={18}
-                    />
-                  </IconButton>
-                  Profile
+                  <NavLink to="/profile">
+                    <IconButton type="button" aria-label="paramètres">
+                      <img
+                        alt="search icon"
+                        src={profile}
+                        height={18}
+                        width={18}
+                      />
+                    </IconButton>
+                    Profile
+                  </NavLink>
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
-                  <IconButton type="button" sx={{}} aria-label="paramètres">
+                  <IconButton type="button" aria-label="paramètres">
                     <img
                       alt="search icon"
                       src={settings}
@@ -162,7 +167,7 @@ export default function AppHeader() {
                   Settings
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
-                  <IconButton type="button" sx={{}} aria-label="paramètres">
+                  <IconButton type="button" aria-label="paramètres">
                     <img
                       alt="search icon"
                       src={signout}
@@ -173,8 +178,8 @@ export default function AppHeader() {
                   Logout
                 </MenuItem>
               </Menu>
-            </ExpandMore>
-          </Typography>
+            </AccordionSummary>
+          </ExpandMore>
         </Stack>
       </Stack>
     </Box>

@@ -50,8 +50,8 @@ export default function OneCard() {
         avatar={
           <Avatar
             alt="Jean-Jacques"
-            src="public/fakedata/jjg.jpg"
-            sx={{ width: 45, height: 45 }}
+            src="src/fakedata/jjg.jpg"
+            sx={{ zIndex: 1, width: 45, height: 45 }}
           />
         }
         action={
@@ -67,7 +67,7 @@ export default function OneCard() {
       <CardMedia
         component="img"
         height="400"
-        image="fakedata/banane-chat.jpg"
+        image="../../../src/fakedata/banane-chat.jpg"
         alt="banana cat"
         sx={{ borderTop: 1, borderBottom: 1, borderColor: 'grey.200' }}
       />

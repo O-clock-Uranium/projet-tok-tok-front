@@ -32,6 +32,9 @@ export default function Menu() {
             flexDirection: 'column',
             alignItems: 'flex-start',
             gap: 2,
+            '&:hover': {
+              backgroundColor: 'transparent',
+            },
           }}
         >
           <ListItemIcon
@@ -45,21 +48,21 @@ export default function Menu() {
           </ListItemIcon>
           <ListItemIcon sx={{ p: 1 }}>
             <NavLink to="/profil">
-              <IconButton type="button" sx={{}} aria-label="paramètres">
+              <IconButton type="button" aria-label="paramètres">
                 <img alt="search icon" src={profile} />
               </IconButton>
             </NavLink>
           </ListItemIcon>
           <ListItemIcon sx={{ p: 1 }}>
             <NavLink to="/annonces">
-              <IconButton type="button" sx={{}} aria-label="paramètres">
+              <IconButton type="button" aria-label="paramètres">
                 <img alt="search icon" src={megaphone} height={25} width={25} />
               </IconButton>
             </NavLink>
           </ListItemIcon>
           <ListItemIcon sx={{ p: 1 }}>
             <NavLink to="/favoris">
-              <IconButton type="button" sx={{}} aria-label="paramètres">
+              <IconButton type="button" aria-label="paramètres">
                 <img alt="search icon" src={bookmark} height={25} width={25} />
               </IconButton>
             </NavLink>
@@ -68,7 +71,7 @@ export default function Menu() {
             <NavLink to="/messagerie">
               {' '}
               <Badge badgeContent={5477} color="primary">
-                <IconButton type="button" sx={{}} aria-label="paramètres">
+                <IconButton type="button" aria-label="paramètres">
                   <img
                     alt="search icon"
                     src={conversation}

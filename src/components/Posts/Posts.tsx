@@ -12,6 +12,7 @@ function Posts() {
           justifyContent="center"
           alignItems="center"
           spacing={2}
+          sx={{ pt: '13rem' }}
         >
           <Post />
           <Post />
