@@ -72,7 +72,15 @@ export default function Menu() {
           <ListItemIcon sx={{ p: 1 }}>
             <NavLink to="/messagerie">
               {' '}
-              <Badge badgeContent={5477} color="primary">
+              <Badge
+                sx={{
+                  '& .MuiBadge-badge': {
+                    color: 'WHITE',
+                  },
+                }}
+                badgeContent={5477}
+                color="primary"
+              >
                 <IconButton type="button" aria-label="paramètres">
                   <img alt="search icon" src={conversation} />
                 </IconButton>

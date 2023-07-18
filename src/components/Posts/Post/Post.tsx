@@ -84,7 +84,6 @@ export default function OneCard() {
         sx={{
           x: '2rem',
           borderRadius: '2rem',
-          borderColor: 'grey.200',
         }}
       />
       <CardContent sx={{ mb: 0, pb: 0 }}>

@@ -88,6 +88,7 @@ export default function AppHeader() {
             aria-label="show 17 new notifications"
             color="inherit"
           >
+            {/* // TODO changer dans le thème la couleur du texte des badges */}
             <Badge
               badgeContent={17}
               color="primary"
@@ -96,6 +97,9 @@ export default function AppHeader() {
                 fontFamily: 'Manrope',
                 color: 'white',
                 fontWeight: 500,
+                '& .MuiBadge-badge': {
+                  color: 'WHITE',
+                },
               }}
             >
               <img alt="notification icon" src={bell} />
