@@ -3,24 +3,18 @@ import Post from './Post/Post';
 
 // import './Posts.scss';
 
-function Posts() {
+export default function Posts() {
   return (
-    <div className="content-container">
-      <div className="posts">
-        <Stack
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
-          spacing={2}
-          sx={{ pt: '13rem' }}
-        >
-          <Post />
-          <Post />
-          <Post />
-        </Stack>
-      </div>
-    </div>
+    <Stack
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+      spacing={2}
+      sx={{ pt: '13rem' }}
+    >
+      <Post />
+      <Post />
+      <Post />
+    </Stack>
   );
 }
-
-export default Posts;

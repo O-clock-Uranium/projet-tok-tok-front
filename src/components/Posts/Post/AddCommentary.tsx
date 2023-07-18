@@ -1,6 +1,6 @@
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
-import FormControl from '@mui/joy/FormControl';
+import FormControl from '@mui/material/FormControl';
 import Textarea from '@mui/joy/Textarea';
 
 export default function AddCommentary() {
@@ -13,8 +13,6 @@ export default function AddCommentary() {
           <Box
             sx={{
               display: 'flex',
-              gap: 'var(--Textarea-paddingBlock)',
-              pt: 'var(--Textarea-paddingBlock)',
               borderTop: '1px solid',
               borderColor: 'divider',
               flex: 'auto',

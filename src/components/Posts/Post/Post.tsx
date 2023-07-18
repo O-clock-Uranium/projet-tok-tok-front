@@ -45,13 +45,13 @@ export default function OneCard() {
   };
 
   return (
-    <Card sx={{ maxWidth: 500, minWidth: 600 }}>
+    <Card sx={{ maxWidth: 500, minWidth: 600, boxShadow: 0 }}>
       <CardHeader
         avatar={
           <Avatar
             alt="Jean-Jacques"
             src="src/fakedata/jjg.jpg"
-            sx={{ zIndex: 1, width: 45, height: 45 }}
+            sx={{ width: 45, height: 45 }}
           />
         }
         action={
@@ -59,8 +59,20 @@ export default function OneCard() {
             <MoreVertIcon />
           </IconButton>
         }
-        titleTypographyProps={{ fontWeight: 'bold', fontSize: 15 }}
-        subheaderTypographyProps={{ fontSize: 14 }}
+        titleTypographyProps={{
+          fontFamily: 'Manrope',
+          fontSize: '1.6rem',
+          fontStyle: 'normal',
+          fontWeight: 500,
+          lineHeight: 'normal',
+        }}
+        subheaderTypographyProps={{
+          fontFamily: 'Manrope',
+          fontSize: '1.2rem',
+          fontStyle: 'normal',
+          fontWeight: 500,
+          lineHeight: 'normal',
+        }}
         title="Jean-Jacques Goldman"
         subheader="12 Septembre 2023"
       />
@@ -69,17 +81,29 @@ export default function OneCard() {
         height="400"
         image="../../../src/fakedata/banane-chat.jpg"
         alt="banana cat"
-        sx={{ borderTop: 1, borderBottom: 1, borderColor: 'grey.200' }}
+        sx={{
+          x: '2rem',
+          borderRadius: '2rem',
+          borderColor: 'grey.200',
+        }}
       />
       <CardContent sx={{ mb: 0, pb: 0 }}>
         <Typography
-          sx={{ fontSize: 15, mb: 0, pb: 0 }}
+          sx={{
+            mb: 0,
+            pb: 0,
+            fontFamily: 'DM Sans',
+            fontSize: '1.5rem',
+            fontStyle: 'normal',
+            fontWeight: 400,
+            lineHeight: '150%',
+          }}
           variant="body2"
           color="text.primary"
         >
           Je te donne mes notes, je te donne mes mots Quand ta voix les emporte
           à ton propre tempo Une épaule fragile et solide à la fois Ce que
-          j'imagine et ce que je crois
+          j&apos;imagine et ce que je crois
         </Typography>
       </CardContent>
       <CardActions sx={{ mt: 1, pt: 0 }} disableSpacing>
@@ -104,7 +128,7 @@ export default function OneCard() {
         <OneComment />
         <OneComment />
         <OneComment />
-        <AddCommentary />
+        {/* <AddCommentary /> */}
       </Collapse>
     </Card>
   );

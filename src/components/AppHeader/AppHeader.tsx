@@ -14,7 +14,7 @@ import {
   styled,
 } from '@mui/material';
 import * as React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import bell from '../../assets/icons/bell.svg';
 import profile from '../../assets/icons/profile.svg';
@@ -64,6 +64,7 @@ export default function AppHeader() {
         px: 10, // padding gauche/droite
         position: 'fixed',
         width: 1,
+        zIndex: 1000,
       }}
     >
       <Stack direction="row" justifyContent="space-between">
@@ -75,7 +76,6 @@ export default function AppHeader() {
             width="85"
             image={logo}
             alt="Logo TokTok"
-            sx={{ width: '85px' }}
           />
         </NavLink>
 
@@ -88,8 +88,17 @@ export default function AppHeader() {
             aria-label="show 17 new notifications"
             color="inherit"
           >
-            <Badge badgeContent={17} color="primary">
-              <img alt="notification icon" src={bell} height={26} width={26} />
+            <Badge
+              badgeContent={17}
+              color="primary"
+              sx={{
+                textAlign: 'center',
+                fontFamily: 'Manrope',
+                color: 'white',
+                fontWeight: 500,
+              }}
+            >
+              <img alt="notification icon" src={bell} />
             </Badge>
           </IconButton>
 
@@ -97,7 +106,7 @@ export default function AppHeader() {
           <Avatar
             alt="Jean-Jacques"
             src="src/fakedata/jjg.jpg"
-            sx={{ mx: 2, p: 0, width: 47, height: 47 }}
+            sx={{ mx: 2, p: 0, width: '4.7rem', height: '4.7rem' }}
           />
 
           {/* Nom du gars + flèche */}
@@ -106,7 +115,7 @@ export default function AppHeader() {
               mb: 0,
               pb: 0,
               fontFamily: 'Manrope',
-              fontSize: 18,
+              fontSize: '1.8rem',
               fontStyle: 'normal',
               fontWeight: 500,
               lineHeight: 'normal',
@@ -117,16 +126,19 @@ export default function AppHeader() {
 
           {/* Button + Menu = menu déroulant */}
           <ExpandMore
-            sx={{ m: 0, p: 0, height: 25 }}
+            sx={{ m: 0, p: 0 }}
             expand={expanded}
             onClick={handleExpandClick}
             aria-expanded={expanded}
             aria-label="show more"
           >
             <AccordionSummary
-              sx={{ ml: 0, p: 0 }}
+              sx={{ m: 0, p: 0 }}
               expandIcon={
-                <ExpandMoreIcon onClick={handleClick} sx={{ color: 'black' }} />
+                <ExpandMoreIcon
+                  onClick={handleClick}
+                  sx={{ fontSize: '2rem', color: 'black' }}
+                />
               }
               aria-controls="panel1a-content"
               id="panel1a-header"
@@ -141,21 +153,29 @@ export default function AppHeader() {
                   mt: 5.5,
                 }}
               >
-                <MenuItem onClick={handleClose}>
+                <MenuItem
+                  component={Link}
+                  to="profil"
+                  onClick={handleClose}
+                  sx={{ fontSize: '1.8rem' }}
+                >
                   {' '}
-                  <NavLink to="/profile">
-                    <IconButton type="button" aria-label="paramètres">
-                      <img
-                        alt="search icon"
-                        src={profile}
-                        height={18}
-                        width={18}
-                      />
-                    </IconButton>
-                    Profile
-                  </NavLink>
+                  <IconButton type="button" aria-label="paramètres">
+                    <img
+                      alt="search icon"
+                      src={profile}
+                      height={18}
+                      width={18}
+                    />
+                  </IconButton>
+                  Profile
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
+                <MenuItem
+                  component={Link}
+                  to="settings"
+                  onClick={handleClose}
+                  sx={{ fontSize: '1.8rem' }}
+                >
                   <IconButton type="button" aria-label="paramètres">
                     <img
                       alt="search icon"
@@ -166,7 +186,12 @@ export default function AppHeader() {
                   </IconButton>
                   Settings
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
+                <MenuItem
+                  component={Link}
+                  to="settings"
+                  onClick={handleClose}
+                  sx={{ color: 'secondary.main', fontSize: '1.8rem' }}
+                >
                   <IconButton type="button" aria-label="paramètres">
                     <img
                       alt="search icon"

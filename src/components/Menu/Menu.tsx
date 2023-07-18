@@ -17,6 +17,7 @@ import profile from '../../assets/icons/profile.svg';
 export default function Menu() {
   return (
     <Paper
+      elevation={0}
       sx={{
         maxWidth: '100%',
         borderRadius: 4,
@@ -37,12 +38,13 @@ export default function Menu() {
             },
           }}
         >
+          {/* Faudra mettre un classe isActive sur les boutons qui sont actifs */}
           <ListItemIcon
             sx={{ p: 1.2, backgroundColor: '#03665C', borderRadius: 3 }}
           >
             <NavLink to="/home">
               <IconButton type="button" aria-label="paramètres">
-                <img alt="search icon" src={home} height={25} width={25} />
+                <img alt="search icon" src={home} />
               </IconButton>
             </NavLink>
           </ListItemIcon>
@@ -56,14 +58,14 @@ export default function Menu() {
           <ListItemIcon sx={{ p: 1 }}>
             <NavLink to="/annonces">
               <IconButton type="button" aria-label="paramètres">
-                <img alt="search icon" src={megaphone} height={25} width={25} />
+                <img alt="search icon" src={megaphone} />
               </IconButton>
             </NavLink>
           </ListItemIcon>
           <ListItemIcon sx={{ p: 1 }}>
             <NavLink to="/favoris">
               <IconButton type="button" aria-label="paramètres">
-                <img alt="search icon" src={bookmark} height={25} width={25} />
+                <img alt="search icon" src={bookmark} />
               </IconButton>
             </NavLink>
           </ListItemIcon>
@@ -72,12 +74,7 @@ export default function Menu() {
               {' '}
               <Badge badgeContent={5477} color="primary">
                 <IconButton type="button" aria-label="paramètres">
-                  <img
-                    alt="search icon"
-                    src={conversation}
-                    height={25}
-                    width={25}
-                  />
+                  <img alt="search icon" src={conversation} />
                 </IconButton>
               </Badge>
             </NavLink>

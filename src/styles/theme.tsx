@@ -22,6 +22,15 @@ const theme = createTheme({
   typography: {
     fontFamily: 'DM Sans, Manrope',
   },
+  components: {
+    MuiBadge: {
+      styleOverrides: {
+        root: {
+          color: 'white',
+        },
+      },
+    },
+  },
 });
 
 export default theme;
