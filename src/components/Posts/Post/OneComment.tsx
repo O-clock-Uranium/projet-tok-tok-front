@@ -21,11 +21,11 @@ function OneComment() {
         <Stack spacing={0} direction="column" flexGrow="1" alignItems="start">
           <Typography
             fontWeight="bold"
-            sx={{ fontSize: '13px', color: 'neutral.darkBlue' }}
+            sx={{ fontSize: '13px', color: 'primary' }}
           >
             Patrick Sébastien
           </Typography>
-          <Typography sx={{ fontSize: '13px', color: 'neutral.grayishBlue' }}>
+          <Typography sx={{ fontSize: '13px', color: 'primary' }}>
             il y a x minutes
           </Typography>
         </Stack>
@@ -35,10 +35,7 @@ function OneComment() {
         </IconButton>
       </Stack>
 
-      <Typography
-        sx={{ fontSize: '13px', color: 'neutral.grayishBlue' }}
-        paragraph
-      >
+      <Typography sx={{ fontSize: '13px', color: 'primary' }} paragraph>
         Je te donne toutes mes différences Tous ces défauts qui sont autant de
         chance On sera jamais des standards, des gens bien comme il faut Je te
         donne ce que j'ai, ce que je vaux

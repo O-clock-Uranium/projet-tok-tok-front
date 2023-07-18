@@ -1,6 +1,3 @@
-import Page from '../Page/Page';
-import './Adverts.scss';
-
 function Adverts() {
   return (
     <div className="adverts">

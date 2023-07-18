@@ -17,7 +17,6 @@ import Favourites from './components/Favourites/Favourites';
 import Messages from './components/Messages/Messages';
 import Posts from './components/Posts/Posts';
 import Profile from './components/Profile/Profile';
-import SignInSide from './components/SignInSide/SignInSide';
 
 import './styles/index.scss';
 import theme from './styles/theme';
@@ -26,8 +25,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />} errorElement={<Error />}>
       <Route errorElement={<Error />}>
-        <Route index element={<SignInSide />} />
-        <Route path="/home" element={<Posts />} />
+        <Route index element={<Posts />} />
         <Route path="/profil" element={<Profile />} />
         <Route path="/annonces" element={<Adverts />} />
         <Route path="/favoris" element={<Favourites />} />

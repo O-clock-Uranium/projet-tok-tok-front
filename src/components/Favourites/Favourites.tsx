@@ -1,5 +1,3 @@
-import './Favourites.scss';
-
 function Favourites() {
   return (
     <div className="favoris">
