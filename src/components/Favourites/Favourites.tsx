@@ -19,7 +19,12 @@ export default function Favourites() {
           margin: 'auto',
         }}
       >
-        <Stack direction="row" justifyContent="space-between">
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+          height="8.2rem"
+        >
           <ColorToggleButton />
           <FavoriteButton />
         </Stack>
