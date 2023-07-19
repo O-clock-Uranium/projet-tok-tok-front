@@ -4,7 +4,7 @@ import {
   ListItemIcon,
   MenuItem,
   MenuList,
-  Paper
+  Paper,
 } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
@@ -24,15 +24,15 @@ export default function Menu() {
         backgroundColor: '#FFF',
         position: 'fixed',
         top: 250,
-        left: 90,
+        left: '10rem',
       }}
     >
-      <MenuList sx={{ gap: 20 }}>
+      <MenuList sx={{ gap: '2rem' }}>
         <MenuItem
           sx={{
             flexDirection: 'column',
             alignItems: 'flex-start',
-            gap: 2,
+            gap: '2rem',
             '&:hover': {
               backgroundColor: 'transparent',
             },
@@ -40,7 +40,7 @@ export default function Menu() {
         >
           {/* Faudra mettre un classe isActive sur les boutons qui sont actifs */}
           <ListItemIcon
-            sx={{ p: 1.2, backgroundColor: '#03665C', borderRadius: 3 }}
+            sx={{ p: 1.2, backgroundColor: 'primary.dark', borderRadius: 3 }}
           >
             <NavLink to="/home">
               <IconButton type="button" aria-label="paramètres">
@@ -76,6 +76,7 @@ export default function Menu() {
                 sx={{
                   '& .MuiBadge-badge': {
                     color: 'WHITE',
+                    fontSize: '1.15rem',
                   },
                 }}
                 badgeContent={5477}

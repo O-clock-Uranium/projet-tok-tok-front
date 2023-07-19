@@ -5,21 +5,23 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import Collapse from '@mui/material/Collapse';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
-import comment from '../../../assets/icons/comment.svg';
-import OneComment from './OneComment';
-// import heart from '../../../assets/icons/heart.svg';
+import comment from '../../../../assets/icons/comment.svg';
+import OneComment from './OneComment/OneComment';
+
+import AddCommentary from './AddComment/AddComment';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
 }
 
+// TODO Je ne sais pas ce que l'on fait de ce "theme" et "expand"
 const ExpandMore = styled((props: ExpandMoreProps) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
 })(({ theme, expand }) => ({
-    // transition: theme.transitions.create('transform', {
-    //   duration: theme.transitions.duration.shortest,
-    // }),
+  // transition: theme.transitions.create('transform', {
+  //   duration: theme.transitions.duration.shortest,
+  // }),
 }));
 
 export default function Postv2() {
@@ -37,13 +39,13 @@ export default function Postv2() {
   return (
     <Paper
       elevation={0}
-      sx={{ width: 820, mx: 'auto', p: '3rem', borderRadius: '2rem' }}
+      sx={{ width: '82rem', mx: 'auto', p: '3rem', borderRadius: '2rem' }}
     >
       <Stack paddingBottom="2.5rem" spacing={2} direction="row">
         <Avatar
-          alt="Jean-Jacques"
-          src="src/fakedata/jjg.jpg"
-          sx={{ width: 45, height: 45 }}
+          alt="Céline Dion"
+          src="src/fakedata/cd.jpg"
+          sx={{ width: 60, height: 60 }}
         />
         <Stack direction="column">
           <Typography
@@ -55,7 +57,7 @@ export default function Postv2() {
               lineHeight: 'normal',
             }}
           >
-            Jean Jacques Goldman
+            Céline Dion
           </Typography>
           <Typography
             sx={{
@@ -66,7 +68,7 @@ export default function Postv2() {
               lineHeight: 'normal',
             }}
           >
-            Il y a 5 minutes
+            Il y a 1 heure
           </Typography>
         </Stack>
       </Stack>
@@ -82,8 +84,10 @@ export default function Postv2() {
         }}
         variant="body2"
       >
-        Ceci est du contenu à caractère d&apos;exemple. J&apos;essaye de faire
-        de longue phrases afin d&apos;avoir un rendu utile et parlant pour tous.
+        Hey regardez cette image de chat que j&apos;ai trouvé, c&apos;est trop
+        des barres, non ? <br />
+        Souuuuus le veeeeent~ Mes blessures, mes faiblesses /mes faiblesses/
+        celles que j&apos;avouuuue, à demi mots...
       </Typography>
       <Box
         sx={{
@@ -169,6 +173,9 @@ export default function Postv2() {
         </Stack>
       </Stack>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <AddCommentary />
+        <OneComment />
+        <OneComment />
         <OneComment />
       </Collapse>
     </Paper>

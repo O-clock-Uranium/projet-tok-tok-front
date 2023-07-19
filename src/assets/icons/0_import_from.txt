@@ -9,3 +9,6 @@ import profile from '../../assets/icons/profile.svg';
 import search from '../../assets/icons/search.svg';
 import settings from '../../assets/icons/settings.svg';
 import signout from '../../assets/icons/signout.svg';
+import send from '../../assets/icons/paper_plane.svg';
+import picture from '../../assets/icons/picture.svg';
+import video from '../../assets/icons/camera.svg';
