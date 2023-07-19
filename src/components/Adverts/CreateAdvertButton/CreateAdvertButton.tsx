@@ -7,13 +7,11 @@ export default function CreateAdvertButton() {
       variant="contained"
       sx={{
         maxWidth: '300px',
-        position: 'fixed',
-        right: '15rem',
-        top: '12.5rem',
         backgroundColor: '#03665C',
         color: '#fff',
         textTransform: 'none',
         fontSize: '2rem',
+        borderRadius: '20px',
       }}
     >
       Créer une Annonce

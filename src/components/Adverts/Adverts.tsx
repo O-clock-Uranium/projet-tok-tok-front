@@ -1,4 +1,4 @@
-import { Box, Paper, Stack } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import AppHeader from '../AppHeader/AppHeader';
 import Menu from '../Menu/Menu';
 import AdvertCard from './Advert/Advert';
@@ -12,49 +12,33 @@ function Adverts() {
       <AppHeader />
       <Menu />
 
-      <Box sx={{ position: 'relative', top: '12.5rem', left: '23rem' }}>
-        <Stack>
-          <Paper
-            sx={{
-              maxWidth: '30rem',
-              p: '1rem',
-              position: 'fixed',
-              top: '12.5rem',
-              left: '23 rem',
-            }}
-          >
-            <ColorToggleButton />
-          </Paper>
+      <Box
+        sx={{
+          height: '100vh',
+          width: '100rem',
+          position: 'relative',
+          top: '11rem',
+          left: '30rem',
+        }}
+      >
+        <Stack direction="row" justifyContent="space-between">
+          <ColorToggleButton />
           <CreateAdvertButton />
-          <Stack direction="column">
-            <SortBar />
-            <Box
-              sx={{
-                flexGrow: 1,
-                position: 'relative',
-
-                top: '15rem',
-              }}
-            >
-              <Stack
-                direction="row"
-                flexWrap="wrap"
-                gap="10px"
-                justifyContent="center"
-                overflowY="scroll"
-              >
-                <AdvertCard />
-                <AdvertCard />
-                <AdvertCard />
-                <AdvertCard />
-                <AdvertCard />
-                <AdvertCard />
-                <AdvertCard />
-                <AdvertCard />
-                <AdvertCard />
-              </Stack>
-            </Box>
-          </Stack>
+        </Stack>
+        <SortBar />
+        <Stack direction="row" flexWrap="wrap" gap="1rem">
+          <AdvertCard />
+          <AdvertCard />
+          <AdvertCard />
+          <AdvertCard />
+          <AdvertCard />
+          <AdvertCard />
+          <AdvertCard />
+          <AdvertCard />
+          <AdvertCard />
+          <AdvertCard />
+          <AdvertCard />
+          <AdvertCard />
         </Stack>
       </Box>
     </>
