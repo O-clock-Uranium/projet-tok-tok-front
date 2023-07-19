@@ -17,6 +17,7 @@ export default function CreateAdvertButton() {
         lineHeight: 'normal',
         p: '2rem',
         height: '6rem',
+        boxShadow: 0,
       }}
     >
       Créer une Annonce

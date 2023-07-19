@@ -15,6 +15,7 @@ export default function ColorToggleButton() {
 
   return (
     <Paper
+      elevation={0}
       sx={{
         borderRadius: '2rem',
         p: '1rem !important',
