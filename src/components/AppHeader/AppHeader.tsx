@@ -1,4 +1,3 @@
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {
   AccordionSummary,
   Avatar,
@@ -16,6 +15,7 @@ import {
 import * as React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import bell from '../../assets/icons/bell.svg';
 import profile from '../../assets/icons/profile.svg';
 import settings from '../../assets/icons/settings.svg';

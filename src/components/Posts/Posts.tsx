@@ -2,8 +2,6 @@ import Stack from '@mui/material/Stack';
 import Post from './Post/Post';
 import Postv2 from './Post/Postv2';
 
-// import './Posts.scss';
-
 export default function Posts() {
   return (
     <Stack

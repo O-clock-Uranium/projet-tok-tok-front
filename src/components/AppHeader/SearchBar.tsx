@@ -47,7 +47,7 @@ export default function SearchBar() {
           fontSize: 15,
           fontStyle: 'normal',
           fontWeight: 600,
-          lineHeight: 26 /* 173.333% */,
+          lineHeight: '2.6rem',
           letterSpacing: -0.15,
           width: 1,
         }}
