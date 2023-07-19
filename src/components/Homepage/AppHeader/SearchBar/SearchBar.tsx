@@ -3,7 +3,7 @@ import * as React from 'react';
 import IconButton from '@mui/material/IconButton';
 import InputBase from '@mui/material/InputBase';
 import Paper from '@mui/material/Paper';
-import search from '../../assets/icons/search.svg';
+import search from '../../../../assets/icons/search.svg';
 
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = React.useState('');

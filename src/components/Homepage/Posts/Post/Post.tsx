@@ -5,11 +5,10 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import Collapse from '@mui/material/Collapse';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
-import comment from '../../../assets/icons/comment.svg';
-import OneComment from './OneComment';
-// import AddCommentary from './AddCommentary';
-import AddCommentary2 from './AddCommentary2';
-// import heart from '../../../assets/icons/heart.svg';
+import comment from '../../../../assets/icons/comment.svg';
+import OneComment from './OneComment/OneComment';
+
+import AddCommentary from './AddComment/AddComment';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -174,7 +173,7 @@ export default function Postv2() {
         </Stack>
       </Stack>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <AddCommentary2 />
+        <AddCommentary />
         <OneComment />
         <OneComment />
         <OneComment />

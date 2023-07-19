@@ -15,15 +15,14 @@ import {
 import * as React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
-// import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import bell from '../../assets/icons/bell.svg';
-import down from '../../assets/icons/down.svg';
-import profile from '../../assets/icons/profile.svg';
-import settings from '../../assets/icons/settings.svg';
-import signout from '../../assets/icons/signout.svg';
-import logo from '../../assets/logo.svg';
+import bell from '../../../assets/icons/bell.svg';
+import down from '../../../assets/icons/down.svg';
+import profile from '../../../assets/icons/profile.svg';
+import settings from '../../../assets/icons/settings.svg';
+import signout from '../../../assets/icons/signout.svg';
+import logo from '../../../assets/logo.svg';
 
-import SearchBar from './SearchBar';
+import SearchBar from './SearchBar/SearchBar';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -60,8 +59,8 @@ export default function AppHeader() {
       sx={{
         backgroundColor: 'white',
         height: '10rem',
-        py: '3rem', // padding haut/bas
-        px: '10rem', // padding gauche/droite
+        py: '3rem',
+        px: '10rem',
         position: 'fixed',
         width: 1,
         zIndex: 1000,

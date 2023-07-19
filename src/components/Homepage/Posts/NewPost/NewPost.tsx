@@ -1,13 +1,13 @@
 import {
-    Avatar,
-    Box,
-    IconButton,
-    InputBase,
-    Stack,
-    Typography,
+  Avatar,
+  Box,
+  IconButton,
+  InputBase,
+  Stack,
+  Typography,
 } from '@mui/material';
-import video from '../../../assets/icons/camera.svg';
-import picture from '../../../assets/icons/picture.svg';
+import video from '../../../../assets/icons/camera.svg';
+import picture from '../../../../assets/icons/picture.svg';
 
 function NewPost() {
   return (

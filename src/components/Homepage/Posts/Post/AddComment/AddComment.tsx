@@ -1,7 +1,7 @@
 import { Avatar, Box, IconButton, InputBase, Stack } from '@mui/material';
-import send from '../../../assets/icons/paper_plane.svg';
+import send from '../../../../../assets/icons/paper_plane.svg';
 
-export default function AddCommentary2() {
+export default function AddCommentary() {
   return (
     <Box sx={{ width: '99%', pt: '4.5rem', pb: '2rem', px: '0.8rem' }}>
       <Stack spacing={2} direction="row">
