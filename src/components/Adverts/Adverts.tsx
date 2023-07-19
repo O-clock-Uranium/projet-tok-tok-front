@@ -19,7 +19,7 @@ function Adverts() {
           width: '100rem',
           position: 'relative',
           top: '11rem',
-          left: '30rem',
+          margin: 'auto',
         }}
       >
         <Stack direction="row" justifyContent="space-between">

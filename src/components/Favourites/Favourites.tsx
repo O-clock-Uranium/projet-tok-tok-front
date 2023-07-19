@@ -1,4 +1,4 @@
-import { Box, Paper, Stack } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import AdvertCard from '../Adverts/Advert/Advert';
 import ColorToggleButton from '../Adverts/ToggleButton/ToggleButton';
 import AppHeader from '../Homepage/AppHeader/AppHeader';
@@ -16,7 +16,7 @@ export default function Favourites() {
           width: '100rem',
           position: 'relative',
           top: '11rem',
-          left: '30rem',
+          margin: 'auto',
         }}
       >
         <Stack direction="row" justifyContent="space-between">
