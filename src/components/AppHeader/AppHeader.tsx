@@ -1,34 +1,177 @@
-import { Link } from 'react-router-dom';
-import logo from '../../assets/logo-v2.png';
-import BasicMenu from './BasicMenu/BasicMenu';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import {
+  Avatar,
+  Badge,
+  Box,
+  Button,
+  CardMedia,
+  IconButton,
+  IconButtonProps,
+  Menu,
+  MenuItem,
+  Stack,
+  styled,
+  Typography
+} from '@mui/material';
+import * as React from 'react';
 
-import './AppHeader.scss';
+import bell from '../../assets/icons/bell.svg';
+import settings from '../../assets/icons/settings.svg';
+import signout from '../../assets/icons/signout.svg';
+import profile from '../../assets/icons/user.svg';
+import logo from '../../assets/toktok_logo.svg';
 
-function AppHeader() {
-  return (
-    <div className="appheader">
-      <div className="appheader-logo">
-        <Link to="/">
-          <img src={logo} alt="logo tok tok" />
-        </Link>
-      </div>
-      <div className="appheader-searchbar">
-        <form role="search">
-          <label htmlFor="search">Search for stuff</label>
-          <input
-            id="search"
-            type="search"
-            placeholder="Search..."
-            // eslint-disable-next-line jsx-a11y/no-autofocus
-            autoFocus
-            required
-          />
-          <button type="submit">Go</button>
-        </form>
-      </div>
-      <BasicMenu />
-    </div>
-  );
+import SearchBar from './SearchBar';
+
+interface ExpandMoreProps extends IconButtonProps {
+  expand: boolean;
 }
 
-export default AppHeader;
+const ExpandMore = styled((props: ExpandMoreProps) => {
+  const { expand, ...other } = props;
+  return <IconButton {...other} />;
+})(({ theme, expand }) => ({
+  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+  marginLeft: 'auto',
+  transition: theme.transitions.create('transform', {
+    duration: theme.transitions.duration.shortest,
+  }),
+}));
+
+export default function AppHeader() {
+  const [expanded, setExpanded] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <Box
+      sx={{
+        backgroundColor: 'white',
+        height: '10rem',
+        py: 3, // padding haut/bas
+        px: 10, // padding gauche/droite
+      }}
+    >
+      <Stack direction="row" justifyContent="space-between">
+        {/* logo */}
+        <CardMedia
+          component="img"
+          height="55.75"
+          width="85"
+          image={logo}
+          alt="Logo TokTok"
+          sx={{ width: '85px' }}
+        />
+
+        <SearchBar />
+
+        {/* Icone cloche */}
+        <Stack spacing={2} direction="row">
+          <IconButton
+            size="large"
+            aria-label="show 17 new notifications"
+            color="inherit"
+            sx={{ mr: 2 }}
+          >
+            <Badge badgeContent={17} color="primary">
+              <img alt="notification icon" src={bell} height={26} width={26} />
+            </Badge>
+          </IconButton>
+
+          {/* Avatar */}
+          <Avatar
+            alt="Jean-Jacques"
+            src="public/fakedata/jjg.jpg"
+            sx={{ width: 47, height: 47, mr: 10 }}
+          />
+
+          {/* Nom du gars + flèche */}
+          <Typography
+            sx={{
+              mb: 0,
+              pb: 0,
+              fontFamily: 'Manrope',
+              fontSize: 18,
+              fontStyle: 'normal',
+              fontWeight: 500,
+              lineHeight: 'normal',
+            }}
+          >
+            JJ Goldman
+            <ExpandMore
+              expand={expanded}
+              onClick={handleExpandClick}
+              aria-expanded={expanded}
+              aria-label="show more"
+            >
+              {/* Button + Menu = menu déroulant */}
+              <IconButton
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+                onClick={handleClick}
+              >
+                <ExpandMoreIcon sx={{ fontSize: '25px', color: 'black' }} />
+              </IconButton>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+                sx={{
+                  mt: 5.5,
+                }}
+              >
+                <MenuItem onClick={handleClose}>
+                  {' '}
+                  <IconButton type="button" sx={{}} aria-label="paramètres">
+                    <img
+                      alt="search icon"
+                      src={profile}
+                      height={18}
+                      width={18}
+                    />
+                  </IconButton>
+                  Profile
+                </MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <IconButton type="button" sx={{}} aria-label="paramètres">
+                    <img
+                      alt="search icon"
+                      src={settings}
+                      height={18}
+                      width={18}
+                    />
+                  </IconButton>
+                  Settings
+                </MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <IconButton type="button" sx={{}} aria-label="paramètres">
+                    <img
+                      alt="search icon"
+                      src={signout}
+                      height={18}
+                      width={18}
+                    />
+                  </IconButton>
+                  Logout
+                </MenuItem>
+              </Menu>
+            </ExpandMore>
+          </Typography>
+        </Stack>
+      </Stack>
+    </Box>
+  );
+}

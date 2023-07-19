@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   palette: {
@@ -20,7 +20,15 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'DM Sans',
+    fontFamily: 'DM Sans , Manrope',
+    button: {
+      textTransform: 'none',
+    },
+  },
+  components: {
+    MuiButtonBase: {
+      defaultProps: { disableRipple: true },
+    },
   },
 });
 

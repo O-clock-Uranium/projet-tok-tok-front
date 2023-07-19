@@ -3,7 +3,7 @@ import AppHeader from '../AppHeader/AppHeader';
 import Menu from '../Menu/Menu';
 import Post from './Post/Post';
 
-import './Posts.scss';
+// import './Posts.scss';
 
 function Posts() {
   return (
