@@ -1,44 +1,79 @@
-import { Avatar, IconButton, Stack, Typography } from '@mui/material';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import Box from '@mui/material/Box';
+import { Avatar, Box, Paper, Stack, Typography } from '@mui/material';
 
 export default function OneComment() {
   return (
-    <Box
+    <Paper
+      elevation={0}
       sx={{
-        borderTop: 1,
-        borderColor: 'grey.200',
-        paddingTop: 1,
-        marginLeft: 1,
+        width: '99%',
+        py: '2.5rem',
+        px: '0.8rem',
+        borderRadius: '2rem',
       }}
     >
-      <Stack spacing={2} direction="row" justifyContent="space-between">
+      <Stack paddingBottom="2.5rem" spacing={2} direction="row">
         <Avatar
-          src="../../../src/fakedata/ps.jpg"
-          sx={{ marginLeft: 1, marginBottom: 1, width: 35, height: 35 }}
+          alt="Patrick Sebastien"
+          src="../../src/fakedata/ps.jpg"
+          sx={{ width: 45, height: 45 }}
         />
-        <Stack spacing={0} direction="column" flexGrow="1" alignItems="start">
+        <Stack direction="column">
           <Typography
-            fontWeight="bold"
-            sx={{ fontSize: '13px', color: 'primary' }}
+            sx={{
+              fontFamily: 'Manrope',
+              fontSize: '1.6rem',
+              fontStyle: 'normal',
+              fontWeight: 500,
+              lineHeight: 'normal',
+            }}
           >
             Patrick Sébastien
           </Typography>
-          <Typography sx={{ fontSize: '13px', color: 'primary' }}>
-            il y a x minutes
+          <Typography
+            sx={{
+              fontFamily: 'Manrope',
+              fontSize: '1.2rem',
+              fontStyle: 'normal',
+              fontWeight: 500,
+              lineHeight: 'normal',
+              color: '#A5A5A5',
+            }}
+          >
+            Il y a 20 minutes
           </Typography>
         </Stack>
-
-        <IconButton aria-label="settings">
-          <MoreVertIcon />
-        </IconButton>
       </Stack>
-
-      <Typography sx={{ fontSize: '13px', color: 'primary' }} paragraph>
-        Je te donne toutes mes différences Tous ces défauts qui sont autant de
-        chance On sera jamais des standards, des gens bien comme il faut Je te
-        donne ce que j&apos;ai, ce que je vaux
-      </Typography>
-    </Box>
+      <Box
+        sx={{
+          py: '1rem',
+          px: '2rem',
+          alignItems: 'center',
+          borderRadius: '2rem',
+          backgroundColor: '#F5F6FA',
+          w: '80rem',
+        }}
+      >
+        <Typography
+          sx={{
+            fontFamily: 'DM Sans',
+            fontSize: '1.5rem',
+            fontStyle: 'normal',
+            fontWeight: 400,
+            lineHeight: '2.6rem',
+            letterSpacing: '-0.15px',
+          }}
+        >
+          J'ai qu'une chose à te dire Céline : <br />
+          Ah si tu pouvais fermer ta gueule
+          <br />
+          Ça nous f'rait des vacances
+          <br />
+          Ah si tu pouvais fermer ta gueule
+          <br />
+          Ça f'rait du bien à la France
+          <br />
+        </Typography>
+      </Box>
+    </Paper>
   );
 }

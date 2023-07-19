@@ -1,44 +1,44 @@
-import Box from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
+import { Box, Button, TextField } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
-import Textarea from '@mui/joy/Textarea';
 
 export default function AddCommentary() {
   return (
     <FormControl>
-      <Textarea
-        placeholder="Ecrire un commentaire..."
-        minRows={3}
-        endDecorator={
-          <Box
-            sx={{
-              display: 'flex',
-              borderTop: '1px solid',
-              borderColor: 'divider',
-              flex: 'auto',
-              margin: '1px',
-            }}
-          >
-            <Button
-              sx={{
-                ml: 'auto',
-                fontSize: 13,
-                backgroundColor: '#49c1ad',
-                '&:hover': {
-                  bgcolor: '#82d4c6',
-                },
-              }}
-            >
-              Send
-            </Button>
-          </Box>
-        }
+      <Box
         sx={{
-          m: 1,
-          minWidth: 300,
-          fontSize: 13,
+          width: 780,
+          mx: 'auto',
+          p: '2.5rem',
+          borderRadius: '95rem',
+          backgroundColor: '#F5F6FA',
         }}
-      />
+      >
+        <TextField
+          multiline
+          maxRows={4}
+          fullWidth
+          InputProps={{
+            endAdornment: (
+              <Button
+                sx={{
+                  ml: 'auto',
+                  fontSize: 13,
+                  backgroundColor: 'primary.dark',
+                  color: 'white',
+                  '&:active': {
+                    bgcolor: 'primary.light',
+                  },
+                  '&:hover': {
+                    bgcolor: 'primary.dark',
+                  },
+                }}
+              >
+                Send
+              </Button>
+            ),
+          }}
+        />
+      </Box>
     </FormControl>
   );
 }

@@ -15,6 +15,7 @@ import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 
 import AddCommentary from './AddCommentary';
+import AddCommentary2 from './AddCommentary2';
 import OneComment from './OneComment';
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -124,10 +125,11 @@ export default function OneCard() {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         {/* Debut commentaire */}
+        <AddCommentary />
+        <AddCommentary2 />
         <OneComment />
         <OneComment />
         <OneComment />
-        {/* <AddCommentary /> */}
       </Collapse>
     </Card>
   );
