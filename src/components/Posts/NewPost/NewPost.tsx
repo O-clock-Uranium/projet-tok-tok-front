@@ -93,7 +93,16 @@ function NewPost() {
               sx={{ alignItems: 'center', gap: '1rem' }}
             >
               <img alt="search icon" src={picture} />
-              <Typography>Images</Typography>
+              <Typography
+                fontFamily="Manrope"
+                fontSize="1.3rem"
+                fontStyle="normal"
+                fontWeight="600"
+                lineHeight="2.6rem"
+                color="#A5A5A5"
+              >
+                Images
+              </Typography>
             </IconButton>
             <IconButton
               type="button"
@@ -101,7 +110,16 @@ function NewPost() {
               sx={{ alignItems: 'center', gap: '1rem' }}
             >
               <img alt="search icon" src={video} />
-              <Typography>Vidéos</Typography>
+              <Typography
+                fontFamily="Manrope"
+                fontSize="1.3rem"
+                fontStyle="normal"
+                fontWeight="600"
+                lineHeight="2.6rem"
+                color="#A5A5A5"
+              >
+                Vidéos
+              </Typography>
             </IconButton>
           </Stack>
         </Stack>
