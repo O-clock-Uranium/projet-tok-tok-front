@@ -1,7 +1,6 @@
 import Stack from '@mui/material/Stack';
 import AppHeader from '../AppHeader/AppHeader';
 import Menu from '../Menu/Menu';
-import Post from './Post/Post';
 import Postv2 from './Post/Postv2';
 
 export default function Posts() {
