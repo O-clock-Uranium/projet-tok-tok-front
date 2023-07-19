@@ -3,7 +3,7 @@ import * as React from 'react';
 import IconButton from '@mui/material/IconButton';
 import InputBase from '@mui/material/InputBase';
 import Paper from '@mui/material/Paper';
-import search from '../../assets/icons/search.svg';
+import search from '../../../../assets/icons/search.svg';
 
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = React.useState('');
@@ -46,7 +46,7 @@ export default function SearchBar() {
           fontFamily: 'Manrope',
           fontSize: 15,
           fontStyle: 'normal',
-          fontWeight: 600,
+          fontWeight: 300,
           lineHeight: '2.6rem',
           letterSpacing: -0.15,
           width: 1,

@@ -1,7 +1,7 @@
 import { Box, Paper, Stack } from '@mui/material';
 import AdvertCard from '../Adverts/Advert/Advert';
 import ColorToggleButton from '../Adverts/ToggleButton/ToggleButton';
-import AppHeader from '../AppHeader/AppHeader';
+import AppHeader from '../Homepage/AppHeader/AppHeader';
 import Menu from '../Menu/Menu';
 import FavoriteButton from './FavoriteButton/FavoriteButton';
 
@@ -10,7 +10,6 @@ export default function Favourites() {
     <>
       <AppHeader />
       <Menu />
-
       <Box
         sx={{
           height: '100vh',

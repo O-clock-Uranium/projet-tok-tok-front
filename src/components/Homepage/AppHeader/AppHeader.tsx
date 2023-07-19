@@ -10,19 +10,19 @@ import {
   MenuItem,
   Stack,
   styled,
-  Typography
+  Typography,
 } from '@mui/material';
 import * as React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import bell from '../../assets/icons/bell.svg';
-import profile from '../../assets/icons/profile.svg';
-import settings from '../../assets/icons/settings.svg';
-import signout from '../../assets/icons/signout.svg';
-import logo from '../../assets/logo.svg';
+import bell from '../../../assets/icons/bell.svg';
+import down from '../../../assets/icons/down.svg';
+import profile from '../../../assets/icons/profile.svg';
+import settings from '../../../assets/icons/settings.svg';
+import signout from '../../../assets/icons/signout.svg';
+import logo from '../../../assets/logo.svg';
 
-import SearchBar from './SearchBar';
+import SearchBar from './SearchBar/SearchBar';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -33,7 +33,6 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   return <IconButton {...other} />;
 })(({ theme, expand }) => ({
   transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
   transition: theme.transitions.create('transform', {
     duration: theme.transitions.duration.shortest,
   }),
@@ -60,8 +59,8 @@ export default function AppHeader() {
       sx={{
         backgroundColor: 'white',
         height: '10rem',
-        py: 3, // padding haut/bas
-        px: 10, // padding gauche/droite
+        py: '3rem',
+        px: '10rem',
         position: 'fixed',
         width: 1,
         zIndex: 1000,
@@ -99,6 +98,7 @@ export default function AppHeader() {
                 fontWeight: 500,
                 '& .MuiBadge-badge': {
                   color: 'WHITE',
+                  fontSize: '0.96rem',
                 },
               }}
             >
@@ -139,22 +139,31 @@ export default function AppHeader() {
             <AccordionSummary
               sx={{ m: 0, p: 0 }}
               expandIcon={
-                <ExpandMoreIcon
+                <IconButton
                   onClick={handleClick}
-                  sx={{ fontSize: '2rem', color: 'black' }}
-                />
+                  aria-label="down arrow icon"
+                  sx={{ alignItems: 'center', gap: '1rem' }}
+                >
+                  <img alt="down arrow icon" src={down} />
+                </IconButton>
               }
-              aria-controls="panel1a-content"
-              id="panel1a-header"
+              aria-controls="menu dropdown header"
+              id="menu-dropdown-header"
             >
               <Menu
+                anchorReference="anchorPosition"
+                anchorPosition={{ top: 135, left: 1700 }}
+                elevation={0}
                 id="simple-menu"
                 anchorEl={anchorEl}
                 keepMounted
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
+                disableScrollLock
                 sx={{
-                  mt: 5.5,
+                  '& .MuiMenu-paper': {
+                    borderRadius: '2rem',
+                  },
                 }}
               >
                 <MenuItem

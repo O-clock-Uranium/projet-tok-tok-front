@@ -1,5 +1,6 @@
 import { Box, Stack } from '@mui/material';
-import AppHeader from '../AppHeader/AppHeader';
+import AppHeader from '../Homepage/AppHeader/AppHeader';
+
 import Menu from '../Menu/Menu';
 import AdvertCard from './Advert/Advert';
 import CreateAdvertButton from './CreateAdvertButton/CreateAdvertButton';
