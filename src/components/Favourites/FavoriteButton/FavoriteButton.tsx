@@ -1,7 +1,7 @@
 import Button from '@mui/material/Button';
 import * as React from 'react';
 
-export default function CreateAdvertButton() {
+export default function FavoriteButton() {
   return (
     <Button
       variant="contained"
@@ -14,7 +14,7 @@ export default function CreateAdvertButton() {
         borderRadius: '20px',
       }}
     >
-      Créer une Annonce
+      Mes Favoris
     </Button>
   );
 }

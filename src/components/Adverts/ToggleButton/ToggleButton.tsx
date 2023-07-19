@@ -1,3 +1,4 @@
+import { Paper } from '@mui/material';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import * as React from 'react';
@@ -13,19 +14,27 @@ export default function ColorToggleButton() {
   };
 
   return (
-    <ToggleButtonGroup
-      color="primary"
-      value={alignment}
-      exclusive
-      onChange={handleChange}
-      aria-label="Platform"
-    >
-      <ToggleButton value="web" sx={{ border: 1, fontSize: '2rem' }}>
-        Ventes
-      </ToggleButton>
-      <ToggleButton value="android" sx={{ border: 1, fontSize: '2rem' }}>
-        Dons
-      </ToggleButton>
-    </ToggleButtonGroup>
+    <Paper sx={{ borderRadius: '2rem', p: '1rem' }}>
+      <ToggleButtonGroup
+        color="primary"
+        value={alignment}
+        exclusive
+        onChange={handleChange}
+        aria-label="Platform"
+      >
+        <ToggleButton
+          value="web"
+          sx={{ border: 1, borderRadius: '2rem', fontSize: '2rem' }}
+        >
+          Ventes
+        </ToggleButton>
+        <ToggleButton
+          value="android"
+          sx={{ border: 1, borderRadius: '2rem', fontSize: '2rem' }}
+        >
+          Dons
+        </ToggleButton>
+      </ToggleButtonGroup>
+    </Paper>
   );
 }

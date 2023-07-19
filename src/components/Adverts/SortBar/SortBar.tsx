@@ -1,11 +1,11 @@
 import {
-    FormControl,
-    InputLabel,
-    MenuItem,
-    Paper,
-    Select,
-    SelectChangeEvent,
-    Stack
+  FormControl,
+  MenuItem,
+  OutlinedInput,
+  Paper,
+  Select,
+  SelectChangeEvent,
+  Stack
 } from '@mui/material';
 import * as React from 'react';
 
@@ -27,42 +27,52 @@ function SortBar() {
   return (
     <Paper
       sx={{
-        width: '105rem',
-        position: 'fixed',
-        top: '21rem',
-        left: '23rem',
+        width: '100rem',
         height: '5rem',
+        mt: '2rem',
+        mb: '2rem',
+        borderRadius: '2rem',
       }}
     >
       <Stack direction="row" justifyContent="space-between">
-        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-          <InputLabel id="select-categorie-label">Catégories</InputLabel>
+        <FormControl
+          sx={{ m: 1, minWidth: 120, backgroundColor: '#F5F6FA' }}
+          size="small"
+        >
           <Select
             labelId="select-categorie"
             id="select-categorie"
             value={categorie}
             label="Catégories"
             onChange={handleChangeCategories}
+            displayEmpty
+            input={<OutlinedInput />}
+            inputProps={{ 'aria-label': 'Without label' }}
           >
             <MenuItem value="">
-              <em>None</em>
+              <em>Catégories</em>
             </MenuItem>
             <MenuItem value={10}>Voitures</MenuItem>
             <MenuItem value={20}>Jouets</MenuItem>
             <MenuItem value={30}>Cuisine</MenuItem>
           </Select>
         </FormControl>
-        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-          <InputLabel id="select-distance-label">Distance</InputLabel>
+        <FormControl
+          sx={{ m: 1, minWidth: 120, backgroundColor: '#F5F6FA' }}
+          size="small"
+        >
           <Select
             labelId="select-distance"
             id="select-distance"
             value={distance}
             label="Distance"
             onChange={handleChangeDistance}
+            displayEmpty
+            input={<OutlinedInput />}
+            inputProps={{ 'aria-label': 'Without label' }}
           >
             <MenuItem value="">
-              <em>None</em>
+              <em>Distance</em>
             </MenuItem>
             <MenuItem value={10}>1km</MenuItem>
             <MenuItem value={20}>2km</MenuItem>
@@ -71,17 +81,22 @@ function SortBar() {
             <MenuItem value={50}>5km</MenuItem>
           </Select>
         </FormControl>
-        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-          <InputLabel id="select-sort-by-label">Sort by</InputLabel>
+        <FormControl
+          sx={{ m: 1, minWidth: 120, backgroundColor: '#F5F6FA' }}
+          size="small"
+        >
           <Select
             labelId="select-sort-by"
             id="select-sort-by"
             value={sort}
             label="Sort by"
             onChange={handleChangeSortBy}
+            displayEmpty
+            input={<OutlinedInput />}
+            inputProps={{ 'aria-label': 'Without label' }}
           >
             <MenuItem value="">
-              <em>None</em>
+              <em>Sort By</em>
             </MenuItem>
             <MenuItem value={10}>Date</MenuItem>
             <MenuItem value={20}>Prix</MenuItem>
