@@ -1,3 +1,4 @@
+import { ThemeProvider } from '@mui/material/styles';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import {
@@ -7,19 +8,18 @@ import {
   RouterProvider
 } from 'react-router-dom';
 
-import { ThemeProvider } from '@mui/material';
 import store from './store';
 
 import App from './components/App/App';
-import Adverts from './components/Adverts/Adverts';
 import Error from './components/Error/Error';
 import Favourites from './components/Favourites/Favourites';
 import Messages from './components/Messages/Messages';
 import Posts from './components/Posts/Posts';
 import Profile from './components/Profile/Profile';
 import SignInSide from './components/SignInSide/SignInSide';
-
 import './styles/index.scss';
+
+import Adverts from './components/Adverts/Adverts';
 import theme from './styles/theme';
 
 const router = createBrowserRouter(

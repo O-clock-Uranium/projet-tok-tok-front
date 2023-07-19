@@ -1,9 +1,8 @@
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {
+  AccordionSummary,
   Avatar,
   Badge,
   Box,
-  Button,
   CardMedia,
   IconButton,
   IconButtonProps,
@@ -14,12 +13,14 @@ import {
   Typography
 } from '@mui/material';
 import * as React from 'react';
+import { Link, NavLink } from 'react-router-dom';
 
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import bell from '../../assets/icons/bell.svg';
+import profile from '../../assets/icons/profile.svg';
 import settings from '../../assets/icons/settings.svg';
 import signout from '../../assets/icons/signout.svg';
-import profile from '../../assets/icons/user.svg';
-import logo from '../../assets/toktok_logo.svg';
+import logo from '../../assets/logo.svg';
 
 import SearchBar from './SearchBar';
 
@@ -46,7 +47,7 @@ export default function AppHeader() {
     setExpanded(!expanded);
   };
 
-  const handleClick = (event) => {
+  const handleClick = (event: any) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -61,39 +62,55 @@ export default function AppHeader() {
         height: '10rem',
         py: 3, // padding haut/bas
         px: 10, // padding gauche/droite
+        position: 'fixed',
+        width: 1,
+        zIndex: 1000,
       }}
     >
       <Stack direction="row" justifyContent="space-between">
         {/* logo */}
-        <CardMedia
-          component="img"
-          height="55.75"
-          width="85"
-          image={logo}
-          alt="Logo TokTok"
-          sx={{ width: '85px' }}
-        />
+        <NavLink to="/home">
+          <CardMedia
+            component="img"
+            height="55.75"
+            width="85"
+            image={logo}
+            alt="Logo TokTok"
+          />
+        </NavLink>
 
         <SearchBar />
 
         {/* Icone cloche */}
-        <Stack spacing={2} direction="row">
+        <Stack direction="row" alignItems="center">
           <IconButton
             size="large"
             aria-label="show 17 new notifications"
             color="inherit"
-            sx={{ mr: 2 }}
           >
-            <Badge badgeContent={17} color="primary">
-              <img alt="notification icon" src={bell} height={26} width={26} />
+            {/* // TODO changer dans le thème la couleur du texte des badges */}
+            <Badge
+              badgeContent={17}
+              color="primary"
+              sx={{
+                textAlign: 'center',
+                fontFamily: 'Manrope',
+                color: 'white',
+                fontWeight: 500,
+                '& .MuiBadge-badge': {
+                  color: 'WHITE',
+                },
+              }}
+            >
+              <img alt="notification icon" src={bell} />
             </Badge>
           </IconButton>
 
           {/* Avatar */}
           <Avatar
             alt="Jean-Jacques"
-            src="public/fakedata/jjg.jpg"
-            sx={{ width: 47, height: 47, mr: 10 }}
+            src="src/fakedata/jjg.jpg"
+            sx={{ mx: 2, p: 0, width: '4.7rem', height: '4.7rem' }}
           />
 
           {/* Nom du gars + flèche */}
@@ -102,27 +119,34 @@ export default function AppHeader() {
               mb: 0,
               pb: 0,
               fontFamily: 'Manrope',
-              fontSize: 18,
+              fontSize: '1.8rem',
               fontStyle: 'normal',
               fontWeight: 500,
               lineHeight: 'normal',
             }}
           >
             JJ Goldman
-            <ExpandMore
-              expand={expanded}
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show more"
+          </Typography>
+
+          {/* Button + Menu = menu déroulant */}
+          <ExpandMore
+            sx={{ m: 0, p: 0 }}
+            expand={expanded}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <AccordionSummary
+              sx={{ m: 0, p: 0 }}
+              expandIcon={
+                <ExpandMoreIcon
+                  onClick={handleClick}
+                  sx={{ fontSize: '2rem', color: 'black' }}
+                />
+              }
+              aria-controls="panel1a-content"
+              id="panel1a-header"
             >
-              {/* Button + Menu = menu déroulant */}
-              <IconButton
-                aria-controls="simple-menu"
-                aria-haspopup="true"
-                onClick={handleClick}
-              >
-                <ExpandMoreIcon sx={{ fontSize: '25px', color: 'black' }} />
-              </IconButton>
               <Menu
                 id="simple-menu"
                 anchorEl={anchorEl}
@@ -133,9 +157,14 @@ export default function AppHeader() {
                   mt: 5.5,
                 }}
               >
-                <MenuItem onClick={handleClose}>
+                <MenuItem
+                  component={Link}
+                  to="profil"
+                  onClick={handleClose}
+                  sx={{ fontSize: '1.8rem' }}
+                >
                   {' '}
-                  <IconButton type="button" sx={{}} aria-label="paramètres">
+                  <IconButton type="button" aria-label="paramètres">
                     <img
                       alt="search icon"
                       src={profile}
@@ -145,8 +174,13 @@ export default function AppHeader() {
                   </IconButton>
                   Profile
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
-                  <IconButton type="button" sx={{}} aria-label="paramètres">
+                <MenuItem
+                  component={Link}
+                  to="settings"
+                  onClick={handleClose}
+                  sx={{ fontSize: '1.8rem' }}
+                >
+                  <IconButton type="button" aria-label="paramètres">
                     <img
                       alt="search icon"
                       src={settings}
@@ -156,8 +190,13 @@ export default function AppHeader() {
                   </IconButton>
                   Settings
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
-                  <IconButton type="button" sx={{}} aria-label="paramètres">
+                <MenuItem
+                  component={Link}
+                  to="settings"
+                  onClick={handleClose}
+                  sx={{ color: 'secondary.main', fontSize: '1.8rem' }}
+                >
+                  <IconButton type="button" aria-label="paramètres">
                     <img
                       alt="search icon"
                       src={signout}
@@ -168,8 +207,8 @@ export default function AppHeader() {
                   Logout
                 </MenuItem>
               </Menu>
-            </ExpandMore>
-          </Typography>
+            </AccordionSummary>
+          </ExpandMore>
         </Stack>
       </Stack>
     </Box>

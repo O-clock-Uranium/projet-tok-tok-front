@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
@@ -30,6 +30,14 @@ const theme = createTheme({
       defaultProps: { disableRipple: true },
     },
   },
+  // TODO A revoir pour modifier le background des badges
+  // components: {
+  //   MuiBadge: {
+  //     styleOverrides: {
+  //       color: white,
+  //     },
+  //   },
+  // },
 });
 
 export default theme;

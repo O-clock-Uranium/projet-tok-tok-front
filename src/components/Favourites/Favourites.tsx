@@ -2,9 +2,8 @@ import { Paper, Stack } from '@mui/material';
 import ColorToggleButton from '../Adverts/ToggleButton/ToggleButton';
 import AppHeader from '../AppHeader/AppHeader';
 import Menu from '../Menu/Menu';
-import './Favourites.scss';
 
-function Favourites() {
+export default function Favourites() {
   return (
     <>
       <AppHeader />
@@ -21,5 +20,3 @@ function Favourites() {
     </>
   );
 }
-
-export default Favourites;

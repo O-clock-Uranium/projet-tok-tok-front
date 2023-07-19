@@ -12,10 +12,10 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 
-import img4 from '../../../public/fakedata/banane-chat.jpg';
-import img1 from '../../../public/fakedata/image1.jpg';
-import img2 from '../../../public/fakedata/image2.jpg';
-import img3 from '../../../public/fakedata/image3.jpg';
+import img4 from '../../fakedata/banane-chat.jpg';
+import img1 from '../../fakedata/image1.jpg';
+import img2 from '../../fakedata/image2.jpg';
+import img3 from '../../fakedata/image3.jpg';
 
 function Copyright(props: any) {
   return (
@@ -136,12 +136,12 @@ export default function SignInSide() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="/" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/" variant="body2">
                   Don't have an account? Sign Up
                 </Link>
               </Grid>
