@@ -63,14 +63,14 @@ export default function OneComment() {
             letterSpacing: '-0.15px',
           }}
         >
-          J'ai qu'une chose à te dire Céline : <br />
+          J&apos;ai qu&apos;une chose à te dire Céline : <br />
           Ah si tu pouvais fermer ta gueule
           <br />
-          Ça nous f'rait des vacances
+          Ça nous f&apos;rait des vacances
           <br />
           Ah si tu pouvais fermer ta gueule
           <br />
-          Ça f'rait du bien à la France
+          Ça f&apos;rait du bien à la France
           <br />
         </Typography>
       </Box>

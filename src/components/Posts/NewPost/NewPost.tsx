@@ -1,8 +1,9 @@
-import { Avatar, Box, Button, InputBase, Stack } from "@mui/material";
+import { Avatar, Box, IconButton, InputBase, Stack } from '@mui/material';
+import send from '../../../assets/icons/paper_plane.svg';
 
 function NewPost() {
   return (
-    <Box sx={{ width: '99%', py: '2.5rem', px: '0.8rem' }}>
+    <Box sx={{ width: '99%', pt: '4.5rem', pb: '2rem', px: '0.8rem' }}>
       <Stack spacing={2} direction="row">
         <Avatar
           alt="Jean-Jacques Goldman"
@@ -13,7 +14,7 @@ function NewPost() {
           component="form"
           sx={{
             width: '100%',
-            borderRadius: '50rem',
+            borderRadius: '5rem',
             backgroundColor: '#F5F6FA',
             display: 'flex',
           }}
@@ -22,15 +23,21 @@ function NewPost() {
             multiline
             maxRows={6}
             fullWidth
-            sx={{ ml: 1, p: 1, flex: 1, fontSize: '1.3rem' }}
+            sx={{
+              ml: '2rem',
+              p: '1.5rem',
+              flex: 0.98,
+              fontSize: '1.3rem',
+            }}
             placeholder="Ecrire un commentaire...."
             inputProps={{ 'aria-label': 'search google maps' }}
           />
 
-          <Button
+          <IconButton
             sx={{
-              px: '1rem',
-              py: '0.8rem',
+              my: 'auto',
+              maxHeight: '5.2rem',
+              p: '0.1rem',
               borderRadius: '5rem',
               backgroundColor: 'primary.dark',
               '&:hover': {
@@ -42,7 +49,7 @@ function NewPost() {
             }}
           >
             <img alt="Send" src={send} style={{ padding: '1rem' }} />
-          </Button>
+          </IconButton>
         </Box>
       </Stack>
     </Box>

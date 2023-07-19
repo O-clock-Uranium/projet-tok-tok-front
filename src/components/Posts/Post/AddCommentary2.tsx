@@ -14,7 +14,7 @@ export default function AddCommentary2() {
           component="form"
           sx={{
             width: '100%',
-            borderRadius: '5rem',
+            borderRadius: '2rem',
             backgroundColor: '#F5F6FA',
             display: 'flex',
           }}
@@ -24,13 +24,14 @@ export default function AddCommentary2() {
             maxRows={6}
             fullWidth
             sx={{
-              ml: '2rem',
-              p: '1.5rem',
+              // ml: '1rem',
+              px: '2rem',
+              py: '1rem',
               flex: 0.98,
               fontSize: '1.3rem',
             }}
             placeholder="Ecrire un commentaire...."
-            inputProps={{ 'aria-label': 'search google maps' }}
+            inputProps={{ 'aria-label': 'Ajouter un commentaire' }}
           />
 
           <IconButton
