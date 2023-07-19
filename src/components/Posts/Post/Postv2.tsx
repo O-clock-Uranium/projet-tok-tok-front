@@ -40,13 +40,13 @@ export default function Postv2() {
   return (
     <Paper
       elevation={0}
-      sx={{ width: 820, mx: 'auto', p: '3rem', borderRadius: '2rem' }}
+      sx={{ width: '82rem', mx: 'auto', p: '3rem', borderRadius: '2rem' }}
     >
       <Stack paddingBottom="2.5rem" spacing={2} direction="row">
         <Avatar
           alt="Céline Dion"
           src="src/fakedata/cd.jpg"
-          sx={{ width: 45, height: 45 }}
+          sx={{ width: 60, height: 60 }}
         />
         <Stack direction="column">
           <Typography

@@ -27,12 +27,12 @@ export default function Menu() {
         left: 90,
       }}
     >
-      <MenuList sx={{ gap: 20 }}>
+      <MenuList sx={{ gap: '2rem' }}>
         <MenuItem
           sx={{
             flexDirection: 'column',
             alignItems: 'flex-start',
-            gap: 2,
+            gap: '2rem',
             '&:hover': {
               backgroundColor: 'transparent',
             },

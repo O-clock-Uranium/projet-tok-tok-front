@@ -1,56 +1,110 @@
-import { Avatar, Box, IconButton, InputBase, Stack } from '@mui/material';
-import send from '../../../assets/icons/paper_plane.svg';
+import {
+    Avatar,
+    Box,
+    IconButton,
+    InputBase,
+    Stack,
+    Typography,
+} from '@mui/material';
+import video from '../../../assets/icons/camera.svg';
+import picture from '../../../assets/icons/picture.svg';
 
 function NewPost() {
   return (
-    <Box sx={{ width: '99%', pt: '4.5rem', pb: '2rem', px: '0.8rem' }}>
-      <Stack spacing={2} direction="row">
+    <Box
+      sx={{
+        width: '82rem',
+        p: '3rem',
+        backgroundColor: 'white',
+        mx: 'auto',
+        borderRadius: '2rem',
+      }}
+    >
+      <Stack gap="2rem" direction="row">
         <Avatar
           alt="Jean-Jacques Goldman"
           src="src/fakedata/jjg.jpg"
-          sx={{ width: 45, height: 45 }}
+          sx={{ width: 60, height: 60 }}
         />
-        <Box
-          component="form"
-          sx={{
-            width: '100%',
-            borderRadius: '5rem',
-            backgroundColor: '#F5F6FA',
-            display: 'flex',
-          }}
+        <Stack
+          width="100%"
+          direction="column"
+          alignItems="flex-start"
+          gap="2rem"
         >
-          <InputBase
-            multiline
-            maxRows={6}
-            fullWidth
+          <Stack
+            direction="row"
+            component="form"
             sx={{
-              ml: '2rem',
-              p: '1.5rem',
-              flex: 0.98,
-              fontSize: '1.3rem',
-            }}
-            placeholder="Ecrire un commentaire...."
-            inputProps={{ 'aria-label': 'search google maps' }}
-          />
-
-          <IconButton
-            sx={{
-              my: 'auto',
-              maxHeight: '5.2rem',
-              p: '0.1rem',
+              width: '100%',
               borderRadius: '5rem',
-              backgroundColor: 'primary.dark',
-              '&:hover': {
-                bgcolor: 'primary.light',
-              },
-              '&:active': {
-                bgcolor: 'primary',
-              },
+              backgroundColor: '#F5F6FA',
+              display: 'flex',
             }}
           >
-            <img alt="Send" src={send} style={{ padding: '1rem' }} />
-          </IconButton>
-        </Box>
+            <InputBase
+              multiline
+              maxRows={6}
+              fullWidth
+              sx={{
+                fontFamily: 'DM Sans',
+                ml: '2rem',
+                p: '1.5rem',
+                flex: 0.98,
+                fontSize: '1.5rem',
+                backgroundColor: '#F5F6FA',
+                borderRadius: '9.5rem',
+                color: '#888888',
+              }}
+              placeholder="Quoi de neuf, Jean-Jacques ?"
+              inputProps={{ 'aria-label': 'search google maps' }}
+            />
+
+            <IconButton
+              sx={{
+                my: 'auto',
+                p: '1rem 2rem',
+                borderRadius: '5rem',
+                backgroundColor: 'primary.dark',
+                '&:hover': {
+                  bgcolor: 'primary.light',
+                },
+                '&:active': {
+                  bgcolor: 'primary',
+                },
+              }}
+            >
+              <Typography
+                fontSize="1.5rem"
+                color="white"
+                fontStyle="normal"
+                fontWeight="500"
+                lineHeight="normal"
+                fontFamily="DM Sans"
+              >
+                Publier
+              </Typography>
+            </IconButton>
+          </Stack>
+          <Stack direction="row" pl="2rem">
+            <IconButton
+              type="button"
+              aria-label="images"
+              sx={{ alignItems: 'center', gap: '1rem' }}
+            >
+              <img alt="search icon" src={picture} />
+              <Typography>Images</Typography>
+            </IconButton>
+            <IconButton
+              type="button"
+              aria-label="vidéos"
+              sx={{ alignItems: 'center', gap: '1rem' }}
+            >
+              <img alt="search icon" src={video} />
+              <Typography>Vidéos</Typography>
+            </IconButton>
+          </Stack>
+        </Stack>
       </Stack>
     </Box>
   );

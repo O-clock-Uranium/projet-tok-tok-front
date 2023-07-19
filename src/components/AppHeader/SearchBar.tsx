@@ -46,7 +46,7 @@ export default function SearchBar() {
           fontFamily: 'Manrope',
           fontSize: 15,
           fontStyle: 'normal',
-          fontWeight: 600,
+          fontWeight: 300,
           lineHeight: '2.6rem',
           letterSpacing: -0.15,
           width: 1,

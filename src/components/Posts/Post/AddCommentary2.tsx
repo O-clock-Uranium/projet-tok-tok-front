@@ -24,7 +24,6 @@ export default function AddCommentary2() {
             maxRows={6}
             fullWidth
             sx={{
-              // ml: '1rem',
               px: '2rem',
               py: '1rem',
               flex: 0.98,
