@@ -72,9 +72,9 @@ export default function AdvertCard() {
         />
         <Stack direction="row" justifyContent="space-around">
           <Typography sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-            TITRE
+            Titre
           </Typography>
-          <Typography sx={{ fontSize: '1.5rem' }}>PRICE €</Typography>
+          <Typography sx={{ fontSize: '1.5rem' }}>Price €</Typography>
         </Stack>
         <Paper
           sx={{
