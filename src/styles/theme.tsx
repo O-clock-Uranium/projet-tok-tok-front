@@ -22,6 +22,14 @@ const theme = createTheme({
   typography: {
     fontFamily: 'DM Sans, Manrope',
   },
+  // TODO A revoir pour modifier le background des badges
+  // components: {
+  //   MuiBadge: {
+  //     styleOverrides: {
+  //       color: white,
+  //     },
+  //   },
+  // },
 });
 
 export default theme;
