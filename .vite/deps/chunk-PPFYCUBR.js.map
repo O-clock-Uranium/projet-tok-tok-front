@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../node_modules/@mui/joy/FormControl/FormControlContext.js"],
+  "sourcesContent": ["import * as React from 'react';\n\n/**\n * @internal\n */\n\nconst FormControlContext = /*#__PURE__*/React.createContext(undefined);\nexport default FormControlContext;"],
+  "mappings": ";;;;;;;;AAAA,YAAuB;AAMvB,IAAM,qBAAwC,oBAAc,MAAS;AACrE,IAAO,6BAAQ;",
+  "names": []
+}

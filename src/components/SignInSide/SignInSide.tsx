@@ -12,10 +12,10 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 
-import img4 from '../../../src/fakedata/banane-chat.jpg';
-import img1 from '../../../src/fakedata/image1.jpg';
-import img2 from '../../../src/fakedata/image2.jpg';
-import img3 from '../../../src/fakedata/image3.jpg';
+import img4 from '../../fakedata/banane-chat.jpg';
+import img1 from '../../fakedata/image1.jpg';
+import img2 from '../../fakedata/image2.jpg';
+import img3 from '../../fakedata/image3.jpg';
 
 function Copyright(props: any) {
   return (

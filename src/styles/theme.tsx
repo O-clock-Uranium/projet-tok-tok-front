@@ -20,7 +20,15 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'DM Sans, Manrope',
+    fontFamily: 'DM Sans , Manrope',
+    button: {
+      textTransform: 'none',
+    },
+  },
+  components: {
+    MuiButtonBase: {
+      defaultProps: { disableRipple: true },
+    },
   },
   // TODO A revoir pour modifier le background des badges
   // components: {

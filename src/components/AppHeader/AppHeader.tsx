@@ -9,8 +9,8 @@ import {
   Menu,
   MenuItem,
   Stack,
-  Typography,
   styled,
+  Typography
 } from '@mui/material';
 import * as React from 'react';
 import { Link, NavLink } from 'react-router-dom';
