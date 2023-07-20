@@ -34,7 +34,14 @@ function Adverts() {
           <CreateAdvertButton />
         </Stack>
         <SortBar />
-        <Stack direction="row" flexWrap="wrap" gap="1rem">
+        <Stack
+          direction="row"
+          flexWrap="wrap"
+          gap="2rem"
+          // justifyContent="center"
+          // alignItems="flex-start"
+          // alignSelf="stretch"
+        >
           <AdvertCard />
           <AdvertCard2 />
           <AdvertCard3 />

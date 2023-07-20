@@ -7,7 +7,10 @@ import imgAnnonce from '../../../fakedata/bouteille.jpg';
 
 export default function AdvertCard() {
   return (
-    <Paper sx={{ width: '30rem', height: '28rem', mx: 'auto' }}>
+    <Paper
+      elevation={0}
+      sx={{ width: '30rem', height: '28rem', mx: 'auto', borderRadius: '2rem' }}
+    >
       <Stack direction="column">
         <Stack
           paddingBottom="2.5rem"
