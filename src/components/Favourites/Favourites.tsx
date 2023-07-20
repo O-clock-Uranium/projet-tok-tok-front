@@ -1,5 +1,7 @@
 import { Box, Stack } from '@mui/material';
 import AdvertCard from '../Adverts/Advert/Advert';
+import AdvertCard2 from '../Adverts/Advert/Advert2';
+import AdvertCard3 from '../Adverts/Advert/Advert3';
 import ColorToggleButton from '../Adverts/ToggleButton/ToggleButton';
 import AppHeader from '../Homepage/AppHeader/AppHeader';
 import Menu from '../Menu/Menu';
@@ -30,17 +32,8 @@ export default function Favourites() {
         </Stack>
         <Stack direction="row" flexWrap="wrap" gap="1rem" mt="2rem">
           <AdvertCard />
-          <AdvertCard />
-          <AdvertCard />
-          <AdvertCard />
-          <AdvertCard />
-          <AdvertCard />
-          <AdvertCard />
-          <AdvertCard />
-          <AdvertCard />
-          <AdvertCard />
-          <AdvertCard />
-          <AdvertCard />
+          <AdvertCard2 />
+          <AdvertCard3 />
         </Stack>
       </Box>
     </>

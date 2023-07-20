@@ -5,7 +5,7 @@ import {
   Paper,
   Select,
   SelectChangeEvent,
-  Stack
+  Stack,
 } from '@mui/material';
 import * as React from 'react';
 

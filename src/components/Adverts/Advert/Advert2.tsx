@@ -3,11 +3,11 @@ import Typography from '@mui/material/Typography';
 import * as React from 'react';
 
 import bookmark from '../../../assets/icons/bookmark.svg';
-import imgAnnonce from '../../../fakedata/slip.jpg';
+import imgAnnonce from '../../../fakedata/patrick.jpg';
 
 export default function AdvertCard() {
   return (
-    <Paper sx={{ maxWidth: '30rem', height: '28rem', mx: 'auto' }}>
+    <Paper sx={{ width: '30rem', height: '28rem', mx: 'auto' }}>
       <Stack direction="column">
         <Stack
           paddingBottom="2.5rem"
@@ -65,9 +65,9 @@ export default function AdvertCard() {
         />
         <Stack direction="row" justifyContent="space-around">
           <Typography sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-            Le Slip d&apos;un ami nommé Maxime (sale)
+            Album exclusif
           </Typography>
-          <Typography sx={{ fontSize: '1.5rem' }}>2 €</Typography>
+          <Typography sx={{ fontSize: '1.5rem' }}>15 €</Typography>
         </Stack>
         <Paper
           sx={{
@@ -79,7 +79,7 @@ export default function AdvertCard() {
         >
           <Stack direction="row" gap="1rem" justifyContent="center">
             <Typography>Distance</Typography>
-            <Typography>X km</Typography>
+            <Typography>10 km</Typography>
           </Stack>
         </Paper>
       </Stack>

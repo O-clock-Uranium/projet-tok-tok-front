@@ -7,7 +7,7 @@ import imgAnnonce from '../../../fakedata/bouteille.jpg';
 
 export default function AdvertCard() {
   return (
-    <Paper sx={{ maxWidth: '30rem', height: '28rem', mx: 'auto' }}>
+    <Paper sx={{ width: '30rem', height: '28rem', mx: 'auto' }}>
       <Stack direction="column">
         <Stack
           paddingBottom="2.5rem"
@@ -42,7 +42,7 @@ export default function AdvertCard() {
                 lineHeight: 'normal',
               }}
             >
-              Il y a 1 heure
+              Il y a 15 minutes
             </Typography>
           </Stack>
           <IconButton
@@ -65,9 +65,9 @@ export default function AdvertCard() {
         />
         <Stack direction="row" justifyContent="space-around">
           <Typography sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-            Titre
+            Bouteille d&apos;eau
           </Typography>
-          <Typography sx={{ fontSize: '1.5rem' }}>Prix 900€</Typography>
+          <Typography sx={{ fontSize: '1.5rem' }}>100 €</Typography>
         </Stack>
         <Paper
           sx={{
@@ -79,7 +79,7 @@ export default function AdvertCard() {
         >
           <Stack direction="row" gap="1rem" justifyContent="center">
             <Typography>Distance</Typography>
-            <Typography>X km</Typography>
+            <Typography>5 km</Typography>
           </Stack>
         </Paper>
       </Stack>

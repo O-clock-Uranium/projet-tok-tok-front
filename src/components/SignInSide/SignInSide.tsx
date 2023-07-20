@@ -16,7 +16,6 @@ import img3 from '../../fakedata/cd.jpg';
 import img1 from '../../fakedata/jjg.jpg';
 import img2 from '../../fakedata/ps.jpg';
 
-import './troll.scss';
 
 function Copyright(props: any) {
   return (
@@ -134,7 +133,6 @@ export default function SignInSide() {
             /> */}
             <Button
               href="/home"
-              id="troll"
               type="submit"
               fullWidth
               variant="contained"
