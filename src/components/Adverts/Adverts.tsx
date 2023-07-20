@@ -3,6 +3,8 @@ import AppHeader from '../Homepage/AppHeader/AppHeader';
 
 import Menu from '../Menu/Menu';
 import AdvertCard from './Advert/Advert';
+import AdvertCard2 from './Advert/Advert2';
+import AdvertCard3 from './Advert/Advert3';
 import CreateAdvertButton from './CreateAdvertButton/CreateAdvertButton';
 import SortBar from './SortBar/SortBar';
 import ColorToggleButton from './ToggleButton/ToggleButton';
@@ -34,16 +36,16 @@ function Adverts() {
         <SortBar />
         <Stack direction="row" flexWrap="wrap" gap="1rem">
           <AdvertCard />
+          <AdvertCard2 />
+          <AdvertCard3 />
+          <AdvertCard2 />
+          <AdvertCard />
+          <AdvertCard3 />
+          <AdvertCard2 />
           <AdvertCard />
           <AdvertCard />
-          <AdvertCard />
-          <AdvertCard />
-          <AdvertCard />
-          <AdvertCard />
-          <AdvertCard />
-          <AdvertCard />
-          <AdvertCard />
-          <AdvertCard />
+          <AdvertCard2 />
+          <AdvertCard3 />
           <AdvertCard />
         </Stack>
       </Box>

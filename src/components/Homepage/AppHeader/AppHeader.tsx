@@ -68,6 +68,7 @@ export default function AppHeader() {
     >
       <Stack direction="row" justifyContent="space-between">
         {/* logo */}
+        {/* // TODO A changer en simple <img /> */}
         <NavLink to="/home">
           <CardMedia
             component="img"
@@ -77,9 +78,7 @@ export default function AppHeader() {
             alt="Logo TokTok"
           />
         </NavLink>
-
         <SearchBar />
-
         {/* Icone cloche */}
         <Stack direction="row" alignItems="center">
           <IconButton
@@ -168,7 +167,7 @@ export default function AppHeader() {
               >
                 <MenuItem
                   component={Link}
-                  to="profil"
+                  to="/profil"
                   onClick={handleClose}
                   sx={{ fontSize: '1.8rem' }}
                 >
@@ -185,7 +184,7 @@ export default function AppHeader() {
                 </MenuItem>
                 <MenuItem
                   component={Link}
-                  to="settings"
+                  to="/messagerie"
                   onClick={handleClose}
                   sx={{ fontSize: '1.8rem' }}
                 >
@@ -201,7 +200,7 @@ export default function AppHeader() {
                 </MenuItem>
                 <MenuItem
                   component={Link}
-                  to="settings"
+                  to="/messagerie"
                   onClick={handleClose}
                   sx={{ color: 'secondary.main', fontSize: '1.8rem' }}
                 >

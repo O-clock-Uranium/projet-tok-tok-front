@@ -38,22 +38,6 @@ const router = createBrowserRouter(
   )
 );
 
-// {/* <Routes>
-// {/* Route spéciale pour SignInSide sans le template */}
-// <Route path="/" element={<SignInSide />} />
-
-// {/* Routes avec le template App */}
-// <Route path="/" element={<App />} errorElement={<Error />}>
-//   <Route errorElement={<Error />}>
-//     <Route index element={<Posts />} />
-//     <Route path="/profil" element={<Profile />} />
-//     <Route path="/annonces" element={<Adverts />} />
-//     <Route path="/favoris" element={<Favourites />} />
-//     <Route path="/messagerie" element={<Messages />} />
-//   </Route>
-// </Route>
-// </Routes> */}
-
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );

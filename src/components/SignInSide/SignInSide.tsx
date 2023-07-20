@@ -1,5 +1,3 @@
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
@@ -12,10 +10,13 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 
+import logo from '../../assets/logo.svg';
 import img4 from '../../fakedata/banane-chat.jpg';
 import img3 from '../../fakedata/cd.jpg';
 import img1 from '../../fakedata/jjg.jpg';
 import img2 from '../../fakedata/ps.jpg';
+
+import './troll.scss';
 
 function Copyright(props: any) {
   return (
@@ -26,8 +27,8 @@ function Copyright(props: any) {
       {...props}
     >
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="/home">
+        Tok Tok
       </Link>{' '}
       {new Date().getFullYear()}.
     </Typography>
@@ -90,11 +91,16 @@ export default function SignInSide() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
+          <img
+            src={logo}
+            // height="55.75"
+            width="130"
+            alt="Logo TokTok"
+            style={{ marginTop: '10%', marginBottom: '15%' }}
+          />
+
           <Typography component="h1" variant="h5">
-            Se Connecter
+            Viens rencontrer les voisins (les plus chauds) de ta région !
           </Typography>
           <Box
             component="form"
@@ -107,7 +113,7 @@ export default function SignInSide() {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Adresse mail"
               name="email"
               autoComplete="email"
               autoFocus
@@ -117,32 +123,36 @@ export default function SignInSide() {
               required
               fullWidth
               name="password"
-              label="Password"
+              label="Mot de passe"
               type="password"
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+              label="Se rappeler de moi"
+            /> */}
             <Button
+              href="/home"
+              id="troll"
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, color: 'white', fontSize: '1.3rem' }}
             >
               Se Connecter
             </Button>
             <Grid container>
               <Grid item xs>
                 <Link href="/" variant="body2">
-                  Forgot password?
+                  Mot de passe oublié ? <br />
+                  SHEH !
                 </Link>
               </Grid>
               <Grid item>
                 <Link href="/" variant="body2">
-                  Don't have an account? Sign Up
+                  Pas encore de compte ? <br />
+                  INSCRIS TOI WESH !!
                 </Link>
               </Grid>
             </Grid>

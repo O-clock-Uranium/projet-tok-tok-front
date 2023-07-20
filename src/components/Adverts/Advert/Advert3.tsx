@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import * as React from 'react';
 
 import bookmark from '../../../assets/icons/bookmark.svg';
-import imgAnnonce from '../../../fakedata/cd.jpg';
+import imgAnnonce from '../../../fakedata/bouteille.jpg';
 
 export default function AdvertCard() {
   return (
@@ -17,7 +17,7 @@ export default function AdvertCard() {
         >
           <Avatar
             alt="Jean-Jacques"
-            src="src/fakedata/jjg.jpg"
+            src="src/fakedata/cd.jpg"
             sx={{ width: 40, height: 40, ml: '1rem', mt: '1rem' }}
           />
           <Stack direction="column">
@@ -31,7 +31,7 @@ export default function AdvertCard() {
                 my: '0.5rem',
               }}
             >
-              Jean Jacques Goldman
+              Céline Dion
             </Typography>
             <Typography
               sx={{
@@ -42,7 +42,7 @@ export default function AdvertCard() {
                 lineHeight: 'normal',
               }}
             >
-              Il y a 5 minutes
+              Il y a 1 heure
             </Typography>
           </Stack>
           <IconButton
@@ -67,7 +67,7 @@ export default function AdvertCard() {
           <Typography sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
             Titre
           </Typography>
-          <Typography sx={{ fontSize: '1.5rem' }}>Price €</Typography>
+          <Typography sx={{ fontSize: '1.5rem' }}>Prix 900€</Typography>
         </Stack>
         <Paper
           sx={{

@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import * as React from 'react';
 
 import bookmark from '../../../assets/icons/bookmark.svg';
-import imgAnnonce from '../../../fakedata/cd.jpg';
+import imgAnnonce from '../../../fakedata/slip.jpg';
 
 export default function AdvertCard() {
   return (
@@ -17,7 +17,7 @@ export default function AdvertCard() {
         >
           <Avatar
             alt="Jean-Jacques"
-            src="src/fakedata/jjg.jpg"
+            src="src/fakedata/ps.jpg"
             sx={{ width: 40, height: 40, ml: '1rem', mt: '1rem' }}
           />
           <Stack direction="column">
@@ -31,7 +31,7 @@ export default function AdvertCard() {
                 my: '0.5rem',
               }}
             >
-              Jean Jacques Goldman
+              Patrick Sébastien
             </Typography>
             <Typography
               sx={{
@@ -42,7 +42,7 @@ export default function AdvertCard() {
                 lineHeight: 'normal',
               }}
             >
-              Il y a 5 minutes
+              Il y a 13 minutes
             </Typography>
           </Stack>
           <IconButton
@@ -65,9 +65,9 @@ export default function AdvertCard() {
         />
         <Stack direction="row" justifyContent="space-around">
           <Typography sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-            Titre
+            Le Slip d&apos;un ami nommé Maxime (sale)
           </Typography>
-          <Typography sx={{ fontSize: '1.5rem' }}>Price €</Typography>
+          <Typography sx={{ fontSize: '1.5rem' }}>2 €</Typography>
         </Stack>
         <Paper
           sx={{
