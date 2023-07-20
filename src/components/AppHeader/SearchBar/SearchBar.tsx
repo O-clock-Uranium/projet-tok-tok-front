@@ -3,7 +3,7 @@ import * as React from 'react';
 import IconButton from '@mui/material/IconButton';
 import InputBase from '@mui/material/InputBase';
 import Paper from '@mui/material/Paper';
-import search from '../../../../assets/icons/search.svg';
+import search from '../../../assets/icons/search.svg';
 
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = React.useState('');
@@ -14,12 +14,14 @@ export default function SearchBar() {
     setSearchTerm(event.target.value);
   };
 
-  function handleSubmit(event: any) {
-    if (!searchTerm.trim().length) {
-      //   return;
-    }
-    // fetchqqc(); // Changer quand branché au back
-  }
+  // TODO le submit après une recherche
+  /* // function handleSubmit(event: any) {
+  //   if (!searchTerm.trim().length) {
+  //    return;
+  //   }
+  //   fetchqqc();  Changer quand branché au back
+  // }
+ */
 
   return (
     <Paper
@@ -55,7 +57,7 @@ export default function SearchBar() {
         inputProps={{ 'aria-label': 'Rechercher...' }}
         value={searchTerm}
         onChange={handleChange}
-        onSubmit={handleSubmit}
+        // onSubmit={handleSubmit}
       />
     </Paper>
   );

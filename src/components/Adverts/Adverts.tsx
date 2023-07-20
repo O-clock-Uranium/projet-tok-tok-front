@@ -1,5 +1,5 @@
 import { Box, Stack } from '@mui/material';
-import AppHeader from '../Homepage/AppHeader/AppHeader';
+import AppHeader from '../AppHeader/AppHeader';
 
 import Menu from '../Menu/Menu';
 import AdvertCard from './Advert/Advert';
@@ -38,15 +38,15 @@ function Adverts() {
           <AdvertCard />
           <AdvertCard2 />
           <AdvertCard3 />
-          <AdvertCard2 />
-          <AdvertCard />
           <AdvertCard3 />
+          <AdvertCard />
           <AdvertCard2 />
-          <AdvertCard />
-          <AdvertCard />
           <AdvertCard2 />
           <AdvertCard3 />
           <AdvertCard />
+          <AdvertCard />
+          <AdvertCard2 />
+          <AdvertCard3 />
         </Stack>
       </Box>
     </>

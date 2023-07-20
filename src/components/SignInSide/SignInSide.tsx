@@ -1,8 +1,6 @@
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Checkbox from '@mui/material/Checkbox';
 import CssBaseline from '@mui/material/CssBaseline';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
@@ -15,7 +13,6 @@ import img4 from '../../fakedata/banane-chat.jpg';
 import img3 from '../../fakedata/cd.jpg';
 import img1 from '../../fakedata/jjg.jpg';
 import img2 from '../../fakedata/ps.jpg';
-
 
 function Copyright(props: any) {
   return (

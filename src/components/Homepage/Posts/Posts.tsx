@@ -1,6 +1,6 @@
 import Stack from '@mui/material/Stack';
+import AppHeader from '../../AppHeader/AppHeader';
 import Menu from '../../Menu/Menu';
-import AppHeader from '../AppHeader/AppHeader';
 import NewPost from './NewPost/NewPost';
 import Postv2 from './Post/Post';
 

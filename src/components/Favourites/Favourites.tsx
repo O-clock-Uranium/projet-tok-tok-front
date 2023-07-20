@@ -3,9 +3,9 @@ import AdvertCard from '../Adverts/Advert/Advert';
 import AdvertCard2 from '../Adverts/Advert/Advert2';
 import AdvertCard3 from '../Adverts/Advert/Advert3';
 import ColorToggleButton from '../Adverts/ToggleButton/ToggleButton';
-import AppHeader from '../Homepage/AppHeader/AppHeader';
+import AppHeader from '../AppHeader/AppHeader';
 import Menu from '../Menu/Menu';
-import FavoriteButton from './FavoriteButton/FavoriteButton';
+// import FavoriteButton from './FavoriteButton/FavoriteButton';
 
 export default function Favourites() {
   return (

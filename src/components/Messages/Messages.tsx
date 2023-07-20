@@ -1,5 +1,5 @@
 import chantier from '../../fakedata/chantier.gif';
-import AppHeader from '../Homepage/AppHeader/AppHeader';
+import AppHeader from '../AppHeader/AppHeader';
 import Menu from '../Menu/Menu';
 
 export default function Messages() {

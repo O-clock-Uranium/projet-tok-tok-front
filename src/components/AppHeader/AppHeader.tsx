@@ -15,12 +15,12 @@ import {
 import * as React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
-import bell from '../../../assets/icons/bell.svg';
-import down from '../../../assets/icons/down.svg';
-import profile from '../../../assets/icons/profile.svg';
-import settings from '../../../assets/icons/settings.svg';
-import signout from '../../../assets/icons/signout.svg';
-import logo from '../../../assets/logo.svg';
+import bell from '../../assets/icons/bell.svg';
+import down from '../../assets/icons/down.svg';
+import profile from '../../assets/icons/profile.svg';
+import settings from '../../assets/icons/settings.svg';
+import signout from '../../assets/icons/signout.svg';
+import logo from '../../assets/logo.svg';
 
 import SearchBar from './SearchBar/SearchBar';
 
@@ -46,6 +46,7 @@ export default function AppHeader() {
     setExpanded(!expanded);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleClick = (event: any) => {
     setAnchorEl(event.currentTarget);
   };
@@ -200,7 +201,7 @@ export default function AppHeader() {
                 </MenuItem>
                 <MenuItem
                   component={Link}
-                  to="/messagerie"
+                  to="/"
                   onClick={handleClose}
                   sx={{ color: 'secondary.main', fontSize: '1.8rem' }}
                 >
