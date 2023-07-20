@@ -1,5 +1,6 @@
 import {
   Badge,
+  Button,
   IconButton,
   ListItemIcon,
   MenuItem,
@@ -39,14 +40,22 @@ export default function Menu() {
           }}
         >
           {/* Faudra mettre un classe isActive sur les boutons qui sont actifs */}
-          <ListItemIcon
-            sx={{ p: 1.2, backgroundColor: 'primary.dark', borderRadius: 3 }}
-          >
-            <NavLink to="/home">
-              <IconButton type="button" aria-label="paramètres">
-                <img alt="search icon" src={home} />
-              </IconButton>
-            </NavLink>
+          <ListItemIcon sx={{ p: 1.2, borderRadius: 3 }}>
+            {/* <NavLink to="/home"> */}
+            <IconButton
+              component={NavLink}
+              to="/home"
+              type="button"
+              aria-label="paramètres"
+              sx={{
+                '&:active': {
+                  BackgroundColor: '#F07DEA !important',
+                },
+              }}
+            >
+              <img alt="search icon" src={home} />
+            </IconButton>
+            {/* </NavLink> */}
           </ListItemIcon>
           <ListItemIcon sx={{ p: 1 }}>
             <NavLink to="/profil">
