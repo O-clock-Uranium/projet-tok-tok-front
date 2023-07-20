@@ -21,6 +21,7 @@ import './styles/index.scss';
 
 import Adverts from './components/Adverts/Adverts';
 import theme from './styles/theme';
+import Accueil from './components/Accueil/Accueil';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,6 +30,7 @@ const router = createBrowserRouter(
       <Route element={<App />} errorElement={<Error />} />
       <Route errorElement={<Error />}>
         <Route path="/home" element={<Posts />} />
+        <Route path="/accueil" element={<Accueil />} />
         <Route path="/profil" element={<Profile />} />
         <Route path="/annonces" element={<Adverts />} />
         <Route path="/favoris" element={<Favourites />} />
