@@ -28,7 +28,7 @@ export default function Favourites() {
           height="8.2rem"
         >
           <ColorToggleButton />
-          <FavoriteButton />
+          {/* <FavoriteButton /> */}
         </Stack>
         <Stack direction="row" flexWrap="wrap" gap="1rem" mt="2rem">
           <AdvertCard />
