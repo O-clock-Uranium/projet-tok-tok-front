@@ -11,17 +11,13 @@ export default function ButtonToggle() {
       direction="column"
       justifyContent="center"
       alignItems="center"
-      pt="2rem"
+      sx={{ p: '2rem' }}
     >
       <Button
         onClick={() => setIsSignup(!isSignup)}
         sx={{
           fontSize: '1.5rem',
           borderRadius: '5rem',
-          p: '1rem !important',
-          gap: '1rem',
-          backgroundColor: 'primary.dark !important',
-          ':hover': { backgroundColor: 'primary.dark', Color: 'white' },
         }}
       >
         {isSignup ? 'Se connecter' : 'S inscrire '}

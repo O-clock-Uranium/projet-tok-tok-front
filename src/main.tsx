@@ -16,7 +16,6 @@ import Favourites from './components/Favourites/Favourites';
 import Posts from './components/Homepage/Posts/Posts';
 import Messages from './components/Messages/Messages';
 import Profile from './components/Profile/Profile';
-import SignInSide from './components/SignInSide/SignInSide';
 import './styles/index.scss';
 
 import Adverts from './components/Adverts/Adverts';
@@ -26,11 +25,10 @@ import Accueil from './components/Accueil/Accueil';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<SignInSide />} />
+      <Route path="/" element={<Accueil />} />
       <Route element={<App />} errorElement={<Error />} />
       <Route errorElement={<Error />}>
         <Route path="/home" element={<Posts />} />
-        <Route path="/accueil" element={<Accueil />} />
         <Route path="/profil" element={<Profile />} />
         <Route path="/annonces" element={<Adverts />} />
         <Route path="/favoris" element={<Favourites />} />

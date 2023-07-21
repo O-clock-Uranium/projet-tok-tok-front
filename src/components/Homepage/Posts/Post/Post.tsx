@@ -15,7 +15,7 @@ import OneComment from './OneComment/OneComment';
 
 import AddCommentary from './AddComment/AddComment';
 
-export default function Postv2() {
+export default function Post() {
   const [expanded, setExpanded] = React.useState(false);
   const [like, setLike] = React.useState(false);
 
