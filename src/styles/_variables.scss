@@ -1,18 +1,16 @@
-:root {
-    --rad: .7rem;
-    --dur: .3s;
-    --color-dark: #2f2f2f;
-    --color-light: #fff;
-    --color-brand: #23735E;
-    --font-fam: 'Lato', sans-serif;
-    --height: 3rem;
-    --btn-width: 6rem;
-    --bez: cubic-bezier(0, 0, 0.43, 1.49);
-  }
+@use 'sass:color';
 
-// $color-white: #fff;
-// $color-primary: hsl(170, 49%, 52%); // #49c1ad
-// $color-primary-lighter: hsl(170, 49%, 67%); // #82d4c6
-// $color-primary-darker: hsl(170, 49%, 37%); // #308d7d
-// $color-grey: hsl(225, 9%, 70%);
-// $color-dark: #141518;
+$color: #3e7fb7;
+$color-dark: color.scale($color, $lightness: -50%);
+$color-light: color.scale($color, $lightness: 70%);
+
+$color-darkest: #333;
+$color-lightest: #fff;
+
+$gutter: 1rem;
+
+$form-height: 4rem;
+
+
+
+

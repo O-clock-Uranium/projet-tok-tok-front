@@ -1,0 +1,39 @@
+@use '../../../styles/variables' as v;
+
+.messages {
+  flex-grow: 1;
+  font-size: 1.6rem;
+  //overflow-y: auto;
+  padding: v.$gutter;
+
+  &-item {
+    margin-bottom: v.$gutter;
+
+    &--mine {
+      text-align: right;
+      color: #b0b;
+
+      .messages-item__author {
+        margin-left: 0;
+        margin-right: v.$gutter * 2.5;
+      }
+    }
+
+    &__author {
+      margin-bottom: v.$gutter;
+      margin-left: v.$gutter * 2.5;
+    }
+
+    &__content {
+      background: #03665C;
+      border-radius: v.$gutter * 1.5;
+      color: #fff;
+      min-width: 10em;
+      padding: v.$gutter * 1.5;
+      text-align: left;
+
+      display: inline-block;
+      // alternative → width: fit-content;
+    }
+  }
+}
