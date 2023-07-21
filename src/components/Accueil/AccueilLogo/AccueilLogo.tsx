@@ -6,7 +6,6 @@ function AccueilLogo() {
     <Stack direction="column" justifyContent="center" alignItems="center">
       <img
         src={logo}
-        // height="55.75"
         width="130"
         alt="Logo TokTok"
         style={{ marginTop: '10%', marginBottom: '15%' }}

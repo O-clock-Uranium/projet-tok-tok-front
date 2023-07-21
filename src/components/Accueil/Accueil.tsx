@@ -1,7 +1,7 @@
 import { Stack } from '@mui/material';
 import ButtonToggle from './AccueilButtonToggle/AccueilButtonToggle';
 import AccueilLogo from './AccueilLogo/AccueilLogo';
-import Carrousel from './Carroussel/Carrousel';
+import Carrousel from './Carrousel/Carrousel';
 
 export default function Accueil() {
   // const ToggleButton = () => {
