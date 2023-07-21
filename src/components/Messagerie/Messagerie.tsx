@@ -1,6 +1,6 @@
 import { Box, Paper, Stack } from '@mui/material';
 import { useAppSelector } from '../../hooks/redux';
-import AppHeader from '../Homepage/AppHeader/AppHeader';
+import AppHeader from '../AppHeader/AppHeader';
 import Menu from '../Menu/Menu';
 import FlashMessage from './FlashMessage/FlashMessage';
 import Form from './Form/Form';

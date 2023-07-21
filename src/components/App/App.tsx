@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import AppHeader from '../Homepage/AppHeader/AppHeader';
+import AppHeader from '../AppHeader/AppHeader';
 import Menu from '../Menu/Menu';
 
 function App() {

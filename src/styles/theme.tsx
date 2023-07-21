@@ -29,6 +29,20 @@ const theme = createTheme({
     MuiButtonBase: {
       defaultProps: { disableRipple: true },
     },
+    MuiToggleButton: {
+      styleOverrides: {
+        root: {
+          '&.Mui-selected': {
+            color: '#fff',
+            backgroundColor: '#03665C',
+            '&:hover': {
+              color: '#fff',
+              backgroundColor: '#03665C',
+            },
+          },
+        },
+      },
+    },
   },
   // TODO A revoir pour modifier le background des badges
   // components: {

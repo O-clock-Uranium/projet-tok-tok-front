@@ -3,18 +3,13 @@ import Typography from '@mui/material/Typography';
 import * as React from 'react';
 
 import bookmark from '../../../assets/icons/bookmark.svg';
-import imgAnnonce from '../../../fakedata/guitare.jpg';
+import imgAnnonce from '../../../fakedata/bouteille.jpg';
 
 export default function AdvertCard() {
   return (
     <Paper
       elevation={0}
-      sx={{
-        width: '30rem',
-        height: '28rem',
-        mx: 'auto',
-        borderRadius: '2rem',
-      }}
+      sx={{ width: '30rem', height: '28rem', mx: 'auto', borderRadius: '2rem' }}
     >
       <Stack direction="column">
         <Stack
@@ -25,7 +20,7 @@ export default function AdvertCard() {
         >
           <Avatar
             alt="Jean-Jacques"
-            src="src/fakedata/jjg.jpg"
+            src="src/fakedata/cd.jpg"
             sx={{ width: 40, height: 40, ml: '1rem', mt: '1rem' }}
           />
           <Stack direction="column">
@@ -39,7 +34,7 @@ export default function AdvertCard() {
                 my: '0.5rem',
               }}
             >
-              Jean Jacques Goldman
+              Céline Dion
             </Typography>
             <Typography
               sx={{
@@ -50,7 +45,7 @@ export default function AdvertCard() {
                 lineHeight: 'normal',
               }}
             >
-              Il y a 5 minutes
+              Il y a 15 minutes
             </Typography>
           </Stack>
           <IconButton
@@ -73,9 +68,9 @@ export default function AdvertCard() {
         />
         <Stack direction="row" justifyContent="space-around">
           <Typography sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-            Titre
+            Bouteille d&apos;eau
           </Typography>
-          <Typography sx={{ fontSize: '1.5rem' }}>250 €</Typography>
+          <Typography sx={{ fontSize: '1.5rem' }}>100 €</Typography>
         </Stack>
         <Paper
           sx={{
@@ -87,7 +82,7 @@ export default function AdvertCard() {
         >
           <Stack direction="row" gap="1rem" justifyContent="center">
             <Typography>Distance</Typography>
-            <Typography>1 km</Typography>
+            <Typography>5 km</Typography>
           </Stack>
         </Paper>
       </Stack>
