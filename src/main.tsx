@@ -14,7 +14,7 @@ import App from './components/App/App';
 import Error from './components/Error/Error';
 import Favourites from './components/Favourites/Favourites';
 import Posts from './components/Homepage/Posts/Posts';
-import Messages from './components/Messages/Messages';
+import Messagerie from './components/Messagerie/Messagerie';
 import Profile from './components/Profile/Profile';
 import './styles/index.scss';
 
@@ -32,7 +32,7 @@ const router = createBrowserRouter(
         <Route path="/profil" element={<Profile />} />
         <Route path="/annonces" element={<Adverts />} />
         <Route path="/favoris" element={<Favourites />} />
-        <Route path="/messagerie" element={<Messages />} />
+        <Route path="/messagerie" element={<Messagerie />} />
       </Route>
     </>
   )

@@ -1,0 +1,91 @@
+@use '../../../styles/mixins' as m;
+@use '../../../styles/variables' as v;
+
+.settings {
+  align-items: flex-start;
+  display: flex;
+  font-size: 2rem;
+  left: calc(100vw - v.$form-height - 1rem);
+  position: fixed;
+  top: 150;
+  transition: left 0.3s ease;
+  z-index: 1;
+
+  &--open {
+    left: 1rem;
+  }
+
+  &-toggler {
+    @include m.flex-center;
+
+    background-color: v.$color;
+    border: 0;
+    border-radius: 50%;
+    color: v.$color-lightest;
+    cursor: pointer;
+    height: v.$form-height;
+    margin-top: 1rem;
+    transition: transform 0.3s ease, background-color 0.3s linear;
+    width: v.$form-height;
+    z-index: 2;
+
+    &:hover {
+      background-color: v.$color-dark;
+    }
+
+    .settings--open & {
+      transform: rotate(45deg);
+    }
+  }
+
+  &-form,
+  &-logged {
+    align-items: center;
+    background: v.$color-dark;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    margin-left: 0;
+    width: 100vw;
+
+    .settings--open & {
+      margin-left: -1 * (v.$form-height + 1rem);
+    }
+  }
+
+  &-input,
+  &-button {
+    border: 0;
+    border-radius: 4px;
+    display: block;
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    width: 15rem;
+  }
+
+  &-button {
+    background: v.$color;
+    border: 0;
+    color: v.$color-lightest;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:disabled {
+      background: rgba(v.$color-lightest, 0.1);
+      cursor: not-allowed;
+    }
+  }
+
+  &-logged {
+    color: v.$color-lightest;
+    text-align: center;
+
+    strong {
+      display: block;
+      font-size: 1.5em;
+      font-weight: 700;
+      margin: 1rem auto;
+    }
+  }
+}

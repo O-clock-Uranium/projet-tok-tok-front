@@ -1,6 +1,10 @@
 @use 'reset';
 @use 'variables' as v;
 
+* {
+	scroll-behavior: smooth;
+  }
+
 body {
 	background-color: #f0f3fa;
 	margin: 0;
