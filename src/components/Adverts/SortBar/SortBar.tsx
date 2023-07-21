@@ -2,14 +2,13 @@ import {
   FormControl,
   MenuItem,
   OutlinedInput,
-  Paper,
   Select,
   SelectChangeEvent,
   Stack,
 } from '@mui/material';
 import * as React from 'react';
 
-function SortBar() {
+export default function SortBar() {
   const [categorie, setCategorie] = React.useState('');
   const [distance, setDistance] = React.useState('');
   const [sort, setSort] = React.useState('');
@@ -25,16 +24,6 @@ function SortBar() {
   };
 
   return (
-    // <Paper
-    //   sx={{
-    //     width: '100rem',
-    //     height: '5rem',
-    //     mt: '2rem',
-    //     mb: '2rem',
-    //     borderRadius: '2rem',
-    //     flexGrow: '1rem',
-    //   }}
-    // >
     <Stack
       direction="row"
       justifyContent="space-between"
@@ -118,8 +107,5 @@ function SortBar() {
         </Select>
       </FormControl>
     </Stack>
-    // </Paper>
   );
 }
-
-export default SortBar;
