@@ -14,13 +14,18 @@ export default function SignUp() {
     <Box
       sx={{
         my: 8,
-        mx: 4,
+        mx: 2,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
       }}
     >
-      <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+      <Box
+        component="form"
+        noValidate
+        onSubmit={handleSubmit}
+        sx={{ width: '2/3', mx: 2, mt: 1 }}
+      >
         <TextField
           margin="normal"
           fullWidth
@@ -41,7 +46,6 @@ export default function SignUp() {
           type="text"
           name="nom"
           autoComplete="family-name"
-          autoFocus
         />
         <TextField
           margin="normal"
@@ -52,7 +56,6 @@ export default function SignUp() {
           type="text"
           name="adresse"
           autoComplete="street-address"
-          autoFocus
         />
         <TextField
           margin="normal"
@@ -75,14 +78,11 @@ export default function SignUp() {
           autoComplete="current-password"
         />
         <Button
-          sx={{
-            color: 'white',
-            backgroundColor: 'primary.dark',
-            '& :hover': {
-              backgroundColor: 'primary.dark',
-              fontSize: '0.96rem',
-            },
-          }}
+          href="/home"
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 2, color: 'white', fontSize: '1.3rem' }}
         >
           S&apos;inscrire
         </Button>

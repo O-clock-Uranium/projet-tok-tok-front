@@ -7,10 +7,16 @@ import SignUp from '../SignUp/SignUp';
 export default function ButtonToggle() {
   const [isSignup, setIsSignup] = useState(true);
   return (
-    <Stack direction="column" justifyContent="center" alignItems="center">
+    <Stack
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+      pt="2rem"
+    >
       <Button
         onClick={() => setIsSignup(!isSignup)}
         sx={{
+          fontSize: '1.5rem',
           borderRadius: '5rem',
           p: '1rem !important',
           gap: '1rem',
@@ -18,7 +24,7 @@ export default function ButtonToggle() {
           ':hover': { backgroundColor: 'primary.dark', Color: 'white' },
         }}
       >
-        {isSignup ? 'S inscrire' : 'Se connecter'}
+        {isSignup ? 'Se connecter' : 'S inscrire '}
       </Button>
       {isSignup ? <SignUp /> : <Login />}
     </Stack>

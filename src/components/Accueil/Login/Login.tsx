@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
-import TextField from '@mui/material/TextField';
+import { TextField } from '@mui/material';
 import * as React from 'react';
 
 import Copyright from '../Copyright/Copyright';
@@ -20,14 +20,20 @@ export default function SignInSide() {
   return (
     <Box
       sx={{
+        width: '2/3',
         my: 8,
-        mx: 4,
+        mx: 2,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
       }}
     >
-      <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+      <Box
+        component="form"
+        noValidate
+        onSubmit={handleSubmit}
+        sx={{ width: '2/3', mx: 2, mt: 1 }}
+      >
         <TextField
           margin="normal"
           required
@@ -64,14 +70,12 @@ export default function SignInSide() {
         <Grid container>
           <Grid item xs>
             <Link href="/" variant="body2">
-              Mot de passe oublié ? <br />
-              SHEH !
+              Mot de passe oublié ?
             </Link>
           </Grid>
           <Grid item>
             <Link href="/" variant="body2">
-              Pas encore de compte ? <br />
-              INSCRIS TOI WESH !!
+              Pas encore de compte ?
             </Link>
           </Grid>
         </Grid>
