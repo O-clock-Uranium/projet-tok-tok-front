@@ -7,7 +7,6 @@ import settings from '../../../../assets/icons/settings.svg';
 import signout from '../../../../assets/icons/signout.svg';
 
 export default function UserMenu() {
-  const [expanded, setExpanded] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -33,6 +32,7 @@ export default function UserMenu() {
       aria-controls="menu dropdown header"
       id="menu-dropdown-header"
     >
+      {/* //! Check pour ancrer le menu en position relative (pb actuel la pos change selon la résolution du user) */}
       <Menu
         anchorReference="anchorPosition"
         anchorPosition={{ top: 135, left: 1700 }}
