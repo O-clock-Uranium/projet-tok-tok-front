@@ -6,11 +6,16 @@ import * as React from 'react';
 export default function SignInSide() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    axios({
+      method: 'post',
+      url: 'server',
+    });
     const data = new FormData(event.currentTarget);
-    // console.log({
-    //   email: data.get('email'),
-    //   password: data.get('password'),
-    // });
+    console.log({
+      email: data.get('email'),
+      password: data.get('password'),
+    });
   };
 
   return (
@@ -24,6 +29,7 @@ export default function SignInSide() {
         name="email"
         autoComplete="email"
         autoFocus
+        // value={email}
       />
       <TextField
         margin="normal"
@@ -34,9 +40,9 @@ export default function SignInSide() {
         type="password"
         id="password"
         autoComplete="current-password"
+        // value={password}
       />
       <Button
-        href="/home"
         type="submit"
         fullWidth
         variant="contained"
