@@ -10,7 +10,7 @@ function MenuContact() {
         p: '2rem',
         maxHeight: '60rem',
         id: 'test',
-        borderRadius: '2.5rem',
+        borderRadius: '1rem',
         overflowY: 'scroll',
         '&::-webkit-scrollbar': {
           width: '1rem',
@@ -18,11 +18,11 @@ function MenuContact() {
         },
         '&::-webkit-scrollbar-track': {
           '&::-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.1)',
-          backgroundColor: '#F5F5F5',
+          backgroundColor: '#49c1ad',
           borderRadius: '10px',
         },
         '&::-webkit-scrollbar-thumb': {
-          backgroundColor: 'green',
+          backgroundColor: '#03665C',
           borderRadius: '25px',
         },
       }}

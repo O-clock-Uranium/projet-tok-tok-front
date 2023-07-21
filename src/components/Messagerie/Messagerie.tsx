@@ -37,10 +37,23 @@ export default function Messagerie() {
               <Paper
                 sx={{
                   p: '2rem',
-                  borderRadius: '2.5rem',
+                  borderRadius: '1rem',
                   backgroundColor: '#fff',
                   height: '60rem',
                   overflowY: 'auto',
+                  '&::-webkit-scrollbar': {
+                    width: '1rem',
+                    backgroundColor: '#F5F5F5',
+                  },
+                  '&::-webkit-scrollbar-track': {
+                    '&::-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.1)',
+                    backgroundColor: '#49c1ad',
+                    borderRadius: '10px',
+                  },
+                  '&::-webkit-scrollbar-thumb': {
+                    backgroundColor: '#03665C',
+                    borderRadius: '25px',
+                  },
                 }}
               >
                 <Messages />
