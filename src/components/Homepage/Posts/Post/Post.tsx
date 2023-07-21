@@ -1,30 +1,21 @@
-import { Avatar, Box, Paper, Stack, Typography } from '@mui/material';
+import {
+  Avatar,
+  Box,
+  IconButton,
+  Paper,
+  Stack,
+  Typography,
+} from '@mui/material';
 import React from 'react';
 
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Collapse from '@mui/material/Collapse';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
-import { styled } from '@mui/material/styles';
 import comment from '../../../../assets/icons/comment.svg';
 import OneComment from './OneComment/OneComment';
 
 import AddCommentary from './AddComment/AddComment';
 
-interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
-}
-
-// TODO Je ne sais pas ce que l'on fait de ce "theme" et "expand"
-const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  // transition: theme.transitions.create('transform', {
-  //   duration: theme.transitions.duration.shortest,
-  // }),
-}));
-
-export default function Postv2() {
+export default function Post() {
   const [expanded, setExpanded] = React.useState(false);
   const [like, setLike] = React.useState(false);
 
@@ -119,6 +110,7 @@ export default function Postv2() {
             onClick={handleLikeClick}
             color={like ? 'error' : 'default'}
           >
+            {/* // ! Problème c'est tout le bouton qui devient rouge et pas seulement le coeur */}
             <FavoriteIcon sx={{ fontSize: '2rem' }} />
 
             {/* // ! Je n'arrive pas à fill color le svg :/ */}
@@ -140,11 +132,9 @@ export default function Postv2() {
           </IconButton>
         </Stack>
         <Stack direction="row" alignItems="center">
-          <ExpandMore
-            expand={expanded}
+          <IconButton
             onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
+            aria-label="down arrow icon"
             sx={{
               px: '2rem',
               py: '1rem',
@@ -169,7 +159,7 @@ export default function Postv2() {
             >
               238
             </Typography>
-          </ExpandMore>
+          </IconButton>
         </Stack>
       </Stack>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
