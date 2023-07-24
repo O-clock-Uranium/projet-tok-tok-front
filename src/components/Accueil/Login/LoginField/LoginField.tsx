@@ -3,10 +3,11 @@ import { ChangeEvent, useId, useState } from 'react';
 
 interface FieldProps {
   name: string;
+  type: string;
   [prop: string]: unknown;
 }
 
-function LoginField({ name, ...props }: FieldProps) {
+function LoginField({ name, type, ...props }: FieldProps) {
   const [value, setValue] = useState('');
 
   const inputId = useId();
@@ -26,6 +27,7 @@ function LoginField({ name, ...props }: FieldProps) {
       id={inputId}
       name={name}
       value={value}
+      // eslint-disable-next-line react/jsx-no-bind
       onChange={handleChange}
       {...props}
     />

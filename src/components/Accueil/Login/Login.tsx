@@ -20,7 +20,7 @@ export default function Login() {
 
   return (
     <>
-      {isLogged && <Navigate replace to="/home" />}
+      {isLogged && <Navigate to="/home" />}
       {!isLogged && (
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{}}>
           <LoginField name="email" label="Email" type="email" />

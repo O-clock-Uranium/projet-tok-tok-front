@@ -6,8 +6,11 @@ import profile from '../../../../assets/icons/profile.svg';
 import settings from '../../../../assets/icons/settings.svg';
 import signout from '../../../../assets/icons/signout.svg';
 import { logout } from '../../../../store/reducers/user';
+import { useAppDispatch } from '../../../../hooks/redux';
 
 export default function UserMenu() {
+  const dispatch = useAppDispatch();
+
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -21,6 +24,7 @@ export default function UserMenu() {
 
   const handleLogout = () => {
     dispatch(logout);
+    setAnchorEl(null);
   };
 
   return (
@@ -79,8 +83,8 @@ export default function UserMenu() {
           Settings
         </MenuItem>
         <MenuItem
-          component={Link}
-          to="/"
+          // component={Link}
+          // to="/"
           onClick={handleLogout}
           sx={{ color: 'secondary.main', fontSize: '1.8rem' }}
         >

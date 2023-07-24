@@ -55,6 +55,7 @@ export const login = createAsyncThunk(
     delete data.token;
 
     return data as {
+      logged: boolean;
       firstname: string;
       lastname: string;
       description: string;
@@ -86,6 +87,7 @@ export const signup = createAsyncThunk(
     //! String vide pour description
 
     return data as {
+      logged: boolean;
       firstname: string;
       lastname: string;
       description: string;
@@ -95,8 +97,6 @@ export const signup = createAsyncThunk(
       password: string;
       confirmation: string;
       thumbnail: string;
-
-      // logged: boolean;
     };
   }
 );
@@ -109,8 +109,10 @@ const userReducer = createReducer(initialState, (builder) => {
     })
     .addCase(login.fulfilled, (state, action) => {
       // state.logged = action.payload.logged;
+      state.logged = true;
       state.email = action.payload.email;
       state.password = action.payload.password;
+      console.log(state.logged);
       // state.loading = false;
       // state.flash = {
       //   type: 'success',
@@ -119,7 +121,7 @@ const userReducer = createReducer(initialState, (builder) => {
     })
     .addCase(login.rejected, (state, action) => {
       // state.loading = false;
-      console.log(action.error);
+      // console.log(action.error);
       // state.error = action.error.message;
       // console.log(action);
       // l'erreur est envoyée dans `action.error`
@@ -131,15 +133,17 @@ const userReducer = createReducer(initialState, (builder) => {
       //   duration: 5000,
       // };
     })
-    .addCase(logout, (state) => {
+    .addCase(logout.fulfilled, (state) => {
       // je ré-initialise mes données depuis mon state initial
       state.logged = initialState.logged;
       state.firstname = initialState.firstname;
+      console.log(state.logged);
 
       // à la déconnexion, je supprime le JWT de mon instance Axios
       delete axiosInstance.defaults.headers.common.Authorization;
     })
     .addCase(signup.fulfilled, (state, action) => {
+      state.logged = true;
       state.firstname = action.payload.firstname;
       state.lastname = action.payload.lastname;
       state.description = action.payload.description;

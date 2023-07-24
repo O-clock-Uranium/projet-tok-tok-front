@@ -26,6 +26,7 @@ function SignUpField({ name, label, ...props }: FieldProps) {
       name={name}
       label={label}
       value={value}
+      // eslint-disable-next-line react/jsx-no-bind
       onChange={handleChange}
       {...props}
     />
