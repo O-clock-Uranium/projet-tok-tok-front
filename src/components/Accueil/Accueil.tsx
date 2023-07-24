@@ -5,9 +5,6 @@ import ButtonToggle from './AccueilToggle/AccueilToggle';
 import Carrousel from './Carrousel/Carrousel';
 
 export default function Accueil() {
-  // const ToggleButton = () => {
-  //   const [isOpen, setIsOpen] = useState(true);
-  // };
 
   return (
     <Stack direction="row" width="100%">

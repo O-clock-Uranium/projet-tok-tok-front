@@ -1,4 +1,4 @@
-import { Grid, Link, Stack } from '@mui/material';
+import { Link, Stack } from '@mui/material';
 import Copyright from '../Copyright/Copyright';
 
 export default function AccueilFooter() {
