@@ -17,7 +17,7 @@ export const sendMessage = (content: string) => {
   socket.emit('client_send_message', {
     // mon message
     // id: 42, // pas besoin : il est généré par le serveur
-    author: state.settings.pseudo ?? 'Anne Onyme',
+    author: state.user.firstname ?? 'Anne Onyme',
     content,
   });
 };
