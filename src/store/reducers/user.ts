@@ -15,9 +15,8 @@ interface UserState {
   localization: string | null;
   email: string | null;
   password: string | null;
-  confirmation: string | null;
   thumbnail: string | null;
-  error: string | null;
+  error?: string | null;
   // flash: Flash | null;
   // loading: boolean;
 }
@@ -31,7 +30,6 @@ export const initialState: UserState = {
   localization: null,
   email: null,
   password: null,
-  confirmation: null,
   thumbnail: null,
   error: null,
   // flash: null,
@@ -63,8 +61,8 @@ export const login = createAsyncThunk(
       localization: string;
       email: string;
       password: string;
-      confirmation: string;
       thumbnail: string;
+      error: null;
       // logged: boolean;
     };
   }
@@ -95,8 +93,8 @@ export const signup = createAsyncThunk(
       localization: string;
       email: string;
       password: string;
-      confirmation: string;
       thumbnail: string;
+      error: null;
     };
   }
 );
@@ -133,7 +131,7 @@ const userReducer = createReducer(initialState, (builder) => {
       //   duration: 5000,
       // };
     })
-    .addCase(logout.fulfilled, (state) => {
+    .addCase(logout, (state) => {
       // je ré-initialise mes données depuis mon state initial
       state.logged = initialState.logged;
       state.firstname = initialState.firstname;
@@ -149,8 +147,6 @@ const userReducer = createReducer(initialState, (builder) => {
       state.description = action.payload.description;
       state.address = action.payload.address;
       state.localization = action.payload.localization;
-      state.email = action.payload.email;
-      state.password = action.payload.password;
       state.thumbnail = action.payload.thumbnail;
     });
 });

@@ -27,6 +27,7 @@ function Messages() {
     };
   }, []); // on ne s'abonne qu'au montage du composant
 
+  //! Revoir comment aimanté le scroll tout en bas à chaque nouveau message
   useEffect(() => {
     // une référence spécial : c'est un objet avec une propriété `current`
     // on peut modifier sa valeur (current) sans modifier la référence

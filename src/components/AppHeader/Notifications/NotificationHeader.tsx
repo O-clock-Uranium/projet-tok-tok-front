@@ -15,7 +15,6 @@ export default function NotificationHeader() {
         sx={{
           textAlign: 'center',
           fontFamily: 'Manrope',
-          color: 'white',
           fontWeight: 500,
           '& .MuiBadge-badge': {
             color: 'WHITE',
