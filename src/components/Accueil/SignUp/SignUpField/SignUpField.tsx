@@ -3,10 +3,11 @@ import { ChangeEvent, useId, useState } from 'react';
 
 interface FieldProps {
   name: string;
+  label: string;
   [prop: string]: unknown;
 }
 
-function LoginField({ name, ...props }: FieldProps) {
+function SignUpField({ name, label, ...props }: FieldProps) {
   const [value, setValue] = useState('');
 
   const inputId = useId();
@@ -20,11 +21,10 @@ function LoginField({ name, ...props }: FieldProps) {
       margin="normal"
       required
       fullWidth
-      label={name}
-      //! Ajouter autoComplete sur Login.tsx spécialement pour mail et current password pour password tavu tmtc
       autoComplete="current-password"
       id={inputId}
       name={name}
+      label={label}
       value={value}
       onChange={handleChange}
       {...props}
@@ -32,4 +32,4 @@ function LoginField({ name, ...props }: FieldProps) {
   );
 }
 
-export default LoginField;
+export default SignUpField;

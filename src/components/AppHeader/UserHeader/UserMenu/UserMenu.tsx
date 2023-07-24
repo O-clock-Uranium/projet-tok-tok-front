@@ -5,6 +5,7 @@ import down from '../../../../assets/icons/down.svg';
 import profile from '../../../../assets/icons/profile.svg';
 import settings from '../../../../assets/icons/settings.svg';
 import signout from '../../../../assets/icons/signout.svg';
+import { logout } from '../../../../store/reducers/user';
 
 export default function UserMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -17,6 +18,11 @@ export default function UserMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleLogout = () => {
+    dispatch(logout);
+  };
+
   return (
     <AccordionSummary
       sx={{ m: 0, p: 0 }}
@@ -75,7 +81,7 @@ export default function UserMenu() {
         <MenuItem
           component={Link}
           to="/"
-          onClick={handleClose}
+          onClick={handleLogout}
           sx={{ color: 'secondary.main', fontSize: '1.8rem' }}
         >
           <IconButton type="button" aria-label="paramètres">

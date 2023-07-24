@@ -8,7 +8,7 @@ function AccueilLogo() {
         src={logo}
         width="130"
         alt="Logo TokTok"
-        style={{ marginTop: '10%', marginBottom: '15%' }}
+        style={{ marginTop: '10%', marginBottom: '10%' }}
       />
 
       <Typography component="h1" variant="h5">

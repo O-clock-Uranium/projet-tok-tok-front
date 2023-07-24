@@ -11,7 +11,7 @@ import './Form.scss';
 function Form() {
   const [currentMessage, setCurrentMessage] = useState('');
   // je vais chercher le pseudo depuis le store
-  const pseudo = useAppSelector((state) => state.settings.pseudo);
+  const pseudo = useAppSelector((state) => state.user.firstname);
 
   const dispatch = useAppDispatch();
 

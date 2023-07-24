@@ -15,7 +15,9 @@ interface UserState {
   localization: string | null;
   email: string | null;
   password: string | null;
+  confirmation: string | null;
   thumbnail: string | null;
+  error: string | null;
   // flash: Flash | null;
   // loading: boolean;
 }
@@ -29,7 +31,9 @@ export const initialState: UserState = {
   localization: null,
   email: null,
   password: null,
+  confirmation: null,
   thumbnail: null,
+  error: null,
   // flash: null,
   // loading: null,
 };
@@ -58,7 +62,40 @@ export const login = createAsyncThunk(
       localization: string;
       email: string;
       password: string;
+      confirmation: string;
       thumbnail: string;
+      // logged: boolean;
+    };
+  }
+);
+
+// Thunk pour l'inscription
+export const signup = createAsyncThunk(
+  'user/signup',
+  async (formData: FormData) => {
+    const objData = Object.fromEntries(formData);
+
+    const { data } = await axiosInstance.post('/signup', objData);
+    // après m'être connecté, j'ajoute mon token directement dans l'instance Axios
+    axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
+    // le token est utilisé ci-dessus, je n'en ai plus besoin
+    // je le supprime de mes données
+    delete data.token;
+
+    //! Mettre une photo de base automatique par défaut
+    //! String vide pour description
+
+    return data as {
+      firstname: string;
+      lastname: string;
+      description: string;
+      address: string;
+      localization: string;
+      email: string;
+      password: string;
+      confirmation: string;
+      thumbnail: string;
+
       // logged: boolean;
     };
   }
@@ -72,15 +109,8 @@ const userReducer = createReducer(initialState, (builder) => {
     })
     .addCase(login.fulfilled, (state, action) => {
       // state.logged = action.payload.logged;
-      state.firstname = action.payload.firstname;
-      state.lastname = action.payload.lastname;
-      state.description = action.payload.description;
-      state.address = action.payload.address;
-      state.localization = action.payload.localization;
       state.email = action.payload.email;
       state.password = action.payload.password;
-      state.thumbnail = action.payload.thumbnail;
-
       // state.loading = false;
       // state.flash = {
       //   type: 'success',
@@ -89,7 +119,8 @@ const userReducer = createReducer(initialState, (builder) => {
     })
     .addCase(login.rejected, (state, action) => {
       // state.loading = false;
-      state.error = action.error.message;
+      console.log(action.error);
+      // state.error = action.error.message;
       // console.log(action);
       // l'erreur est envoyée dans `action.error`
       // je pourrais en profiter pour mettre en place un message d'erreur
@@ -107,6 +138,16 @@ const userReducer = createReducer(initialState, (builder) => {
 
       // à la déconnexion, je supprime le JWT de mon instance Axios
       delete axiosInstance.defaults.headers.common.Authorization;
+    })
+    .addCase(signup.fulfilled, (state, action) => {
+      state.firstname = action.payload.firstname;
+      state.lastname = action.payload.lastname;
+      state.description = action.payload.description;
+      state.address = action.payload.address;
+      state.localization = action.payload.localization;
+      state.email = action.payload.email;
+      state.password = action.payload.password;
+      state.thumbnail = action.payload.thumbnail;
     });
 });
 

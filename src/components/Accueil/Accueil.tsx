@@ -5,7 +5,6 @@ import ButtonToggle from './AccueilToggle/AccueilToggle';
 import Carrousel from './Carrousel/Carrousel';
 
 export default function Accueil() {
-
   return (
     <Stack direction="row" width="100%">
       <Carrousel />
