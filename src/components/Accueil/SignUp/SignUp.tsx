@@ -1,7 +1,7 @@
 import { Box, Button } from '@mui/material';
 import { useAppDispatch } from '../../../hooks/redux';
 import { signup } from '../../../store/reducers/user';
-import SignUpField from './SignUpField/SignUpField';
+import FormField from '../FormField/FormField';
 
 export default function SignUp() {
   const dispatch = useAppDispatch();
@@ -15,15 +15,39 @@ export default function SignUp() {
 
   return (
     <Box component="form" noValidate onSubmit={handleSubmit}>
-      <SignUpField name="firstname" label="Nom" type="text" />
-      <SignUpField name="lastname" label="Prénom" type="text" />
-      <SignUpField name="address" label="Adresse" type="text" />
-      <SignUpField name="email" label="Email" type="mail" />
-      <SignUpField name="password" label="Mot de passe" type="password" />
-      <SignUpField
+      <FormField
+        name="firstname"
+        label="Nom"
+        type="text"
+        autoComplete="family-name"
+      />
+      <FormField
+        name="lastname"
+        label="Prénom"
+        type="text"
+        autoComplete="given-name"
+      />
+      <FormField name="address" label="Adresse" type="text" autoComplete="" />
+      <FormField name="city" label="city" type="text" autoComplete="" />
+      <FormField
+        name="longitude"
+        label="longitude"
+        type="text"
+        autoComplete=""
+      />
+      <FormField name="latitude" label="latitude" type="text" autoComplete="" />
+      <FormField name="email" label="Email" type="mail" autoComplete="" />
+      <FormField
+        name="password"
+        label="Mot de passe"
+        type="password"
+        autoComplete="new-password"
+      />
+      <FormField
         name="confirmation"
         label="Confirmation de mot de passe"
         type="password"
+        autoComplete="new-password"
       />
 
       <Button

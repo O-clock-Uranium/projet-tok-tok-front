@@ -101,7 +101,7 @@ const userReducer = createReducer(initialState, (builder) => {
       state.logged = true;
       state.email = action.payload.email;
       state.password = action.payload.password;
-      console.log(state.logged);
+      // console.log(state.logged);
       // state.loading = false;
       // state.flash = {
       //   type: 'success',
@@ -126,7 +126,7 @@ const userReducer = createReducer(initialState, (builder) => {
       // je ré-initialise mes données depuis mon state initial
       state.logged = initialState.logged;
       state.firstname = initialState.firstname;
-      console.log(state.logged);
+      // console.log(state.logged);
 
       // à la déconnexion, je supprime le JWT de mon instance Axios
       delete axiosInstance.defaults.headers.common.Authorization;

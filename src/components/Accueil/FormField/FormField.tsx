@@ -1,13 +1,14 @@
 import { TextField } from '@mui/material';
-import { ChangeEvent, useId, useState } from 'react';
+import { useId, useState } from 'react';
 
 interface FieldProps {
   name: string;
-  label: string;
+  type: string;
+  autoComplete: string;
   [prop: string]: unknown;
 }
 
-function SignUpField({ name, label, ...props }: FieldProps) {
+function LoginField({ name, type, autoComplete, ...props }: FieldProps) {
   const [value, setValue] = useState('');
 
   const inputId = useId();
@@ -17,10 +18,11 @@ function SignUpField({ name, label, ...props }: FieldProps) {
       margin="normal"
       required
       fullWidth
-      autoComplete="current-password"
+      label={name}
+      autoComplete={autoComplete}
       id={inputId}
+      type={type}
       name={name}
-      label={label}
       value={value}
       onChange={(event) => setValue(event.target.value)}
       {...props}
@@ -28,4 +30,4 @@ function SignUpField({ name, label, ...props }: FieldProps) {
   );
 }
 
-export default SignUpField;
+export default LoginField;
