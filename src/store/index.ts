@@ -1,13 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import messagerieReducer from './reducers/messagerie';
-import userReducer from './reducers/user';
+import reducer from './reducers';
 
 const store = configureStore({
-  reducer: {
-    messagerie: messagerieReducer,
-    user: userReducer,
-  },
+  reducer,
 });
 
 export default store;
