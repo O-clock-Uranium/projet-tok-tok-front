@@ -8,7 +8,6 @@ export default function NotificationHeader() {
       aria-label="show 17 new notifications"
       color="inherit"
     >
-      {/* // TODO changer dans le thème la couleur du texte des badges */}
       <Badge
         badgeContent={17}
         color="primary"

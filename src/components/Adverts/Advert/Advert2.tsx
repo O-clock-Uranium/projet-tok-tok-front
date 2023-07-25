@@ -1,6 +1,5 @@
 import { Avatar, CardMedia, IconButton, Paper, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import * as React from 'react';
 
 import bookmark from '../../../assets/icons/bookmark.svg';
 import imgAnnonce from '../../../fakedata/patrick.jpg';
@@ -8,7 +7,7 @@ import imgAnnonce from '../../../fakedata/patrick.jpg';
 export default function AdvertCard() {
   return (
     <Paper
-    elevation={0}
+      elevation={0}
       sx={{ width: '30rem', height: '28rem', mx: 'auto', borderRadius: '2rem' }}
     >
       <Stack direction="column">

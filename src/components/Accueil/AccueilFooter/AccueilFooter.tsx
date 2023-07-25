@@ -12,7 +12,7 @@ export default function AccueilFooter() {
           Pas encore de compte ?
         </Link>
       </Stack>
-      <Copyright sx={{ mt: 5 }} />
+      <Copyright sx={{ mt: '2rem' }} />
     </>
   );
 }

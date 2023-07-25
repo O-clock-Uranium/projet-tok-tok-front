@@ -19,14 +19,10 @@ export default function AppHeader() {
       }}
     >
       <Stack direction="row" justifyContent="space-between">
-        {/* Logo Tok Tok */}
         <LogoHeader />
-        {/* SearchBar */}
         <SearchBar />
         <Stack direction="row" alignItems="center">
-          {/* Icone cloche */}
           <NotificationHeader />
-          {/* Avatar + Nom du gars + flèche */}
           <UserHeader />
         </Stack>
       </Stack>

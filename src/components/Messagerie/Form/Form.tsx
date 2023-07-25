@@ -10,10 +10,9 @@ import './Form.scss';
 
 function Form() {
   const [currentMessage, setCurrentMessage] = useState('');
-  // je vais chercher le pseudo depuis le store
-  const pseudo = useAppSelector((state) => state.user.firstname);
+  // const pseudo = useAppSelector((state) => state.user.firstname);
 
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setCurrentMessage(event.target.value);
@@ -23,9 +22,6 @@ function Form() {
     event.preventDefault();
 
     if (currentMessage.trim()) {
-      // au lieu de dispatcher une action pour modifier mon state,
-      // j'émets un évènement à mon serveur pour l'avertir
-      // que j'ai un nouveau message
       sendMessage(currentMessage.trim());
       setCurrentMessage('');
     }

@@ -12,10 +12,6 @@ function LoginField({ name, type, ...props }: FieldProps) {
 
   const inputId = useId();
 
-  function handleChange(event: ChangeEvent<HTMLInputElement>) {
-    setValue(event.target.value);
-  }
-
   return (
     <TextField
       margin="normal"
@@ -27,8 +23,7 @@ function LoginField({ name, type, ...props }: FieldProps) {
       id={inputId}
       name={name}
       value={value}
-      // eslint-disable-next-line react/jsx-no-bind
-      onChange={handleChange}
+      onChange={(event) => setValue(event.target.value)}
       {...props}
     />
   );

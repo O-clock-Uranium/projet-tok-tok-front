@@ -12,10 +12,6 @@ function SignUpField({ name, label, ...props }: FieldProps) {
 
   const inputId = useId();
 
-  function handleChange(event: ChangeEvent<HTMLInputElement>) {
-    setValue(event.target.value);
-  }
-
   return (
     <TextField
       margin="normal"
@@ -26,8 +22,7 @@ function SignUpField({ name, label, ...props }: FieldProps) {
       name={name}
       label={label}
       value={value}
-      // eslint-disable-next-line react/jsx-no-bind
-      onChange={handleChange}
+      onChange={(event) => setValue(event.target.value)}
       {...props}
     />
   );

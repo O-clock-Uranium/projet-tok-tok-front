@@ -42,6 +42,7 @@ export default function SortBar() {
         sx={{ m: 1, minWidth: 120, backgroundColor: '#F5F6FA' }}
         size="small"
       >
+        {/* //! Attention, scroll bar au click qui apparait */}
         <Select
           labelId="select-categorie"
           id="select-categorie"

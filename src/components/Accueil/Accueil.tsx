@@ -9,8 +9,6 @@ export default function Accueil() {
     <Stack direction="row" width="100%">
       <Carrousel />
       <Stack direction="column" sx={{ width: '33%' }}>
-        {/* //! Signup et Login sont tout pareil (sauf le nombre de champ)
-        Et pourtant il y a un décalage lorsque l'on passe de l'un à l'autre */}
         <AccueilLogo />
         <ButtonToggle />
         <AccueilFooter />

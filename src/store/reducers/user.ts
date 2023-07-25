@@ -36,20 +36,15 @@ export const initialState: UserState = {
   // loading: null,
 };
 
-// Action pour la déconnexion
 export const logout = createAction('user/logout');
 
-// Thunk pour la connexion
 export const login = createAsyncThunk(
   'user/login',
   async (formData: FormData) => {
     const objData = Object.fromEntries(formData);
 
     const { data } = await axiosInstance.post('/login', objData);
-    // après m'être connecté, j'ajoute mon token directement dans l'instance Axios
     axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
-    // le token est utilisé ci-dessus, je n'en ai plus besoin
-    // je le supprime de mes données
     delete data.token;
 
     return data as {
@@ -68,17 +63,13 @@ export const login = createAsyncThunk(
   }
 );
 
-// Thunk pour l'inscription
 export const signup = createAsyncThunk(
   'user/signup',
   async (formData: FormData) => {
     const objData = Object.fromEntries(formData);
 
     const { data } = await axiosInstance.post('/signup', objData);
-    // après m'être connecté, j'ajoute mon token directement dans l'instance Axios
     axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
-    // le token est utilisé ci-dessus, je n'en ai plus besoin
-    // je le supprime de mes données
     delete data.token;
 
     //! Mettre une photo de base automatique par défaut

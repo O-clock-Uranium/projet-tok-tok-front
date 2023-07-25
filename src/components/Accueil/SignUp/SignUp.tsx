@@ -14,13 +14,7 @@ export default function SignUp() {
   };
 
   return (
-    <Box
-      component="form"
-      noValidate
-      onSubmit={handleSubmit}
-      //! j'ai triché en dessous pcque pas le meme comportement sur login
-      // sx={{ px: '1.9rem' }}
-    >
+    <Box component="form" noValidate onSubmit={handleSubmit}>
       <SignUpField name="firstname" label="Nom" type="text" />
       <SignUpField name="lastname" label="Prénom" type="text" />
       <SignUpField name="address" label="Adresse" type="text" />
