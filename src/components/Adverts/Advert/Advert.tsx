@@ -1,6 +1,5 @@
 import { Avatar, CardMedia, IconButton, Paper, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import * as React from 'react';
 
 import bookmark from '../../../assets/icons/bookmark.svg';
 import imgAnnonce from '../../../fakedata/guitare.jpg';

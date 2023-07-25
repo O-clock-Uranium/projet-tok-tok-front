@@ -1,76 +1,32 @@
-import { Box, Button, TextField } from '@mui/material';
+import { Box, Button } from '@mui/material';
+import { useAppDispatch } from '../../../hooks/redux';
+import { signup } from '../../../store/reducers/user';
+import SignUpField from './SignUpField/SignUpField';
 
 export default function SignUp() {
+  const dispatch = useAppDispatch();
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // console.log({
-    //   email: data.get('email'),
-    //   password: data.get('password'),
-    // });
+
+    const formData = new FormData(event.currentTarget);
+    dispatch(signup(formData));
   };
 
   return (
-    <Box
-      component="form"
-      noValidate
-      onSubmit={handleSubmit}
-      //! j'ai triché en dessous pcque pas le meme comportement sur login
-      sx={{ px: '1.9rem' }}
-    >
-      <TextField
-        margin="normal"
-        fullWidth
-        required
-        id="prenom"
-        label="Prénom"
-        type="text"
-        name="Prénom"
-        autoComplete="given-name"
-        autoFocus
+    <Box component="form" noValidate onSubmit={handleSubmit}>
+      <SignUpField name="firstname" label="Nom" type="text" />
+      <SignUpField name="lastname" label="Prénom" type="text" />
+      <SignUpField name="address" label="Adresse" type="text" />
+      <SignUpField name="email" label="Email" type="mail" />
+      <SignUpField name="password" label="Mot de passe" type="password" />
+      <SignUpField
+        name="confirmation"
+        label="Confirmation de mot de passe"
+        type="password"
       />
-      <TextField
-        margin="normal"
-        fullWidth
-        required
-        id="nom"
-        label="nom"
-        type="text"
-        name="nom"
-        autoComplete="family-name"
-      />
-      <TextField
-        margin="normal"
-        fullWidth
-        required
-        id="adresse"
-        label="adresse"
-        type="text"
-        name="adresse"
-        autoComplete="street-address"
-      />
-      <TextField
-        margin="normal"
-        required
-        fullWidth
-        name="mail"
-        label="adresse mail"
-        type="text"
-        id="password"
-        autoComplete="current-password"
-      />
-      <TextField
-        margin="normal"
-        required
-        fullWidth
-        name="password"
-        label="Mot de passe"
-        type="text"
-        id="password"
-        autoComplete="current-password"
-      />
+
       <Button
-        href="/home"
         type="submit"
         fullWidth
         variant="contained"

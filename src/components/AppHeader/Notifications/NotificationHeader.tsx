@@ -8,14 +8,12 @@ export default function NotificationHeader() {
       aria-label="show 17 new notifications"
       color="inherit"
     >
-      {/* // TODO changer dans le thème la couleur du texte des badges */}
       <Badge
         badgeContent={17}
         color="primary"
         sx={{
           textAlign: 'center',
           fontFamily: 'Manrope',
-          color: 'white',
           fontWeight: 500,
           '& .MuiBadge-badge': {
             color: 'WHITE',

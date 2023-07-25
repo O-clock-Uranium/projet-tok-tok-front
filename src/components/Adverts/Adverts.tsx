@@ -7,7 +7,6 @@ import AdvertCard2 from './Advert/Advert2';
 import AdvertCard3 from './Advert/Advert3';
 import CreateAdvertButton from './CreateAdvertButton/CreateAdvertButton';
 import SortBar from './SortBar/SortBar';
-import ColorToggleButton from './ToggleButton/ToggleButton';
 
 function Adverts() {
   return (
@@ -30,18 +29,10 @@ function Adverts() {
           alignItems="center"
           height="8.2rem"
         >
-          <ColorToggleButton />
           <CreateAdvertButton />
         </Stack>
         <SortBar />
-        <Stack
-          direction="row"
-          flexWrap="wrap"
-          gap="2rem"
-          // justifyContent="center"
-          // alignItems="flex-start"
-          // alignSelf="stretch"
-        >
+        <Stack direction="row" flexWrap="wrap" gap="2rem">
           <AdvertCard />
           <AdvertCard2 />
           <AdvertCard3 />

@@ -18,9 +18,9 @@ import Messagerie from './components/Messagerie/Messagerie';
 import Profile from './components/Profile/Profile';
 import './styles/index.scss';
 
+import Accueil from './components/Accueil/Accueil';
 import Adverts from './components/Adverts/Adverts';
 import theme from './styles/theme';
-import Accueil from './components/Accueil/Accueil';
 
 const router = createBrowserRouter(
   createRoutesFromElements(

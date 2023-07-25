@@ -44,14 +44,6 @@ const theme = createTheme({
       },
     },
   },
-  // TODO A revoir pour modifier le background des badges
-  // components: {
-  //   MuiBadge: {
-  //     styleOverrides: {
-  //       color: white,
-  //     },
-  //   },
-  // },
 });
 
 export default theme;

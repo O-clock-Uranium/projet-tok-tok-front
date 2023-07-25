@@ -5,7 +5,6 @@ import AdvertCard3 from '../Adverts/Advert/Advert3';
 import ColorToggleButton from '../Adverts/ToggleButton/ToggleButton';
 import AppHeader from '../AppHeader/AppHeader';
 import Menu from '../Menu/Menu';
-// import FavoriteButton from './FavoriteButton/FavoriteButton';
 
 export default function Favourites() {
   return (
@@ -28,7 +27,6 @@ export default function Favourites() {
           height="8.2rem"
         >
           <ColorToggleButton />
-          {/* <FavoriteButton /> */}
         </Stack>
         <Stack direction="row" flexWrap="wrap" gap="1rem" mt="2rem">
           <AdvertCard />

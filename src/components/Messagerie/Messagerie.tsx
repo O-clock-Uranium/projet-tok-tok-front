@@ -1,11 +1,9 @@
 import { Box, Paper, Stack } from '@mui/material';
 import AppHeader from '../AppHeader/AppHeader';
 import Menu from '../Menu/Menu';
-import FlashMessage from './FlashMessage/FlashMessage';
 import Form from './Form/Form';
 import MenuContact from './MenuContact/MenuContact';
 import Messages from './Messages/Messages';
-import Settings from './Settings/Settings';
 
 export default function Messagerie() {
   return (

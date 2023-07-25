@@ -5,8 +5,12 @@ import down from '../../../../assets/icons/down.svg';
 import profile from '../../../../assets/icons/profile.svg';
 import settings from '../../../../assets/icons/settings.svg';
 import signout from '../../../../assets/icons/signout.svg';
+import { logout } from '../../../../store/reducers/user';
+import { useAppDispatch } from '../../../../hooks/redux';
 
 export default function UserMenu() {
+  const dispatch = useAppDispatch();
+
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -17,6 +21,12 @@ export default function UserMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleLogout = () => {
+    dispatch(logout);
+    setAnchorEl(null);
+  };
+
   return (
     <AccordionSummary
       sx={{ m: 0, p: 0 }}
@@ -73,9 +83,9 @@ export default function UserMenu() {
           Settings
         </MenuItem>
         <MenuItem
-          component={Link}
-          to="/"
-          onClick={handleClose}
+          // component={Link}
+          // to="/"
+          onClick={handleLogout}
           sx={{ color: 'secondary.main', fontSize: '1.8rem' }}
         >
           <IconButton type="button" aria-label="paramètres">
