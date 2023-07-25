@@ -1,15 +1,31 @@
 import {
   Avatar,
   Box,
+  Button,
   IconButton,
   InputBase,
   Stack,
+  TextField,
   Typography,
 } from '@mui/material';
+import { useState } from 'react';
 import video from '../../../../assets/icons/camera.svg';
 import picture from '../../../../assets/icons/picture.svg';
+import { useAppDispatch } from '../../../../hooks/redux';
+import { addPost } from '../../../../store/reducers/publication';
 
 function NewPost() {
+  const [value, setValue] = useState('');
+  const dispatch = useAppDispatch();
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log('coucou');
+
+    const formData = new FormData(event.currentTarget);
+    dispatch(addPost(formData));
+  };
+
   return (
     <Box
       sx={{
@@ -34,7 +50,6 @@ function NewPost() {
         >
           <Stack
             direction="row"
-            component="form"
             sx={{
               width: '100%',
               borderRadius: '5rem',
@@ -42,25 +57,34 @@ function NewPost() {
               display: 'flex',
             }}
           >
-            <InputBase
-              multiline
-              maxRows={6}
-              fullWidth
-              sx={{
-                fontFamily: 'DM Sans',
-                ml: '2rem',
-                p: '1.5rem',
-                flex: 0.98,
-                fontSize: '1.5rem',
-                backgroundColor: '#F5F6FA',
-                borderRadius: '9.5rem',
-                color: '#888888',
-              }}
-              placeholder="Quoi de neuf, Jean-Jacques ?"
-              inputProps={{ 'aria-label': 'search google maps' }}
-            />
-
-            <IconButton
+            <form onSubmit={handleSubmit}>
+              <InputBase
+                name="content"
+                maxRows={6}
+                fullWidth
+                value={value}
+                onChange={(event) => setValue(event.target.value)}
+                sx={{
+                  fontFamily: 'DM Sans',
+                  ml: '2rem',
+                  p: '1.5rem',
+                  flex: 0.98,
+                  fontSize: '1.5rem',
+                  backgroundColor: '#F5F6FA',
+                  borderRadius: '9.5rem',
+                  color: '#888888',
+                  border: 'none',
+                  '& fieldset': { border: 'none' },
+                }}
+                placeholder="Quoi de neuf, Jean-Jacques ?"
+                inputProps={{
+                  'aria-label': 'Champ de publication',
+                }}
+              />
+            </form>
+            <Button
+              //! type="submit"
+              //! onClick={handleSubmit}
               sx={{
                 my: 'auto',
                 p: '1rem 2rem',
@@ -74,6 +98,7 @@ function NewPost() {
                 },
               }}
             >
+              {/* <IconButton            > */}
               <Typography
                 fontSize="1.5rem"
                 color="white"
@@ -84,7 +109,9 @@ function NewPost() {
               >
                 Publier
               </Typography>
-            </IconButton>
+            </Button>
+
+            {/* </IconButton> */}
           </Stack>
           <Stack direction="row" pl="2rem">
             <IconButton

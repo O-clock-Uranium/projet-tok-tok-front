@@ -7,7 +7,7 @@ export interface Publication {
   reply_to: Publication[];
   post_creator: Creator[];
   users_liked: Likes[];
-  replies: Replies[];
+  replies: Replies[]; //! rappel un une interface qui rappelle publication[] ??
 }
 
 export interface Creator {
@@ -27,10 +27,13 @@ export interface User {
   lastname: string;
   description: string | null;
   address: string;
-  localization: string | null;
+  city: string;
+  longitude: string;
+  latitude: string;
   email: string;
   password: string;
   thumbnail: string | null;
+  slug: string;
 }
 
 export interface Replies {
