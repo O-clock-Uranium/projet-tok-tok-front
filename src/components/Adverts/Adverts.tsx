@@ -1,14 +1,15 @@
 import { Box, Stack } from '@mui/material';
+import { useAppSelector } from '../../hooks/redux';
 import AppHeader from '../AppHeader/AppHeader';
 
 import Menu from '../Menu/Menu';
-import AdvertCard from './Advert/Advert';
-import AdvertCard2 from './Advert/Advert2';
-import AdvertCard3 from './Advert/Advert3';
+
+import ContentAdvert from './ContentAdvert/ContentAdvert';
 import CreateAdvertButton from './CreateAdvertButton/CreateAdvertButton';
 import SortBar from './SortBar/SortBar';
 
 function Adverts() {
+  const adverts = useAppSelector((state) => state.adverts.list);
   return (
     <>
       <AppHeader />
@@ -32,20 +33,7 @@ function Adverts() {
           <CreateAdvertButton />
         </Stack>
         <SortBar />
-        <Stack direction="row" flexWrap="wrap" gap="2rem">
-          <AdvertCard />
-          <AdvertCard2 />
-          <AdvertCard3 />
-          <AdvertCard3 />
-          <AdvertCard />
-          <AdvertCard2 />
-          <AdvertCard2 />
-          <AdvertCard3 />
-          <AdvertCard />
-          <AdvertCard />
-          <AdvertCard2 />
-          <AdvertCard3 />
-        </Stack>
+        <ContentAdvert adverts={adverts} />
       </Box>
     </>
   );
