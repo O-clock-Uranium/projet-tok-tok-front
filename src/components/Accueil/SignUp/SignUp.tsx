@@ -36,6 +36,7 @@ export default function SignUp() {
         autoComplete=""
       />
       <FormField name="latitude" label="latitude" type="text" autoComplete="" />
+      <FormField name="slug" label="slug" type="text" autoComplete="" />
       <FormField name="email" label="Email" type="mail" autoComplete="" />
       <FormField
         name="password"
