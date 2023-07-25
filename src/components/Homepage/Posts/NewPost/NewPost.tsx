@@ -20,10 +20,11 @@ function NewPost() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log('coucou');
+    // console.log('coucou');
 
     const formData = new FormData(event.currentTarget);
     dispatch(addPost(formData));
+    // console.log(Object.fromEntries(formData));
   };
 
   return (
@@ -49,6 +50,8 @@ function NewPost() {
           gap="2rem"
         >
           <Stack
+            component="form"
+            onSubmit={handleSubmit}
             direction="row"
             sx={{
               width: '100%',
@@ -57,34 +60,31 @@ function NewPost() {
               display: 'flex',
             }}
           >
-            <form onSubmit={handleSubmit}>
-              <InputBase
-                name="content"
-                maxRows={6}
-                fullWidth
-                value={value}
-                onChange={(event) => setValue(event.target.value)}
-                sx={{
-                  fontFamily: 'DM Sans',
-                  ml: '2rem',
-                  p: '1.5rem',
-                  flex: 0.98,
-                  fontSize: '1.5rem',
-                  backgroundColor: '#F5F6FA',
-                  borderRadius: '9.5rem',
-                  color: '#888888',
-                  border: 'none',
-                  '& fieldset': { border: 'none' },
-                }}
-                placeholder="Quoi de neuf, Jean-Jacques ?"
-                inputProps={{
-                  'aria-label': 'Champ de publication',
-                }}
-              />
-            </form>
+            <InputBase
+              name="content"
+              maxRows={6}
+              fullWidth
+              value={value}
+              onChange={(event) => setValue(event.target.value)}
+              sx={{
+                fontFamily: 'DM Sans',
+                ml: '2rem',
+                p: '1.5rem',
+                flex: 0.98,
+                fontSize: '1.5rem',
+                backgroundColor: '#F5F6FA',
+                borderRadius: '9.5rem',
+                color: '#888888',
+                border: 'none',
+                '& fieldset': { border: 'none' },
+              }}
+              placeholder="Quoi de neuf, Jean-Jacques ?"
+              inputProps={{
+                'aria-label': 'Champ de publication',
+              }}
+            />
             <Button
-              //! type="submit"
-              //! onClick={handleSubmit}
+              type="submit"
               sx={{
                 my: 'auto',
                 p: '1rem 2rem',
@@ -98,7 +98,6 @@ function NewPost() {
                 },
               }}
             >
-              {/* <IconButton            > */}
               <Typography
                 fontSize="1.5rem"
                 color="white"
@@ -110,8 +109,6 @@ function NewPost() {
                 Publier
               </Typography>
             </Button>
-
-            {/* </IconButton> */}
           </Stack>
           <Stack direction="row" pl="2rem">
             <IconButton

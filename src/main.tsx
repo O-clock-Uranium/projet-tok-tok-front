@@ -8,6 +8,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
+import { useEffect } from 'react';
 import store from './store';
 
 import App from './components/App/App';
@@ -20,34 +21,41 @@ import './styles/index.scss';
 
 import Accueil from './components/Accueil/Accueil';
 import Adverts from './components/Adverts/Adverts';
-import theme from './styles/theme';
 import Annonce from './components/Annonce/Annonce';
+import theme from './styles/theme';
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <>
-      <Route path="/" element={<Accueil />} />
-      <Route element={<App />} errorElement={<Error />} />
-      <Route errorElement={<Error />}>
-        <Route path="/home" element={<Posts />} />
-        <Route path="/profil" element={<Profile />} />
-        <Route path="/annonces" element={<Adverts />} />
-        <Route path="/annonces/:id" element={<Annonce />} />
-        <Route path="/favoris" element={<Favourites />} />
-        <Route path="/messagerie" element={<Messagerie />} />
-      </Route>
-    </>
-  )
-);
+function Root() {
+  useEffect(() => {
+    // Your useEffect logic here
+    // You can perform any side effects or setup you need for your application
+  }, []);
 
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <>
+        <Route path="/" element={<Accueil />} />
+        <Route element={<App />} errorElement={<Error />} />
+        <Route errorElement={<Error />}>
+          <Route path="/home" element={<Posts />} />
+          <Route path="/profil" element={<Profile />} />
+          <Route path="/annonces" element={<Adverts />} />
+          <Route path="/annonces/:id" element={<Annonce />} />
+          <Route path="/favoris" element={<Favourites />} />
+          <Route path="/messagerie" element={<Messagerie />} />
+        </Route>
+      </>
+    )
+  );
+  return (
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </ThemeProvider>
+  );
+}
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-root.render(
-  <ThemeProvider theme={theme}>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
-  </ThemeProvider>
-);
+root.render(<Root />);

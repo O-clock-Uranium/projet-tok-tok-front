@@ -124,7 +124,7 @@ const userReducer = createReducer(initialState, (builder) => {
     })
     .addCase(logout, (state) => {
       // je ré-initialise mes données depuis mon state initial
-      state.logged = initialState.logged;
+      state.logged = false;
       state.firstname = initialState.firstname;
       // console.log(state.logged);
 
