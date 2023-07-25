@@ -38,7 +38,6 @@ export default function ColorToggleButton() {
             fontFamily: 'Manrope',
             fontSize: '1.6rem',
             fontWeight: 600,
-            // alignItems: 'center',
           }}
         >
           Ventes

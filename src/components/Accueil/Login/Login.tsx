@@ -5,7 +5,7 @@ import { FormEvent } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { login } from '../../../store/reducers/user';
-import LoginField from './LoginField/LoginField';
+import FormField from '../FormField/FormField';
 
 export default function Login() {
   const isLogged = useAppSelector((state) => state.user.logged);
@@ -23,8 +23,18 @@ export default function Login() {
       {isLogged && <Navigate to="/home" />}
       {!isLogged && (
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{}}>
-          <LoginField name="email" label="Email" type="email" />
-          <LoginField name="password" label="Mot de passe" type="password" />
+          <FormField
+            name="email"
+            label="Email"
+            type="email"
+            autoComplete="email"
+          />
+          <FormField
+            name="password"
+            label="Mot de passe"
+            type="password"
+            autoComplete="current-password"
+          />
           <Button
             type="submit"
             fullWidth

@@ -14,12 +14,37 @@ import home from '../../assets/icons/home.svg';
 import megaphone from '../../assets/icons/megaphone.svg';
 import profile from '../../assets/icons/profile.svg';
 
+// import MenuCompo from './MenuCompo';
+
+// const MenuData = [
+//   {
+//     name: 'Home',
+//     link: '/home',
+//     src: 'home',
+//   },
+//   {
+//     name: 'Profil',
+//     link: '/profil',
+//     src: '../../assets/icons/profile.svg',
+//   },
+//   {
+//     name: 'Annonces',
+//     link: '/annonces',
+//     src: 'megaphone',
+//   },
+//   {
+//     name: 'Messagerie',
+//     link: '/messagerie',
+//     src: 'home',
+//   },
+// ];
+
 export default function Menu() {
   return (
     <Paper
       elevation={0}
       sx={{
-        maxWidth: '100%',
+        width: '9rem',
         borderRadius: 4,
         backgroundColor: '#FFF',
         position: 'fixed',
@@ -71,7 +96,6 @@ export default function Menu() {
           </ListItemIcon>
           <ListItemIcon sx={{ p: 1 }}>
             <NavLink to="/messagerie">
-              {' '}
               <Badge
                 sx={{
                   '& .MuiBadge-badge': {
