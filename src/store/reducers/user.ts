@@ -20,31 +20,31 @@ import axiosInstance from '../../utils/axios';
 
 interface UserState {
   logged: boolean;
-  firstname: string | null;
-  lastname: string | null;
-  description: string | null;
-  address: string | null;
-  city: string | null;
-  longitude: string | null;
-  latitude: string | null;
-  thumbnail: string | null;
-  slug: string | null;
+  firstname: string;
+  lastname: string;
+  description: string;
+  address: string;
+  city: string;
+  longitude: string;
+  latitude: string;
+  thumbnail: string;
+  slug: string;
 
-  error?: string | null;
+  error?: string;
 }
 
 export const initialState: UserState = {
   logged: false,
-  firstname: null,
-  lastname: null,
-  description: null,
-  address: null,
-  city: null,
-  longitude: null,
-  latitude: null,
-  thumbnail: null,
-  slug: null,
-  error: null,
+  firstname: "",
+  lastname: "",
+  description: "",
+  address: "",
+  city: "",
+  longitude: "",
+  latitude: "",
+  thumbnail: "",
+  slug: "",
+  error: "",
 };
 
 export const logout = createAction('user/logout');
@@ -62,20 +62,8 @@ export const login = createAsyncThunk(
 
     return data as {
       auth: boolean;
-      message: string;
       token: string;
       user: UserState;
-      // logged: boolean;
-      // firstname: string;
-      // lastname: string;
-      // description: string;
-      // address: string;
-      // city: string;
-      // longitude: string;
-      // latitude: string;
-      // thumbnail: string;
-      // slug: null;
-      // error: null;
     };
   }
 );
@@ -94,17 +82,10 @@ export const signup = createAsyncThunk(
     //! Mettre une photo de base automatique par défaut
 
     return data as {
-      logged: boolean;
-      firstname: string;
-      lastname: string;
-      description: string;
-      address: string;
-      city: string;
-      longitude: string;
-      latitude: string;
-      thumbnail: string;
-      slug: null;
-      error: null;
+      message: string;
+      auth: boolean;
+      token: string;
+      user: UserState;
     };
   }
 );
@@ -138,10 +119,10 @@ const userReducer = createReducer(initialState, (builder) => {
     })
     .addCase(signup.fulfilled, (state, action) => {
       state.logged = true;
-      state.firstname = action.payload.firstname;
-      state.lastname = action.payload.lastname;
-      state.address = action.payload.address;
-      state.thumbnail = action.payload.thumbnail; //! ajouter une thumbnail de base
+      state.firstname = action.payload.user.firstname;
+      state.lastname = action.payload.user.lastname;
+      state.address = action.payload.user.address;
+      state.thumbnail = action.payload.user.thumbnail; //! ajouter une thumbnail de base
     });
 });
 
