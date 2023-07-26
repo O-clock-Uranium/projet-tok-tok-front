@@ -53,6 +53,7 @@ export const initialState: UserState = {
 
 export const logout = createAction('user/logout');
 
+
 export const login = createAsyncThunk(
   'user/login',
   async (formData: FormData) => {

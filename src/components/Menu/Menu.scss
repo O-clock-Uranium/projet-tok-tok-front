@@ -1,0 +1,29 @@
+@use '../../styles/variables' as v;
+
+.menu {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: 15rem;
+  top: 50px;
+  height: -webkit-fill-available;
+
+  & ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+
+    & li {
+      background-color: v.$color-primary;
+      border-radius: 25%;
+      margin-bottom: 1rem;
+      padding: 8px;
+      transition: all 300ms;
+
+      &:hover {
+        background-color: v.$color-primary-lighter;
+        // padding: 16px;
+      }
+    }
+  }
+}
