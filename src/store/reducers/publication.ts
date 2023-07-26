@@ -1,10 +1,6 @@
-import {
-  createAction,
-  createAsyncThunk,
-  createReducer,
-} from '@reduxjs/toolkit';
+import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 
-import { Creator, Likes, Publication, Replies } from '../../@types/publication';
+import { Publication } from '../../@types/publication';
 
 import axiosInstance from '../../utils/axios';
 
@@ -64,7 +60,7 @@ const publicationReducer = createReducer(initialState, (builder) => {
     .addCase(addPost.pending, (state) => {
       state.isLoading = true;
     })
-    .addCase(addPost.fulfilled, (state, action) => {
+    .addCase(addPost.fulfilled, (state) => {
       state.isLoading = false;
     });
 });

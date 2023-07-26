@@ -31,8 +31,8 @@ const router = createBrowserRouter(
       <Route errorElement={<Error />}>
         <Route path="/home" element={<Posts />} />
         <Route path="/profil" element={<Profile />} />
-        <Route path="/annonces" element={<Adverts />} />
-        <Route path="/annonces/:id" element={<Annonce />} />
+        <Route path="/adverts" element={<Adverts />} />
+        <Route path="/adverts/:id" element={<Annonce />} />
         <Route path="/favoris" element={<Favourites />} />
         <Route path="/messagerie" element={<Messagerie />} />
       </Route>
