@@ -50,7 +50,6 @@ export default function SignUp() {
         type="password"
         autoComplete="new-password"
       />
-
       <Button
         type="submit"
         fullWidth

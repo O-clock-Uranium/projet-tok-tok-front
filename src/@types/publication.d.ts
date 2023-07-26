@@ -1,21 +1,21 @@
 export interface Publication {
-  id: number;
-  content: string;
-  thumbnail: string;
-  user_id: number;
-  created_at: number;
-  reply_to: Publication[];
-  post_creator: Creator[];
-  users_liked: Likes[];
-  replies: Replies[];
+  id: number | null;
+  content: string | null;
+  thumbnail: string | null;
+  user_id: number | null;
+  created_at: number | null;
+  reply_to: number | null;
+  post_creator: Creator | null;
+  users_liked: Likes[] | null;
+  replies: Reply[] | null;
 }
 
 export interface Creator {
-  id: number;
-  firstname: string;
-  lastname: string;
-  address: string;
-  thumbnail: string;
+  id: number | null;
+  firstname: string | null;
+  lastname: string | null;
+  address: string | null;
+  thumbnail: string | null;
 }
 
 export interface Likes {
@@ -23,16 +23,20 @@ export interface Likes {
 }
 
 export interface User {
-  firstname: string;
-  lastname: string;
+  id: number | null;
+  firstname: string | null;
+  lastname: string | null;
   description: string | null;
-  address: string;
-  localization: string | null;
-  email: string;
-  password: string;
+  address: string | null;
+  city: string | null;
+  longitude: string | null;
+  latitude: string | null;
+  email: string | null;
+  password: string | null;
   thumbnail: string | null;
+  slug: string | null;
 }
 
-export interface Replies {
-  publication: Publication[];
+export interface Reply {
+  publication: Publication;
 }

@@ -20,8 +20,8 @@ import './styles/index.scss';
 
 import Accueil from './components/Accueil/Accueil';
 import Adverts from './components/Adverts/Adverts';
-import theme from './styles/theme';
 import Annonce from './components/Annonce/Annonce';
+import theme from './styles/theme';
 
 const router = createBrowserRouter(
   createRoutesFromElements(

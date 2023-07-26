@@ -23,7 +23,7 @@ export default function UserMenu() {
   };
 
   const handleLogout = () => {
-    dispatch(logout);
+    dispatch(logout());
     setAnchorEl(null);
   };
 

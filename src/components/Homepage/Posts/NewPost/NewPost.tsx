@@ -1,15 +1,32 @@
 import {
   Avatar,
   Box,
+  Button,
   IconButton,
   InputBase,
   Stack,
   Typography,
 } from '@mui/material';
+import { useState } from 'react';
 import video from '../../../../assets/icons/camera.svg';
 import picture from '../../../../assets/icons/picture.svg';
+import { useAppDispatch } from '../../../../hooks/redux';
+import { addPost } from '../../../../store/reducers/publication';
 
 function NewPost() {
+  const [value, setValue] = useState('');
+  const dispatch = useAppDispatch();
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    // console.log('coucou');
+    setValue('');
+
+    const formData = new FormData(event.currentTarget);
+    dispatch(addPost(formData));
+    // console.log(Object.fromEntries(formData));
+  };
+
   return (
     <Box
       sx={{
@@ -33,8 +50,9 @@ function NewPost() {
           gap="2rem"
         >
           <Stack
-            direction="row"
             component="form"
+            onSubmit={handleSubmit}
+            direction="row"
             sx={{
               width: '100%',
               borderRadius: '5rem',
@@ -43,9 +61,12 @@ function NewPost() {
             }}
           >
             <InputBase
+              name="content"
               multiline
               maxRows={6}
               fullWidth
+              value={value}
+              onChange={(event) => setValue(event.target.value)}
               sx={{
                 fontFamily: 'DM Sans',
                 ml: '2rem',
@@ -55,12 +76,16 @@ function NewPost() {
                 backgroundColor: '#F5F6FA',
                 borderRadius: '9.5rem',
                 color: '#888888',
+                border: 'none',
+                '& fieldset': { border: 'none' },
               }}
               placeholder="Quoi de neuf, Jean-Jacques ?"
-              inputProps={{ 'aria-label': 'search google maps' }}
+              inputProps={{
+                'aria-label': 'Champ de publication',
+              }}
             />
-
-            <IconButton
+            <Button
+              type="submit"
               sx={{
                 my: 'auto',
                 p: '1rem 2rem',
@@ -84,7 +109,7 @@ function NewPost() {
               >
                 Publier
               </Typography>
-            </IconButton>
+            </Button>
           </Stack>
           <Stack direction="row" pl="2rem">
             <IconButton

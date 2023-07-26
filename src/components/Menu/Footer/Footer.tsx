@@ -7,14 +7,14 @@ function Footer() {
           <span> · </span>
         </li>
         <li>
-          <a href="/test">Bla bla</a>
+          <a href="/test">Equipe de dev</a>
           <span> · </span>
         </li>
         <li>
           <a href="/test">CGV</a>
           <span> · </span>
         </li>
-        <span>Tok Tok © 2023</span>
+        <span>Tok Tok © 2023</span>/
       </ul>
     </footer>
   );

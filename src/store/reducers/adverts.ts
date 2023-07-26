@@ -25,7 +25,7 @@ export const fetchAdverts = createAsyncThunk(
   'adverts/fetchAdverts',
   async () => {
     const { data } = await axiosInstance.get<Advert[]>('/adverts');
-
+    console.log(data);
     return data;
   }
 );
