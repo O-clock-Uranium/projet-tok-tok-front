@@ -5,11 +5,13 @@ export default function UserIdentity() {
   const loggedPseudo = useAppSelector(
     (state) => `Bienvenue ${state.user.firstname} ${state.user.lastname}`
   );
+  const picture = useAppSelector(state => state.user.thumbnail);
+  
   return (
     <>
       <Avatar
-        alt="Jean-Jacques"
-        src="src/fakedata/jjg.jpg"
+        alt="profile-picture"
+        src={picture}
         sx={{ mx: 2, p: 0, width: '4.7rem', height: '4.7rem' }}
       />
       <Typography
