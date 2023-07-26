@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   ListItemButton,
@@ -13,6 +14,10 @@ import axios from 'axios';
 
 export default function SignUp() {
   const isLogged = useAppSelector((state) => state.user.logged);
+  const errorMessage = useAppSelector(state=> state.user.error);
+  console.log(errorMessage?.length);
+  
+
   const [addressValue, setAddressValue] = useState('');
   const [addressProps, setAddressProps] = useState([]);
   const [latitude, setLatitude] = useState('');
@@ -32,7 +37,7 @@ export default function SignUp() {
         setAddressProps(data.features);
         console.log(addressProps);
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     }
     fetchAddress();
@@ -82,6 +87,7 @@ export default function SignUp() {
 
   return (
     <Box component="form" noValidate onSubmit={handleSubmit}>
+      {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
       <FormField
         name="firstname"
         label="Nom"

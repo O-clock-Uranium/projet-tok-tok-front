@@ -31,98 +31,109 @@ interface UserState {
   slug: string;
 
   error?: string;
+  isLoading: boolean;
 }
 
 export const initialState: UserState = {
   logged: false,
-  firstname: "",
-  lastname: "",
-  description: "",
-  address: "",
-  city: "",
-  longitude: "",
-  latitude: "",
-  thumbnail: "",
-  slug: "",
-  error: "",
+  firstname: '',
+  lastname: '',
+  description: '',
+  address: '',
+  city: '',
+  longitude: '',
+  latitude: '',
+  thumbnail: '',
+  slug: '',
+  error: '',
+  isLoading: false,
 };
 
 export const logout = createAction('user/logout');
 
-
 export const login = createAsyncThunk(
   'user/login',
   async (formData: FormData) => {
-    const objData = Object.fromEntries(formData);
+    try {
+      const objData = Object.fromEntries(formData);
 
-    const { data } = await axiosInstance.post('/login', objData);
+      const { data } = await axiosInstance.post('/login', objData);
 
-    axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
-    delete data.token;
+      axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
+      delete data.token;
 
-    return data as {
-      auth: boolean;
-      token: string;
-      user: UserState;
-    };
+      return data as {
+        auth: boolean;
+        token: string;
+        user: UserState;
+        error: string;
+      };
+    } catch (error: any) {
+      throw new Error(error.response.data.error)
+    }
   }
 );
 
 export const signup = createAsyncThunk(
   'user/signup',
   async (formData: FormData) => {
-    const objData = Object.fromEntries(formData);
+    try {
+      const objData = Object.fromEntries(formData);
 
-    const { data } = await axiosInstance.post('/signup', objData);
-    // console.log(data);
-    // console.log(data.token);
-    axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
-    delete data.token;
+      console.log('coucou');
+      const { data } = await axiosInstance.post('/signup', objData);
+      console.log(data);
+      // console.log(data.token);
+      axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
+      delete data.token;
 
-    //! Mettre une photo de base automatique par défaut
-
-    return data as {
-      message: string;
-      auth: boolean;
-      token: string;
-      user: UserState;
-    };
+      return data as {
+        message: string;
+        auth: boolean;
+        token: string;
+        user: UserState;
+      };
+    } catch (error: any) {
+      throw new Error(error.response.data.error);
+    }
   }
 );
 
 const userReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(login.pending, (state, action) => {
-      // state.isLoading = true;
+    .addCase(login.pending, (state, _) => {
+      state.isLoading = true;
     })
     .addCase(login.fulfilled, (state, action) => {
       state.logged = action.payload.auth;
       state.firstname = action.payload.user.firstname;
       state.lastname = action.payload.user.lastname;
-      // state.isLoading = false;
+      state.isLoading = false;
     })
     .addCase(login.rejected, (state, action) => {
-      // state.isLoading = false;
-      // console.log(action.error);
-      // state.error = action.error.message;
-      // console.log(action);
-      // l'erreur est envoyée dans `action.error`
-      // je pourrais en profiter pour mettre en place un message d'erreur
-      // console.log(action.error);
+      state.isLoading = false;      
+      state.error = action.error.message;
     })
     .addCase(logout, (state) => {
-      state.logged = false;
-      state.logged = initialState.logged;
-      // state = { ...initialState };
+      // state.logged = initialState.logged;
+      state = { ...initialState };
       // console.log(state.logged);
       delete axiosInstance.defaults.headers.common.Authorization;
     })
     .addCase(signup.fulfilled, (state, action) => {
+      state.isLoading = false;
       state.logged = true;
       state.firstname = action.payload.user.firstname;
       state.lastname = action.payload.user.lastname;
       state.address = action.payload.user.address;
       state.thumbnail = action.payload.user.thumbnail; //! ajouter une thumbnail de base
+    })
+    .addCase(signup.pending, (state, _) => {
+      state.isLoading = false;
+    })
+    .addCase(signup.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message;
     });
 });
 
