@@ -5,7 +5,6 @@ import {
   IconButton,
   InputBase,
   Stack,
-  TextField,
   Typography,
 } from '@mui/material';
 import { useState } from 'react';
@@ -21,6 +20,7 @@ function NewPost() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // console.log('coucou');
+    setValue('');
 
     const formData = new FormData(event.currentTarget);
     dispatch(addPost(formData));
@@ -62,6 +62,7 @@ function NewPost() {
           >
             <InputBase
               name="content"
+              multiline
               maxRows={6}
               fullWidth
               value={value}
