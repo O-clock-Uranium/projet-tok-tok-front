@@ -1,9 +1,14 @@
 import { Box, Button } from '@mui/material';
-import { useAppDispatch } from '../../../hooks/redux';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { signup } from '../../../store/reducers/user';
 import FormField from '../FormField/FormField';
 
 export default function SignUp() {
+  const isLogged = useAppSelector((state) => state.user.logged);
+
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -12,6 +17,15 @@ export default function SignUp() {
     const formData = new FormData(event.currentTarget);
     dispatch(signup(formData));
   };
+
+  useEffect(() => {
+    if (!isLogged) {
+      // return <Navigate to="/" replace />;
+      navigate('/', { replace: true });
+    } else {
+      navigate('/profil', { replace: true });
+    }
+  }, [isLogged, navigate]);
 
   return (
     <Box component="form" noValidate onSubmit={handleSubmit}>
