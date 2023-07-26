@@ -84,7 +84,7 @@ export default function Menu() {
               </NavLink>
             </ListItemIcon>
             <ListItemIcon sx={{ p: 1 }}>
-              <NavLink to="/annonces">
+              <NavLink to="/adverts">
                 <IconButton type="button" aria-label="paramètres">
                   <img alt="search icon" src={megaphone} />
                 </IconButton>
