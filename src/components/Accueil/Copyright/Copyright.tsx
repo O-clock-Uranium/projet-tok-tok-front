@@ -1,4 +1,4 @@
-import { Link, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 
 export default function Copyright(props: any) {
   return (
@@ -9,9 +9,7 @@ export default function Copyright(props: any) {
       {...props}
     >
       {'Copyright © '}
-      <Link color="inherit" href="/home">
-        Tok Tok
-      </Link>{' '}
+      Tok Tok
       {new Date().getFullYear()}.
     </Typography>
   );
