@@ -1,6 +1,10 @@
 import { Avatar, Typography } from '@mui/material';
+import { useAppSelector } from '../../../../hooks/redux';
 
 export default function UserIdentity() {
+  const loggedPseudo = useAppSelector(
+    (state) => `Bienvenue ${state.user.firstname} ${state.user.lastname}`
+  );
   return (
     <>
       <Avatar
@@ -19,7 +23,7 @@ export default function UserIdentity() {
           lineHeight: 'normal',
         }}
       >
-        JJ Goldman
+        {loggedPseudo}
       </Typography>
     </>
   );

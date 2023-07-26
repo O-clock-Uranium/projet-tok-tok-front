@@ -70,7 +70,7 @@ export default function Menu() {
             <ListItemIcon
               sx={{ p: 1.2, backgroundColor: 'primary.dark', borderRadius: 3 }}
             >
-              <NavLink to="/home">
+              <NavLink to="/">
                 <IconButton type="button" aria-label="paramètres">
                   <img alt="search icon" src={home} />
                 </IconButton>
