@@ -4,7 +4,7 @@ import {
   ListItemIcon,
   MenuItem,
   MenuList,
-  Paper,
+  Paper
 } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
@@ -67,7 +67,7 @@ export default function Menu() {
           <ListItemIcon
             sx={{ p: 1.2, backgroundColor: 'primary.dark', borderRadius: 3 }}
           >
-            <NavLink to="/home">
+            <NavLink to="/">
               <IconButton type="button" aria-label="paramètres">
                 <img alt="search icon" src={home} />
               </IconButton>
@@ -81,7 +81,7 @@ export default function Menu() {
             </NavLink>
           </ListItemIcon>
           <ListItemIcon sx={{ p: 1 }}>
-            <NavLink to="/annonces">
+            <NavLink to="/adverts">
               <IconButton type="button" aria-label="paramètres">
                 <img alt="search icon" src={megaphone} />
               </IconButton>
