@@ -115,6 +115,8 @@ const userReducer = createReducer(initialState, (builder) => {
     })
     .addCase(login.fulfilled, (state, action) => {
       state.logged = action.payload.auth;
+      state.firstname = action.payload.user.firstname;
+      state.lastname = action.payload.user.lastname;
       // state.isLoading = false;
     })
     .addCase(login.rejected, (state, action) => {

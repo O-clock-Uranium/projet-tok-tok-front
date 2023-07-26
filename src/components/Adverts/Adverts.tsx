@@ -2,9 +2,6 @@ import { Box, Stack } from '@mui/material';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchAdverts } from '../../store/reducers/adverts';
-import AppHeader from '../AppHeader/AppHeader';
-
-import Menu from '../Menu/Menu';
 
 import ContentAdvert from './ContentAdvert/ContentAdvert';
 import CreateAdvertButton from './CreateAdvertButton/CreateAdvertButton';
