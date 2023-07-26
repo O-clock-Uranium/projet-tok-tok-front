@@ -6,10 +6,10 @@ import AppHeader from '../AppHeader/AppHeader';
 import Menu from '../Menu/Menu';
 
 export default function Annonce() {
-  const { id } = useParams();
+  const { slug } = useParams();
 
   const advert = useAppSelector((state) =>
-    findAdvert(state.adverts.list, id as number)
+    findAdvert(state.adverts.list, slug as string)
   );
 
   if (!advert) {
@@ -33,7 +33,7 @@ export default function Annonce() {
           margin: 'auto',
         }}
       >
-        <p>ANNONCE</p>
+        <p>{advert.title}</p>
         <p>AUTRES ANNONCES</p>
       </Box>
     </>
