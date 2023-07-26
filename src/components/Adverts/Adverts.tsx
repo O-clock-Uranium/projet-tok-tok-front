@@ -1,5 +1,7 @@
 import { Box, Stack } from '@mui/material';
-import { useAppSelector } from '../../hooks/redux';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { fetchAdverts } from '../../store/reducers/adverts';
 import AppHeader from '../AppHeader/AppHeader';
 
 import Menu from '../Menu/Menu';
@@ -10,6 +12,12 @@ import SortBar from './SortBar/SortBar';
 
 function Adverts() {
   const adverts = useAppSelector((state) => state.adverts.list);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAdverts());
+  }, [dispatch]);
+
   return (
     <>
       <AppHeader />
