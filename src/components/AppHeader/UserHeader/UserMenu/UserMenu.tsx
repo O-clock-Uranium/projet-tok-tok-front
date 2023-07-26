@@ -65,7 +65,6 @@ export default function UserMenu() {
           onClick={handleClose}
           sx={{ fontSize: '1.8rem' }}
         >
-          {' '}
           <IconButton type="button" aria-label="paramètres">
             <img alt="search icon" src={profile} height={18} width={18} />
           </IconButton>

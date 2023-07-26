@@ -1,4 +1,5 @@
 import { Avatar, Box, Paper, Stack, Typography } from '@mui/material';
+import TriplePointButton from '../../../../TriplePointButton/TriplePointButton';
 
 export default function OneComment() {
   return (
@@ -11,13 +12,18 @@ export default function OneComment() {
         borderRadius: '2rem',
       }}
     >
-      <Stack paddingBottom="2.5rem" spacing={2} direction="row">
+      <Stack
+        paddingBottom="2.5rem"
+        spacing={2}
+        direction="row"
+        justifyContent="space-between"
+      >
         <Avatar
           alt="Patrick Sebastien"
           src="../../src/fakedata/ps.jpg"
           sx={{ width: 45, height: 45 }}
         />
-        <Stack direction="column">
+        <Stack direction="column" flex="1">
           <Typography
             sx={{
               fontFamily: 'Manrope',
@@ -42,6 +48,7 @@ export default function OneComment() {
             Il y a 20 minutes
           </Typography>
         </Stack>
+        <TriplePointButton />
       </Stack>
       <Box
         sx={{

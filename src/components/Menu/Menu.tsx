@@ -1,6 +1,5 @@
 import {
   Badge,
-  Box,
   IconButton,
   ListItemIcon,
   MenuItem,
@@ -14,7 +13,6 @@ import conversation from '../../assets/icons/conversation.svg';
 import home from '../../assets/icons/home.svg';
 import megaphone from '../../assets/icons/megaphone.svg';
 import profile from '../../assets/icons/profile.svg';
-import Footer from './Footer/Footer';
 
 // import MenuCompo from './MenuCompo';
 
@@ -43,81 +41,79 @@ import Footer from './Footer/Footer';
 
 export default function Menu() {
   return (
-    <Box>
-      <Paper
-        elevation={0}
-        sx={{
-          width: '9rem',
-          borderRadius: 4,
-          backgroundColor: '#FFF',
-          position: 'fixed',
-          top: 250,
-          left: '10rem',
-        }}
-      >
-        <MenuList sx={{ gap: '2rem' }}>
-          <MenuItem
-            sx={{
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-              gap: '2rem',
-              '&:hover': {
-                backgroundColor: 'transparent',
-              },
-            }}
+    <Paper
+      elevation={0}
+      sx={{
+        width: '9rem',
+        borderRadius: 4,
+        backgroundColor: '#FFF',
+        position: 'fixed',
+        top: 250,
+        left: '10rem',
+      }}
+    >
+      <MenuList sx={{ gap: '2rem' }}>
+        <MenuItem
+          sx={{
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            gap: '2rem',
+            '&:hover': {
+              backgroundColor: 'transparent',
+            },
+          }}
+        >
+          {/* Faudra mettre un classe isActive sur les boutons qui sont actifs */}
+          <ListItemIcon
+            sx={{ p: 1.2, backgroundColor: 'primary.dark', borderRadius: 3 }}
           >
-            {/* Faudra mettre un classe isActive sur les boutons qui sont actifs */}
-            <ListItemIcon
-              sx={{ p: 1.2, backgroundColor: 'primary.dark', borderRadius: 3 }}
-            >
-              <NavLink to="/">
+            <NavLink to="/home">
+              <IconButton type="button" aria-label="paramètres">
+                <img alt="search icon" src={home} />
+              </IconButton>
+            </NavLink>
+          </ListItemIcon>
+          <ListItemIcon sx={{ p: 1 }}>
+            <NavLink to="/profil">
+              <IconButton type="button" aria-label="paramètres">
+                <img alt="search icon" src={profile} />
+              </IconButton>
+            </NavLink>
+          </ListItemIcon>
+          <ListItemIcon sx={{ p: 1 }}>
+            <NavLink to="/annonces">
+              <IconButton type="button" aria-label="paramètres">
+                <img alt="search icon" src={megaphone} />
+              </IconButton>
+            </NavLink>
+          </ListItemIcon>
+          <ListItemIcon sx={{ p: 1 }}>
+            <NavLink to="/favoris">
+              <IconButton type="button" aria-label="paramètres">
+                <img alt="search icon" src={bookmark} />
+              </IconButton>
+            </NavLink>
+          </ListItemIcon>
+          <ListItemIcon sx={{ p: 1 }}>
+            <NavLink to="/messagerie">
+              <Badge
+                sx={{
+                  '& .MuiBadge-badge': {
+                    color: 'WHITE',
+                    fontSize: '1.15rem',
+                  },
+                }}
+                badgeContent={5477}
+                color="primary"
+              >
                 <IconButton type="button" aria-label="paramètres">
-                  <img alt="search icon" src={home} />
+                  <img alt="search icon" src={conversation} />
                 </IconButton>
-              </NavLink>
-            </ListItemIcon>
-            <ListItemIcon sx={{ p: 1 }}>
-              <NavLink to="/profil">
-                <IconButton type="button" aria-label="paramètres">
-                  <img alt="search icon" src={profile} />
-                </IconButton>
-              </NavLink>
-            </ListItemIcon>
-            <ListItemIcon sx={{ p: 1 }}>
-              <NavLink to="/adverts">
-                <IconButton type="button" aria-label="paramètres">
-                  <img alt="search icon" src={megaphone} />
-                </IconButton>
-              </NavLink>
-            </ListItemIcon>
-            <ListItemIcon sx={{ p: 1 }}>
-              <NavLink to="/favoris">
-                <IconButton type="button" aria-label="paramètres">
-                  <img alt="search icon" src={bookmark} />
-                </IconButton>
-              </NavLink>
-            </ListItemIcon>
-            <ListItemIcon sx={{ p: 1 }}>
-              <NavLink to="/messagerie">
-                <Badge
-                  sx={{
-                    '& .MuiBadge-badge': {
-                      color: 'WHITE',
-                      fontSize: '1.15rem',
-                    },
-                  }}
-                  badgeContent={5477}
-                  color="primary"
-                >
-                  <IconButton type="button" aria-label="paramètres">
-                    <img alt="search icon" src={conversation} />
-                  </IconButton>
-                </Badge>
-              </NavLink>
-            </ListItemIcon>
-          </MenuItem>
-        </MenuList>
-      </Paper>
-    </Box>
+              </Badge>
+            </NavLink>
+          </ListItemIcon>
+        </MenuItem>
+      </MenuList>
+    </Paper>
   );
 }

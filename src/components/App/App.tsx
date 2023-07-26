@@ -7,6 +7,7 @@ import Menu from '../Menu/Menu';
 
 function App() {
   const isLogged = useAppSelector((state) => state.user.logged);
+
   const location = useLocation();
 
   useEffect(() => {
