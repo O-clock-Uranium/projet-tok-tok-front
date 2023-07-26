@@ -13,6 +13,7 @@ import Collapse from '@mui/material/Collapse';
 import comment from '../../../../assets/icons/comment.svg';
 import OneComment from './OneComment/OneComment';
 
+import TriplePointButton from '../../../TriplePointButton/TriplePointButton';
 import AddCommentary from './AddComment/AddComment';
 
 export default function Post() {
@@ -32,13 +33,18 @@ export default function Post() {
       elevation={0}
       sx={{ width: '82rem', mx: 'auto', p: '3rem', borderRadius: '2rem' }}
     >
-      <Stack paddingBottom="2.5rem" spacing={2} direction="row">
+      <Stack
+        paddingBottom="2.5rem"
+        spacing={2}
+        direction="row"
+        justifyContent="space-between"
+      >
         <Avatar
           alt="Céline Dion"
           src="src/fakedata/cd.jpg"
           sx={{ width: 60, height: 60 }}
         />
-        <Stack direction="column">
+        <Stack direction="column" flex="1" justifyContent="center">
           <Typography
             sx={{
               fontFamily: 'Manrope',
@@ -62,6 +68,9 @@ export default function Post() {
             Il y a 1 heure
           </Typography>
         </Stack>
+        <IconButton sx={{ fontSize: '4.5rem', color: 'Black' }}>
+          <TriplePointButton />
+        </IconButton>
       </Stack>
       <Typography
         sx={{

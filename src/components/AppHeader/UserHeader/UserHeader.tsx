@@ -4,7 +4,7 @@ import UserMenu from './UserMenu/UserMenu';
 export default function UserHeader() {
   return (
     <>
-      <UserIdentity />;
+      <UserIdentity />
       <UserMenu />
     </>
   );

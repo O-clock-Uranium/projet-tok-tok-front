@@ -19,31 +19,26 @@ function Adverts() {
   }, [dispatch]);
 
   return (
-    <>
-      <AppHeader />
-      <Menu />
-
-      <Box
-        sx={{
-          height: '100vh',
-          width: '100rem',
-          position: 'relative',
-          top: '11rem',
-          margin: 'auto',
-        }}
+    <Box
+      sx={{
+        height: '100vh',
+        width: '100rem',
+        position: 'relative',
+        top: '11rem',
+        margin: 'auto',
+      }}
+    >
+      <Stack
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+        height="8.2rem"
       >
-        <Stack
-          direction="row"
-          justifyContent="space-between"
-          alignItems="center"
-          height="8.2rem"
-        >
-          <CreateAdvertButton />
-        </Stack>
-        <SortBar />
-        <ContentAdvert adverts={adverts} />
-      </Box>
-    </>
+        <CreateAdvertButton />
+      </Stack>
+      <SortBar />
+      <ContentAdvert adverts={adverts} />
+    </Box>
   );
 }
 

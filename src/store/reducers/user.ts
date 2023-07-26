@@ -27,8 +27,6 @@ interface UserState {
   city: string | null;
   longitude: string | null;
   latitude: string | null;
-  // email: string | null;
-  // password: string | null;
   thumbnail: string | null;
   slug: string | null;
 
@@ -44,8 +42,6 @@ export const initialState: UserState = {
   city: null,
   longitude: null,
   latitude: null,
-  // email: null,
-  // password: null,
   thumbnail: null,
   slug: null,
   error: null,
@@ -65,6 +61,7 @@ export const login = createAsyncThunk(
 
     return data as {
       auth: boolean;
+      message: string;
       token: string;
       user: UserState;
       // logged: boolean;
@@ -131,7 +128,8 @@ const userReducer = createReducer(initialState, (builder) => {
     })
     .addCase(logout, (state) => {
       state.logged = false;
-      // ... state = ... initialState; //! Comment qu'on fait ?
+      state.logged = initialState.logged;
+      // state = { ...initialState };
       // console.log(state.logged);
       delete axiosInstance.defaults.headers.common.Authorization;
     })

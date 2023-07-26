@@ -1,28 +1,31 @@
 import Stack from '@mui/material/Stack';
-import AppHeader from '../../AppHeader/AppHeader';
-import Menu from '../../Menu/Menu';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import { fetchPosts } from '../../../store/reducers/publication';
 import NewPost from './NewPost/NewPost';
-import Postv2 from './Post/Post';
+import Post from './Post/Post';
 
 export default function Posts() {
-  return (
-    <>
-      <AppHeader />
-      <Menu />
+  const publications = useAppSelector((state) => state.publication.list);
+  const dispatch = useAppDispatch();
 
-      <Stack
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-        spacing={2}
-        sx={{ pt: '13rem' }}
-      >
-        <NewPost />
-        <Postv2 />
-        <Postv2 />
-        <Postv2 />
-        <Postv2 />
-      </Stack>
-    </>
+  useEffect(() => {
+    dispatch(fetchPosts());
+  }, [dispatch]);
+
+  return (
+    <Stack
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+      spacing={2}
+      sx={{ pt: '13rem' }}
+    >
+      <NewPost />
+      {/* <Post Publications={publications} /> */}
+      <Post />
+      <Post />
+      <Post />
+    </Stack>
   );
 }
