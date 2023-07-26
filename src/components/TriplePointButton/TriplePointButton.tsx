@@ -1,12 +1,12 @@
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import MoreVertSharpIcon from '@mui/icons-material/MoreVertSharp';
 import ReportGmailerrorredOutlinedIcon from '@mui/icons-material/ReportGmailerrorredOutlined';
-import { Button, IconButton, Menu, MenuItem, Typography } from '@mui/material';
+import { IconButton, Menu, MenuItem, Typography } from '@mui/material';
 import React from 'react';
 import { useAppDispatch } from '../../hooks/redux';
 
 export default function TriplePointButton() {
-  const dispatch = useAppDispatch();
+  //   const dispatch = useAppDispatch();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -20,8 +20,7 @@ export default function TriplePointButton() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     // event.preventDefault();
     //! Retirer pour rafraichir la page
-
-    dispatch(delPost());
+    // dispatch(delPost());
   };
 
   return (
