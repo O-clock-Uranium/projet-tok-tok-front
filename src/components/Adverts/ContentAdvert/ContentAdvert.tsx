@@ -9,15 +9,15 @@ interface ContentAdvertProps {
 
 function ContentAdvert({ adverts }: ContentAdvertProps) {
   return (
-    <Stack direction="row" flexWrap="wrap" gap="2rem">
+    <div>
       {adverts && (
-        <div className="Test">
+        <Stack direction="row" flexWrap="wrap" gap="2rem">
           {adverts.map((advert) => (
             <AdvertCard key={advert.id} {...advert} />
           ))}
-        </div>
+        </Stack>
       )}
-    </Stack>
+    </div>
   );
 }
 
