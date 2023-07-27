@@ -54,6 +54,32 @@ export const delPost = createAsyncThunk(
   }
 );
 
+export const addLike = createAsyncThunk(
+  'publications/AddLike',
+  async (id: number) => {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { data } = await axiosInstance.post(`/likes/${id}`);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      throw new Error(error.response.data.error);
+    }
+  }
+);
+
+export const delLike = createAsyncThunk(
+  'publications/delLike',
+  async (id: number) => {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { data } = await axiosInstance.delete(`/likes/${id}`);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      throw new Error(error.response.data.error);
+    }
+  }
+);
+
 const publicationsReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fetchPosts.pending, (state) => {

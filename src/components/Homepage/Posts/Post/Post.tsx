@@ -6,13 +6,15 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Collapse from '@mui/material/Collapse';
 import comment from '../../../../assets/icons/comment.svg';
 
 import { Publication } from '../../../../@types/publication';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
+import { addLike, delLike } from '../../../../store/reducers/publications';
 import TriplePointButton from '../../../TriplePointButton/TriplePointButton';
 import AddCommentary from './AddComment/AddComment';
 import ContentComment from './OneComment/ContentComment/ContentComment';
@@ -28,13 +30,20 @@ export default function Post({
 }: Publication) {
   const [expanded, setExpanded] = React.useState(false);
   const [like, setLike] = React.useState(false);
+  const userId = useAppSelector((state) => state.user.id);
+
+  const dispatch = useAppDispatch();
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
+  const hasLiked = users_liked.find((user) => user.user_id == userId);
+  console.log(hasLiked);
+
   const handleLikeClick = () => {
     setLike(!like);
+    like ? dispatch(delLike(id)) : dispatch(addLike(id));
   };
 
   return (
@@ -121,12 +130,7 @@ export default function Post({
             onClick={handleLikeClick}
             color={like ? 'error' : 'default'}
           >
-            {/* // ! Problème c'est tout le bouton qui devient rouge et pas seulement le coeur */}
             <FavoriteIcon sx={{ fontSize: '2rem' }} />
-
-            {/* // ! Je n'arrive pas à fill color le svg :/ */}
-            {/* <img alt="Like" src={heart} /> */}
-
             <Typography
               sx={{
                 fontFamily: 'Manrope',
