@@ -10,12 +10,13 @@ import {
 import { useState } from 'react';
 import video from '../../../../assets/icons/camera.svg';
 import picture from '../../../../assets/icons/picture.svg';
-import { useAppDispatch } from '../../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { addPost } from '../../../../store/reducers/publications';
 
 function NewPost() {
   const [value, setValue] = useState('');
   const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.user);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -40,7 +41,7 @@ function NewPost() {
       <Stack gap="2rem" direction="row">
         <Avatar
           alt="Jean-Jacques Goldman"
-          src="src/fakedata/default-profile-picture.png"
+          src={user.thumbnail}
           sx={{ width: 60, height: 60 }}
         />
         <Stack
