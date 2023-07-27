@@ -15,7 +15,6 @@ import FormField from '../FormField/FormField';
 export default function SignUp() {
   const isLogged = useAppSelector((state) => state.user.logged);
   const errorMessage = useAppSelector((state) => state.user.error);
-  console.log(errorMessage?.length);
 
   const [addressValue, setAddressValue] = useState('');
   const [addressProps, setAddressProps] = useState([]);
@@ -34,7 +33,6 @@ export default function SignUp() {
           `https://api-adresse.data.gouv.fr/search/?q=${addressValue}&limit=5&autocomplete=0`
         );
         setAddressProps(data.features);
-        console.log(addressProps);
       } catch (error) {
         // console.log(error);
       }

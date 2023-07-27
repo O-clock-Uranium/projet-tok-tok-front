@@ -5,14 +5,11 @@ import { Link } from 'react-router-dom';
 import bookmark from '../../../assets/icons/bookmark.svg';
 
 interface AdvertCardProps {
-  id: number;
   slug: string;
   title: string;
   content: string;
   price: number;
-  user_id: number;
   thumbnail: string;
-  tag_id: number;
 }
 
 const linkStyle = {
@@ -20,11 +17,8 @@ const linkStyle = {
 };
 
 export default function AdvertCard({
-  id,
   content,
   price,
-  user_id,
-  tag_id,
   thumbnail,
   title,
   slug,
