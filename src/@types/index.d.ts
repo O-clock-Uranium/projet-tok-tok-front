@@ -1,12 +1,26 @@
+export interface AdvertCreator {
+  id: number;
+  firstname: string;
+  lastname: string;
+  address: string;
+  city: string;
+  longitude: number;
+  latitude: number;
+  thumbnail: string;
+  slug: string;
+}
+
 export interface Advert {
   id: number;
   slug: string;
   title: string;
   content: string;
   price: number;
-  thumbnail: string;
   user_id: number;
   tag_id: number;
+  created_at: number;
+  advert_creator: AdvertCreator;
+  images: [];
 }
 
 export interface User {
