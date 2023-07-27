@@ -3,10 +3,11 @@ import MoreVertSharpIcon from '@mui/icons-material/MoreVertSharp';
 import ReportGmailerrorredOutlinedIcon from '@mui/icons-material/ReportGmailerrorredOutlined';
 import { IconButton, Menu, MenuItem, Typography } from '@mui/material';
 import React from 'react';
+import { Publication } from '../../@types/publication';
 import { useAppDispatch } from '../../hooks/redux';
 import { delPost } from '../../store/reducers/publications';
 
-export default function TriplePointButton({ id }) {
+export default function TriplePointButton({ id }: Publication) {
   const dispatch = useAppDispatch();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -16,10 +17,6 @@ export default function TriplePointButton({ id }) {
   };
   const handleClose = () => {
     setAnchorEl(null);
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
     dispatch(delPost(id));
   };
 
@@ -72,7 +69,6 @@ export default function TriplePointButton({ id }) {
         </MenuItem>
         <MenuItem
           component="form"
-          onSubmit={handleSubmit}
           onClick={handleClose}
           data-id={id}
           sx={{ justifyContent: 'start' }}

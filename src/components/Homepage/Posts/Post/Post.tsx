@@ -17,25 +17,11 @@ import TriplePointButton from '../../../TriplePointButton/TriplePointButton';
 import AddCommentary from './AddComment/AddComment';
 import ContentComment from './OneComment/ContentComment/ContentComment';
 
-// interface PublicationProps {
-//   id: number | null;
-//   content: string | null;
-//   thumbnail: string | null;
-//   user_id: number | null;
-//   created_at: number | null;
-//   reply_to: number | null;
-//   post_creator: Creator | null;
-//   users_liked: Likes[] | null;
-//   replies: Reply[] | null;
-// }
-
 export default function Post({
   id,
   content,
   thumbnail,
-  user_id,
   created_at,
-  reply_to,
   post_creator,
   users_liked,
   replies,
