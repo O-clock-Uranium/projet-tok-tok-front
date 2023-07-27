@@ -64,7 +64,7 @@ export default function Post({
       >
         <Avatar
           alt="Céline Dion"
-          src={post_creator?.thumbnail}
+          src="../../../src/fakedata/fakenana.jpg"
           sx={{ width: 60, height: 60 }}
         />
         <Stack direction="column" flex="1" justifyContent="center">
@@ -77,7 +77,7 @@ export default function Post({
               lineHeight: 'normal',
             }}
           >
-            {post_creator?.firstname} {post_creator?.lastname}
+            Camilla Oliveira
           </Typography>
           <Typography
             sx={{
@@ -88,7 +88,7 @@ export default function Post({
               lineHeight: 'normal',
             }}
           >
-            {created_at}
+            il y a 15 minutes
           </Typography>
         </Stack>
         <IconButton sx={{ fontSize: '4.5rem', color: 'Black' }}>
@@ -107,7 +107,8 @@ export default function Post({
         }}
         variant="body2"
       >
-        {content}
+        Bla bla bla bla Bla bla bla bla Bla bla bla bla Bla bla bla bla Bla bla
+        bla bla Bla bla bla bla Bla bla bla bla Bla bla bla bla Bla bla bla bla
       </Typography>
       <Box
         sx={{
@@ -118,7 +119,11 @@ export default function Post({
           pb: '2.5rem',
         }}
       >
-        <img src={thumbnail} alt="" style={{ borderRadius: '2rem' }} />
+        <img
+          src="../../../src/fakedata/fakenana.jpg"
+          alt=""
+          style={{ borderRadius: '2rem' }}
+        />
       </Box>
       <Stack direction="row" justifyContent="flex-start" gap="2rem">
         <Stack direction="row" alignItems="center">
