@@ -10,7 +10,7 @@ export default function Profile() {
       {/* //! Ne marche pas ! Forcément... p'tit soucis, il faut redécouper tout les composants au plus petit !! */}
       <Stack paddingTop="12rem" gap="2rem">
         <Informations />
-        <ToggleButton />
+        {/* <ToggleButton /> */}
         <Post />
         <AdvertCard />
       </Stack>

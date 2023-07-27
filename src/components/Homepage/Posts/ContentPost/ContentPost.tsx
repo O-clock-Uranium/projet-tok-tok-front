@@ -1,18 +1,19 @@
 import { Stack } from '@mui/material';
 import { Publication } from '../../../../@types/publication';
+import Post from '../Post/Post';
 
 interface ContentPostProps {
   // eslint-disable-next-line react/require-default-props
-  publication?: Publication[];
+  publications?: Publication[];
 }
 
-function ContentPost({ adverts }: ContentPostProps) {
+function ContentPost({ publications }: ContentPostProps) {
   return (
     <div>
-      {Publications && (
-        <Stack direction="row" flexWrap="wrap" gap="2rem">
-          {publications.map((publication) => (
-            <Post key={publication.id} {...publication} />
+      {publications && (
+        <Stack direction="column" gap="2rem">
+          {publications.map((publicationElement) => (
+            <Post key={publicationElement.id} {...publicationElement} />
           ))}
         </Stack>
       )}

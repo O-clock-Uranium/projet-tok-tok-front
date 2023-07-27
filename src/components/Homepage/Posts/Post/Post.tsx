@@ -13,22 +13,33 @@ import Collapse from '@mui/material/Collapse';
 import comment from '../../../../assets/icons/comment.svg';
 import OneComment from './OneComment/OneComment';
 
+import { Creator, Likes, Reply } from '../../../../@types/publication';
 import TriplePointButton from '../../../TriplePointButton/TriplePointButton';
 import AddCommentary from './AddComment/AddComment';
 
 interface PublicationProps {
-  id: number;
-  content: string;
-  thumbnail: string;
-  user_id: number;
-  created_at: number;
-  reply_to: number;
-  post_creator: Creator;
-  users_liked: Likes[];
-  replies: Reply[];
+  id: number | null;
+  content: string | null;
+  thumbnail: string | null;
+  user_id: number | null;
+  created_at: number | null;
+  reply_to: number | null;
+  post_creator: Creator | null;
+  users_liked: Likes[] | null;
+  replies: Reply[] | null;
 }
 
-export default function Post() {
+export default function Post({
+  id,
+  content,
+  thumbnail,
+  user_id,
+  created_at,
+  reply_to,
+  post_creator,
+  users_liked,
+  replies,
+}: PublicationProps) {
   const [expanded, setExpanded] = React.useState(false);
   const [like, setLike] = React.useState(false);
 
@@ -66,7 +77,7 @@ export default function Post() {
               lineHeight: 'normal',
             }}
           >
-            Céline Dion
+            Jean-Jacques Goldman
           </Typography>
           <Typography
             sx={{
@@ -77,7 +88,7 @@ export default function Post() {
               lineHeight: 'normal',
             }}
           >
-            Il y a 1 heure
+            {created_at}
           </Typography>
         </Stack>
         <IconButton sx={{ fontSize: '4.5rem', color: 'Black' }}>
@@ -96,10 +107,7 @@ export default function Post() {
         }}
         variant="body2"
       >
-        Hey regardez cette image de chat que j&apos;ai trouvé, c&apos;est trop
-        des barres, non ? <br />
-        Souuuuus le veeeeent~ Mes blessures, mes faiblesses /mes faiblesses/
-        celles que j&apos;avouuuue, à demi mots...
+        {content}
       </Typography>
       <Box
         sx={{
@@ -110,11 +118,7 @@ export default function Post() {
           pb: '2.5rem',
         }}
       >
-        <img
-          src="../../../src/fakedata/banane-chat.jpg"
-          alt="Un chat à titre d'exemple"
-          style={{ borderRadius: '2rem' }}
-        />
+        <img src={thumbnail} alt="" style={{ borderRadius: '2rem' }} />
       </Box>
       <Stack direction="row" justifyContent="flex-start" gap="2rem">
         <Stack direction="row" alignItems="center">
@@ -148,7 +152,7 @@ export default function Post() {
                 color: 'primary.dark',
               }}
             >
-              5.4k
+              450
             </Typography>
           </IconButton>
         </Stack>
@@ -178,7 +182,7 @@ export default function Post() {
                 color: 'primary.dark',
               }}
             >
-              238
+             230
             </Typography>
           </IconButton>
         </Stack>

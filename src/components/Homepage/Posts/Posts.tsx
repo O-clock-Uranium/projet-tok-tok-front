@@ -3,6 +3,7 @@ import Stack from '@mui/material/Stack';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { fetchPosts } from '../../../store/reducers/publications';
+import ContentPost from './ContentPost/ContentPost';
 import NewPost from './NewPost/NewPost';
 import Post from './Post/Post';
 
@@ -23,7 +24,9 @@ export default function Posts() {
       sx={{ pt: '13rem' }}
     >
       <NewPost />
-      <Post publications={publications} />
+
+      <ContentPost publications={publications} />
+
       {/* <Post />
       <Post />
       <Post /> */}
