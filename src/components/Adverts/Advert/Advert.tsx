@@ -58,7 +58,7 @@ export default function AdvertCard({
                   my: '0.5rem',
                 }}
               >
-                {advert_creator.firstname} {advert_creator.lastname}
+                Jean-Jacques Goldman
               </Typography>
               <Typography
                 sx={{
