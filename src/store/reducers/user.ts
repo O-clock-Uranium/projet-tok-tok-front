@@ -6,20 +6,9 @@ import {
 
 import axiosInstance from '../../utils/axios';
 
-// ? Est-ce qu'on ferait pas une interface Login {loggued, ?error, ?message, user: UserInterface}
-
-// id: user.id,
-// firstname: user.firstname,
-// lastname: user.lastname,
-// address: user.address,
-// city: user.city,
-// longitude: user.longitude,
-// latitude: user.latitude,
-// thumbnail: user.thumbnail,
-// slug:
-
 interface UserState {
   logged: boolean;
+  id: number;
   firstname: string;
   lastname: string;
   description: string;
@@ -35,6 +24,7 @@ interface UserState {
 }
 
 export const initialState: UserState = {
+  id: 0,
   logged: false,
   firstname: '',
   lastname: '',
@@ -69,7 +59,7 @@ export const login = createAsyncThunk(
         error: string;
       };
     } catch (error: any) {
-      throw new Error(error.response.data.error)
+      throw new Error(error.response.data.error);
     }
   }
 );
@@ -80,10 +70,7 @@ export const signup = createAsyncThunk(
     try {
       const objData = Object.fromEntries(formData);
 
-      console.log('coucou');
       const { data } = await axiosInstance.post('/signup', objData);
-      console.log(data);
-      // console.log(data.token);
       axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
       delete data.token;
 
@@ -101,34 +88,48 @@ export const signup = createAsyncThunk(
 
 const userReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(login.pending, (state, _) => {
+    .addCase(login.pending, (state) => {
       state.isLoading = true;
     })
     .addCase(login.fulfilled, (state, action) => {
-      state.logged = action.payload.auth;
+      state.isLoading = false;
+      state.logged = true;
+      state.id = action.payload.user.id;
       state.firstname = action.payload.user.firstname;
       state.lastname = action.payload.user.lastname;
-      state.isLoading = false;
+      state.address = action.payload.user.address;
+      state.thumbnail = action.payload.user.thumbnail;
+      state.city = action.payload.user.city;
+      state.latitude = action.payload.user.latitude;
+      state.longitude = action.payload.user.longitude;
+      state.slug = action.payload.user.slug;
+      state.description = action.payload.user.description;
     })
     .addCase(login.rejected, (state, action) => {
-      state.isLoading = false;      
+      state.isLoading = false;
       state.error = action.error.message;
     })
     .addCase(logout, (state) => {
-      // state.logged = initialState.logged;
-      state = { ...initialState };
+      state.logged = initialState.logged;
+      // state = { ...initialState };
       // console.log(state.logged);
       delete axiosInstance.defaults.headers.common.Authorization;
     })
     .addCase(signup.fulfilled, (state, action) => {
       state.isLoading = false;
       state.logged = true;
+      state.id = action.payload.user.id;
       state.firstname = action.payload.user.firstname;
       state.lastname = action.payload.user.lastname;
       state.address = action.payload.user.address;
-      state.thumbnail = action.payload.user.thumbnail; //! ajouter une thumbnail de base
+      state.thumbnail = action.payload.user.thumbnail;
+      state.city = action.payload.user.city;
+      state.latitude = action.payload.user.latitude;
+      state.longitude = action.payload.user.longitude;
+      state.slug = action.payload.user.slug;
+      state.description = action.payload.user.description;
     })
-    .addCase(signup.pending, (state, _) => {
+    .addCase(signup.pending, (state) => {
       state.isLoading = false;
     })
     .addCase(signup.rejected, (state, action) => {

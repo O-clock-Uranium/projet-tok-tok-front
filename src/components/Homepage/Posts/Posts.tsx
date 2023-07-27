@@ -2,12 +2,12 @@ import Stack from '@mui/material/Stack';
 
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import { fetchPosts } from '../../../store/reducers/publication';
+import { fetchPosts } from '../../../store/reducers/publications';
 import NewPost from './NewPost/NewPost';
 import Post from './Post/Post';
 
 export default function Posts() {
-  const publications = useAppSelector((state) => state.publication.list);
+  const publications = useAppSelector((state) => state.publications.list);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -23,10 +23,10 @@ export default function Posts() {
       sx={{ pt: '13rem' }}
     >
       <NewPost />
-      {/* <Post Publications={publications} /> */}
+      <Post publications={publications} />
+      {/* <Post />
       <Post />
-      <Post />
-      <Post />
+      <Post /> */}
     </Stack>
   );
 }

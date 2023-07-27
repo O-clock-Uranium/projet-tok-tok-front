@@ -48,7 +48,7 @@ export const addPost = createAsyncThunk(
   }
 );
 
-const publicationReducer = createReducer(initialState, (builder) => {
+const publicationsReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fetchPosts.pending, (state) => {
       state.isLoading = true;
@@ -65,4 +65,4 @@ const publicationReducer = createReducer(initialState, (builder) => {
     });
 });
 
-export default publicationReducer;
+export default publicationsReducer;

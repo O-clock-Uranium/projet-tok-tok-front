@@ -11,7 +11,7 @@ import { useState } from 'react';
 import video from '../../../../assets/icons/camera.svg';
 import picture from '../../../../assets/icons/picture.svg';
 import { useAppDispatch } from '../../../../hooks/redux';
-import { addPost } from '../../../../store/reducers/publication';
+import { addPost } from '../../../../store/reducers/publications';
 
 function NewPost() {
   const [value, setValue] = useState('');

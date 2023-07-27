@@ -5,18 +5,16 @@ import {
   ListItemButton,
   ListItemText,
 } from '@mui/material';
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { signup } from '../../../store/reducers/user';
 import FormField from '../FormField/FormField';
-import axios from 'axios';
 
 export default function SignUp() {
   const isLogged = useAppSelector((state) => state.user.logged);
-  const errorMessage = useAppSelector(state=> state.user.error);
-  console.log(errorMessage?.length);
-  
+  const errorMessage = useAppSelector((state) => state.user.error);
 
   const [addressValue, setAddressValue] = useState('');
   const [addressProps, setAddressProps] = useState([]);
@@ -35,14 +33,14 @@ export default function SignUp() {
           `https://api-adresse.data.gouv.fr/search/?q=${addressValue}&limit=5&autocomplete=0`
         );
         setAddressProps(data.features);
-        console.log(addressProps);
       } catch (error) {
-        //console.log(error);
+        // console.log(error);
       }
     }
     fetchAddress();
-  }, [addressValue]);
+  }, [addressValue, addressProps]);
 
+  // TODO revoir le code en dessous (Chloé)
   const addressPropsList = addressProps.map((e: any) => {
     const handleClickAddressItem = (e: any) => {
       setLatitude(e.currentTarget.dataset.latitude);
@@ -118,7 +116,7 @@ export default function SignUp() {
         aria-label="city"
         value={city}
         hidden
-        readOnly={true}
+        readOnly
       />
       <input
         type="text"
@@ -126,7 +124,7 @@ export default function SignUp() {
         aria-label="latitude"
         value={latitude}
         hidden
-        readOnly={true}
+        readOnly
       />
       <input
         type="text"
@@ -134,7 +132,7 @@ export default function SignUp() {
         aria-label="longitude"
         value={longitude}
         hidden
-        readOnly={true}
+        readOnly
       />
 
       <FormField name="email" label="Email" type="mail" autoComplete="" />
