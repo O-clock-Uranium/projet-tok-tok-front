@@ -40,7 +40,7 @@ function NewPost() {
       <Stack gap="2rem" direction="row">
         <Avatar
           alt="Jean-Jacques Goldman"
-          src="src/fakedata/jjg.jpg"
+          src="src/fakedata/default-profile-picture.png"
           sx={{ width: 60, height: 60 }}
         />
         <Stack
