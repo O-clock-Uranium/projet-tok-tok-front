@@ -42,7 +42,8 @@ export default function SignUp() {
     fetchAddress();
   }, [addressValue, addressProps]);
 
-  const addressPropsList = addressProps.map((element: any) => {
+  // TODO revoir le code en dessous (Chloé)
+  const addressPropsList = addressProps.map((e: any) => {
     const handleClickAddressItem = (e: any) => {
       setLatitude(e.currentTarget.dataset.latitude);
       setLongitude(e.currentTarget.dataset.longitude);
@@ -53,14 +54,13 @@ export default function SignUp() {
 
     return (
       <ListItemButton
-        key={element.properties.label}
         onClick={handleClickAddressItem}
-        data-latitude={element.geometry.coordinates[1]}
-        data-longitude={element.coordinates[0]}
-        data-city={element.properties.city}
-        data-address={element.properties.label}
+        data-latitude={e.geometry.coordinates[1]}
+        data-longitude={e.geometry.coordinates[0]}
+        data-city={e.properties.city}
+        data-address={e.properties.label}
       >
-        <ListItemText primary={element.properties.label} />
+        <ListItemText primary={e.properties.label} />
       </ListItemButton>
     );
   });

@@ -20,6 +20,7 @@ import axiosInstance from '../../utils/axios';
 
 interface UserState {
   logged: boolean;
+  id: number;
   firstname: string;
   lastname: string;
   description: string;
@@ -35,6 +36,7 @@ interface UserState {
 }
 
 export const initialState: UserState = {
+  id: 0,
   logged: false,
   firstname: '',
   lastname: '',
@@ -123,10 +125,16 @@ const userReducer = createReducer(initialState, (builder) => {
     .addCase(signup.fulfilled, (state, action) => {
       state.isLoading = false;
       state.logged = true;
+      state.id = action.payload.user.id;
       state.firstname = action.payload.user.firstname;
       state.lastname = action.payload.user.lastname;
       state.address = action.payload.user.address;
-      state.thumbnail = action.payload.user.thumbnail; //! ajouter une thumbnail de base
+      state.thumbnail = action.payload.user.thumbnail;
+      state.city = action.payload.user.city;
+      state.latitude = action.payload.user.latitude;
+      state.longitude = action.payload.user.longitude;
+      state.slug = action.payload.user.slug;
+      state.description = action.payload.user.description;
     })
     .addCase(signup.pending, (state, _) => {
       state.isLoading = false;
