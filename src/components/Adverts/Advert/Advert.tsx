@@ -3,7 +3,6 @@ import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 
 import bookmark from '../../../assets/icons/bookmark.svg';
-import imgAnnonce from '../../../fakedata/guitare.jpg';
 
 interface AdvertCardProps {
   id: number;
@@ -16,6 +15,10 @@ interface AdvertCardProps {
   tag_id: number;
 }
 
+const linkStyle = {
+  textDecoration: 'none',
+};
+
 export default function AdvertCard({
   id,
   content,
@@ -27,12 +30,12 @@ export default function AdvertCard({
   slug,
 }: AdvertCardProps) {
   return (
-    <Link to={`/adverts/${slug}`}>
+    <Link to={`/adverts/${slug}`} style={linkStyle}>
       <Paper
         elevation={0}
         sx={{
           width: '30rem',
-          height: '28rem',
+          height: '30rem',
           mx: 'auto',
           borderRadius: '2rem',
         }}
@@ -92,6 +95,7 @@ export default function AdvertCard({
             src={thumbnail}
             alt="green iguana"
           />
+          <Typography sx={{ textAlign: 'center' }}>{content}</Typography>
           <Stack direction="row" justifyContent="space-around">
             <Typography sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
               {title}

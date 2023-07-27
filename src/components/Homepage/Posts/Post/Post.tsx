@@ -16,6 +16,18 @@ import OneComment from './OneComment/OneComment';
 import TriplePointButton from '../../../TriplePointButton/TriplePointButton';
 import AddCommentary from './AddComment/AddComment';
 
+interface PublicationProps {
+  id: number;
+  content: string;
+  thumbnail: string;
+  user_id: number;
+  created_at: number;
+  reply_to: number;
+  post_creator: Creator;
+  users_liked: Likes[];
+  replies: Reply[];
+}
+
 export default function Post() {
   const [expanded, setExpanded] = React.useState(false);
   const [like, setLike] = React.useState(false);

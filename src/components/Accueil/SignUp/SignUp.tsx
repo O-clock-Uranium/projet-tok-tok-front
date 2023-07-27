@@ -1,18 +1,22 @@
 import {
+  Alert,
   Box,
   Button,
   ListItemButton,
   ListItemText,
 } from '@mui/material';
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { signup } from '../../../store/reducers/user';
 import FormField from '../FormField/FormField';
-import axios from 'axios';
 
 export default function SignUp() {
   const isLogged = useAppSelector((state) => state.user.logged);
+  const errorMessage = useAppSelector((state) => state.user.error);
+  console.log(errorMessage?.length);
+
   const [addressValue, setAddressValue] = useState('');
   const [addressProps, setAddressProps] = useState([]);
   const [latitude, setLatitude] = useState('');
@@ -32,13 +36,13 @@ export default function SignUp() {
         setAddressProps(data.features);
         console.log(addressProps);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     }
     fetchAddress();
-  }, [addressValue]);
+  }, [addressValue, addressProps]);
 
-  const addressPropsList = addressProps.map((e: any) => {
+  const addressPropsList = addressProps.map((element: any) => {
     const handleClickAddressItem = (e: any) => {
       setLatitude(e.currentTarget.dataset.latitude);
       setLongitude(e.currentTarget.dataset.longitude);
@@ -49,13 +53,14 @@ export default function SignUp() {
 
     return (
       <ListItemButton
+        key={element.properties.label}
         onClick={handleClickAddressItem}
-        data-latitude={e.geometry.coordinates[1]}
-        data-longitude={e.geometry.coordinates[0]}
-        data-city={e.properties.city}
-        data-address={e.properties.label}
+        data-latitude={element.geometry.coordinates[1]}
+        data-longitude={element.coordinates[0]}
+        data-city={element.properties.city}
+        data-address={element.properties.label}
       >
-        <ListItemText primary={e.properties.label} />
+        <ListItemText primary={element.properties.label} />
       </ListItemButton>
     );
   });
@@ -82,6 +87,7 @@ export default function SignUp() {
 
   return (
     <Box component="form" noValidate onSubmit={handleSubmit}>
+      {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
       <FormField
         name="firstname"
         label="Nom"
@@ -112,7 +118,7 @@ export default function SignUp() {
         aria-label="city"
         value={city}
         hidden
-        readOnly={true}
+        readOnly
       />
       <input
         type="text"
@@ -120,7 +126,7 @@ export default function SignUp() {
         aria-label="latitude"
         value={latitude}
         hidden
-        readOnly={true}
+        readOnly
       />
       <input
         type="text"
@@ -128,7 +134,7 @@ export default function SignUp() {
         aria-label="longitude"
         value={longitude}
         hidden
-        readOnly={true}
+        readOnly
       />
 
       <FormField name="email" label="Email" type="mail" autoComplete="" />
