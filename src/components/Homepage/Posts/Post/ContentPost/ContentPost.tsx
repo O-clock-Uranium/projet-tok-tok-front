@@ -1,6 +1,6 @@
 import { Stack } from '@mui/material';
-import { Publication } from '../../../../@types/publication';
-import Post from '../Post/Post';
+import { Publication } from '../../../../../@types/publication';
+import Post from '../Post';
 
 interface ContentPostProps {
   // eslint-disable-next-line react/require-default-props

@@ -11,23 +11,23 @@ import React from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Collapse from '@mui/material/Collapse';
 import comment from '../../../../assets/icons/comment.svg';
-import OneComment from './OneComment/OneComment';
 
-import { Creator, Likes, Reply } from '../../../../@types/publication';
+import { Publication } from '../../../../@types/publication';
 import TriplePointButton from '../../../TriplePointButton/TriplePointButton';
 import AddCommentary from './AddComment/AddComment';
+import ContentComment from './OneComment/ContentComment/ContentComment';
 
-interface PublicationProps {
-  id: number | null;
-  content: string | null;
-  thumbnail: string | null;
-  user_id: number | null;
-  created_at: number | null;
-  reply_to: number | null;
-  post_creator: Creator | null;
-  users_liked: Likes[] | null;
-  replies: Reply[] | null;
-}
+// interface PublicationProps {
+//   id: number | null;
+//   content: string | null;
+//   thumbnail: string | null;
+//   user_id: number | null;
+//   created_at: number | null;
+//   reply_to: number | null;
+//   post_creator: Creator | null;
+//   users_liked: Likes[] | null;
+//   replies: Reply[] | null;
+// }
 
 export default function Post({
   id,
@@ -39,7 +39,7 @@ export default function Post({
   post_creator,
   users_liked,
   replies,
-}: PublicationProps) {
+}: Publication) {
   const [expanded, setExpanded] = React.useState(false);
   const [like, setLike] = React.useState(false);
 
@@ -152,7 +152,7 @@ export default function Post({
                 color: 'primary.dark',
               }}
             >
-              450
+              {users_liked?.length}
             </Typography>
           </IconButton>
         </Stack>
@@ -182,16 +182,14 @@ export default function Post({
                 color: 'primary.dark',
               }}
             >
-              230
+              {replies?.length}
             </Typography>
           </IconButton>
         </Stack>
       </Stack>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <AddCommentary />
-        <OneComment />
-        <OneComment />
-        <OneComment />
+        <ContentComment replies={replies} />
       </Collapse>
     </Paper>
   );
