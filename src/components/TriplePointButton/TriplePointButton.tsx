@@ -4,9 +4,10 @@ import ReportGmailerrorredOutlinedIcon from '@mui/icons-material/ReportGmailerro
 import { IconButton, Menu, MenuItem, Typography } from '@mui/material';
 import React from 'react';
 import { useAppDispatch } from '../../hooks/redux';
+import { delPost } from '../../store/reducers/publications';
 
-export default function TriplePointButton() {
-  //   const dispatch = useAppDispatch();
+export default function TriplePointButton({ id }) {
+  const dispatch = useAppDispatch();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -18,9 +19,8 @@ export default function TriplePointButton() {
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    // event.preventDefault();
-    //! Retirer pour rafraichir la page
-    // dispatch(delPost());
+    event.preventDefault();
+    dispatch(delPost(id));
   };
 
   return (
@@ -70,7 +70,13 @@ export default function TriplePointButton() {
             Report
           </Typography>
         </MenuItem>
-        <MenuItem onClick={handleClose} sx={{ justifyContent: 'start' }}>
+        <MenuItem
+          component="form"
+          onSubmit={handleSubmit}
+          onClick={handleClose}
+          data-id={id}
+          sx={{ justifyContent: 'start' }}
+        >
           <DeleteForeverOutlinedIcon sx={{ color: 'red', fontSize: 20 }} />
           <Typography sx={{ pl: '1rem', fontSize: '1.5rem' }}>
             Supprimer

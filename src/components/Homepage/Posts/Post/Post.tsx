@@ -92,7 +92,7 @@ export default function Post({
           </Typography>
         </Stack>
         <IconButton sx={{ fontSize: '4.5rem', color: 'Black' }}>
-          <TriplePointButton />
+          <TriplePointButton id={id} />
         </IconButton>
       </Stack>
       <Typography
@@ -188,7 +188,7 @@ export default function Post({
         </Stack>
       </Stack>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <AddCommentary />
+        <AddCommentary id={id} />
         <ContentComment replies={replies} />
       </Collapse>
     </Paper>

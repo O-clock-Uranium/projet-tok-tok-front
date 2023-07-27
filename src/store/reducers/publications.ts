@@ -49,6 +49,13 @@ export const addPost = createAsyncThunk(
   }
 );
 
+export const delPost = createAsyncThunk('publications/delPost', async (id) => {
+  // try {
+  const { data } = await axiosInstance.delete('/posts/:id', id);
+  // } catch (error) {
+  // }
+});
+
 const publicationsReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fetchPosts.pending, (state) => {
@@ -63,6 +70,12 @@ const publicationsReducer = createReducer(initialState, (builder) => {
     })
     .addCase(addPost.fulfilled, (state) => {
       state.isLoading = false;
+    })
+    .addCase(delPost.pending, (state) => {
+      state.isLoading = true;
+    })
+    .addCase(delPost.fulfilled, (state, action) => {
+      console.log('ok');
     });
 });
 
