@@ -16,7 +16,7 @@ function LoginField({ name, type, autoComplete, ...props }: FieldProps) {
   return (
     <TextField
       margin="normal"
-      required
+      // required
       fullWidth
       label={name}
       autoComplete={autoComplete}

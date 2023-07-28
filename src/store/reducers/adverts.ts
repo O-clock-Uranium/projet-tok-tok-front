@@ -46,8 +46,10 @@ export const fetchFavourites = createAsyncThunk(
   'adverts/fetchFavourites',
   async () => {
     const { data } = await axiosInstance.get('/favourites');
+    console.log(data);
+    
 
-    return data.favourites as Advert[];
+    return data as Advert[];
   }
 );
 
@@ -64,6 +66,7 @@ const advertsReducer = createReducer(initialState, (builder) => {
       state.isLoading = false;
     })
     .addCase(fetchFavourites.fulfilled, (state, action) => {
+      console.log(action)
       state.favourites = action.payload;
     })
     .addCase(addAdvert.pending, (state) => {

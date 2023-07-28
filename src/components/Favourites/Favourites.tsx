@@ -1,12 +1,25 @@
 import { Box, Stack } from '@mui/material';
+
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+
+import { fetchFavourites } from '../../store/reducers/adverts';
+
 import AdvertCard from '../Adverts/Advert/Advert';
-import AdvertCard2 from '../Adverts/Advert/Advert2';
-import AdvertCard3 from '../Adverts/Advert/Advert3';
 import ColorToggleButton from '../Adverts/ToggleButton/ToggleButton';
-import AppHeader from '../AppHeader/AppHeader';
-import Menu from '../Menu/Menu';
 
 export default function Favourites() {
+  const favourites = useAppSelector((state) => state.adverts.favourites);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchFavourites());
+  }, [dispatch]);  
+
+  const favouritesList = favourites.map((e) => {
+    return <AdvertCard key={e.id} {...e} />;
+  });
+
   return (
     <Box
       sx={{
@@ -26,9 +39,7 @@ export default function Favourites() {
         <ColorToggleButton />
       </Stack>
       <Stack direction="row" flexWrap="wrap" gap="1rem" mt="2rem">
-        <AdvertCard />
-        <AdvertCard2 />
-        <AdvertCard3 />
+        {favouritesList}
       </Stack>
     </Box>
   );

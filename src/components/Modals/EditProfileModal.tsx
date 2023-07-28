@@ -1,20 +1,19 @@
 import {
   Alert,
-  Box,
   Button,
+  Chip,
   ListItemButton,
   ListItemText,
+  Stack,
 } from '@mui/material';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import { signup } from '../../../store/reducers/user';
-import FormField from '../FormField/FormField';
+import { useAppSelector } from '../../hooks/redux';
+import FormField from '../Accueil/FormField/FormField';
 
-export default function SignUp() {
-  const isLogged = useAppSelector((state) => state.user.logged);
+export default function EditProfile() {
   const errorMessage = useAppSelector((state) => state.user.error);
+  const user = useAppSelector((state) => state.user);
 
   const [addressValue, setAddressValue] = useState('');
   const [addressProps, setAddressProps] = useState([]);
@@ -22,9 +21,6 @@ export default function SignUp() {
   const [longitude, setLongitude] = useState('');
   const [city, setCity] = useState('');
   const [isEmpty, setIsEmpty] = useState(true);
-
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     async function fetchAddress() {
@@ -40,7 +36,7 @@ export default function SignUp() {
     fetchAddress();
   }, [addressValue, addressProps]);
 
-  // TODO revoir le code en dessous (Chloé)
+
   const addressPropsList = addressProps.map((e: any) => {
     const handleClickAddressItem = (e: any) => {
       setLatitude(e.currentTarget.dataset.latitude);
@@ -63,51 +59,70 @@ export default function SignUp() {
     );
   });
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const formData = new FormData(event.currentTarget);
-    dispatch(signup(formData));
-  };
-
   const handleChange = (event: any) => {
     setAddressValue(event.target.value);
   };
 
-  useEffect(() => {
-    if (!isLogged) {
-      // return <Navigate to="/" replace />;
-      navigate('/', { replace: true });
-    } else {
-      navigate('/profil', { replace: true });
-    }
-  }, [isLogged, navigate]);
-
   return (
-    <Box component="form" noValidate onSubmit={handleSubmit}>
+    <>
+      <Stack direction="column" alignItems={'center'} justifyContent="center">
+        <img
+          src={user.thumbnail}
+          alt="profile_picture"
+          style={{
+            width: '12.2rem',
+            height: '12.2rem',
+            objectFit: 'cover',
+            borderRadius: '4rem',
+            border: '0.5rem solid #FFF',
+          }}
+        />
+        <input
+          type="file"
+          id="thumbnail"
+          name="thumbnail"
+          accept="image/*"
+          hidden
+        />
+        <label htmlFor="thumbnail">
+          <Chip variant="outlined" color="primary" label={'Changer la photo'} />
+        </label>
+      </Stack>
+
       {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
+      <Stack direction="row" gap={2}>
+        <FormField
+          name="firstname"
+          //label="Nom"
+          type="text"
+          autoComplete="family-name"
+          label={user.firstname}
+        />
+        <FormField
+          name="lastname"
+          //label="Prénom"
+          type="text"
+          autoComplete="given-name"
+          label={user.lastname}
+        />
+      </Stack>
+
       <FormField
-        name="firstname"
-        label="Nom"
+        name="description"
+        // label="Description"
         type="text"
-        autoComplete="family-name"
-        required
-      />
-      <FormField
-        name="lastname"
-        label="Prénom"
-        type="text"
-        autoComplete="given-name"
-        required
+        autoComplete="none"
+        multiline
+        rows={4}
+        label={user.description}
       />
       <FormField
         name="address"
-        label="Adresse"
+        //label="Adresse"
         type="text"
         autoComplete="none"
-        value={addressValue}
+        label ={user.address}
         onChange={handleChange}
-        required
       />
 
       {isEmpty && addressPropsList}
@@ -138,29 +153,31 @@ export default function SignUp() {
         readOnly
       />
 
-      <FormField name="email" label="Email" type="mail" autoComplete="" />
-      <FormField
-        name="password"
-        label="Mot de passe"
-        type="password"
-        autoComplete="new-password"
-        required
-      />
-      <FormField
-        name="confirmation"
-        label="Confirmation de mot de passe"
-        type="password"
-        autoComplete="new-password"
-        required
-      />
+      <Stack direction="row" gap={2}>
+        <FormField
+          name="email"
+          //label="Email"
+          type="mail"
+          autoComplete="none"
+          label={user.email}
+        />
+
+        <FormField
+          name="password"
+          label="Mot de passe"
+          type="password"
+          autoComplete="none"
+        />
+      </Stack>
+
       <Button
         type="submit"
         fullWidth
         variant="contained"
         sx={{ mt: 3, mb: 2, color: 'white', fontSize: '1.3rem' }}
       >
-        S&apos;inscrire
+        Enregister les modifications
       </Button>
-    </Box>
+    </>
   );
 }

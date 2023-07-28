@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { AdvertCreator, Image } from '../../../@types';
 
 import bookmark from '../../../assets/icons/bookmark.svg';
+import { calculateTimeSpent } from '../../../utils/date';
 
 interface AdvertCardProps {
   slug: string;
@@ -12,6 +13,7 @@ interface AdvertCardProps {
   price: number;
   advert_creator: AdvertCreator;
   images: Image[];
+  created_at: any;
 }
 
 const linkStyle = {
@@ -25,7 +27,10 @@ export default function AdvertCard({
   title,
   slug,
   images,
+  created_at,
 }: AdvertCardProps) {
+  
+  console.log(calculateTimeSpent(created_at));
 
   return (
     <Link to={`/adverts/${slug}`} style={linkStyle}>
@@ -46,8 +51,8 @@ export default function AdvertCard({
             justifyContent="space-evenly"
           >
             <Avatar
-              alt="Jean-Jacques"
-              src="src/fakedata/jjg.jpg"
+              alt="photo de profil"
+              src={advert_creator.thumbnail}
               sx={{ width: 40, height: 40, ml: '1rem', mt: '1rem' }}
             />
             <Stack direction="column">
@@ -61,7 +66,7 @@ export default function AdvertCard({
                   my: '0.5rem',
                 }}
               >
-                Jean-Jacques Goldman
+                {advert_creator.firstname} {advert_creator.lastname}
               </Typography>
               <Typography
                 sx={{
@@ -72,7 +77,7 @@ export default function AdvertCard({
                   lineHeight: 'normal',
                 }}
               >
-                Il y a 5 minutes
+                Il y a {calculateTimeSpent(created_at)}
               </Typography>
             </Stack>
             <IconButton

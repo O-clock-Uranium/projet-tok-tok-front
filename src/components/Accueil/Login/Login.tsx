@@ -32,12 +32,14 @@ export default function Login() {
             label="Email"
             type="email"
             autoComplete="email"
+            required
           />
           <FormField
             name="password"
             label="Mot de passe"
             type="password"
             autoComplete="current-password"
+            required
           />
           <Button
             type="submit"

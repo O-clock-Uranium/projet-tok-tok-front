@@ -13,6 +13,7 @@ import conversation from '../../assets/icons/conversation.svg';
 import home from '../../assets/icons/home.svg';
 import megaphone from '../../assets/icons/megaphone.svg';
 import profile from '../../assets/icons/profile.svg';
+import { useAppSelector } from '../../hooks/redux';
 
 // import MenuCompo from './MenuCompo';
 
@@ -40,6 +41,7 @@ import profile from '../../assets/icons/profile.svg';
 // ];
 
 export default function Menu() {
+  const userId = useAppSelector((state)=> state.user.id)
   return (
     <Paper
       elevation={0}
