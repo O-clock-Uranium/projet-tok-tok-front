@@ -5,8 +5,8 @@ export default function UserIdentity() {
   const loggedPseudo = useAppSelector(
     (state) => `Bienvenue ${state.user.firstname} ${state.user.lastname}`
   );
-  const picture = useAppSelector(state => state.user.thumbnail);
-  
+  const picture = useAppSelector((state) => state.user.thumbnail);
+
   return (
     <>
       <Avatar

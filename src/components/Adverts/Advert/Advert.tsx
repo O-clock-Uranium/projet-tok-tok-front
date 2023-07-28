@@ -1,7 +1,7 @@
 import { Avatar, CardMedia, IconButton, Paper, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
-import { AdvertCreator } from '../../../@types';
+import { AdvertCreator, Image } from '../../../@types';
 
 import bookmark from '../../../assets/icons/bookmark.svg';
 
@@ -11,6 +11,7 @@ interface AdvertCardProps {
   content: string;
   price: number;
   advert_creator: AdvertCreator;
+  images: Image[];
 }
 
 const linkStyle = {
@@ -23,7 +24,11 @@ export default function AdvertCard({
   advert_creator,
   title,
   slug,
+  images,
 }: AdvertCardProps) {
+  const img = images.map((image) => image.thumbnail);
+  console.log(images);
+
   return (
     <Link to={`/adverts/${slug}`} style={linkStyle}>
       <Paper
@@ -87,10 +92,9 @@ export default function AdvertCard({
           <CardMedia
             component="img"
             height="120rem"
-            src=""
+            src={img}
             alt="green iguana"
           />
-          <Typography sx={{ textAlign: 'center' }}>{content}</Typography>
           <Stack direction="row" justifyContent="space-around">
             <Typography sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
               {title}

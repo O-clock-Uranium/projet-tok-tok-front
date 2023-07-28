@@ -107,9 +107,6 @@ export default function Annonce() {
               src={advert.images.map((image) => image.thumbnail)}
               alt="green iguana"
             />
-            <Typography sx={{ textAlign: 'center' }}>
-              {advert.content}
-            </Typography>
             <Stack direction="row" justifyContent="space-around">
               <Typography sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
                 {advert.title}
@@ -118,6 +115,9 @@ export default function Annonce() {
                 {advert.price} €
               </Typography>
             </Stack>
+            <Typography sx={{ textAlign: 'center' }}>
+              {advert.content}
+            </Typography>
             <Stack direction="row" justifyContent="space-around">
               <Paper
                 sx={{
