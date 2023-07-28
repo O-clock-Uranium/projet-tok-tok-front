@@ -108,10 +108,10 @@ const publicationsReducer = createReducer(initialState, (builder) => {
       state.error = action.error.message;
     })
     .addCase(addLike.fulfilled, (state) => {
-      state.like = true;
+      // state.like = true;
     })
     .addCase(delLike.fulfilled, (state) => {
-      state.like = false;
+      // state.like = false;
     });
 });
 

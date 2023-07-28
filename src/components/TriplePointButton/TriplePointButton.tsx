@@ -17,6 +17,8 @@ export default function TriplePointButton({ id }: Publication) {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const handleClickDel = () => {
     dispatch(delPost(id));
     dispatch(fetchPosts());
   };
@@ -29,9 +31,11 @@ export default function TriplePointButton({ id }: Publication) {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
-        sx={{ Size: '14rem' }}
+        sx={{
+          Size: '14rem',
+        }}
       >
-        <MoreVertSharpIcon />
+        <MoreVertSharpIcon sx={{}} />
       </IconButton>
 
       <Menu
@@ -57,7 +61,7 @@ export default function TriplePointButton({ id }: Publication) {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose} sx={{ justifyContent: 'start' }}>
+        <MenuItem onClick={handleClickDel} sx={{ justifyContent: 'start' }}>
           <ReportGmailerrorredOutlinedIcon
             sx={{ color: 'red', fontSize: 20 }}
           />
@@ -70,7 +74,7 @@ export default function TriplePointButton({ id }: Publication) {
         </MenuItem>
         <MenuItem
           component="form"
-          onClick={handleClose}
+          onClick={handleClickDel}
           data-id={id}
           sx={{ justifyContent: 'start' }}
         >

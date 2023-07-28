@@ -23,7 +23,7 @@ export default function Login() {
 
   return (
     <>
-      {isLogged && <Navigate to="/home" />}
+      {isLogged && <Navigate to="/" />}
       {!isLogged && (
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{}}>
           {errorMessage && <Alert severity="error">{errorMessage}</Alert>}

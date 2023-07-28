@@ -1,7 +1,7 @@
 import {
   createAction,
   createAsyncThunk,
-  createReducer
+  createReducer,
 } from '@reduxjs/toolkit';
 import { Advert } from '../../@types';
 
@@ -46,7 +46,6 @@ export const fetchFavourites = createAsyncThunk(
   'adverts/fetchFavourites',
   async () => {
     const { data } = await axiosInstance.get('/favourites');
-
     return data.favourites as Advert[];
   }
 );

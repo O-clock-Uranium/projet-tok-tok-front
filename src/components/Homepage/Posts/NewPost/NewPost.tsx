@@ -18,13 +18,23 @@ function NewPost() {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.user);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // console.log('coucou');
     setValue('');
 
     const formData = new FormData(event.currentTarget);
+    const inputValue = formData.get('content');
     dispatch(addPost(formData));
+    // Devrait empecher de post vide mais ne marche pas
+    if (
+      !inputValue ||
+      (typeof inputValue === 'string' && inputValue.trim() === '')
+    ) {
+      return;
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 800));
+
     dispatch(fetchPosts());
   };
 
@@ -45,14 +55,15 @@ function NewPost() {
           sx={{ width: 60, height: 60 }}
         />
         <Stack
+          component="form"
+          onSubmit={handleSubmit}
+          encType="multipart/form-data"
           width="100%"
           direction="column"
           alignItems="flex-start"
           gap="2rem"
         >
           <Stack
-            component="form"
-            onSubmit={handleSubmit}
             direction="row"
             sx={{
               width: '100%',
@@ -114,9 +125,16 @@ function NewPost() {
           </Stack>
           <Stack direction="row" pl="2rem">
             <IconButton
+              component="label"
               type="button"
               aria-label="images"
-              sx={{ alignItems: 'center', gap: '1rem' }}
+              sx={{
+                alignItems: 'center',
+                gap: '1rem',
+                '&:hover': {
+                  borderRadius: '5rem',
+                },
+              }}
             >
               <img alt="search icon" src={picture} />
               <Typography
@@ -128,12 +146,26 @@ function NewPost() {
                 color="#A5A5A5"
               >
                 Images
+                <input
+                  style={{ fontSize: '1.8rem' }}
+                  type="file"
+                  hidden
+                  name="thumbnail"
+                />
               </Typography>
             </IconButton>
             <IconButton
               type="button"
+              component="label"
               aria-label="vidéos"
-              sx={{ alignItems: 'center', gap: '1rem' }}
+              sx={{
+                alignItems: 'center',
+                gap: '1rem',
+                '&:hover': {
+                  borderRadius: '5rem',
+                  fontColor: 'white',
+                },
+              }}
             >
               <img alt="search icon" src={video} />
               <Typography
@@ -145,6 +177,12 @@ function NewPost() {
                 color="#A5A5A5"
               >
                 Vidéos
+                <input
+                  style={{ fontSize: '1.8rem' }}
+                  type="file"
+                  hidden
+                  name="thumbnails"
+                />
               </Typography>
             </IconButton>
           </Stack>
