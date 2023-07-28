@@ -1,3 +1,4 @@
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import {
   Avatar,
   Box,
@@ -6,16 +7,20 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-import React, { useEffect } from 'react';
-
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import Collapse from '@mui/material/Collapse';
-import comment from '../../../../assets/icons/comment.svg';
+import React from 'react';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 
 import { Publication } from '../../../../@types/publication';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
-import { addLike, delLike } from '../../../../store/reducers/publications';
+import {
+  addLike,
+  delLike,
+  fetchPosts,
+} from '../../../../store/reducers/publications';
+
+import comment from '../../../../assets/icons/comment.svg';
 import TriplePointButton from '../../../TriplePointButton/TriplePointButton';
+
 import AddCommentary from './AddComment/AddComment';
 import ContentComment from './OneComment/ContentComment/ContentComment';
 
@@ -38,12 +43,15 @@ export default function Post({
     setExpanded(!expanded);
   };
 
-  const hasLiked = users_liked.find((user) => user.user_id == userId);
-  console.log(hasLiked);
+  const isLiked = users_liked
+    ?.map((user) => user.id === userId)
+    .some((ele) => ele === true);
 
   const handleLikeClick = () => {
     setLike(!like);
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     like ? dispatch(delLike(id)) : dispatch(addLike(id));
+    dispatch(fetchPosts());
   };
 
   return (
@@ -57,6 +65,7 @@ export default function Post({
         direction="row"
         justifyContent="space-between"
       >
+        {/* Photo de profil */}
         <Avatar
           alt="Céline Dion"
           src={post_creator?.thumbnail}
@@ -72,6 +81,7 @@ export default function Post({
               lineHeight: 'normal',
             }}
           >
+            {/* Nom et prénom */}
             {post_creator?.firstname} {post_creator?.lastname}
           </Typography>
           <Typography
@@ -83,6 +93,7 @@ export default function Post({
               lineHeight: 'normal',
             }}
           >
+            {/* Date de création */}
             {created_at}
           </Typography>
         </Stack>
@@ -102,21 +113,30 @@ export default function Post({
         }}
         variant="body2"
       >
+        {/* Contenu du post */}
         {content}
       </Typography>
+      {/* Image du post si dispo  */}
       <Box
         sx={{
-          maxWidth: 760,
-          mx: 'auto',
+          display: 'flex',
+          justifyContent: 'center',
+          maxWidth: '76rem',
+          // maxHeight: '65rem',
           borderRadius: '2rem',
           pt: '2rem',
           pb: '2.5rem',
         }}
       >
-        <img src={thumbnail} alt="" style={{ borderRadius: '2rem' }} />
+        <img
+          src={thumbnail}
+          alt=""
+          style={{ objectFit: 'contain', borderRadius: '2rem' }}
+        />
       </Box>
       <Stack direction="row" justifyContent="flex-start" gap="2rem">
         <Stack direction="row" alignItems="center">
+          {/* Un p'tit like <3 */}
           <IconButton
             aria-label="Like"
             sx={{
@@ -128,7 +148,7 @@ export default function Post({
               gap: '1rem',
             }}
             onClick={handleLikeClick}
-            color={like ? 'error' : 'default'}
+            color={isLiked ? 'error' : 'default'}
           >
             <FavoriteIcon sx={{ fontSize: '2rem' }} />
             <Typography
@@ -142,11 +162,13 @@ export default function Post({
                 color: 'primary.dark',
               }}
             >
+              {/* Nombre de likes */}
               {users_liked?.length}
             </Typography>
           </IconButton>
         </Stack>
         <Stack direction="row" alignItems="center">
+          {/* Bouton commentaires */}
           <IconButton
             onClick={handleExpandClick}
             aria-label="down arrow icon"
@@ -172,6 +194,7 @@ export default function Post({
                 color: 'primary.dark',
               }}
             >
+              {/* Nombre de commentaires */}
               {replies?.length}
             </Typography>
           </IconButton>

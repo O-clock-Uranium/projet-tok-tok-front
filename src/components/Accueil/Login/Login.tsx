@@ -1,16 +1,16 @@
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
+import { Alert } from '@mui/material';
 import { FormEvent } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { login } from '../../../store/reducers/user';
 import FormField from '../FormField/FormField';
-import { Alert } from '@mui/material';
 
 export default function Login() {
   const isLogged = useAppSelector((state) => state.user.logged);
-  const errorMessage = useAppSelector(state=> state.user.error);
+  const errorMessage = useAppSelector((state) => state.user.error);
 
   const dispatch = useAppDispatch();
 
@@ -23,7 +23,7 @@ export default function Login() {
 
   return (
     <>
-      {isLogged && <Navigate to="/home" />}
+      {isLogged && <Navigate to="/" />}
       {!isLogged && (
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{}}>
           {errorMessage && <Alert severity="error">{errorMessage}</Alert>}

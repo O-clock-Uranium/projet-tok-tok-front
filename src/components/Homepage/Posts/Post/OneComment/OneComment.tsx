@@ -43,7 +43,7 @@ export default function OneComment({
       >
         <Avatar
           alt="Patrick Sebastien"
-          src="../../src/fakedata/ps.jpg"
+          src="{../../src/fakedata/ps.jpg}"
           sx={{ width: 45, height: 45 }}
         />
         <Stack direction="column" flex="1">
@@ -56,7 +56,8 @@ export default function OneComment({
               lineHeight: 'normal',
             }}
           >
-            {user_id}
+            {post_creator?.firstname}&nbsp;
+            {post_creator?.lastname}
           </Typography>
           <Typography
             sx={{
