@@ -26,8 +26,6 @@ export default function AdvertCard({
   slug,
   images,
 }: AdvertCardProps) {
-  const img = images.map((image) => image.thumbnail);
-  console.log(images);
 
   return (
     <Link to={`/adverts/${slug}`} style={linkStyle}>
@@ -92,7 +90,11 @@ export default function AdvertCard({
           <CardMedia
             component="img"
             height="120rem"
-            src={img}
+            src={
+              images.length == 0
+                ? 'http://localhost:3000/images/default-advert-picture.png'
+                : images[0].thumbnail
+            }
             alt="green iguana"
           />
           <Stack direction="row" justifyContent="space-around">

@@ -101,10 +101,15 @@ export default function Annonce() {
                 <img alt="Add-Favorite" src={bookmark} />
               </IconButton>
             </Stack>
+            {/* //TODO: insérer un carroussel */}
             <CardMedia
               component="img"
               height="120rem"
-              src={advert.images.map((image) => image.thumbnail)}
+              src={
+                advert.images.length == 0
+                  ? 'http://localhost:3000/images/default-advert-picture.png'
+                  : advert.images[0].thumbnail
+              }
               alt="green iguana"
             />
             <Stack direction="row" justifyContent="space-around">
