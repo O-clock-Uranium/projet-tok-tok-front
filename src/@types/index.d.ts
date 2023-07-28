@@ -10,6 +10,12 @@ export interface AdvertCreator {
   slug: string;
 }
 
+export interface Image {
+  id: number;
+  advert_id: number;
+  thumbnail: string;
+}
+
 export interface Advert {
   id: number;
   slug: string;
@@ -20,7 +26,7 @@ export interface Advert {
   tag_id: number;
   created_at: number;
   advert_creator: AdvertCreator;
-  images: [];
+  images: Image[];
 }
 
 export interface User {

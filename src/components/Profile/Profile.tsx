@@ -4,6 +4,7 @@ import AdvertCard from '../Adverts/Advert/Advert';
 import Informations from './Informations/Informations';
 
 export default function Profile() {
+  // const adverts = useAppSelector((state) => state.adverts)
   return (
     <Stack paddingTop="12rem" gap="2rem">
       <Informations />

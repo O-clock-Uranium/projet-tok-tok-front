@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Button from '@mui/material/Button';
-import AdvertModal from '../../Modals/AdvertModal';
+import AdvertModal2 from '../../Modals/AdvertModal2';
 
 export default function CreateAdvertButton() {
   const [Open, setOpen] = useState(false);
@@ -24,8 +24,7 @@ export default function CreateAdvertButton() {
         boxShadow: 0,
       }}
     >
-      Créer une Annonce
-      <AdvertModal Open={Open} />
+      <AdvertModal2 />
     </Button>
   );
 }

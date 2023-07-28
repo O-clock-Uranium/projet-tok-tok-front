@@ -47,6 +47,7 @@ export default function SortBar() {
           labelId="select-categorie"
           id="select-categorie"
           value={categorie}
+          name="tag_id"
           label="Catégories"
           onChange={handleChangeCategories}
           displayEmpty
@@ -56,9 +57,9 @@ export default function SortBar() {
           <MenuItem value="">
             <em>Catégories</em>
           </MenuItem>
-          <MenuItem value={10}>Voitures</MenuItem>
-          <MenuItem value={20}>Jouets</MenuItem>
-          <MenuItem value={30}>Cuisine</MenuItem>
+          <MenuItem value={1}>maison</MenuItem>
+          <MenuItem value={2}>jardin</MenuItem>
+          <MenuItem value={3}>vetements</MenuItem>
         </Select>
       </FormControl>
       <FormControl
