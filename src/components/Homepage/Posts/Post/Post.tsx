@@ -97,7 +97,15 @@ export default function Post({
             {created_at}
           </Typography>
         </Stack>
-        <IconButton sx={{ fontSize: '4.5rem', color: 'Black' }}>
+        <IconButton
+          sx={{
+            fontSize: '4.5rem',
+            color: 'Black',
+            '&:hover': {
+              backgroundColor: 'transparent',
+            },
+          }}
+        >
           <TriplePointButton id={id} />
         </IconButton>
       </Stack>

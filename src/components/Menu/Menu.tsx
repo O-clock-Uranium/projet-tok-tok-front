@@ -1,10 +1,9 @@
 import {
   Badge,
-  IconButton,
-  ListItemIcon,
+  ListItemButton,
   MenuItem,
   MenuList,
-  Paper
+  Paper,
 } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
@@ -13,31 +12,6 @@ import conversation from '../../assets/icons/conversation.svg';
 import home from '../../assets/icons/home.svg';
 import megaphone from '../../assets/icons/megaphone.svg';
 import profile from '../../assets/icons/profile.svg';
-
-// import MenuCompo from './MenuCompo';
-
-// const MenuData = [
-//   {
-//     name: 'Home',
-//     link: '/home',
-//     src: 'home',
-//   },
-//   {
-//     name: 'Profil',
-//     link: '/profil',
-//     src: '../../assets/icons/profile.svg',
-//   },
-//   {
-//     name: 'Annonces',
-//     link: '/annonces',
-//     src: 'megaphone',
-//   },
-//   {
-//     name: 'Messagerie',
-//     link: '/messagerie',
-//     src: 'home',
-//   },
-// ];
 
 export default function Menu() {
   return (
@@ -63,55 +37,96 @@ export default function Menu() {
             },
           }}
         >
-          {/* Faudra mettre un classe isActive sur les boutons qui sont actifs */}
-          <ListItemIcon
-            sx={{ p: 1.2, backgroundColor: 'primary.dark', borderRadius: 3 }}
+          <ListItemButton
+            sx={{
+              p: '1.7rem',
+              borderRadius: '1.5rem',
+            }}
+            component={NavLink}
+            to="/"
+            style={({ isActive }) =>
+              isActive
+                ? {
+                    backgroundColor: '#03665C',
+                    borderRadius: '1.5rem',
+                    // transitionDelay: '180ms', //! A revoir la transition
+                  }
+                : null
+            }
           >
-            <NavLink to="/">
-              <IconButton type="button" aria-label="paramètres">
-                <img alt="search icon" src={home} />
-              </IconButton>
-            </NavLink>
-          </ListItemIcon>
-          <ListItemIcon sx={{ p: 1 }}>
-            <NavLink to="/profil">
-              <IconButton type="button" aria-label="paramètres">
-                <img alt="search icon" src={profile} />
-              </IconButton>
-            </NavLink>
-          </ListItemIcon>
-          <ListItemIcon sx={{ p: 1 }}>
-            <NavLink to="/adverts">
-              <IconButton type="button" aria-label="paramètres">
-                <img alt="search icon" src={megaphone} />
-              </IconButton>
-            </NavLink>
-          </ListItemIcon>
-          <ListItemIcon sx={{ p: 1 }}>
-            <NavLink to="/favoris">
-              <IconButton type="button" aria-label="paramètres">
-                <img alt="search icon" src={bookmark} />
-              </IconButton>
-            </NavLink>
-          </ListItemIcon>
-          <ListItemIcon sx={{ p: 1 }}>
-            <NavLink to="/messagerie">
-              <Badge
-                sx={{
-                  '& .MuiBadge-badge': {
-                    color: 'WHITE',
-                    fontSize: '1.15rem',
-                  },
-                }}
-                badgeContent={5477}
-                color="primary"
-              >
-                <IconButton type="button" aria-label="paramètres">
-                  <img alt="search icon" src={conversation} />
-                </IconButton>
-              </Badge>
-            </NavLink>
-          </ListItemIcon>
+            <img alt="search icon" src={home} />
+          </ListItemButton>
+          <ListItemButton
+            sx={{ p: '1.7rem', borderRadius: '1.5rem' }}
+            component={NavLink}
+            to="/profil"
+            style={({ isActive }) =>
+              isActive
+                ? {
+                    backgroundColor: '#03665C',
+                    borderRadius: '1.5rem',
+                  }
+                : null
+            }
+          >
+            <img style={{ fill: 'blue' }} alt="search icon" src={profile} />
+          </ListItemButton>
+          <ListItemButton
+            sx={{ p: '1.7rem', borderRadius: '1.5rem' }}
+            component={NavLink}
+            to="/adverts"
+            style={({ isActive }) =>
+              isActive
+                ? {
+                    backgroundColor: '#03665C',
+                    borderRadius: '1.5rem',
+                  }
+                : null
+            }
+          >
+            <img alt="search icon" src={megaphone} />
+          </ListItemButton>
+          <ListItemButton
+            sx={{ p: '1.7rem', borderRadius: '1.5rem' }}
+            component={NavLink}
+            to="/favoris"
+            style={({ isActive }) =>
+              isActive
+                ? {
+                    backgroundColor: '#03665C',
+                    borderRadius: '1.5rem',
+                  }
+                : null
+            }
+          >
+            <img alt="search icon" src={bookmark} />
+          </ListItemButton>
+          <ListItemButton
+            sx={{ p: '1.7rem', borderRadius: '1.5rem' }}
+            component={NavLink}
+            to="/messagerie"
+            style={({ isActive }) =>
+              isActive
+                ? {
+                    backgroundColor: '#03665C',
+                    borderRadius: '1.5rem',
+                  }
+                : null
+            }
+          >
+            <Badge
+              sx={{
+                '& .MuiBadge-badge': {
+                  color: 'WHITE',
+                  fontSize: '1.15rem',
+                },
+              }}
+              badgeContent={5477}
+              color="primary"
+            >
+              <img alt="search icon" src={conversation} />
+            </Badge>
+          </ListItemButton>
         </MenuItem>
       </MenuList>
     </Paper>
