@@ -1,17 +1,33 @@
 import { Avatar, Box, IconButton, InputBase, Stack } from '@mui/material';
+import { useState } from 'react';
 import send from '../../../../../assets/icons/paper_plane.svg';
+import { useAppDispatch, useAppSelector } from '../../../../../hooks/redux';
+import { addPost } from '../../../../../store/reducers/publications';
 
-export default function AddCommentary() {
+export default function AddCommentary({ id }) {
+  const [value, setValue] = useState('');
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.user);
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    // console.log('coucou');
+    setValue('');
+
+    const formData = new FormData(event.currentTarget);
+    dispatch(addPost(formData));
+  };
   return (
     <Box sx={{ width: '99%', pt: '4.5rem', pb: '2rem', px: '0.8rem' }}>
       <Stack spacing={2} direction="row">
         <Avatar
           alt="Jean-Jacques Goldman"
-          src="src/fakedata/jjg.jpg"
+          src={user.thumbnail}
           sx={{ width: 45, height: 45 }}
         />
         <Box
           component="form"
+          onSubmit={handleSubmit}
           sx={{
             width: '100%',
             borderRadius: '2rem',
@@ -20,9 +36,12 @@ export default function AddCommentary() {
           }}
         >
           <InputBase
+            name="content"
             multiline
             maxRows={6}
             fullWidth
+            value={value}
+            onChange={(event) => setValue(event.target.value)}
             sx={{
               px: '2rem',
               py: '1rem',
@@ -32,8 +51,9 @@ export default function AddCommentary() {
             placeholder="Ecrire un commentaire...."
             inputProps={{ 'aria-label': 'Ajouter un commentaire' }}
           />
-
+          <input type="hidden" id="replyToId" name="reply_to" value={id} />
           <IconButton
+            type="submit"
             sx={{
               my: 'auto',
               maxHeight: '5.2rem',

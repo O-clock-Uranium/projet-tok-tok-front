@@ -58,6 +58,7 @@ export const login = createAsyncThunk(
         user: UserState;
         error: string;
       };
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       throw new Error(error.response.data.error);
     }
@@ -80,6 +81,7 @@ export const signup = createAsyncThunk(
         token: string;
         user: UserState;
       };
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       throw new Error(error.response.data.error);
     }
@@ -111,8 +113,6 @@ const userReducer = createReducer(initialState, (builder) => {
     })
     .addCase(logout, (state) => {
       state.logged = initialState.logged;
-      // state = { ...initialState };
-      // console.log(state.logged);
       delete axiosInstance.defaults.headers.common.Authorization;
     })
     .addCase(signup.fulfilled, (state, action) => {

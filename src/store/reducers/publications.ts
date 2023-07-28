@@ -1,51 +1,82 @@
 import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
-
 import { Publication } from '../../@types/publication';
-
 import axiosInstance from '../../utils/axios';
 
 interface PublicationState {
-  // publication: Publication;
   list: Publication[];
   isLoading: boolean;
-  error: string | null;
+  error: string;
 }
 
 export const initialState: PublicationState = {
-  // publication: {
-  //   id: null,
-  //   content: null,
-  //   thumbnail: null,
-  //   user_id: null,
-  //   created_at: null,
-  //   reply_to: null,
-  //   post_creator: null,
-  //   users_liked: [],
-  //   replies: [],
-  // },
   list: [],
   isLoading: false,
-  error: null,
+  error: '',
 };
 
 // eslint-disable-next-line import/prefer-default-export
 export const fetchPosts = createAsyncThunk(
   'publications/fetchPosts',
   async () => {
-    const { data } = await axiosInstance.get<Publication[]>('/posts');
-    console.log(data);
-    return data;
+    try {
+      const { data } = await axiosInstance.get<Publication[]>('/posts');
+      return data;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      throw new Error(error.response.data.error);
+    }
   }
 );
 
 export const addPost = createAsyncThunk(
   'publications/addPost',
-  async (formData) => {
-    // try {
-    const { data } = await axiosInstance.post('/posts', formData);
-    return data as Publication[];
-    // } catch (error) {
-    // }
+  async (formData: FormData) => {
+    try {
+      const { data } = await axiosInstance.post('/posts', formData);
+      return data as Publication[];
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      throw new Error(error.response.data.error);
+    }
+  }
+);
+
+export const delPost = createAsyncThunk(
+  'publications/delPost',
+  async (id: number) => {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { data } = await axiosInstance.delete(`/posts/${id}`);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      throw new Error(error.response.data.error);
+    }
+  }
+);
+
+export const addLike = createAsyncThunk(
+  'publications/AddLike',
+  async (id: number) => {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { data } = await axiosInstance.post(`/likes/${id}`);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      throw new Error(error.response.data.error);
+    }
+  }
+);
+
+export const delLike = createAsyncThunk(
+  'publications/delLike',
+  async (id: number) => {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { data } = await axiosInstance.delete(`/likes/${id}`);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      throw new Error(error.response.data.error);
+    }
   }
 );
 
@@ -63,6 +94,15 @@ const publicationsReducer = createReducer(initialState, (builder) => {
     })
     .addCase(addPost.fulfilled, (state) => {
       state.isLoading = false;
+    })
+    .addCase(delPost.pending, (state) => {
+      state.isLoading = true;
+    })
+    .addCase(delPost.fulfilled, (state) => {
+      state.isLoading = false;
+    })
+    .addCase(delPost.rejected, (state, action) => {
+      state.error = action.error.message;
     });
 });
 

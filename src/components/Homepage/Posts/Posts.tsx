@@ -3,9 +3,8 @@ import Stack from '@mui/material/Stack';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { fetchPosts } from '../../../store/reducers/publications';
-import ContentPost from './ContentPost/ContentPost';
 import NewPost from './NewPost/NewPost';
-import Post from './Post/Post';
+import ContentPost from './Post/ContentPost/ContentPost';
 
 export default function Posts() {
   const publications = useAppSelector((state) => state.publications.list);
@@ -21,15 +20,10 @@ export default function Posts() {
       justifyContent="center"
       alignItems="center"
       spacing={2}
-      sx={{ pt: '13rem' }}
+      sx={{ py: '13rem' }}
     >
       <NewPost />
-
       <ContentPost publications={publications} />
-
-      {/* <Post />
-      <Post />
-      <Post /> */}
     </Stack>
   );
 }

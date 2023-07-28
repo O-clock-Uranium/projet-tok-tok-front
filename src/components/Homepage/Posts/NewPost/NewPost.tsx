@@ -25,7 +25,6 @@ function NewPost() {
 
     const formData = new FormData(event.currentTarget);
     dispatch(addPost(formData));
-    // console.log(Object.fromEntries(formData));
   };
 
   return (

@@ -1,7 +1,30 @@
 import { Avatar, Box, Paper, Stack, Typography } from '@mui/material';
+import { Reply } from '../../../../../@types/publication';
 import TriplePointButton from '../../../../TriplePointButton/TriplePointButton';
 
-export default function OneComment() {
+// export interface ReplyProps {
+//   id: number | null;
+//   content: string | null;
+//   thumbnail: string | null;
+//   user_id: number | null;
+//   created_at: number | null;
+//   reply_to: number | null;
+//   post_creator: Creator | null;
+//   users_liked: Likes[] | null;
+//   replies: Reply[] | null;
+// }
+
+export default function OneComment({
+  id,
+  content,
+  thumbnail,
+  user_id,
+  created_at,
+  reply_to,
+  post_creator,
+  users_liked,
+  replies,
+}: Reply) {
   return (
     <Paper
       elevation={0}
@@ -33,7 +56,7 @@ export default function OneComment() {
               lineHeight: 'normal',
             }}
           >
-            Patrick Sébastien
+            {user_id}
           </Typography>
           <Typography
             sx={{
@@ -45,7 +68,7 @@ export default function OneComment() {
               color: '#A5A5A5',
             }}
           >
-            Il y a 20 minutes
+            {created_at}
           </Typography>
         </Stack>
         <TriplePointButton />
@@ -70,15 +93,7 @@ export default function OneComment() {
             letterSpacing: '-0.15px',
           }}
         >
-          J&apos;ai qu&apos;une chose à te dire Céline : <br />
-          Ah si tu pouvais fermer ta gueule
-          <br />
-          Ça nous f&apos;rait des vacances
-          <br />
-          Ah si tu pouvais fermer ta gueule
-          <br />
-          Ça f&apos;rait du bien à la France
-          <br />
+          {content}
         </Typography>
       </Box>
     </Paper>
