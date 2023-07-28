@@ -20,7 +20,7 @@ export default function Posts() {
       justifyContent="center"
       alignItems="center"
       spacing={2}
-      sx={{ pt: '13rem' }}
+      sx={{ py: '13rem' }}
     >
       <NewPost />
       <ContentPost publications={publications} />

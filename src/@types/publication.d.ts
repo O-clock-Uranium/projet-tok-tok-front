@@ -1,5 +1,5 @@
 export interface Publication {
-  id: number | null;
+  id: number;
   content: string | null;
   thumbnail: string | null;
   user_id: number | null;
@@ -37,18 +37,12 @@ export interface User {
   slug: string | null;
 }
 
-// export interface Reply {
-//   publication: Publication;
-// }
-
 export interface Reply {
   id: number | null;
   content: string | null;
   thumbnail: string | null;
   user_id: number | null;
   created_at: number | null;
-  reply_to: number | null;
+  reply_to: number;
   post_creator: Creator | null;
-  users_liked: Likes[] | null;
-  replies: Reply[];
 }

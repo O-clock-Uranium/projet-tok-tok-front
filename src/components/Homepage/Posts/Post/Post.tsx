@@ -6,49 +6,44 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Collapse from '@mui/material/Collapse';
 import comment from '../../../../assets/icons/comment.svg';
 
 import { Publication } from '../../../../@types/publication';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
+import { addLike, delLike } from '../../../../store/reducers/publications';
 import TriplePointButton from '../../../TriplePointButton/TriplePointButton';
 import AddCommentary from './AddComment/AddComment';
 import ContentComment from './OneComment/ContentComment/ContentComment';
-
-// interface PublicationProps {
-//   id: number | null;
-//   content: string | null;
-//   thumbnail: string | null;
-//   user_id: number | null;
-//   created_at: number | null;
-//   reply_to: number | null;
-//   post_creator: Creator | null;
-//   users_liked: Likes[] | null;
-//   replies: Reply[] | null;
-// }
 
 export default function Post({
   id,
   content,
   thumbnail,
-  user_id,
   created_at,
-  reply_to,
   post_creator,
   users_liked,
   replies,
 }: Publication) {
   const [expanded, setExpanded] = React.useState(false);
   const [like, setLike] = React.useState(false);
+  const userId = useAppSelector((state) => state.user.id);
+
+  const dispatch = useAppDispatch();
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
+  const hasLiked = users_liked.find((user) => user.user_id == userId);
+  console.log(hasLiked);
+
   const handleLikeClick = () => {
     setLike(!like);
+    like ? dispatch(delLike(id)) : dispatch(addLike(id));
   };
 
   return (
@@ -92,7 +87,7 @@ export default function Post({
           </Typography>
         </Stack>
         <IconButton sx={{ fontSize: '4.5rem', color: 'Black' }}>
-          <TriplePointButton />
+          <TriplePointButton id={id} />
         </IconButton>
       </Stack>
       <Typography
@@ -135,12 +130,7 @@ export default function Post({
             onClick={handleLikeClick}
             color={like ? 'error' : 'default'}
           >
-            {/* // ! Problème c'est tout le bouton qui devient rouge et pas seulement le coeur */}
             <FavoriteIcon sx={{ fontSize: '2rem' }} />
-
-            {/* // ! Je n'arrive pas à fill color le svg :/ */}
-            {/* <img alt="Like" src={heart} /> */}
-
             <Typography
               sx={{
                 fontFamily: 'Manrope',
@@ -188,7 +178,7 @@ export default function Post({
         </Stack>
       </Stack>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <AddCommentary />
+        <AddCommentary id={id} />
         <ContentComment replies={replies} />
       </Collapse>
     </Paper>
