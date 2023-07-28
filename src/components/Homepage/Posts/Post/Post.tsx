@@ -6,7 +6,7 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Collapse from '@mui/material/Collapse';
@@ -14,7 +14,7 @@ import comment from '../../../../assets/icons/comment.svg';
 
 import { Publication } from '../../../../@types/publication';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
-import { addLike, delLike } from '../../../../store/reducers/publications';
+import { addLike, delLike, fetchPosts } from '../../../../store/reducers/publications';
 import TriplePointButton from '../../../TriplePointButton/TriplePointButton';
 import AddCommentary from './AddComment/AddComment';
 import ContentComment from './OneComment/ContentComment/ContentComment';
@@ -29,7 +29,8 @@ export default function Post({
   replies,
 }: Publication) {
   const [expanded, setExpanded] = React.useState(false);
-  const [like, setLike] = React.useState(false);
+  // const [like, setLike] = React.useState(false);
+  const isLiked = useAppSelector((state) => state.publications.like);
   const userId = useAppSelector((state) => state.user.id);
 
   const dispatch = useAppDispatch();
@@ -38,12 +39,13 @@ export default function Post({
     setExpanded(!expanded);
   };
 
-  const hasLiked = users_liked.find((user) => user.user_id == userId);
-  console.log(hasLiked);
+  // const isUserLiked = users_liked.find((user) => user.Like.user_id === userId);
+  // console.log(isUserLiked);
 
   const handleLikeClick = () => {
-    setLike(!like);
-    like ? dispatch(delLike(id)) : dispatch(addLike(id));
+    // setLike(!like);
+    isLiked ? dispatch(delLike(id)) : dispatch(addLike(id));
+    dispatch(fetchPosts());
   };
 
   return (
@@ -128,7 +130,8 @@ export default function Post({
               gap: '1rem',
             }}
             onClick={handleLikeClick}
-            color={like ? 'error' : 'default'}
+            color={isLiked ? 'error' : 'default'}
+            // color={like ? 'error' : 'default'}
           >
             <FavoriteIcon sx={{ fontSize: '2rem' }} />
             <Typography

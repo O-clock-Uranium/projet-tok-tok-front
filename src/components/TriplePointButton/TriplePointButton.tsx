@@ -5,7 +5,7 @@ import { IconButton, Menu, MenuItem, Typography } from '@mui/material';
 import React from 'react';
 import { Publication } from '../../@types/publication';
 import { useAppDispatch } from '../../hooks/redux';
-import { delPost } from '../../store/reducers/publications';
+import { delPost, fetchPosts } from '../../store/reducers/publications';
 
 export default function TriplePointButton({ id }: Publication) {
   const dispatch = useAppDispatch();
@@ -18,6 +18,7 @@ export default function TriplePointButton({ id }: Publication) {
   const handleClose = () => {
     setAnchorEl(null);
     dispatch(delPost(id));
+    dispatch(fetchPosts());
   };
 
   return (

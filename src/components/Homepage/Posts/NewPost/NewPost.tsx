@@ -11,7 +11,7 @@ import { useState } from 'react';
 import video from '../../../../assets/icons/camera.svg';
 import picture from '../../../../assets/icons/picture.svg';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
-import { addPost } from '../../../../store/reducers/publications';
+import { addPost, fetchPosts } from '../../../../store/reducers/publications';
 
 function NewPost() {
   const [value, setValue] = useState('');
@@ -25,6 +25,7 @@ function NewPost() {
 
     const formData = new FormData(event.currentTarget);
     dispatch(addPost(formData));
+    dispatch(fetchPosts());
   };
 
   return (

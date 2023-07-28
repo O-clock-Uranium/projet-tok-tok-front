@@ -19,7 +19,15 @@ export interface Creator {
 }
 
 export interface Likes {
-  user: User[];
+  // user: User[];
+  id: number;
+  firstname: string | null;
+  lastname: string | null;
+  description: string | null;
+  address: string | null;
+  city: string | null;
+  thumbnail: string | null;
+  slug: string | null;
 }
 
 export interface User {
