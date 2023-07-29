@@ -16,10 +16,6 @@ interface AdvertCardProps {
   created_at: any;
 }
 
-const linkStyle = {
-  textDecoration: 'none',
-};
-
 export default function AdvertCard({
   content,
   price,
@@ -29,41 +25,44 @@ export default function AdvertCard({
   images,
   created_at,
 }: AdvertCardProps) {
-  
-  console.log(calculateTimeSpent(created_at));
-
   return (
-    <Link to={`/adverts/${slug}`} style={linkStyle}>
+    <Link to={`/adverts/${slug}`} style={{ textDecoration: 'none' }}>
       <Paper
         elevation={0}
         sx={{
-          width: '30rem',
-          height: '30rem',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'flex-start',
+          width: '26rem',
+          height: '34rem',
           mx: 'auto',
           borderRadius: '2rem',
+          gap: '1.5rem',
+          p: '2rem',
         }}
       >
-        <Stack direction="column">
-          <Stack
-            paddingBottom="2.5rem"
-            spacing={5}
-            direction="row"
-            justifyContent="space-evenly"
-          >
+        <Stack
+          direction="row"
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          alignSelf="stretch"
+        >
+          <Stack direction="row" alignItems="center" gap="1rem">
             <Avatar
               alt="photo de profil"
               src={advert_creator.thumbnail}
-              sx={{ width: 40, height: 40, ml: '1rem', mt: '1rem' }}
+              sx={{ width: '4rem', height: '4rem' }}
             />
-            <Stack direction="column">
+            <Stack direction="column" gap="0.3rem">
               <Typography
                 sx={{
                   fontFamily: 'Manrope',
-                  fontSize: '1.1rem',
+                  fontSize: '1.5rem',
                   fontStyle: 'normal',
-                  fontWeight: 700,
+                  fontWeight: 500,
                   lineHeight: 'normal',
-                  my: '0.5rem',
                 }}
               >
                 {advert_creator.firstname} {advert_creator.lastname}
@@ -71,57 +70,116 @@ export default function AdvertCard({
               <Typography
                 sx={{
                   fontFamily: 'Manrope',
-                  fontSize: '1rem',
+                  fontSize: '1.2rem',
                   fontStyle: 'normal',
                   fontWeight: 500,
                   lineHeight: 'normal',
+                  color: '#A5A5A5',
                 }}
               >
                 Il y a {calculateTimeSpent(created_at)}
               </Typography>
             </Stack>
-            <IconButton
-              aria-label="Favorite"
-              sx={{
-                px: '2rem',
-                py: '1rem',
-                borderRadius: '9.5rem',
-                gap: '1rem',
-              }}
-            >
-              <img alt="Add-Favorite" src={bookmark} />
-            </IconButton>
           </Stack>
-          <CardMedia
-            component="img"
-            height="120rem"
-            src={
-              images.length == 0
-                ? 'http://localhost:3000/images/default-advert-picture.png'
-                : images[0].thumbnail
-            }
-            alt="green iguana"
-          />
-          <Stack direction="row" justifyContent="space-around">
-            <Typography sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-              {title}
-            </Typography>
-            <Typography sx={{ fontSize: '1.5rem' }}>{price} €</Typography>
-          </Stack>
-          <Paper
+          <IconButton
+            aria-label="Favorite"
             sx={{
-              backgroundColor: '#F5F6FA',
-              width: '10rem',
-              m: '1rem',
-              p: '1rem',
+              p: '1.2rem',
+              justifyContent: 'center',
+              alignItems: 'center',
+              gap: '0.6rem',
             }}
           >
-            <Stack direction="row" gap="1rem" justifyContent="center">
-              <Typography>Distance</Typography>
-              <Typography>1 km</Typography>
-            </Stack>
-          </Paper>
+            <img
+              alt="Add-Favorite"
+              src={bookmark}
+              style={{
+                width: '1.5rem',
+              }}
+            />
+          </IconButton>
         </Stack>
+        <CardMedia
+          component="img"
+          height="160rem"
+          sx={{ borderRadius: '2rem' }}
+          src={
+            images.length === 0
+              ? 'http://localhost:3000/images/default-advert-picture.png'
+              : images[0].thumbnail
+          }
+          alt="green iguana"
+        />
+        <Stack
+          direction="row"
+          display="flex"
+          alignItems="center"
+          gap="1.5rem"
+          align-self="stretch"
+          width="100%"
+        >
+          <Typography
+            sx={{
+              flex:"1 0 0",
+              fontFamily: 'Manrope',
+              fontSize: '1.5rem',
+              fontStyle: 'normal',
+              fontWeight: 500,
+              lineHeight: 'normal',
+            }}
+          >
+            {title}
+          </Typography>
+          <Typography
+            sx={{
+              fontFamily: 'Manrope',
+              fontSize: '1.5rem',
+              fontStyle: 'normal',
+              fontWeight: 600,
+              lineHeight: 'normal',
+              textAlign: 'right',
+            }}
+          >
+            {price} €
+          </Typography>
+        </Stack>
+        <Paper
+          elevation={0}
+          sx={{
+            display: 'flex',
+            p: '0.5rem 2rem',
+            alignItems: 'center',
+            gap: '1rem',
+            backgroundColor: 'rgba(0, 0, 0, 0.05)',
+            borderRadius: '9.5rem',
+          }}
+        >
+          <Stack direction="row" gap="1rem" justifyContent="center">
+            <Typography
+              sx={{
+                fontFamily: 'Manrope',
+                fontSize: '1.3rem',
+                fontStyle: 'normal',
+                fontWeight: 600,
+                lineHeight: '2.6rem',
+                color: '#A5A5A5',
+              }}
+            >
+              Distance
+            </Typography>
+            <Typography
+              sx={{
+                fontFamily: 'Manrope',
+                fontSize: '1.3rem',
+                fontStyle: 'normal',
+                fontWeight: 600,
+                lineHeight: '2.6rem',
+              }}
+            >
+              1 km
+            </Typography>
+          </Stack>
+        </Paper>
       </Paper>
     </Link>
   );

@@ -1,8 +1,8 @@
 import { Box, Stack } from '@mui/material';
 import { useEffect } from 'react';
-import AdvertCard from '../Adverts/Advert/Advert';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchFavourites } from '../../store/reducers/adverts';
+import AdvertCard from '../Adverts/Advert/Advert';
 
 export default function Favourites() {
   const favourites = useAppSelector((state) => state.adverts.favourites);

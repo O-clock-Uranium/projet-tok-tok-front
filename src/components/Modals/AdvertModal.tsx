@@ -15,7 +15,7 @@ import Typography from '@mui/material/Typography';
 import * as React from 'react';
 import picture from '../../assets/icons/picture.svg';
 import { useAppDispatch } from '../../hooks/redux';
-import { addAdvert } from '../../store/reducers/adverts';
+import { addAdvert, fetchAdverts } from '../../store/reducers/adverts';
 import AddAdvertField from './AddAdvertField/AddAdvertField';
 
 export default function AdvertModal2() {
@@ -30,12 +30,14 @@ export default function AdvertModal2() {
     setCategorie(event.target.value);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
     dispatch(addAdvert(formData));
 
+    await new Promise((resolve) => setTimeout(resolve, 800));
+    dispatch(fetchAdverts());
     setOpen(false);
   };
 
