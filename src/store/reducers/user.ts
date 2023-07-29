@@ -18,6 +18,7 @@ interface UserState {
   latitude: string;
   thumbnail: string;
   slug: string;
+  email: string;
 
   error?: string;
   isLoading: boolean;
@@ -35,6 +36,7 @@ export const initialState: UserState = {
   latitude: '',
   thumbnail: '',
   slug: '',
+  email: '',
   error: '',
   isLoading: false,
 };
@@ -87,6 +89,35 @@ export const signup = createAsyncThunk(
   }
 );
 
+export const edit = createAsyncThunk(
+  'user/edit',
+  async (formData: FormData) => {
+    try {
+      const { data } = await axiosInstance.patch('/my-profile/edit', formData);
+      return data;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      throw new Error(error.response.data.error);
+    }
+  }
+);
+
+// export const fetchProfile = (id: number) => createAsyncThunk(
+//   'user/fetchProfile',
+//   async () => {
+//     try {
+//       const { data } = await axiosInstance.get(`/profile/${id}`);
+//       console.log(data);
+
+//       return data;
+
+//       // eslint-disable-next-line @typescript-eslint/no-explicit-any
+//     } catch (error: any) {
+//       throw new Error(error.response.data.error);
+//     }
+//   }
+// );
+
 const userReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(login.pending, (state) => {
@@ -105,6 +136,7 @@ const userReducer = createReducer(initialState, (builder) => {
       state.longitude = action.payload.user.longitude;
       state.slug = action.payload.user.slug;
       state.description = action.payload.user.description;
+      state.email = action.payload.user.email;
     })
     .addCase(login.rejected, (state, action) => {
       state.isLoading = false;
@@ -127,11 +159,32 @@ const userReducer = createReducer(initialState, (builder) => {
       state.longitude = action.payload.user.longitude;
       state.slug = action.payload.user.slug;
       state.description = action.payload.user.description;
+      state.email = action.payload.user.email;
     })
     .addCase(signup.pending, (state) => {
       state.isLoading = false;
     })
     .addCase(signup.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message;
+    })
+    .addCase(edit.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.id = action.payload.id;
+      state.firstname = action.payload.firstname;
+      state.lastname = action.payload.lastname;
+      state.address = action.payload.address;
+      state.thumbnail = action.payload.thumbnail;
+      state.city = action.payload.city;
+      state.latitude = action.payload.latitude;
+      state.longitude = action.payload.longitude;
+      state.slug = action.payload.slug;
+      state.description = action.payload.description;
+    })
+    .addCase(edit.pending, (state) => {
+      state.isLoading = false;
+    })
+    .addCase(edit.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.error.message;
     });

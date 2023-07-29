@@ -4,8 +4,8 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchAdverts } from '../../store/reducers/adverts';
 
 import ContentAdvert from './ContentAdvert/ContentAdvert';
-import CreateAdvertButton from './CreateAdvertButton/CreateAdvertButton';
 import SortBar from './SortBar/SortBar';
+import AdvertModal from '../Modals/AdvertModal';
 
 function Adverts() {
   const adverts = useAppSelector((state) => state.adverts.list);
@@ -31,7 +31,7 @@ function Adverts() {
         alignItems="center"
         height="8.2rem"
       >
-        <CreateAdvertButton />
+        <AdvertModal />
       </Stack>
       <SortBar />
       <ContentAdvert adverts={adverts} />
