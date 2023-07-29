@@ -1,21 +1,26 @@
 import { Avatar, Box, IconButton, InputBase, Stack } from '@mui/material';
 import { useState } from 'react';
-import send from '../../../../../assets/icons/paper_plane.svg';
 import { useAppDispatch, useAppSelector } from '../../../../../hooks/redux';
-import { addPost } from '../../../../../store/reducers/publications';
+import {
+  addPost,
+  fetchPosts,
+} from '../../../../../store/reducers/publications';
+import { Publication } from '../../../../../@types/publication';
 
-export default function AddCommentary({ id }) {
+import send from '../../../../../assets/icons/paper_plane.svg';
+
+export default function AddCommentary({ id }: Publication) {
   const [value, setValue] = useState('');
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.user);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // console.log('coucou');
     setValue('');
 
     const formData = new FormData(event.currentTarget);
     dispatch(addPost(formData));
+    dispatch(fetchPosts());
   };
   return (
     <Box sx={{ width: '99%', pt: '4.5rem', pb: '2rem', px: '0.8rem' }}>

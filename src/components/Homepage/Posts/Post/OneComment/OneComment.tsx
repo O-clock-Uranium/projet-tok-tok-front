@@ -2,28 +2,11 @@ import { Avatar, Box, Paper, Stack, Typography } from '@mui/material';
 import { Reply } from '../../../../../@types/publication';
 import TriplePointButton from '../../../../TriplePointButton/TriplePointButton';
 
-// export interface ReplyProps {
-//   id: number | null;
-//   content: string | null;
-//   thumbnail: string | null;
-//   user_id: number | null;
-//   created_at: number | null;
-//   reply_to: number | null;
-//   post_creator: Creator | null;
-//   users_liked: Likes[] | null;
-//   replies: Reply[] | null;
-// }
-
 export default function OneComment({
   id,
   content,
-  thumbnail,
-  user_id,
   created_at,
-  reply_to,
   post_creator,
-  users_liked,
-  replies,
 }: Reply) {
   return (
     <Paper
@@ -43,7 +26,7 @@ export default function OneComment({
       >
         <Avatar
           alt="Patrick Sebastien"
-          src="../../src/fakedata/ps.jpg"
+          src="{../../src/fakedata/ps.jpg}"
           sx={{ width: 45, height: 45 }}
         />
         <Stack direction="column" flex="1">
@@ -56,7 +39,8 @@ export default function OneComment({
               lineHeight: 'normal',
             }}
           >
-            {user_id}
+            {post_creator?.firstname}&nbsp;
+            {post_creator?.lastname}
           </Typography>
           <Typography
             sx={{
@@ -71,7 +55,7 @@ export default function OneComment({
             {created_at}
           </Typography>
         </Stack>
-        <TriplePointButton />
+        <TriplePointButton id={id} />
       </Stack>
       <Box
         sx={{

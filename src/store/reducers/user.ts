@@ -25,8 +25,8 @@ interface UserState {
 }
 
 export const initialState: UserState = {
-  id: 0,
   logged: false,
+  id: 0,
   firstname: '',
   lastname: '',
   description: '',
@@ -50,7 +50,6 @@ export const login = createAsyncThunk(
       const objData = Object.fromEntries(formData);
 
       const { data } = await axiosInstance.post('/login', objData);
-
       axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
       delete data.token;
 
@@ -94,7 +93,7 @@ export const edit = createAsyncThunk(
   'user/edit',
   async (formData: FormData) => {
     try {
-      const { data } = await axiosInstance.patch('/my-profile/edit', formData);      
+      const { data } = await axiosInstance.patch('/my-profile/edit', formData);
       return data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {

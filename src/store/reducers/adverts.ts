@@ -1,7 +1,7 @@
 import {
   createAction,
   createAsyncThunk,
-  createReducer
+  createReducer,
 } from '@reduxjs/toolkit';
 import { Advert } from '../../@types';
 
@@ -25,7 +25,6 @@ export const fetchAdverts = createAsyncThunk(
   'adverts/fetchAdverts',
   async () => {
     const { data } = await axiosInstance.get<Advert[]>('/adverts');
-    console.log(data);
     return data as Advert[];
   }
 );
@@ -34,7 +33,6 @@ export const addAdvert = createAsyncThunk(
   'adverts/addAdvert',
   async (formData: FormData) => {
     // try {
-
     const { data } = await axiosInstance.post('/adverts', formData);
     return data as Advert[];
     // } catch (error) {
@@ -46,9 +44,6 @@ export const fetchFavourites = createAsyncThunk(
   'adverts/fetchFavourites',
   async () => {
     const { data } = await axiosInstance.get('/favourites');
-    console.log(data);
-    
-
     return data as Advert[];
   }
 );
@@ -66,7 +61,6 @@ const advertsReducer = createReducer(initialState, (builder) => {
       state.isLoading = false;
     })
     .addCase(fetchFavourites.fulfilled, (state, action) => {
-      console.log(action)
       state.favourites = action.payload;
     })
     .addCase(addAdvert.pending, (state) => {

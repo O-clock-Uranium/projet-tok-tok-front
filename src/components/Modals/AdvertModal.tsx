@@ -1,13 +1,12 @@
 import {
-    FormControl,
-    IconButton,
-    InputAdornment,
-    MenuItem,
-    OutlinedInput,
-    Select,
-    SelectChangeEvent,
-    Stack,
-    TextField
+  FormControl,
+  IconButton,
+  InputAdornment,
+  MenuItem,
+  OutlinedInput,
+  Select,
+  SelectChangeEvent,
+  Stack,
 } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -18,18 +17,6 @@ import picture from '../../assets/icons/picture.svg';
 import { useAppDispatch } from '../../hooks/redux';
 import { addAdvert } from '../../store/reducers/adverts';
 import AddAdvertField from './AddAdvertField/AddAdvertField';
-
-const style = {
-  position: 'absolute' as const,
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
 
 export default function AdvertModal2() {
   const [open, setOpen] = React.useState(false);
@@ -94,7 +81,6 @@ export default function AdvertModal2() {
           }}
         >
           <Box
-            // onSubmit={handleSubmit}
             sx={{
               backgroundColor: 'white',
               width: '80%',
@@ -138,7 +124,6 @@ export default function AdvertModal2() {
                   style={{ fontSize: '1.8rem' }}
                   type="file"
                   name="thumbnails"
-                  // onChange={(e) => setFile(e.target.files)}
                   multiple
                 />
               </Typography>
