@@ -5,16 +5,21 @@ import {
   IconButton,
   Paper,
   Stack,
-  Typography
+  Typography,
 } from '@mui/material';
 import { useParams } from 'react-router-dom';
-import bookmark from '../../assets/icons/bookmark.svg';
 import { useAppSelector } from '../../hooks/redux';
 import { findAdvert } from '../../store/selectors/adverts';
+import ContentAdvert from '../Adverts/ContentAdvert/ContentAdvert';
 import AppHeader from '../AppHeader/AppHeader';
 import Menu from '../Menu/Menu';
+import ContactButton from './ContactButton/ContactButton.ContactButton';
+import FavouriteButton from '../Adverts/FavouriteButton/FavouriteButton';
+import { Advert } from '../../@types';
+import { calculateTimeSpent } from '../../utils/date';
 
-export default function Annonce() {
+export default function Annonce({ id }: Advert) {
+  const adverts = useAppSelector((state) => state.adverts.list);
   const { slug } = useParams();
 
   const advert = useAppSelector((state) =>
@@ -38,40 +43,40 @@ export default function Annonce() {
           height: '100vh',
           width: '100rem',
           position: 'relative',
-          top: '11rem',
+          top: '12rem',
           margin: 'auto',
         }}
       >
         <Paper
           elevation={0}
           sx={{
-            width: '50rem',
-            height: '30rem',
+            width: '55rem',
+            maxHeight: '50rem',
             mx: 'auto',
             borderRadius: '2rem',
           }}
         >
           <Stack direction="column">
             <Stack
-              paddingBottom="2.5rem"
-              spacing={5}
+              spacing={12}
               direction="row"
               justifyContent="space-around"
+              my="2rem"
             >
               <Avatar
-                alt="Jean-Jacques"
-                src="src/fakedata/jjg.jpg"
-                sx={{ width: 40, height: 40, ml: '1rem', mt: '1rem' }}
+                alt="User-Avatar"
+                src={advert.advert_creator.thumbnail}
+                sx={{ width: 50, height: 50, ml: '1rem' }}
               />
               <Stack direction="column">
                 <Typography
                   sx={{
                     fontFamily: 'Manrope',
-                    fontSize: '1.1rem',
+                    fontSize: '1.4rem',
                     fontStyle: 'normal',
                     fontWeight: 700,
                     lineHeight: 'normal',
-                    my: '0.5rem',
+                    mb: '0.5rem',
                   }}
                 >
                   {advert.advert_creator.firstname}{' '}
@@ -86,49 +91,22 @@ export default function Annonce() {
                     lineHeight: 'normal',
                   }}
                 >
-                  {advert.created_at}
+                  Il y a {calculateTimeSpent(advert.created_at)}
                 </Typography>
               </Stack>
-              <IconButton
-                aria-label="Favorite"
-                sx={{
-                  px: '2rem',
-                  py: '1rem',
-                  borderRadius: '9.5rem',
-                  gap: '1rem',
-                }}
-              >
-                <img alt="Add-Favorite" src={bookmark} />
-              </IconButton>
+              <FavouriteButton id={id} />
             </Stack>
-            {/* //TODO: insérer un carroussel */}
             <CardMedia
               component="img"
-              height="120rem"
-              src={
-                advert.images.length == 0
-                  ? 'http://localhost:3000/images/default-advert-picture.png'
-                  : advert.images[0].thumbnail
-              }
+              height="200rem"
+              src={advert.images.map((image) => image.thumbnail)}
               alt="green iguana"
             />
-            <Stack direction="row" justifyContent="space-around">
-              <Typography sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-                {advert.title}
-              </Typography>
-              <Typography sx={{ fontSize: '1.5rem' }}>
-                {advert.price} €
-              </Typography>
-            </Stack>
-            <Typography sx={{ textAlign: 'center' }}>
-              {advert.content}
-            </Typography>
-            <Stack direction="row" justifyContent="space-around">
+            <Stack direction="row" justifyContent="space-between" m="1rem">
               <Paper
                 sx={{
                   backgroundColor: '#F5F6FA',
                   width: '10rem',
-                  m: '1rem',
                   p: '1rem',
                 }}
               >
@@ -137,22 +115,36 @@ export default function Annonce() {
                   <Typography>1 km</Typography>
                 </Stack>
               </Paper>
-              <Paper
-                sx={{
-                  backgroundColor: '#03665C',
-                  color: '#fff',
-                  width: '10rem',
-                  m: '1rem',
-                  p: '1rem',
-                }}
-              >
-                <Stack direction="row" gap="1rem" justifyContent="center">
-                  <Typography>Contacter le vendeur</Typography>
-                </Stack>
-              </Paper>
+              <Typography sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
+                {advert.title}
+              </Typography>
+              <Typography sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
+                {advert.price} €
+              </Typography>
             </Stack>
+            <Typography
+              sx={{ fontSize: '1.4rem', textAlign: 'center', mb: '1rem' }}
+            >
+              {advert.content}
+            </Typography>
+
+            <ContactButton />
           </Stack>
         </Paper>
+        <Paper
+          sx={{
+            textAlign: 'center',
+            fontSize: '3rem',
+            mt: '2rem',
+            mb: '2rem',
+            p: '0.2rem',
+            borderRadius: '2rem',
+            borderBottom: '0.5rem solid #03665C',
+          }}
+        >
+          <p>Les autres annonces proposées par ce vendeur.</p>
+        </Paper>
+        <ContentAdvert adverts={adverts} />
       </Box>
     </>
   );

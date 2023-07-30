@@ -1,6 +1,8 @@
 import { Button, Stack, Typography } from '@mui/material';
+import { useAppSelector } from '../../../hooks/redux';
 
 export default function Informations() {
+  const user = useAppSelector((state) => state.user);
   return (
     <Stack
       sx={{
@@ -40,7 +42,7 @@ export default function Informations() {
           height="5rem"
         >
           <img
-            src="../../../src/fakedata/fakenana.jpg"
+            src={user.thumbnail}
             alt="profile_picture"
             style={{
               position: 'relative',
@@ -60,7 +62,7 @@ export default function Informations() {
             lineHeight="normal"
           >
             {' '}
-            Camilla Oliveira
+            {user.firstname} {user.lastname}
           </Typography>
         </Stack>
         <Button
@@ -88,8 +90,7 @@ export default function Informations() {
           lineHeight="150%"
           px="1rem"
         >
-          Je suis une personne très fofolle, j&apos;aime les cabarets et chanter
-          les musiques qui parle de petit bonhomme et qui sont festives !!
+          {user.description}
         </Typography>
       </Stack>
     </Stack>

@@ -3,9 +3,9 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchAdverts } from '../../store/reducers/adverts';
 
+import AdvertModal from '../Modals/AdvertModal';
 import ContentAdvert from './ContentAdvert/ContentAdvert';
 import SortBar from './SortBar/SortBar';
-import AdvertModal from '../Modals/AdvertModal';
 
 function Adverts() {
   const adverts = useAppSelector((state) => state.adverts.list);
@@ -33,7 +33,10 @@ function Adverts() {
       >
         <AdvertModal />
       </Stack>
-      <SortBar />
+      <Stack alignItems="center">
+        <SortBar />
+      </Stack>
+
       <ContentAdvert adverts={adverts} />
     </Box>
   );
