@@ -50,12 +50,8 @@ export const login = createAsyncThunk(
   async (formData: FormData) => {
     try {
       const objData = Object.fromEntries(formData);
-
       const { data } = await axiosInstance.post('/login', objData);
-      axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
-      console.log(data.token)
-      // delete data.token;
-
+      // axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
       return data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -69,11 +65,8 @@ export const signup = createAsyncThunk(
   async (formData: FormData) => {
     try {
       const objData = Object.fromEntries(formData);
-
       const { data } = await axiosInstance.post('/signup', objData);
-      axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
-      // delete data.token;
-
+      // axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`
       return data as {
         message: string;
         auth: boolean;
@@ -100,26 +93,11 @@ export const edit = createAsyncThunk(
   }
 );
 
-// export const fetchProfile = (id: number) => createAsyncThunk(
-//   'user/fetchProfile',
-//   async () => {
-//     try {
-//       const { data } = await axiosInstance.get(`/profile/${id}`);
-//       console.log(data);
-
-//       return data;
-
-//       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-//     } catch (error: any) {
-//       throw new Error(error.response.data.error);
-//     }
-//   }
-// );
-
 const userReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(login.pending, (state) => {
       state.isLoading = true;
+      state.error = initialState.error;
     })
     .addCase(login.fulfilled, (state, action) => {
       state.isLoading = false;
@@ -145,7 +123,7 @@ const userReducer = createReducer(initialState, (builder) => {
     .addCase(logout, (state) => {
       state.logged = false;
       state.token = '';
-      state.error = initialState.error
+      state.error = initialState.error;
     })
     .addCase(signup.fulfilled, (state, action) => {
       state.isLoading = false;
@@ -164,6 +142,7 @@ const userReducer = createReducer(initialState, (builder) => {
     })
     .addCase(signup.pending, (state) => {
       state.isLoading = false;
+      state.error = initialState.error;
     })
     .addCase(signup.rejected, (state, action) => {
       state.isLoading = false;

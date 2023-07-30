@@ -7,13 +7,11 @@ import {
 } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
-
-import { useAppSelector } from '../../hooks/redux';
-import Home from './test/HomeSVG';
-import ProfileSVG from './test/ProfileSVG';
-import MessagerieSVG from './test/MessagerieSVG';
-import FavouritesSVG from './test/FavouritesSVG';
-import AdvertsSVG from './test/AdvertsSVG';
+import AdvertsSVG from './MenuSVG/AdvertsSVG';
+import FavouritesSVG from './MenuSVG/FavouritesSVG';
+import Home from './MenuSVG/HomeSVG';
+import MessagerieSVG from './MenuSVG/MessagerieSVG';
+import ProfileSVG from './MenuSVG/ProfileSVG';
 
 const listItemButtonStyles = {
   p: '1.5rem',
@@ -32,7 +30,6 @@ const listItemButtonStyles = {
 };
 
 export default function Menu() {
-  const userId = useAppSelector((state) => state.user.id);
   return (
     <Paper
       elevation={0}

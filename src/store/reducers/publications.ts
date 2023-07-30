@@ -1,12 +1,11 @@
 import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import { Publication } from '../../@types/publication';
 import axiosInstance from '../../utils/axios';
-import axiosInstance2 from '../../utils/axios copy';
 
 interface PublicationState {
   list: Publication[];
   isLoading: boolean;
-  error: string;
+  error: string | undefined;
   like: boolean;
 }
 
@@ -108,12 +107,6 @@ const publicationsReducer = createReducer(initialState, (builder) => {
     })
     .addCase(delPost.rejected, (state, action) => {
       state.error = action.error.message;
-    })
-    .addCase(addLike.fulfilled, (state) => {
-      // state.like = true;
-    })
-    .addCase(delLike.fulfilled, (state) => {
-      // state.like = false;
     });
 });
 

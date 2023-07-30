@@ -16,7 +16,8 @@ const leToken = useToken();
 export default axios.create({
   baseURL: 'http://localhost:3000/',
   headers: {
-    Authorization: `Bearer ${leToken}`,
-    //! Bien laisser les '' autour de Authorization !!!!
+    // eslint-disable-next-line prettier/prettier
+    'Authorization': `Bearer ${leToken}`,
+    //! Bien laisser les '' autour de Authorization !!!!\\
   },
 });
