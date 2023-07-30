@@ -1,7 +1,8 @@
 import { Button, Stack, Typography } from '@mui/material';
 import { User } from '../../../@types';
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import EditProfileModal from '../../Modals/EditProfileModal/EditProfileModal';
 
 interface InformationsProps {
   userInfo: User;
@@ -9,10 +10,17 @@ interface InformationsProps {
 
 export default function Informations({ userInfo }: InformationsProps) {
   const { id } = useParams();
+  const [open, setOpen] = useState(false);
 
-  const isMine = (idToTest:string) => {
+  const isMine = (idToTest: string) => {
     return userInfo.id === Number(idToTest);
   };
+
+  // Modal edit profile --------------------------
+  const handleSettings = () => {
+    setOpen(true);
+  };
+  // Modal edit profile --------------------------
 
   return (
     <Stack
@@ -78,21 +86,25 @@ export default function Informations({ userInfo }: InformationsProps) {
         </Stack>
 
         {isMine(id) && (
-          <Button
-            sx={{
-              px: '2rem',
-              py: '1rem',
-              backgroundColor: 'primary.dark',
-              color: 'white',
-              fontSize: '1.8rem',
-              borderRadius: '5rem',
-              '&:hover': {
-                backgroundColor: 'primary.light',
-              },
-            }}
-          >
-            Editer Profil
-          </Button>
+          <>
+            <Button
+              onClick={handleSettings}
+              sx={{
+                px: '2rem',
+                py: '1rem',
+                backgroundColor: 'primary.dark',
+                color: 'white',
+                fontSize: '1.8rem',
+                borderRadius: '5rem',
+                '&:hover': {
+                  backgroundColor: 'primary.light',
+                },
+              }}
+            >
+              Editer Profil
+            </Button>
+            <EditProfileModal open={open} setOpen={setOpen} />
+          </>
         )}
       </Stack>
       <Stack direction="row" width="75rem">

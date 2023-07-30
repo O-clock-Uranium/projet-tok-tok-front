@@ -40,15 +40,18 @@ export const initialState: ProfileState = {
 };
 
 
-export const fetchProfile = createAsyncThunk('user/fetchProfile', async (id: string | undefined) => {
+export const fetchProfile = createAsyncThunk(
+  'user/fetchProfile',
+  async (slug: string | undefined) => {
     try {
-      const { data } = await axiosInstance.get(`/profile/${id}`);
+      const { data } = await axiosInstance.get(`/profile/${slug}`);
       return data;
       //eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       throw new Error(error.response.data.error);
     }
-  });
+  }
+);
 
 const profileReducer = createReducer(initialState, (builder) => {
   builder

@@ -14,12 +14,12 @@ import Toggle from './Toggle';
 export default function Profile() {
   const dispatch = useAppDispatch();
 
-  const { id } = useParams();
+  const { slug } = useParams();
   const user = useAppSelector((state) => state.profile);
   const [display, setDisplay] = React.useState('publications');
 
   useEffect(() => {
-    dispatch(fetchProfile(id));
+    dispatch(fetchProfile(slug));
   }, [dispatch]);
 
   if (!user) {

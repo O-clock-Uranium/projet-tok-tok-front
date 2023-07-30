@@ -4,8 +4,6 @@ import {
   IconButton,
   Menu,
   MenuItem,
-  Modal,
-  Typography,
 } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -13,16 +11,14 @@ import down from '../../../../assets/icons/down.svg';
 import profile from '../../../../assets/icons/profile.svg';
 import settings from '../../../../assets/icons/settings.svg';
 import signout from '../../../../assets/icons/signout.svg';
-import { edit, logout } from '../../../../store/reducers/user';
+import { logout } from '../../../../store/reducers/user';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
-import EditProfileModal from '../../../Modals/EditProfileModal';
-import SignUp from '../../../Accueil/SignUp/SignUp';
-import EditProfile from '../../../Modals/EditProfileModal';
+import EditProfileModal from '../../../Modals/EditProfileModal/EditProfileModal';
 
 export default function UserMenu() {
   const dispatch = useAppDispatch();
 
-  const userId = useAppSelector((state) => state.user.id)
+  const userSlug = useAppSelector((state) => state.user.slug);
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -45,15 +41,6 @@ export default function UserMenu() {
     setOpen(true);
     handleClose();
   };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    dispatch(edit(formData));
-    // setOpen(false);
-  };
-
-  const handleCloseModal = () => setOpen(false);
   // Modal edit profile --------------------------
 
   return (
@@ -91,7 +78,7 @@ export default function UserMenu() {
         >
           <MenuItem
             component={Link}
-            to={`/profil/${userId}`}
+            to={`/profil/${userSlug}`}
             onClick={handleClose}
             sx={{ fontSize: '1.8rem' }}
           >
@@ -125,45 +112,7 @@ export default function UserMenu() {
         </Menu>
       </AccordionSummary>
 
-      <Modal
-        open={open}
-        onClose={handleCloseModal}
-        component="form"
-        onSubmit={handleSubmit}
-        encType="multipart/form-data"
-        aria-labelledby="modal-modal-profile"
-        aria-describedby="modal-modal-edit"
-      >
-        <Box
-          sx={{
-            backgroundColor: 'transparent',
-            margin: 'auto',
-            width: '50%',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            minHeight: '100vh',
-          }}
-        >
-          <Box
-            // onSubmit={handleSubmit}
-            sx={{
-              backgroundColor: 'white',
-              width: '80%',
-              m: 'auto',
-              p: '5rem',
-              borderRadius: '2rem',
-            }}
-          >
-            {/* Titre */}
-            <Typography id="modal-modal-title" fontSize="1.6rem">
-              Editer mon profil
-            </Typography>
-
-            <EditProfile />
-          </Box>
-        </Box>
-      </Modal>
+      <EditProfileModal open={open} setOpen={setOpen} />
     </>
   );
 }

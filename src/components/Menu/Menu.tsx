@@ -15,7 +15,7 @@ import profile from '../../assets/icons/profile.svg';
 import { useAppSelector } from '../../hooks/redux';
 
 export default function Menu() {
-  const userId = useAppSelector((state)=> state.user.id)
+  const userSlug = useAppSelector((state)=> state.user.slug)
   return (
     <Paper
       elevation={0}
@@ -61,7 +61,7 @@ export default function Menu() {
           <ListItemButton
             sx={{ p: '1.7rem', borderRadius: '1.5rem' }}
             component={NavLink}
-            to={`/profil/${userId}`}
+            to={`/profil/${userSlug}`}
             style={({ isActive }) =>
               isActive
                 ? {

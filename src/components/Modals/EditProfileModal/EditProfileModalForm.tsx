@@ -8,8 +8,8 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useAppSelector } from '../../hooks/redux';
-import FormField from '../Accueil/FormField/FormField';
+import { useAppSelector } from '../../../hooks/redux';
+import FormField from '../../Accueil/FormField/FormField';
 
 export default function EditProfile() {
   const errorMessage = useAppSelector((state) => state.user.error);
@@ -35,7 +35,6 @@ export default function EditProfile() {
     }
     fetchAddress();
   }, [addressValue, addressProps]);
-
 
   const addressPropsList = addressProps.map((e: any) => {
     const handleClickAddressItem = (e: any) => {
@@ -93,35 +92,35 @@ export default function EditProfile() {
       <Stack direction="row" gap={2}>
         <FormField
           name="firstname"
-          //label="Nom"
+          label="Nom"
           type="text"
           autoComplete="family-name"
-          label={user.firstname}
+          inputText={user.firstname}
         />
         <FormField
           name="lastname"
-          //label="Prénom"
+          label="Prénom"
           type="text"
           autoComplete="given-name"
-          label={user.lastname}
+          inputText={user.lastname}
         />
       </Stack>
 
       <FormField
         name="description"
-        // label="Description"
+        label="Description"
         type="text"
         autoComplete="none"
         multiline
         rows={4}
-        label={user.description}
+        inputText={user.description}
       />
       <FormField
         name="address"
-        //label="Adresse"
+        label="Adresse"
         type="text"
         autoComplete="none"
-        label ={user.address}
+        inputText={user.address}
         onChange={handleChange}
       />
 
@@ -156,10 +155,10 @@ export default function EditProfile() {
       <Stack direction="row" gap={2}>
         <FormField
           name="email"
-          //label="Email"
+          label="Email"
           type="mail"
           autoComplete="none"
-          label={user.email}
+          inputText={user.email}
         />
 
         <FormField
