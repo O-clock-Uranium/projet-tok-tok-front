@@ -1,12 +1,13 @@
 import { Stack } from '@mui/material';
+import { useEffect, useState } from 'react';
 import AdvertCard from '../Adverts/Advert/Advert';
 // import ToggleButton from '../Adverts/ToggleButton/ToggleButton';
-import Informations from './Informations/Informations';
-import { useEffect, useState } from 'react';
-import { useAppSelector, useAppDispatch } from '../../hooks/redux';
+import { User } from '../../@types';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchFavourites } from '../../store/reducers/adverts';
+import Informations from './Informations/Informations';
 
-export default function Profile({id}) {
+export default function Profile() {
   const dispatch = useAppDispatch();
 
   return (

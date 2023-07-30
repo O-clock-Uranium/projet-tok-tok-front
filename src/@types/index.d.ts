@@ -35,7 +35,7 @@ export interface User {
   lastname: string;
   description: string;
   adress: string;
-  localization: string;
+  city: string;
   thumbnail: string;
 }
 

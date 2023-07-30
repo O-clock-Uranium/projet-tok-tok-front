@@ -33,7 +33,7 @@ export default function Favourites() {
         height="8.2rem"
       />
       <Stack direction="row" flexWrap="wrap" gap="1rem" mt="2rem">
-        {favouritesList}
+        {!favouritesList ? <p>Vous navez pas de favoris</p> : favouritesList}
       </Stack>
     </Box>
   );
