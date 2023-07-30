@@ -30,6 +30,7 @@ const listItemButtonStyles = {
 };
 
 export default function Menu() {
+  const userSlug = useAppSelector((state)=> state.user.slug)
   return (
     <Paper
       elevation={0}
@@ -67,7 +68,7 @@ export default function Menu() {
               ...listItemButtonStyles,
             }}
             component={NavLink}
-            to="/profil"
+            to={`/profil/${userSlug}`}
           >
             <ProfileSVG />
           </ListItemButton>

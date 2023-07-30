@@ -5,11 +5,18 @@ interface FieldProps {
   name: string;
   type: string;
   autoComplete: string;
+  inputText?: string | null;
   [prop: string]: unknown;
 }
 
-function LoginField({ name, type, autoComplete, ...props }: FieldProps) {
-  const [value, setValue] = useState('');
+function LoginField({
+  name,
+  type,
+  autoComplete,
+  inputText,
+  ...props
+}: FieldProps) {
+  const [value, setValue] = useState(inputText ? inputText : '');
 
   const inputId = useId();
 

@@ -1,8 +1,23 @@
 import { Button, Stack, Typography } from '@mui/material';
-import { useAppSelector } from '../../../hooks/redux';
+import { User } from '../../../@types';
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import EditProfileModal from '../../Modals/EditProfileModal/EditProfileModal';
 
-export default function Informations() {
-  const user = useAppSelector((state) => state.user);
+interface InformationsProps {
+  userInfo: User;
+}
+
+export default function Informations({ userInfo }: InformationsProps) {
+  const { id } = useParams();
+  const [open, setOpen] = useState(false);
+
+  const isMine = (idToTest: string) => {
+    return userInfo.id === Number(idToTest);
+  };
+  const handleSettings = () => {
+    setOpen(true);
+  };
   return (
     <Stack
       sx={{
@@ -42,7 +57,7 @@ export default function Informations() {
           height="5rem"
         >
           <img
-            src={user.thumbnail}
+            src={userInfo.thumbnail}
             alt="profile_picture"
             style={{
               position: 'relative',
@@ -61,25 +76,30 @@ export default function Informations() {
             fontWeight="700"
             lineHeight="normal"
           >
-            {' '}
-            {user.firstname} {user.lastname}
+            {userInfo.firstname} {userInfo.lastname}
           </Typography>
         </Stack>
-        <Button
-          sx={{
-            px: '2rem',
-            py: '1rem',
-            backgroundColor: 'primary.dark',
-            color: 'white',
-            fontSize: '1.8rem',
-            borderRadius: '5rem',
-            '&:hover': {
-              backgroundColor: 'primary.light',
-            },
-          }}
-        >
-          Editer Profil
-        </Button>
+        {isMine(id) && (
+          <>
+            <Button
+              onClick={handleSettings}
+              sx={{
+                px: '2rem',
+                py: '1rem',
+                backgroundColor: 'primary.dark',
+                color: 'white',
+                fontSize: '1.8rem',
+                borderRadius: '5rem',
+                '&:hover': {
+                  backgroundColor: 'primary.light',
+                },
+              }}
+            >
+              Editer Profil
+            </Button>
+            <EditProfileModal open={open} setOpen={setOpen} />
+          </>
+        )}
       </Stack>
       <Stack direction="row" width="75rem">
         <Typography
@@ -90,7 +110,7 @@ export default function Informations() {
           lineHeight="150%"
           px="1rem"
         >
-          {user.description}
+          {userInfo.description}
         </Typography>
       </Stack>
     </Stack>
