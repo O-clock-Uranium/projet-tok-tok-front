@@ -8,7 +8,7 @@ import axiosInstance from '../../utils/axios';
 
 interface UserState {
   logged: boolean;
-  token: boolean | string;
+  token: string;
   id: number;
   firstname: string;
   lastname: string;
@@ -23,7 +23,6 @@ interface UserState {
 
   error?: string;
   isLoading: boolean;
-  user: [];
 }
 
 export const initialState: UserState = {

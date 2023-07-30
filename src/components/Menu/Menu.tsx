@@ -7,15 +7,32 @@ import {
 } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
-import bookmark from '../../assets/icons/bookmark.svg';
-import conversation from '../../assets/icons/conversation.svg';
-import home from '../../assets/icons/home.svg';
-import megaphone from '../../assets/icons/megaphone.svg';
-import profile from '../../assets/icons/profile.svg';
+
 import { useAppSelector } from '../../hooks/redux';
+import Home from './test/HomeSVG';
+import ProfileSVG from './test/ProfileSVG';
+import MessagerieSVG from './test/MessagerieSVG';
+import FavouritesSVG from './test/FavouritesSVG';
+import AdvertsSVG from './test/AdvertsSVG';
+
+const listItemButtonStyles = {
+  p: '1.5rem',
+  borderRadius: '1.5rem',
+  '&.active': {
+    p: '1.5rem',
+    backgroundColor: '#03665C',
+    borderRadius: '1.5rem',
+    '& #filled': {
+      fill: 'white',
+    },
+  },
+  '#filled': {
+    fill: 'black',
+  },
+};
 
 export default function Menu() {
-  const userId = useAppSelector((state)=> state.user.id)
+  const userId = useAppSelector((state) => state.user.id);
   return (
     <Paper
       elevation={0}
@@ -41,80 +58,46 @@ export default function Menu() {
         >
           <ListItemButton
             sx={{
-              p: '1.7rem',
-              borderRadius: '1.5rem',
+              ...listItemButtonStyles,
             }}
             component={NavLink}
             to="/"
-            style={({ isActive }) =>
-              isActive
-                ? {
-                    backgroundColor: '#03665C',
-                    borderRadius: '1.5rem',
-                    // transitionDelay: '180ms', //! A revoir la transition
-                  }
-                : null
-            }
           >
-            <img alt="search icon" src={home} />
+            <Home />
           </ListItemButton>
           <ListItemButton
-            sx={{ p: '1.7rem', borderRadius: '1.5rem' }}
+            sx={{
+              ...listItemButtonStyles,
+            }}
             component={NavLink}
             to="/profil"
-            style={({ isActive }) =>
-              isActive
-                ? {
-                    backgroundColor: '#03665C',
-                    borderRadius: '1.5rem',
-                  }
-                : null
-            }
           >
-            <img style={{ fill: 'blue' }} alt="search icon" src={profile} />
+            <ProfileSVG />
           </ListItemButton>
           <ListItemButton
-            sx={{ p: '1.7rem', borderRadius: '1.5rem' }}
+            sx={{
+              ...listItemButtonStyles,
+            }}
             component={NavLink}
             to="/adverts"
-            style={({ isActive }) =>
-              isActive
-                ? {
-                    backgroundColor: '#03665C',
-                    borderRadius: '1.5rem',
-                  }
-                : null
-            }
           >
-            <img alt="search icon" src={megaphone} />
+            <AdvertsSVG />
           </ListItemButton>
           <ListItemButton
-            sx={{ p: '1.7rem', borderRadius: '1.5rem' }}
+            sx={{
+              ...listItemButtonStyles,
+            }}
             component={NavLink}
             to="/favoris"
-            style={({ isActive }) =>
-              isActive
-                ? {
-                    backgroundColor: '#03665C',
-                    borderRadius: '1.5rem',
-                  }
-                : null
-            }
           >
-            <img alt="search icon" src={bookmark} />
+            <FavouritesSVG />
           </ListItemButton>
           <ListItemButton
-            sx={{ p: '1.7rem', borderRadius: '1.5rem' }}
+            sx={{
+              ...listItemButtonStyles,
+            }}
             component={NavLink}
             to="/messagerie"
-            style={({ isActive }) =>
-              isActive
-                ? {
-                    backgroundColor: '#03665C',
-                    borderRadius: '1.5rem',
-                  }
-                : null
-            }
           >
             <Badge
               sx={{
@@ -126,7 +109,7 @@ export default function Menu() {
               badgeContent={5477}
               color="primary"
             >
-              <img alt="search icon" src={conversation} />
+              <MessagerieSVG />
             </Badge>
           </ListItemButton>
         </MenuItem>
