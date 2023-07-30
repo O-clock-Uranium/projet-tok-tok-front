@@ -11,7 +11,7 @@ axiosInstance2.interceptors.request.use(
     if (!config.headers.Authorization) {
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
-        console.log(token);
+        console.log(config.headers.Authorization);
       }
     }
     return config;

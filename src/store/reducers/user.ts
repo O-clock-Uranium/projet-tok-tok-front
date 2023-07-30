@@ -5,7 +5,6 @@ import {
 } from '@reduxjs/toolkit';
 
 import axiosInstance from '../../utils/axios';
-import axiosInstance2 from '../../utils/axios copy';
 
 interface UserState {
   logged: boolean;
@@ -29,7 +28,7 @@ interface UserState {
 
 export const initialState: UserState = {
   logged: false,
-  token: !!localStorage.getItem('token'),
+  token: '',
   id: 0,
   firstname: '',
   lastname: '',
@@ -43,7 +42,6 @@ export const initialState: UserState = {
   email: '',
   error: '',
   isLoading: false,
-  user: [],
 };
 
 export const logout = createAction('user/logout');
@@ -55,12 +53,8 @@ export const login = createAsyncThunk(
       const objData = Object.fromEntries(formData);
 
       const { data } = await axiosInstance.post('/login', objData);
-      console.log(data.user);
-      if (!localStorage.getItem('user')) {
-        localStorage.setItem('user', JSON.stringify(data.user));
-      }
       axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
-
+      console.log(data.token)
       // delete data.token;
 
       return data;
@@ -79,7 +73,6 @@ export const signup = createAsyncThunk(
 
       const { data } = await axiosInstance.post('/signup', objData);
       axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
-
       // delete data.token;
 
       return data as {
@@ -99,7 +92,7 @@ export const edit = createAsyncThunk(
   'user/edit',
   async (formData: FormData) => {
     try {
-      const { data } = await axiosInstance2.patch('/my-profile/edit', formData);
+      const { data } = await axiosInstance.patch('/my-profile/edit', formData);
       return data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -145,8 +138,6 @@ const userReducer = createReducer(initialState, (builder) => {
       state.description = action.payload.user.description;
       state.email = action.payload.user.email;
       state.token = action.payload.token;
-
-      localStorage.setItem('token', action.payload.token);
     })
     .addCase(login.rejected, (state, action) => {
       state.isLoading = false;
@@ -155,7 +146,7 @@ const userReducer = createReducer(initialState, (builder) => {
     .addCase(logout, (state) => {
       state.logged = false;
       state.token = '';
-      localStorage.removeItem('token');
+      state.error = initialState.error
     })
     .addCase(signup.fulfilled, (state, action) => {
       state.isLoading = false;

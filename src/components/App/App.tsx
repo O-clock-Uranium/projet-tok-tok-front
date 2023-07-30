@@ -5,10 +5,12 @@ import { useAppSelector } from '../../hooks/redux';
 import Accueil from '../Accueil/Accueil';
 import AppHeader from '../AppHeader/AppHeader';
 import Menu from '../Menu/Menu';
+import axiosInstance from '../../utils/axios';
 
 function App() {
-  // const isLogged = useAppSelector((state) => state.user.logged);
-  const [isLogged, setIsLogged] = useState(false);
+  const isLogged = useAppSelector((state) => state.user.logged);
+  const state = useAppSelector((state) => state.user)
+  // const [isLogged, setIsLogged] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   useEffect(() => {
@@ -16,16 +18,17 @@ function App() {
       top: 0,
       behavior: 'smooth',
     });
+    // console.log(state)
   }, [location]);
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      setIsLogged(true);
-      <Navigate to="/" />;
-      // navigate('/profil');
-    }
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
+  //   if (token) {
+  //     setIsLogged(true);
+  //     <Navigate to="/" />;
+  //     // navigate('/profil');
+  //   }
+  // }, []);
 
   return (
     <div className="App">

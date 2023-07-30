@@ -22,7 +22,7 @@ export const fetchPosts = createAsyncThunk(
   'publications/fetchPosts',
   async () => {
     try {
-      const { data } = await axiosInstance2.get<Publication[]>('/posts');
+      const { data } = await axiosInstance.get('/posts');
       return data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -35,7 +35,7 @@ export const addPost = createAsyncThunk(
   'publications/addPost',
   async (formData: FormData) => {
     try {
-      const { data } = await axiosInstance2.post('/posts', formData);
+      const { data } = await axiosInstance.post('/posts', formData);
       return data as Publication[];
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -50,7 +50,7 @@ export const delPost = createAsyncThunk(
   async (id: number) => {
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { data } = await axiosInstance2.delete(`/posts/${id}`);
+      const { data } = await axiosInstance.delete(`/posts/${id}`);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       throw new Error(error.response.data.error);
@@ -63,7 +63,7 @@ export const addLike = createAsyncThunk(
   async (id: number) => {
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { data } = await axiosInstance2.post(`/likes/${id}`);
+      const { data } = await axiosInstance.post(`/likes/${id}`);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       throw new Error(error.response.data.error);
@@ -76,7 +76,8 @@ export const delLike = createAsyncThunk(
   async (id: number) => {
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { data } = await axiosInstance2.delete(`/likes/${id}`);
+      const { data } = await axiosInstance.delete(`/likes/${id}`);
+      axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       throw new Error(error.response.data.error);
