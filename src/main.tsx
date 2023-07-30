@@ -7,15 +7,16 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom';
+import { PersistGate } from 'redux-persist/integration/react';
 
-import store from './store';
-
+import { persistStore } from 'redux-persist';
 import App from './components/App/App';
 import Error from './components/Error/Error';
 import Favourites from './components/Favourites/Favourites';
 import Posts from './components/Homepage/Posts/Posts';
 import Messagerie from './components/Messagerie/Messagerie';
 import Profile from './components/Profile/Profile';
+import store from './store/store';
 import './styles/index.scss';
 
 import Accueil from './components/Accueil/Accueil';
@@ -45,10 +46,14 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
+const persistor = persistStore(store);
+
 root.render(
   <ThemeProvider theme={theme}>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <PersistGate loading={null} persistor={persistor}>
+        <RouterProvider router={router} />
+      </PersistGate>
     </Provider>
   </ThemeProvider>
 );

@@ -5,7 +5,7 @@ import axiosInstance from '../../utils/axios';
 interface PublicationState {
   list: Publication[];
   isLoading: boolean;
-  error: string;
+  error: string | undefined;
   like: boolean;
 }
 
@@ -21,7 +21,7 @@ export const fetchPosts = createAsyncThunk(
   'publications/fetchPosts',
   async () => {
     try {
-      const { data } = await axiosInstance.get<Publication[]>('/posts');
+      const { data } = await axiosInstance.get('/posts');
       return data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -76,6 +76,7 @@ export const delLike = createAsyncThunk(
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { data } = await axiosInstance.delete(`/likes/${id}`);
+      axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       throw new Error(error.response.data.error);
@@ -106,12 +107,6 @@ const publicationsReducer = createReducer(initialState, (builder) => {
     })
     .addCase(delPost.rejected, (state, action) => {
       state.error = action.error.message;
-    })
-    .addCase(addLike.fulfilled, (state) => {
-      // state.like = true;
-    })
-    .addCase(delLike.fulfilled, (state) => {
-      // state.like = false;
     });
 });
 
