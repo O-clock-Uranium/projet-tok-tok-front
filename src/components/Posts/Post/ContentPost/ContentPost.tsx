@@ -1,5 +1,5 @@
 import { Stack } from '@mui/material';
-import { Publication } from '../../../../../@types/publication';
+import { Publication } from '../../../../@types/publication';
 import Post from '../Post';
 
 interface ContentPostProps {

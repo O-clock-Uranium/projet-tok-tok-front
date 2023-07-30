@@ -6,6 +6,7 @@ import advertsReducer from './reducers/adverts';
 import messagerieReducer from './reducers/messagerie';
 import publicationsReducer from './reducers/publications';
 import userReducer from './reducers/user';
+import profileReducer from './reducers/profile';
 
 const persistConfig = {
   key: 'root',
@@ -18,6 +19,7 @@ const reducer = combineReducers({
   user: userReducer,
   adverts: advertsReducer,
   publications: publicationsReducer,
+  profile: profileReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);

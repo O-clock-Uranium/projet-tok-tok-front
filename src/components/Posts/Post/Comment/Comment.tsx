@@ -1,6 +1,6 @@
 import { Avatar, Box, Paper, Stack, Typography } from '@mui/material';
-import { Reply } from '../../../../../@types/publication';
-import TriplePointButton from '../../../../TriplePointButton/TriplePointButton';
+import { Reply } from '../../../../@types/publication';
+import TriplePointButton from '../../../TriplePointButton/TriplePointButton';
 
 export default function OneComment({
   id,
@@ -25,8 +25,8 @@ export default function OneComment({
         justifyContent="space-between"
       >
         <Avatar
-          alt="Patrick Sebastien"
-          src="{../../src/fakedata/ps.jpg}"
+          alt="User avatar"
+          src={post_creator?.thumbnail}
           sx={{ width: 45, height: 45 }}
         />
         <Stack direction="column" flex="1">

@@ -1,6 +1,6 @@
 import { Stack } from '@mui/material';
-import { Reply } from '../../../../../../@types/publication';
-import OneComment from '../OneComment';
+import { Reply } from '../../../../../@types/publication';
+import OneComment from '../Comment';
 
 interface ContentCommentProps {
   // eslint-disable-next-line react/require-default-props

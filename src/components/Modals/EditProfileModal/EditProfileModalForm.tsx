@@ -95,14 +95,14 @@ export default function EditProfile() {
           label="Nom"
           type="text"
           autoComplete="family-name"
-          inputText={user.firstname}
+          placeholder={user.firstname}
         />
         <FormField
           name="lastname"
           label="Prénom"
           type="text"
           autoComplete="given-name"
-          inputText={user.lastname}
+          placeholder={user.lastname}
         />
       </Stack>
 
@@ -113,14 +113,14 @@ export default function EditProfile() {
         autoComplete="none"
         multiline
         rows={4}
-        inputText={user.description}
+        placeholder={user.description}
       />
       <FormField
         name="address"
         label="Adresse"
         type="text"
         autoComplete="none"
-        inputText={user.address}
+        placeholder={user.address}
         onChange={handleChange}
       />
 
@@ -158,7 +158,7 @@ export default function EditProfile() {
           label="Email"
           type="mail"
           autoComplete="none"
-          inputText={user.email}
+          placeholder={user.email}
         />
 
         <FormField

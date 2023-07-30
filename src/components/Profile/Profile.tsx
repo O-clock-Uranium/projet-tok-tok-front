@@ -1,14 +1,13 @@
 import { Stack, ToggleButtonGroup } from '@mui/material';
-import ToggleButton from '../Adverts/ToggleButton/ToggleButton';
-import Informations from './Informations/Informations';
-import { useEffect } from 'react';
-import { useAppSelector, useAppDispatch } from '../../hooks/redux';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchProfile } from '../../store/reducers/profile';
 import ContentAdvert from '../Adverts/ContentAdvert/ContentAdvert';
-import { useParams } from 'react-router-dom';
-import Posts from '../Homepage/Posts/Posts';
-import ContentPost from '../Homepage/Posts/Post/ContentPost/ContentPost';
-import React from 'react';
+import ToggleButton from '../Adverts/ToggleButton/ToggleButton';
+import ContentPost from '../Posts/Post/ContentPost/ContentPost';
+import Posts from '../Posts/Posts';
+import Informations from './Informations/Informations';
 import Toggle from './Toggle';
 
 export default function Profile() {
@@ -38,7 +37,7 @@ export default function Profile() {
       spacing={2}
       sx={{ py: '13rem' }}
     >
-      <Informations userInfo={user}/>
+      <Informations userInfo={user} />
 
       <Toggle display={display} setDisplay={setDisplay} />
 

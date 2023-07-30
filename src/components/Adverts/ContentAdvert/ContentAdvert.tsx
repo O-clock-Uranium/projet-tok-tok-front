@@ -1,6 +1,6 @@
 import { Stack } from '@mui/material';
 import { Advert } from '../../../@types';
-import AdvertCard from '../Advert/Advert';
+import AdvertCard from '../AdvertCard/AdvertCard';
 
 interface ContentAdvertProps {
   // eslint-disable-next-line react/require-default-props

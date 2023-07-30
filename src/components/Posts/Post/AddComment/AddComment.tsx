@@ -1,13 +1,10 @@
 import { Avatar, Box, IconButton, InputBase, Stack } from '@mui/material';
 import { useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../../../hooks/redux';
-import {
-  addPost,
-  fetchPosts,
-} from '../../../../../store/reducers/publications';
-import { Publication } from '../../../../../@types/publication';
+import { Publication } from '../../../../@types/publication';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
+import { addPost, fetchPosts } from '../../../../store/reducers/publications';
 
-import send from '../../../../../assets/icons/paper_plane.svg';
+import send from '../../../../assets/icons/paper_plane.svg';
 
 export default function AddCommentary({ id }: Publication) {
   const [value, setValue] = useState('');

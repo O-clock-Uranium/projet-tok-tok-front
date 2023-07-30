@@ -9,20 +9,20 @@ import {
 } from '@mui/material';
 import Collapse from '@mui/material/Collapse';
 import React from 'react';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 
-import { Publication } from '../../../../@types/publication';
+import { Publication } from '../../../@types/publication';
 import {
   addLike,
   delLike,
   fetchPosts,
-} from '../../../../store/reducers/publications';
+} from '../../../store/reducers/publications';
 
-import comment from '../../../../assets/icons/comment.svg';
-import TriplePointButton from '../../../TriplePointButton/TriplePointButton';
+import comment from '../../../assets/icons/comment.svg';
+import TriplePointButton from '../../TriplePointButton/TriplePointButton';
 
 import AddCommentary from './AddComment/AddComment';
-import ContentComment from './OneComment/ContentComment/ContentComment';
+import ContentComment from './Comment/ContentComment/ContentComment';
 
 export default function Post({
   id,
@@ -97,17 +97,7 @@ export default function Post({
             {created_at}
           </Typography>
         </Stack>
-        <IconButton
-          sx={{
-            fontSize: '4.5rem',
-            color: 'Black',
-            '&:hover': {
-              backgroundColor: 'transparent',
-            },
-          }}
-        >
-          <TriplePointButton id={id} />
-        </IconButton>
+        <TriplePointButton id={id} />
       </Stack>
       <Typography
         sx={{

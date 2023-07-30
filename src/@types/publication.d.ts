@@ -1,5 +1,3 @@
-import { Advert } from ".";
-
 export interface Publication {
   id: number;
   content: string | null;
@@ -13,7 +11,7 @@ export interface Publication {
 }
 
 export interface Creator {
-  id: number | null;
+  id: number;
   firstname: string | null;
   lastname: string | null;
   address: string | null;
@@ -21,7 +19,6 @@ export interface Creator {
 }
 
 export interface Likes {
-  // user: User[];
   id: number;
   firstname: string | null;
   lastname: string | null;
@@ -33,7 +30,7 @@ export interface Likes {
 }
 
 export interface Reply {
-  id: number | null;
+  id: number;
   content: string | null;
   thumbnail: string | null;
   user_id: number | null;

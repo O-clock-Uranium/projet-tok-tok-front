@@ -13,15 +13,15 @@ import { persistStore } from 'redux-persist';
 import App from './components/App/App';
 import Error from './components/Error/Error';
 import Favourites from './components/Favourites/Favourites';
-import Posts from './components/Homepage/Posts/Posts';
 import Messagerie from './components/Messagerie/Messagerie';
+import Posts from './components/Posts/Posts';
 import Profile from './components/Profile/Profile';
 import store from './store/store';
 import './styles/index.scss';
 
 import Accueil from './components/Accueil/Accueil';
+import Annonce from './components/Advert/Advert';
 import Adverts from './components/Adverts/Adverts';
-import Annonce from './components/Annonce/Annonce';
 import theme from './styles/theme';
 
 const router = createBrowserRouter(

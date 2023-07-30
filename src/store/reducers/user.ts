@@ -51,7 +51,7 @@ export const login = createAsyncThunk(
     try {
       const objData = Object.fromEntries(formData);
       const { data } = await axiosInstance.post('/login', objData);
-      // axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
+      axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
       return data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -66,7 +66,7 @@ export const signup = createAsyncThunk(
     try {
       const objData = Object.fromEntries(formData);
       const { data } = await axiosInstance.post('/signup', objData);
-      // axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`
+      axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
       return data as {
         message: string;
         auth: boolean;
@@ -163,6 +163,7 @@ const userReducer = createReducer(initialState, (builder) => {
     })
     .addCase(edit.pending, (state) => {
       state.isLoading = false;
+      state.error = initialState.error;
     })
     .addCase(edit.rejected, (state, action) => {
       state.isLoading = false;

@@ -57,11 +57,6 @@ export default function EditProfileModal({
             borderRadius: '2rem',
           }}
         >
-          {/* Titre */}
-          <Typography id="modal-modal-title" fontSize="1.6rem">
-            Editer mon profil
-          </Typography>
-
           <EditProfileModalForm />
         </Box>
       </Box>
