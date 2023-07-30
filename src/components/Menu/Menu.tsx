@@ -61,7 +61,7 @@ export default function Menu() {
           <ListItemButton
             sx={{ p: '1.7rem', borderRadius: '1.5rem' }}
             component={NavLink}
-            to="/profil"
+            to={`/profil/${userId}`}
             style={({ isActive }) =>
               isActive
                 ? {

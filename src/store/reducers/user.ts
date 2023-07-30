@@ -102,22 +102,6 @@ export const edit = createAsyncThunk(
   }
 );
 
-// export const fetchProfile = (id: number) => createAsyncThunk(
-//   'user/fetchProfile',
-//   async () => {
-//     try {
-//       const { data } = await axiosInstance.get(`/profile/${id}`);
-//       console.log(data);
-
-//       return data;
-
-//       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-//     } catch (error: any) {
-//       throw new Error(error.response.data.error);
-//     }
-//   }
-// );
-
 const userReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(login.pending, (state) => {

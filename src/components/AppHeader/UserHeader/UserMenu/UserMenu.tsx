@@ -14,7 +14,7 @@ import profile from '../../../../assets/icons/profile.svg';
 import settings from '../../../../assets/icons/settings.svg';
 import signout from '../../../../assets/icons/signout.svg';
 import { edit, logout } from '../../../../store/reducers/user';
-import { useAppDispatch } from '../../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import EditProfileModal from '../../../Modals/EditProfileModal';
 import SignUp from '../../../Accueil/SignUp/SignUp';
 import EditProfile from '../../../Modals/EditProfileModal';
@@ -22,6 +22,7 @@ import EditProfile from '../../../Modals/EditProfileModal';
 export default function UserMenu() {
   const dispatch = useAppDispatch();
 
+  const userId = useAppSelector((state) => state.user.id)
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -90,7 +91,7 @@ export default function UserMenu() {
         >
           <MenuItem
             component={Link}
-            to="/profil"
+            to={`/profil/${userId}`}
             onClick={handleClose}
             sx={{ fontSize: '1.8rem' }}
           >

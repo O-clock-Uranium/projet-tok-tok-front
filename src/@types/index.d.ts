@@ -33,10 +33,14 @@ export interface User {
   id: number;
   firstname: string;
   lastname: string;
-  description: string;
-  adress: string;
-  localization: string;
+  description: string | null;
+  city: string;
   thumbnail: string;
+  slug: string;
+  created_at: string;
+  liked: Publication[];
+  posts: Publication[];
+  adverts: Advert[];
 }
 
 export interface Post {

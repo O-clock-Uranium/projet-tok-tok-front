@@ -1,6 +1,19 @@
 import { Button, Stack, Typography } from '@mui/material';
+import { User } from '../../../@types';
+import React from 'react';
+import { useParams } from 'react-router-dom';
 
-export default function Informations() {
+interface InformationsProps {
+  userInfo: User;
+}
+
+export default function Informations({ userInfo }: InformationsProps) {
+  const { id } = useParams();
+
+  const isMine = (idToTest:string) => {
+    return userInfo.id === Number(idToTest);
+  };
+
   return (
     <Stack
       sx={{
@@ -40,7 +53,7 @@ export default function Informations() {
           height="5rem"
         >
           <img
-            src="../../../src/fakedata/fakenana.jpg"
+            src={userInfo.thumbnail}
             alt="profile_picture"
             style={{
               position: 'relative',
@@ -60,24 +73,27 @@ export default function Informations() {
             lineHeight="normal"
           >
             {' '}
-            Camilla Oliveira
+            {userInfo.firstname} {userInfo.lastname}
           </Typography>
         </Stack>
-        <Button
-          sx={{
-            px: '2rem',
-            py: '1rem',
-            backgroundColor: 'primary.dark',
-            color: 'white',
-            fontSize: '1.8rem',
-            borderRadius: '5rem',
-            '&:hover': {
-              backgroundColor: 'primary.light',
-            },
-          }}
-        >
-          Editer Profil
-        </Button>
+
+        {isMine(id) && (
+          <Button
+            sx={{
+              px: '2rem',
+              py: '1rem',
+              backgroundColor: 'primary.dark',
+              color: 'white',
+              fontSize: '1.8rem',
+              borderRadius: '5rem',
+              '&:hover': {
+                backgroundColor: 'primary.light',
+              },
+            }}
+          >
+            Editer Profil
+          </Button>
+        )}
       </Stack>
       <Stack direction="row" width="75rem">
         <Typography
@@ -88,8 +104,7 @@ export default function Informations() {
           lineHeight="150%"
           px="1rem"
         >
-          Je suis une personne très fofolle, j&apos;aime les cabarets et chanter
-          les musiques qui parle de petit bonhomme et qui sont festives !!
+          {userInfo.description}
         </Typography>
       </Stack>
     </Stack>

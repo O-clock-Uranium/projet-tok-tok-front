@@ -1,3 +1,5 @@
+import { Advert } from ".";
+
 export interface Publication {
   id: number;
   content: string | null;
@@ -26,21 +28,6 @@ export interface Likes {
   description: string | null;
   address: string | null;
   city: string | null;
-  thumbnail: string | null;
-  slug: string | null;
-}
-
-export interface User {
-  id: number | null;
-  firstname: string | null;
-  lastname: string | null;
-  description: string | null;
-  address: string | null;
-  city: string | null;
-  longitude: string | null;
-  latitude: string | null;
-  email: string | null;
-  password: string | null;
   thumbnail: string | null;
   slug: string | null;
 }
