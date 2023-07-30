@@ -15,13 +15,9 @@ export default function Informations({ userInfo }: InformationsProps) {
   const isMine = (idToTest: string) => {
     return userInfo.id === Number(idToTest);
   };
-
-  // Modal edit profile --------------------------
   const handleSettings = () => {
     setOpen(true);
   };
-  // Modal edit profile --------------------------
-
   return (
     <Stack
       sx={{
@@ -80,11 +76,9 @@ export default function Informations({ userInfo }: InformationsProps) {
             fontWeight="700"
             lineHeight="normal"
           >
-            {' '}
             {userInfo.firstname} {userInfo.lastname}
           </Typography>
         </Stack>
-
         {isMine(id) && (
           <>
             <Button

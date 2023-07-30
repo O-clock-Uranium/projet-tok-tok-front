@@ -8,6 +8,7 @@ import axiosInstance from '../../utils/axios';
 
 interface UserState {
   logged: boolean;
+  token: string;
   id: number;
   firstname: string;
   lastname: string;
@@ -26,6 +27,7 @@ interface UserState {
 
 export const initialState: UserState = {
   logged: false,
+  token: '',
   id: 0,
   firstname: '',
   lastname: '',
@@ -48,17 +50,9 @@ export const login = createAsyncThunk(
   async (formData: FormData) => {
     try {
       const objData = Object.fromEntries(formData);
-
       const { data } = await axiosInstance.post('/login', objData);
-      axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
-      delete data.token;
-
-      return data as {
-        auth: boolean;
-        token: string;
-        user: UserState;
-        error: string;
-      };
+      // axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
+      return data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       throw new Error(error.response.data.error);
@@ -71,11 +65,8 @@ export const signup = createAsyncThunk(
   async (formData: FormData) => {
     try {
       const objData = Object.fromEntries(formData);
-
       const { data } = await axiosInstance.post('/signup', objData);
-      axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
-      delete data.token;
-
+      // axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`
       return data as {
         message: string;
         auth: boolean;
@@ -106,10 +97,12 @@ const userReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(login.pending, (state) => {
       state.isLoading = true;
+      state.error = initialState.error;
     })
     .addCase(login.fulfilled, (state, action) => {
       state.isLoading = false;
       state.logged = true;
+
       state.id = action.payload.user.id;
       state.firstname = action.payload.user.firstname;
       state.lastname = action.payload.user.lastname;
@@ -121,14 +114,16 @@ const userReducer = createReducer(initialState, (builder) => {
       state.slug = action.payload.user.slug;
       state.description = action.payload.user.description;
       state.email = action.payload.user.email;
+      state.token = action.payload.token;
     })
     .addCase(login.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.error.message;
     })
     .addCase(logout, (state) => {
-      state.logged = initialState.logged;
-      delete axiosInstance.defaults.headers.common.Authorization;
+      state.logged = false;
+      state.token = '';
+      state.error = initialState.error;
     })
     .addCase(signup.fulfilled, (state, action) => {
       state.isLoading = false;
@@ -147,6 +142,7 @@ const userReducer = createReducer(initialState, (builder) => {
     })
     .addCase(signup.pending, (state) => {
       state.isLoading = false;
+      state.error = initialState.error;
     })
     .addCase(signup.rejected, (state, action) => {
       state.isLoading = false;

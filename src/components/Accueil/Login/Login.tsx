@@ -24,33 +24,31 @@ export default function Login() {
   return (
     <>
       {isLogged && <Navigate to="/" />}
-      {!isLogged && (
-        <Box component="form" noValidate onSubmit={handleSubmit} sx={{}}>
-          {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
-          <FormField
-            name="email"
-            label="Email"
-            type="email"
-            autoComplete="email"
-            required
-          />
-          <FormField
-            name="password"
-            label="Mot de passe"
-            type="password"
-            autoComplete="current-password"
-            required
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2, color: 'white', fontSize: '1.3rem' }}
-          >
-            Se Connecter
-          </Button>
-        </Box>
-      )}
+      <Box component="form" noValidate onSubmit={handleSubmit} sx={{}}>
+        {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
+        <FormField
+          name="email"
+          label="Email"
+          type="email"
+          autoComplete="email"
+          required
+        />
+        <FormField
+          name="password"
+          label="Mot de passe"
+          type="password"
+          autoComplete="current-password"
+          required
+        />
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 2, color: 'white', fontSize: '1.3rem' }}
+        >
+          Se Connecter
+        </Button>
+      </Box>
     </>
   );
 }
