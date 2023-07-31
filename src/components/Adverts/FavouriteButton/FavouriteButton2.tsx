@@ -2,7 +2,7 @@ import BookmarkBorderSharpIcon from '@mui/icons-material/BookmarkBorderSharp';
 import BookmarkSharpIcon from '@mui/icons-material/BookmarkSharp';
 
 import { IconButton } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 
@@ -13,8 +13,6 @@ import {
   fetchAdverts,
   fetchFavourites,
 } from '../../../store/reducers/adverts';
-
-import BookmarkSVG from './BookmarkSVG';
 
 export default function FavoriteButton({
   id,

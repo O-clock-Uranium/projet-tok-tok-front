@@ -1,6 +1,6 @@
 import { Avatar, CardMedia, Paper, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { AdvertCreator, Favourite, Image } from '../../../@types';
 
 import { calculateTimeSpent } from '../../../utils/date';
@@ -29,6 +29,8 @@ export default function AdvertCard({
   created_at,
   favorited_by,
 }: AdvertCardProps) {
+  const location = useLocation();
+  const isProfilePage = location.pathname === `/profil/${advert_creator.slug}`;
   return (
     <Paper
       elevation={0}
@@ -89,7 +91,9 @@ export default function AdvertCard({
             </Typography>
           </Stack>
         </Stack>
-        <FavoriteButton2 id={id} favorited_by={favorited_by} />
+        {!isProfilePage && (
+          <FavoriteButton2 id={id} favorited_by={favorited_by} />
+        )}
       </Stack>
 
       <CardMedia
