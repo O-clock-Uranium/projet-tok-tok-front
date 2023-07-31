@@ -1,4 +1,4 @@
-import { Stack } from '@mui/material';
+import { Grid } from '@mui/material';
 import { Advert } from '../../../@types';
 import AdvertCard from '../AdvertCard/AdvertCard';
 
@@ -11,11 +11,17 @@ function ContentAdvert({ adverts }: ContentAdvertProps) {
   return (
     <div>
       {adverts && (
-        <Stack direction="row" flexWrap="wrap" gap="2rem">
+        <Grid
+          container
+          spacing={{ xs: 1, sm: 1, md: 1, lg: 1, xl: 1 }}
+          columns={{ xs: 1, sm: 1, md: 10, lg: 10, xl: 20 }}
+        >
           {adverts.map((advert) => (
-            <AdvertCard key={advert.id} {...advert} />
+            <Grid item xs={1} sm={1} md={4} lg={3} xl={6} key={advert.id}>
+              <AdvertCard {...advert} />
+            </Grid>
           ))}
-        </Stack>
+        </Grid>
       )}
     </div>
   );

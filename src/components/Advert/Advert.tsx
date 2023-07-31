@@ -2,29 +2,30 @@ import {
   Avatar,
   Box,
   CardMedia,
-  IconButton,
   Paper,
   Stack,
-  Typography,
+  Typography
 } from '@mui/material';
-import { useParams } from 'react-router-dom';
-import { useAppSelector } from '../../hooks/redux';
+import { useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { Advert } from '../../@types';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { fetchProfile } from '../../store/reducers/profile';
 import { findAdvert } from '../../store/selectors/adverts';
+import { calculateTimeSpent } from '../../utils/date';
 import ContentAdvert from '../Adverts/ContentAdvert/ContentAdvert';
+import FavouriteButton from '../Adverts/FavouriteButton/FavouriteButton';
 import AppHeader from '../AppHeader/AppHeader';
 import Menu from '../Menu/Menu';
 import ContactButton from './ContactButton/ContactButton.ContactButton';
-import FavouriteButton from '../Adverts/FavouriteButton/FavouriteButton';
-import { Advert } from '../../@types';
-import { calculateTimeSpent } from '../../utils/date';
 
 export default function Annonce({ id }: Advert) {
-  const adverts = useAppSelector((state) => state.adverts.list);
+  const dispatch = useAppDispatch();
   const { slug } = useParams();
-
   const advert = useAppSelector((state) =>
     findAdvert(state.adverts.list, slug as string)
   );
+  const user = useAppSelector((state) => state.profile);
 
   if (!advert) {
     // eslint-disable-next-line @typescript-eslint/no-throw-literal
@@ -33,6 +34,10 @@ export default function Annonce({ id }: Advert) {
       statusText: 'Not Found',
     });
   }
+
+  useEffect(() => {
+    dispatch(fetchProfile(slug));
+  }, [dispatch, slug]);
 
   return (
     <>
@@ -50,55 +55,65 @@ export default function Annonce({ id }: Advert) {
         <Paper
           elevation={0}
           sx={{
-            width: '55rem',
-            maxHeight: '50rem',
+            width: '82rem',
+            maxHeight: '55rem',
             mx: 'auto',
             borderRadius: '2rem',
+            p: '2rem',
           }}
         >
           <Stack direction="column">
             <Stack
-              spacing={12}
               direction="row"
-              justifyContent="space-around"
-              my="2rem"
+              justifyContent="space-between"
+              my="1rem"
+              alignItems="center"
+              alignSelf="stretch"
             >
-              <Avatar
-                alt="User-Avatar"
-                src={advert.advert_creator.thumbnail}
-                sx={{ width: 50, height: 50, ml: '1rem' }}
-              />
-              <Stack direction="column">
-                <Typography
-                  sx={{
-                    fontFamily: 'Manrope',
-                    fontSize: '1.4rem',
-                    fontStyle: 'normal',
-                    fontWeight: 700,
-                    lineHeight: 'normal',
-                    mb: '0.5rem',
-                  }}
-                >
-                  {advert.advert_creator.firstname}{' '}
-                  {advert.advert_creator.lastname}
-                </Typography>
-                <Typography
-                  sx={{
-                    fontFamily: 'Manrope',
-                    fontSize: '1rem',
-                    fontStyle: 'normal',
-                    fontWeight: 500,
-                    lineHeight: 'normal',
-                  }}
-                >
-                  Il y a {calculateTimeSpent(advert.created_at)}
-                </Typography>
+              <Stack direction="row" alignItems="center" gap="1rem">
+                <Avatar
+                  alt="User-Avatar"
+                  src={advert.advert_creator.thumbnail}
+                  sx={{ width: 75, height: 75 }}
+                />
+                <Stack direction="column">
+                  <Typography
+                    sx={{
+                      fontFamily: 'Manrope',
+                      fontSize: '1.4rem',
+                      fontStyle: 'normal',
+                      fontWeight: 700,
+                      lineHeight: 'normal',
+                      mb: '0.5rem',
+                    }}
+                  >
+                    <Link
+                      to={`/profil/${advert.advert_creator.slug}`}
+                      style={{ textDecoration: 'none', color: '#000' }}
+                    >
+                      {advert.advert_creator.firstname}{' '}
+                      {advert.advert_creator.lastname}
+                    </Link>
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontFamily: 'Manrope',
+                      fontSize: '1rem',
+                      fontStyle: 'normal',
+                      fontWeight: 500,
+                      lineHeight: 'normal',
+                    }}
+                  >
+                    Il y a {calculateTimeSpent(advert.created_at)}
+                  </Typography>
+                </Stack>
               </Stack>
               <FavouriteButton id={id} />
             </Stack>
             <CardMedia
               component="img"
-              height="200rem"
+              height="250rem"
+              sx={{ objectFit: 'fill', borderRadius: '2rem' }}
               src={advert.images.map((image) => image.thumbnail)}
               alt="green iguana"
             />
@@ -137,14 +152,18 @@ export default function Annonce({ id }: Advert) {
             fontSize: '3rem',
             mt: '2rem',
             mb: '2rem',
+            mx: 'auto',
             p: '0.2rem',
+            width: '82rem',
             borderRadius: '2rem',
             borderBottom: '0.5rem solid #03665C',
           }}
         >
           <p>Les autres annonces proposées par ce vendeur.</p>
         </Paper>
-        <ContentAdvert adverts={adverts} />
+        <Stack mx="auto">
+          <ContentAdvert adverts={user.adverts} />
+        </Stack>
       </Box>
     </>
   );

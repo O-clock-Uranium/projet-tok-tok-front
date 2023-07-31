@@ -28,7 +28,6 @@ export default function AdvertCard({
   images,
   created_at,
 }: AdvertCardProps) {
-  const userId = useAppSelector((state) => state.user.id);
   return (
     <Paper
       elevation={0}
@@ -68,7 +67,12 @@ export default function AdvertCard({
                 lineHeight: 'normal',
               }}
             >
-              {advert_creator.firstname} {advert_creator.lastname}
+              <Link
+                to={`/profil/${advert_creator.slug}`}
+                style={{ textDecoration: 'none', color: '#000' }}
+              >
+                {advert_creator.firstname} {advert_creator.lastname}
+              </Link>
             </Typography>
             <Typography
               sx={{

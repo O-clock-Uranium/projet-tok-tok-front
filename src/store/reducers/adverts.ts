@@ -3,7 +3,7 @@ import {
   createAsyncThunk,
   createReducer
 } from '@reduxjs/toolkit';
-import { Advert } from '../../@types';
+import { Advert, AdvertCreator } from '../../@types';
 
 import axiosInstance from '../../utils/axios';
 
