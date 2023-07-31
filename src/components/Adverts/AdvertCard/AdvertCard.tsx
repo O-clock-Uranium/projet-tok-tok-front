@@ -1,11 +1,10 @@
 import { Avatar, CardMedia, Paper, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
-import { AdvertCreator, Image } from '../../../@types';
-import { useAppSelector } from '../../../hooks/redux';
+import { AdvertCreator, Favourite, Image } from '../../../@types';
 
 import { calculateTimeSpent } from '../../../utils/date';
-import FavoriteButton from '../FavouriteButton/FavouriteButton';
+import FavoriteButton2 from '../FavouriteButton/FavouriteButton2';
 
 interface AdvertCardProps {
   id: number;
@@ -16,6 +15,7 @@ interface AdvertCardProps {
   advert_creator: AdvertCreator;
   images: Image[];
   created_at: any;
+  favorited_by: Favourite[];
 }
 
 export default function AdvertCard({
@@ -27,6 +27,7 @@ export default function AdvertCard({
   slug,
   images,
   created_at,
+  favorited_by,
 }: AdvertCardProps) {
   return (
     <Paper
@@ -88,7 +89,7 @@ export default function AdvertCard({
             </Typography>
           </Stack>
         </Stack>
-        <FavoriteButton id={id} />
+        <FavoriteButton2 id={id} favorited_by={favorited_by} />
       </Stack>
 
       <CardMedia
