@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useAppSelector } from '../../../hooks/redux';
+import { useAppSelector, useAppDispatch } from '../../../hooks/redux';
 import {
   subscribeToNewMessage,
   unsubscribeToNewMessage,
@@ -14,14 +14,18 @@ function Messages() {
   const messagesRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    // Abonnement aux nouveaux messages
     subscribeToNewMessage();
+
     return () => {
+      // Désabonnement des nouveaux messages
       unsubscribeToNewMessage();
     };
   }, []);
 
-  //! Revoir comment aimanté le scroll tout en bas à chaque nouveau message
+  //! Revoir comment aimanter le scroll tout en bas à chaque nouveau message
   useEffect(() => {
+    // Scroll vers le bas à chaque nouveau message
     messagesRef.current?.scrollTo(0, messagesRef.current.scrollHeight);
   }, [messages]);
 
