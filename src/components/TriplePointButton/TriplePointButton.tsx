@@ -18,7 +18,7 @@ export default function TriplePointButton({ id }: Publication) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const handleClickDel = () => {
+  const handleClickDel = async () => {
     dispatch(delPost(id));
     dispatch(fetchPosts());
   };

@@ -1,11 +1,8 @@
-import {
-  createAsyncThunk,
-  createReducer,
-} from '@reduxjs/toolkit';
+import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 
-import axiosInstance from '../../utils/axios';
-import { Publication } from '../../@types/publication';
 import { Advert } from '../../@types';
+import { Publication } from '../../@types/publication';
+import axiosInstance from '../../utils/axios';
 
 interface ProfileState {
   id: number;
@@ -39,14 +36,13 @@ export const initialState: ProfileState = {
   isLoading: false,
 };
 
-
 export const fetchProfile = createAsyncThunk(
   'user/fetchProfile',
   async (slug: string | undefined) => {
     try {
       const { data } = await axiosInstance.get(`/profile/${slug}`);
       return data;
-      //eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       throw new Error(error.response.data.error);
     }
@@ -74,7 +70,7 @@ const profileReducer = createReducer(initialState, (builder) => {
     .addCase(fetchProfile.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.error.message;
-    })
+    });
 });
 
 export default profileReducer;

@@ -16,13 +16,13 @@ export default function EditProfileModal({
   setOpen,
 }: EditProfileModalProps) {
   const dispatch = useAppDispatch();
-  const { id } = useParams();
+  const { slug } = useParams();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     dispatch(edit(formData));
-    dispatch(fetchProfile(id));
+    dispatch(fetchProfile(slug));
   };
 
   const handleCloseModal = () => setOpen(false);

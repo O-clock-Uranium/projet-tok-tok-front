@@ -64,7 +64,7 @@ export default function EditProfile() {
 
   return (
     <>
-      <Stack direction="column" alignItems={'center'} justifyContent="center">
+      <Stack direction="column" alignItems="center" justifyContent="center">
         <img
           src={user.thumbnail}
           alt="profile_picture"
@@ -84,7 +84,12 @@ export default function EditProfile() {
           hidden
         />
         <label htmlFor="thumbnail">
-          <Chip variant="outlined" color="primary" label={'Changer la photo'} />
+          <Chip
+            sx={{ cursor: 'pointer' }}
+            variant="outlined"
+            color="primary"
+            label="Changer la photo"
+          />
         </label>
       </Stack>
 

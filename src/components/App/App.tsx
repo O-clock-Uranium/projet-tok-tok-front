@@ -9,7 +9,7 @@ import axiosInstance from '../../utils/axios';
 
 function App() {
   const isLogged = useAppSelector((state) => state.user.logged);
-  // const state = useAppSelector((state) => state.user)
+  const state = useAppSelector((state) => state.user)
   const location = useLocation();
 
   useEffect(() => {
@@ -17,7 +17,7 @@ function App() {
       top: 0,
       behavior: 'smooth',
     });
-    // console.log(state)
+    console.log(state)
   }, [location]);
 
   return (

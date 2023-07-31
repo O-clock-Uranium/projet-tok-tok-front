@@ -1,7 +1,7 @@
 import { Button, Stack, Typography } from '@mui/material';
-import { User } from '../../../@types';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { User } from '../../../@types';
 import EditProfileModal from '../../Modals/EditProfileModal/EditProfileModal';
 
 interface InformationsProps {
@@ -9,11 +9,11 @@ interface InformationsProps {
 }
 
 export default function Informations({ userInfo }: InformationsProps) {
-  const { id } = useParams();
+  const { slug } = useParams();
   const [open, setOpen] = useState(false);
 
-  const isMine = (idToTest: string) => {
-    return userInfo.id === Number(idToTest);
+  const isMine = (slugToTest: string) => {
+    return userInfo.slug === slugToTest;
   };
   const handleSettings = () => {
     setOpen(true);
@@ -79,7 +79,7 @@ export default function Informations({ userInfo }: InformationsProps) {
             {userInfo.firstname} {userInfo.lastname}
           </Typography>
         </Stack>
-        {isMine(id) && (
+        {isMine(slug) && (
           <>
             <Button
               onClick={handleSettings}
