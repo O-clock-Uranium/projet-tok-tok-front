@@ -8,8 +8,8 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
-
 import { persistStore } from 'redux-persist';
+
 import App from './components/App/App';
 import Error from './components/Error/Error';
 import Favourites from './components/Favourites/Favourites';

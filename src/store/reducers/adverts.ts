@@ -1,7 +1,7 @@
 import {
   createAction,
   createAsyncThunk,
-  createReducer
+  createReducer,
 } from '@reduxjs/toolkit';
 import { Advert } from '../../@types';
 

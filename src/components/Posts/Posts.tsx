@@ -7,12 +7,9 @@ import NewPost from './NewPost/NewPost';
 import ContentPost from './Post/ContentPost/ContentPost';
 
 export default function Posts() {
-  const publications = useAppSelector((state) => state.publications.list);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(fetchPosts());
-  }, [dispatch]);
+  // const publications = useAppSelector((state) => state.publications.list);
+  // const isLogged = useAppSelector((state) => state.user.logged);
+  // const dispatch = useAppDispatch();
 
   return (
     <Stack
@@ -23,7 +20,7 @@ export default function Posts() {
       sx={{ py: '13rem' }}
     >
       <NewPost />
-      <ContentPost publications={publications} />
+      <ContentPost />
     </Stack>
   );
 }

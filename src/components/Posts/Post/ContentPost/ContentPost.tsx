@@ -1,5 +1,9 @@
 import { Stack } from '@mui/material';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Publication } from '../../../../@types/publication';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
+import { fetchPosts } from '../../../../store/reducers/publications';
 import Post from '../Post';
 
 interface ContentPostProps {
@@ -7,7 +11,14 @@ interface ContentPostProps {
   publications?: Publication[];
 }
 
-function ContentPost({ publications }: ContentPostProps) {
+function ContentPost() {
+  const publications = useAppSelector((state) => state.publications.list);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchPosts());
+  }, [dispatch]);
+
   return (
     <div>
       {publications && (
