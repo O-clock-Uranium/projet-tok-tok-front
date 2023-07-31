@@ -4,10 +4,11 @@ export interface AdvertCreator {
   lastname: string;
   address: string;
   city: string;
-  longitude: number;
-  latitude: number;
+  longitude: string;
+  latitude: string;
   thumbnail: string;
   slug: string;
+  adverts: Advert[];
 }
 
 export interface Image {
