@@ -52,7 +52,12 @@ export const login = createAsyncThunk(
       const objData = Object.fromEntries(formData);
       const { data } = await axiosInstance.post('/login', objData);
       axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
-      return data;
+      return data as {
+        message: string;
+        auth: boolean;
+        token: string;
+        user: UserState;
+      };
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       throw new Error(error.response.data.error);
@@ -101,7 +106,12 @@ const userReducer = createReducer(initialState, (builder) => {
     })
     .addCase(login.fulfilled, (state, action) => {
       state.isLoading = false;
+      state.token = action.payload.token;
       state.logged = true;
+
+      // state.userState = action.payload.user;
+      // console.log(action.payload.user);
+      // console.log('test', action.payload.user.id);
 
       state.id = action.payload.user.id;
       state.firstname = action.payload.user.firstname;
@@ -114,7 +124,6 @@ const userReducer = createReducer(initialState, (builder) => {
       state.slug = action.payload.user.slug;
       state.description = action.payload.user.description;
       state.email = action.payload.user.email;
-      state.token = action.payload.token;
     })
     .addCase(login.rejected, (state, action) => {
       state.isLoading = false;
@@ -123,7 +132,18 @@ const userReducer = createReducer(initialState, (builder) => {
     .addCase(logout, (state) => {
       state.logged = false;
       state.token = '';
+      state.id = initialState.id;
       state.error = initialState.error;
+      state.firstname = initialState.firstname;
+      state.lastname = initialState.lastname;
+      state.address = initialState.address;
+      state.thumbnail = initialState.thumbnail;
+      state.city = initialState.city;
+      state.latitude = initialState.latitude;
+      state.longitude = initialState.longitude;
+      state.slug = initialState.slug;
+      state.description = initialState.description;
+      state.email = initialState.email;
     })
     .addCase(signup.fulfilled, (state, action) => {
       state.isLoading = false;
