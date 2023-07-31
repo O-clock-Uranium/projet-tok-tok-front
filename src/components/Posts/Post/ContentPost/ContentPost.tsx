@@ -1,6 +1,5 @@
 import { Stack } from '@mui/material';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { Publication } from '../../../../@types/publication';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { fetchPosts } from '../../../../store/reducers/publications';
