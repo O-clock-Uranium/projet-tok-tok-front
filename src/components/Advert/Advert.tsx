@@ -2,6 +2,7 @@ import {
   Avatar,
   Box,
   CardMedia,
+  Grid,
   Paper,
   Stack,
   Typography
@@ -10,14 +11,16 @@ import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Advert } from '../../@types';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { fetchProfile } from '../../store/reducers/profile';
+import { fetchUserAdverts } from '../../store/reducers/adverts';
 import { findAdvert } from '../../store/selectors/adverts';
 import { calculateTimeSpent } from '../../utils/date';
 import ContentAdvert from '../Adverts/ContentAdvert/ContentAdvert';
+import ContentUserAdvert from '../Adverts/ContentUserAdvert/ContentUserAdvert';
 import FavouriteButton from '../Adverts/FavouriteButton/FavouriteButton';
 import AppHeader from '../AppHeader/AppHeader';
 import Menu from '../Menu/Menu';
 import ContactButton from './ContactButton/ContactButton.ContactButton';
+import SeparateBar from './SeparateBar/SeparateBar';
 
 export default function Annonce({ id }: Advert) {
   const dispatch = useAppDispatch();
@@ -25,7 +28,7 @@ export default function Annonce({ id }: Advert) {
   const advert = useAppSelector((state) =>
     findAdvert(state.adverts.list, slug as string)
   );
-  const user = useAppSelector((state) => state.profile);
+  const userId = advert?.advert_creator.id;
 
   if (!advert) {
     // eslint-disable-next-line @typescript-eslint/no-throw-literal
@@ -36,14 +39,17 @@ export default function Annonce({ id }: Advert) {
   }
 
   useEffect(() => {
-    dispatch(fetchProfile(slug));
-  }, [dispatch, slug]);
+    dispatch(fetchUserAdverts(userId));
+  }, [dispatch, userId]);
+
+  const adverts = useAppSelector((state) => state.adverts.userAdverts);
 
   return (
     <>
       <AppHeader />
       <Menu />
-      <Box
+      <Grid
+        container
         sx={{
           height: '100vh',
           width: '100rem',
@@ -56,7 +62,6 @@ export default function Annonce({ id }: Advert) {
           elevation={0}
           sx={{
             width: '82rem',
-            maxHeight: '55rem',
             mx: 'auto',
             borderRadius: '2rem',
             p: '2rem',
@@ -112,8 +117,7 @@ export default function Annonce({ id }: Advert) {
             </Stack>
             <CardMedia
               component="img"
-              height="250rem"
-              sx={{ objectFit: 'fill', borderRadius: '2rem' }}
+              sx={{ objectFit: 'contain' }}
               src={advert.images.map((image) => image.thumbnail)}
               alt="green iguana"
             />
@@ -146,25 +150,9 @@ export default function Annonce({ id }: Advert) {
             <ContactButton />
           </Stack>
         </Paper>
-        <Paper
-          sx={{
-            textAlign: 'center',
-            fontSize: '3rem',
-            mt: '2rem',
-            mb: '2rem',
-            mx: 'auto',
-            p: '0.2rem',
-            width: '82rem',
-            borderRadius: '2rem',
-            borderBottom: '0.5rem solid #03665C',
-          }}
-        >
-          <p>Les autres annonces proposées par ce vendeur.</p>
-        </Paper>
-        <Stack mx="auto">
-          <ContentAdvert adverts={user.adverts} />
-        </Stack>
-      </Box>
+        <SeparateBar />
+        <ContentUserAdvert userAdverts={adverts} />
+      </Grid>
     </>
   );
 }
