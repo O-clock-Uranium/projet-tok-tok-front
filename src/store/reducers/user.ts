@@ -144,6 +144,7 @@ const userReducer = createReducer(initialState, (builder) => {
       state.slug = initialState.slug;
       state.description = initialState.description;
       state.email = initialState.email;
+      localStorage.removeItem('persist:root');
     })
     .addCase(signup.fulfilled, (state, action) => {
       state.isLoading = false;
