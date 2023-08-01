@@ -32,17 +32,14 @@ const theme = createTheme({
     MuiToggleButton: {
       styleOverrides: {
         root: {
-          // '.MuiToggleButton': {
-          // fontSize: '1.8rem',
           '&.Mui-selected': {
             color: '#fff',
             fontSize: '1.8rem',
             backgroundColor: '#03665C',
-            '&:hover': {
+            '&.Mui-selected:hover': {
               color: '#fff',
               backgroundColor: '#03665C',
             },
-            // },
           },
         },
       },

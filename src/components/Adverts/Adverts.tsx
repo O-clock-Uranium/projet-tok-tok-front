@@ -33,7 +33,7 @@ function Adverts() {
       >
         <AdvertModal />
       </Stack>
-      <Stack alignItems="center">
+      <Stack alignItems="center" width="100%">
         <SortBar />
       </Stack>
 

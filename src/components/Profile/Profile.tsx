@@ -36,12 +36,19 @@ export default function Profile() {
       alignItems="center"
       spacing={2}
       sx={{ py: '13rem' }}
+      width="82rem"
+      mx="auto"
     >
+      {/* Banniere + infos profil + boutton edit */}
       <Informations userInfo={user} />
 
-      <Toggle display={display} setDisplay={setDisplay} />
+      {/* Toggle button Publications / Annonces */}
+      <Stack direction="row" paddingY="2rem" width="100%">
+        <Toggle display={display} setDisplay={setDisplay} />
+      </Stack>
 
-      {display == 'publications' ? (
+      {/* Publications content ou Adverts content */}
+      {display === 'publications' ? (
         <ContentPost publications={user.posts} />
       ) : (
         <ContentAdvert adverts={user.adverts} />

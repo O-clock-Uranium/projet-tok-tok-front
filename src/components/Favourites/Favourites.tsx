@@ -1,8 +1,9 @@
-import { Box, Stack } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchFavourites } from '../../store/reducers/adverts';
 import AdvertCard from '../Adverts/AdvertCard/AdvertCard';
+import WhiteBar from './WhiteBar/WhiteBar';
 
 export default function Favourites() {
   const favourites = useAppSelector((state) => state.adverts.favourites);
@@ -32,8 +33,13 @@ export default function Favourites() {
         alignItems="center"
         height="8.2rem"
       />
+      <WhiteBar />
       <Stack direction="row" flexWrap="wrap" gap="1rem" mt="2rem">
-        {!favouritesList ? <p>Vous navez pas de favoris</p> : favouritesList}
+        {favouritesList.length == 0 ? (
+          <Typography>Vous navez pas encore de favoris</Typography>
+        ) : (
+          favouritesList
+        )}
       </Stack>
     </Box>
   );

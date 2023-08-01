@@ -67,7 +67,7 @@ export default function Post({
       >
         {/* Photo de profil */}
         <Avatar
-          alt="Céline Dion"
+          alt={`${post_creator?.firstname} ${post_creator?.lastname} avatar`}
           src={post_creator?.thumbnail}
           sx={{ width: 60, height: 60 }}
         />

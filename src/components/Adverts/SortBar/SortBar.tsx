@@ -30,8 +30,9 @@ export default function SortBar() {
       alignItems="center"
       padding="1rem"
       flex="1 0 0"
+      //! 100% width pour facilitier les choses
       sx={{
-        width: '82rem',
+        width: '100rem',
         height: '7rem',
         my: '2rem',
         borderRadius: '2rem',
