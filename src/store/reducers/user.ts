@@ -5,6 +5,7 @@ import {
 } from '@reduxjs/toolkit';
 
 import axiosInstance from '../../utils/axios';
+import { socket } from '../../socket/io';
 
 interface UserState {
   logged: boolean;
@@ -52,6 +53,12 @@ export const login = createAsyncThunk(
       const objData = Object.fromEntries(formData);
       const { data } = await axiosInstance.post('/login', objData);
       axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
+
+      /* Connexion Socket ---------------------------*/
+      //socket.auth = { userId: data.user.id };
+      //socket.connect()
+      /* Connexion Socket ---------------------------*/
+
       return data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {

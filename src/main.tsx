@@ -23,6 +23,7 @@ import Accueil from './components/Accueil/Accueil';
 import Annonce from './components/Advert/Advert';
 import Adverts from './components/Adverts/Adverts';
 import theme from './styles/theme';
+import MessagerieTest from './components/MessagerieTest/MessagerieTest';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -35,7 +36,7 @@ const router = createBrowserRouter(
           <Route path="/adverts" element={<Adverts />} />
           <Route path="/adverts/:slug" element={<Annonce />} />
           <Route path="/favoris" element={<Favourites />} />
-          <Route path="/messagerie" element={<Messagerie />} />
+          <Route path="/messagerie" element={<MessagerieTest />} />
         </Route>
       </Route>
     </>
