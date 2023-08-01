@@ -1,10 +1,11 @@
 import store from '../store';
-import { addMessage } from '../store/reducers/messagerie';
+// import { addMessage } from '../store/reducers/messagerie';
 
 // importe la connexion à socket
 import { socket } from './io';
 
 import { Message } from '../@types';
+import { addMessage } from '../store/reducers/messagerie';
 
 
 /* USER JOINS A ROOM ------------------------------*/
@@ -13,15 +14,15 @@ export const joinRoom = (roomId: number) => {
 };
 
 /* USER SEND A MESSAGE ------------------------------*/
-interface sendMessageProps {
+interface SendMessageProps {
   expéditeur: number,
-  message: string,
+  content: string,
   room?: string
 }
-export const sendMessage = ({expéditeur, message, room}: sendMessageProps) => {
+export const sendMessage = ({expéditeur, content, room}: SendMessageProps) => {
   socket.emit('client_send_message', {
     expéditeur,
-    message,
+    content,
     room
   });
 };

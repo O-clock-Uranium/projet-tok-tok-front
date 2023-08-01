@@ -65,8 +65,10 @@ export interface Tag {
 
 export interface Message {
   id: number;
-  author: string;
+  expéditeur: string;
+  destinataire: string;
   content: string;
+  room?: number;
 }
 
 export interface Flash {
