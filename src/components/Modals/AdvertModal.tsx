@@ -35,8 +35,6 @@ export default function AdvertModal2() {
 
     const formData = new FormData(event.currentTarget);
     dispatch(addAdvert(formData));
-
-    await new Promise((resolve) => setTimeout(resolve, 800));
     dispatch(fetchAdverts());
     setOpen(false);
   };
@@ -47,6 +45,9 @@ export default function AdvertModal2() {
         onClick={handleOpen}
         sx={{
           backgroundColor: 'primary.dark',
+          '&:hover': {
+            backgroundColor: 'primary.dark',
+          },
           color: '#fff',
           textTransform: 'none',
           fontSize: '1.5rem',

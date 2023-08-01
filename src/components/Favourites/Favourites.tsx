@@ -1,5 +1,7 @@
+import BookmarkBorderSharpIcon from '@mui/icons-material/BookmarkBorderSharp';
 import { Box, Stack, Typography } from '@mui/material';
 import { useEffect } from 'react';
+import no_bookmarks from '../../fakedata/no_bookmarks.png';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchFavourites } from '../../store/reducers/adverts';
 import AdvertCard from '../Adverts/AdvertCard/AdvertCard';
@@ -35,8 +37,33 @@ export default function Favourites() {
       />
       <WhiteBar />
       <Stack direction="row" flexWrap="wrap" gap="1rem" mt="2rem">
-        {favouritesList.length == 0 ? (
-          <Typography>Vous navez pas encore de favoris</Typography>
+        {favouritesList.length === 0 ? (
+          <Box
+            width="100rem"
+            sx={{ backgroundColor: '#fff', my: '2rem', borderRadius: '2rem' }}
+          >
+            <Typography
+              sx={{
+                fontSize: '1.8rem',
+                fontFamily: 'DM Sans',
+                fontStyle: 'normal',
+                fontWeight: '500',
+                lineHeight: 'normal',
+                p: '1rem',
+              }}
+            >
+              Vous navez pas encore de favoris ? <br />
+              Cliquez sur cette icône{' '}
+              <BookmarkBorderSharpIcon style={{ fontSize: '2rem' }} /> en haut à
+              droite d&apos;une annonce pour qu'elle apparaisse ici.
+              <img
+                width="200rem"
+                src={no_bookmarks}
+                alt="no bookmarks"
+                style={{ margin: 'auto' }}
+              />
+            </Typography>
+          </Box>
         ) : (
           favouritesList
         )}

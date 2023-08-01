@@ -53,13 +53,7 @@ export default function FavoriteButton({
       <IconButton
         aria-label="bookmark"
         sx={{
-          // px: '2rem',
-          // py: '1rem',
-          // border: 1,
-          // borderColor: 'rgba(85, 85, 85, 0.20)',
-          // borderRadius: '9.5rem',
-          gap: '1rem',
-          backgroundColor: 'transparent',
+          p: '0.2rem',
         }}
         onClick={handleBookmarkClick}
         color={isBookmarked ? 'secondary' : 'default'}

@@ -47,6 +47,7 @@ export default function EditProfile() {
 
     return (
       <ListItemButton
+        key={e.properties.label}
         onClick={handleClickAddressItem}
         data-latitude={e.geometry.coordinates[1]}
         data-longitude={e.geometry.coordinates[0]}

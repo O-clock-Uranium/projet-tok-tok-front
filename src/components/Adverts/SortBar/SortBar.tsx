@@ -7,11 +7,12 @@ import {
   Stack,
 } from '@mui/material';
 import * as React from 'react';
+import { useState } from 'react';
 
 export default function SortBar() {
-  const [categorie, setCategorie] = React.useState('');
-  const [distance, setDistance] = React.useState('');
-  const [sort, setSort] = React.useState('');
+  const [categorie, setCategorie] = useState('');
+  const [distance, setDistance] = useState('');
+  const [sort, setSort] = useState('');
 
   const handleChangeCategories = (event: SelectChangeEvent) => {
     setCategorie(event.target.value);
@@ -30,7 +31,6 @@ export default function SortBar() {
       alignItems="center"
       padding="1rem"
       flex="1 0 0"
-      //! 100% width pour facilitier les choses
       sx={{
         width: '100rem',
         height: '7rem',
@@ -48,7 +48,6 @@ export default function SortBar() {
           }}
           size="small"
         >
-          {/* //! Attention, scroll bar au click qui apparait */}
           <Select
             labelId="select-categorie"
             id="select-categorie"
@@ -59,6 +58,9 @@ export default function SortBar() {
             displayEmpty
             input={<OutlinedInput />}
             inputProps={{ 'aria-label': 'Without label' }}
+            MenuProps={{
+              disableScrollLock: true,
+            }}
           >
             <MenuItem value="">
               <em>Catégories</em>
@@ -85,6 +87,9 @@ export default function SortBar() {
             displayEmpty
             input={<OutlinedInput />}
             inputProps={{ 'aria-label': 'Without label' }}
+            MenuProps={{
+              disableScrollLock: true,
+            }}
           >
             <MenuItem value="">
               <em>Distance</em>
@@ -110,6 +115,9 @@ export default function SortBar() {
           displayEmpty
           input={<OutlinedInput />}
           inputProps={{ 'aria-label': 'Without label' }}
+          MenuProps={{
+            disableScrollLock: true,
+          }}
         >
           <MenuItem value="">
             <em>Sort By</em>

@@ -14,7 +14,7 @@ function ContentAdvert({ adverts }: ContentAdvertProps) {
         <Grid
           container
           spacing={{ xs: 1, sm: 1, md: 1, lg: 3, xl: 1 }}
-          columns={{ xs: 1, sm: 10, md: 14, lg: 10, xl: 20 }}
+          columns={{ xs: 1, sm: 10, md: 14, lg: 10, xl: 15 }}
         >
           {adverts.map((advert) => (
             <Grid
@@ -25,7 +25,7 @@ function ContentAdvert({ adverts }: ContentAdvertProps) {
               sm={3}
               md={4}
               lg={3}
-              xl={6}
+              xl={5}
               key={advert.id}
             >
               <AdvertCard {...advert} />

@@ -36,8 +36,9 @@ export default function Post({
   const [expanded, setExpanded] = React.useState(false);
   const [like, setLike] = React.useState(false);
   const userId = useAppSelector((state) => state.user.id);
-
   const dispatch = useAppDispatch();
+
+  const context = 'posts';
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -97,7 +98,7 @@ export default function Post({
             {created_at}
           </Typography>
         </Stack>
-        <TriplePointButton id={id} />
+        <TriplePointButton id={id} context={context} />
       </Stack>
       <Typography
         sx={{

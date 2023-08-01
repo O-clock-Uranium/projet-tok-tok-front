@@ -1,10 +1,10 @@
 import { Modal, Typography } from '@mui/material';
 import { Box } from '@mui/system';
+import { useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../../hooks/redux';
+import { fetchProfile } from '../../../store/reducers/profile';
 import { edit } from '../../../store/reducers/user';
 import EditProfileModalForm from './EditProfileModalForm';
-import { fetchProfile } from '../../../store/reducers/profile';
-import { useParams } from 'react-router-dom';
 
 interface EditProfileModalProps {
   open: boolean;
@@ -18,14 +18,16 @@ export default function EditProfileModal({
   const dispatch = useAppDispatch();
   const { slug } = useParams();
 
+  const handleCloseModal = () => setOpen(false);
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     dispatch(edit(formData));
     dispatch(fetchProfile(slug));
+    handleCloseModal();
   };
 
-  const handleCloseModal = () => setOpen(false);
   return (
     <Modal
       open={open}

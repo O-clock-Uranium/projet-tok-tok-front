@@ -33,7 +33,6 @@ function WhiteBar() {
       >
         Favoris
       </Typography>
-      <BookmarkSharpIcon sx={{ fontSize: '3rem', color: '#03665C' }} />
     </Stack>
   );
 }

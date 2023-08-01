@@ -2,15 +2,31 @@ import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined
 import MoreVertSharpIcon from '@mui/icons-material/MoreVertSharp';
 import ReportGmailerrorredOutlinedIcon from '@mui/icons-material/ReportGmailerrorredOutlined';
 import { IconButton, Menu, MenuItem, Typography } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Publication } from '../../@types/publication';
-import { useAppDispatch } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import {
+  delAdvert,
+  fetchAdverts,
+  fetchFavourites,
+} from '../../store/reducers/adverts';
 import { delPost, fetchPosts } from '../../store/reducers/publications';
 
-export default function TriplePointButton({ id }: Publication) {
+interface MenuProps {
+  id: number;
+  context: string;
+}
+
+export default function TriplePointButton({ id, context }: MenuProps) {
   const dispatch = useAppDispatch();
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+
+  // const location = useLocation();
+  const isAdvertsPage = location.pathname === '/adverts';
+  const isFavouritePage = location.pathname === '/favoris';
+  const isProfilePage = location.pathname === '/';
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -18,9 +34,20 @@ export default function TriplePointButton({ id }: Publication) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   const handleClickDel = async () => {
-    dispatch(delPost(id));
-    dispatch(fetchPosts());
+    if (context === 'posts') {
+      dispatch(delPost(id));
+      await new Promise((resolve) => setTimeout(resolve, 800));
+      dispatch(fetchPosts());
+      // console.log('post', id);
+    } else if (context === 'adverts') {
+      dispatch(delAdvert(id));
+      await new Promise((resolve) => setTimeout(resolve, 800));
+      dispatch(fetchFavourites());
+      dispatch(fetchAdverts());
+      // console.log('adv', id);
+    }
   };
 
   return (
@@ -31,11 +58,9 @@ export default function TriplePointButton({ id }: Publication) {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
-        sx={{
-          Size: '14rem',
-        }}
+        sx={{ padding: '0.2rem' }}
       >
-        <MoreVertSharpIcon sx={{}} />
+        <MoreVertSharpIcon style={{ fontSize: '2rem' }} />
       </IconButton>
 
       <Menu
