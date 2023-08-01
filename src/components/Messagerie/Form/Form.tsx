@@ -3,15 +3,15 @@ import { useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 
-import { sendMessage } from '../../../socket/messagerie';
 import send from '../../../assets/icons/paper_plane.svg';
+import { sendMessage } from '../../../socket/messagerie';
 
 import './Form.scss';
 
 function Form() {
   const [currentMessage, setCurrentMessage] = useState('');
   // const pseudo = useAppSelector((state) => state.user.firstname);
-
+  // test
   // const dispatch = useAppDispatch();
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
