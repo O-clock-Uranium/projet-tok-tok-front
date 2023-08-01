@@ -12,17 +12,16 @@ function WhiteBar() {
       //! 100% width pour facilitier les choses
       sx={{
         width: '100rem',
-        height: '6.7rem',
+        height: '7rem',
         my: '2rem',
         borderRadius: '2rem',
         backgroundColor: 'white',
       }}
     >
-      <BookmarkSharpIcon sx={{ fontSize: '3rem', color: '#03665C' }} />
-      {/* //! craquage sur les icons... j'avoue */}
+      {/* <BookmarkSharpIcon sx={{ fontSize: '3rem', color: '#03665C' }} /> */}
       <Typography
         sx={{
-          alignItems: 'center',
+          alignItems: 'left',
           fontSize: '1.8rem',
           fontFamily: 'DM Sans',
           fontStyle: 'normal',

@@ -137,7 +137,7 @@ function NewPost() {
                 },
               }}
             >
-              <img alt="search icon" src={picture} />
+              <img alt="add pictures" src={picture} />
               <Typography
                 fontFamily="Manrope"
                 fontSize="1.3rem"

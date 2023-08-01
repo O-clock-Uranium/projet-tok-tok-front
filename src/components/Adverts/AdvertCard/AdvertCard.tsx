@@ -5,7 +5,7 @@ import { AdvertCreator, Favourite, Image } from '../../../@types';
 
 import { calculateTimeSpent } from '../../../utils/date';
 import TriplePointButton from '../../TriplePointButton/TriplePointButton';
-import FavoriteButton2 from '../FavouriteButton/FavouriteButton2';
+import FavouriteButton2 from '../FavouriteButton/FavouriteButton2';
 
 import { useAppSelector } from '../../../hooks/redux';
 import { calculateDistance } from '../../../utils/gps';
@@ -111,7 +111,7 @@ export default function AdvertCard({
         </Stack>
         {/* Bookmark icon et del icon */}
         {!isProfilePage && (
-          <FavoriteButton2 id={id} favorited_by={favorited_by} />
+          <FavouriteButton2 id={id} favorited_by={favorited_by} />
         )}
         <TriplePointButton id={id} context={context} />
       </Stack>

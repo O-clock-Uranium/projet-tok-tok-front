@@ -44,13 +44,14 @@ export default function Profile() {
       <Stack direction="row" paddingY="2rem" width="100%">
         <Toggle display={display} setDisplay={setDisplay} />
       </Stack>
-
-      {/* Publications content ou Adverts content */}
-      {display === 'publications' ? (
-        <ContentPost publications={user.posts} />
-      ) : (
-        <ContentAdvert adverts={user.adverts} />
-      )}
+      <Stack width="100rem">
+        {/* Publications content ou Adverts content */}
+        {display === 'publications' ? (
+          <ContentPost publications={user.posts} />
+        ) : (
+          <ContentAdvert adverts={user.adverts} />
+        )}
+      </Stack>
     </Stack>
   );
 }

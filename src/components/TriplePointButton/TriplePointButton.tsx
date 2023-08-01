@@ -24,9 +24,9 @@ export default function TriplePointButton({ id, context }: MenuProps) {
   const open = Boolean(anchorEl);
 
   // const location = useLocation();
-  const isAdvertsPage = location.pathname === '/adverts';
-  const isFavouritePage = location.pathname === '/favoris';
-  const isProfilePage = location.pathname === '/';
+  // const isAdvertsPage = location.pathname === '/adverts';
+  // const isFavouritePage = location.pathname === '/favoris';
+  // const isProfilePage = location.pathname === '/';
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -35,15 +35,14 @@ export default function TriplePointButton({ id, context }: MenuProps) {
     setAnchorEl(null);
   };
 
-  const handleClickDel = async () => {
+  const handleClickDel = () => {
     if (context === 'posts') {
+      // Utilisé pour changer le comportement du bouton "supprimer" selon la page
       dispatch(delPost(id));
-      await new Promise((resolve) => setTimeout(resolve, 800));
       dispatch(fetchPosts());
       // console.log('post', id);
     } else if (context === 'adverts') {
       dispatch(delAdvert(id));
-      await new Promise((resolve) => setTimeout(resolve, 800));
       dispatch(fetchFavourites());
       dispatch(fetchAdverts());
       // console.log('adv', id);

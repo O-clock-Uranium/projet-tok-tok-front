@@ -8,7 +8,7 @@ import {
   Typography,
 } from '@mui/material';
 import Collapse from '@mui/material/Collapse';
-import React from 'react';
+import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 
 import { Publication } from '../../../@types/publication';
@@ -24,6 +24,8 @@ import TriplePointButton from '../../TriplePointButton/TriplePointButton';
 import AddCommentary from './AddComment/AddComment';
 import ContentComment from './Comment/ContentComment/ContentComment';
 
+import formatDate from '../../../utils/date2';
+
 export default function Post({
   id,
   content,
@@ -33,8 +35,8 @@ export default function Post({
   users_liked,
   replies,
 }: Publication) {
-  const [expanded, setExpanded] = React.useState(false);
-  const [like, setLike] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [like, setLike] = useState(false);
   const userId = useAppSelector((state) => state.user.id);
   const dispatch = useAppDispatch();
 
@@ -54,6 +56,8 @@ export default function Post({
     like ? dispatch(delLike(id)) : dispatch(addLike(id));
     dispatch(fetchPosts());
   };
+
+  const date = formatDate(created_at);
 
   return (
     <Paper
@@ -95,7 +99,7 @@ export default function Post({
             }}
           >
             {/* Date de création */}
-            {created_at}
+            {date}
           </Typography>
         </Stack>
         <TriplePointButton id={id} context={context} />
@@ -110,7 +114,6 @@ export default function Post({
           fontWeight: 400,
           lineHeight: '150%',
         }}
-        variant="body2"
       >
         {/* Contenu du post */}
         {content}

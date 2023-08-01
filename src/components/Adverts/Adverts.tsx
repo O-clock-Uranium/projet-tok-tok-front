@@ -29,12 +29,13 @@ function Adverts() {
         direction="row"
         justifyContent="space-between"
         alignItems="center"
-        height="8.2rem"
+        gap="2rem"
+        // height="8.2rem"
       >
-        <AdvertModal />
-      </Stack>
-      <Stack alignItems="center" width="100%">
         <SortBar />
+        <AdvertModal />
+        {/* </Stack>
+      <Stack alignItems="center" width="100%"> */}
       </Stack>
 
       <ContentAdvert adverts={adverts} />

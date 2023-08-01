@@ -93,14 +93,14 @@ export default function EditProfile() {
       {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
       <Stack direction="row" gap={2}>
         <FormField
-          name="firstname"
+          name="lastname"
           label="Nom"
           type="text"
           autoComplete="family-name"
           placeholder={user.firstname}
         />
         <FormField
-          name="lastname"
+          name="firstname"
           label="Prénom"
           type="text"
           autoComplete="given-name"

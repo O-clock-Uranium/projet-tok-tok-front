@@ -46,7 +46,6 @@ export const fetchUserAdverts = createAsyncThunk(
       const { data } = await axiosInstance.get<Advert[]>(
         `/profile/${id}/adverts`
       );
-      console.log(data);
       return data as Advert[];
     } catch (error: any) {
       throw new Error(error.message.data.error);
