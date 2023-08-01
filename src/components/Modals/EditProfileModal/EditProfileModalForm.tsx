@@ -58,10 +58,6 @@ export default function EditProfile() {
     );
   });
 
-  const handleChange = (event: any) => {
-    setAddressValue(event.target.value);
-  };
-
   return (
     <>
       <Stack direction="column" alignItems="center" justifyContent="center">
@@ -126,7 +122,10 @@ export default function EditProfile() {
         type="text"
         autoComplete="none"
         placeholder={user.address}
-        onChange={handleChange}
+        value={addressValue}
+        onChange={(event: any) => {
+          setAddressValue(event.currentTarget.value);
+        }}
       />
 
       {isEmpty && addressPropsList}

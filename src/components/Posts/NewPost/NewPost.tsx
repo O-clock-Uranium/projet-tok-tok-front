@@ -23,6 +23,7 @@ function NewPost() {
     setValue('');
 
     const formData = new FormData(event.currentTarget);
+    event.currentTarget.reset();
     const inputValue = formData.get('content');
     dispatch(addPost(formData));
     // Devrait empecher de post vide mais ne marche pas
@@ -149,8 +150,8 @@ function NewPost() {
                 <input
                   style={{ fontSize: '1.8rem' }}
                   type="file"
-                  hidden
                   name="thumbnail"
+                  hidden
                 />
               </Typography>
             </IconButton>

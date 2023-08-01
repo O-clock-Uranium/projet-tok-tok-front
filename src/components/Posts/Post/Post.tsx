@@ -120,7 +120,6 @@ export default function Post({
           display: 'flex',
           justifyContent: 'center',
           maxWidth: '76rem',
-          // maxHeight: '65rem',
           borderRadius: '2rem',
           pt: '2rem',
           pb: '2.5rem',

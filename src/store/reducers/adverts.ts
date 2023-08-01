@@ -1,7 +1,7 @@
 import {
   createAction,
   createAsyncThunk,
-  createReducer
+  createReducer,
 } from '@reduxjs/toolkit';
 import { Advert } from '../../@types';
 
@@ -10,6 +10,7 @@ import axiosInstance from '../../utils/axios';
 interface AdvertsState {
   list: Advert[];
   favourites: Advert[];
+  userAdverts: Advert[];
   favourite: boolean;
   isLoading: boolean;
   error: string;
@@ -18,6 +19,7 @@ interface AdvertsState {
 export const initialState: AdvertsState = {
   list: [],
   favourites: [],
+  userAdverts: [],
   favourite: false,
   isLoading: false,
   error: '',
@@ -30,6 +32,21 @@ export const fetchAdverts = createAsyncThunk(
   async () => {
     try {
       const { data } = await axiosInstance.get<Advert[]>('/adverts');
+      return data as Advert[];
+    } catch (error: any) {
+      throw new Error(error.message.data.error);
+    }
+  }
+);
+
+export const fetchUserAdverts = createAsyncThunk(
+  'adverts/fetchUserAdverts',
+  async (id: number | undefined) => {
+    try {
+      const { data } = await axiosInstance.get<Advert[]>(
+        `/profile/${id}/adverts`
+      );
+      console.log(data);
       return data as Advert[];
     } catch (error: any) {
       throw new Error(error.message.data.error);
@@ -131,6 +148,13 @@ const advertsReducer = createReducer(initialState, (builder) => {
     })
     .addCase(delFavourite.fulfilled, (state) => {
       // state.like = false;
+    })
+    .addCase(fetchUserAdverts.pending, (state) => {
+      state.isLoading = true;
+    })
+    .addCase(fetchUserAdverts.fulfilled, (state, action) => {
+      state.userAdverts = action.payload;
+      state.isLoading = false;
     });
 });
 

@@ -2,29 +2,33 @@ import {
   Avatar,
   Box,
   CardMedia,
-  IconButton,
+  Grid,
   Paper,
   Stack,
-  Typography,
+  Typography
 } from '@mui/material';
-import { useParams } from 'react-router-dom';
-import { useAppSelector } from '../../hooks/redux';
+import { useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { Advert } from '../../@types';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { fetchUserAdverts } from '../../store/reducers/adverts';
 import { findAdvert } from '../../store/selectors/adverts';
+import { calculateTimeSpent } from '../../utils/date';
 import ContentAdvert from '../Adverts/ContentAdvert/ContentAdvert';
+import ContentUserAdvert from '../Adverts/ContentUserAdvert/ContentUserAdvert';
+import FavouriteButton from '../Adverts/FavouriteButton/FavouriteButton';
 import AppHeader from '../AppHeader/AppHeader';
 import Menu from '../Menu/Menu';
 import ContactButton from './ContactButton/ContactButton.ContactButton';
-import FavouriteButton from '../Adverts/FavouriteButton/FavouriteButton';
-import { Advert } from '../../@types';
-import { calculateTimeSpent } from '../../utils/date';
+import SeparateBar from './SeparateBar/SeparateBar';
 
 export default function Annonce({ id }: Advert) {
-  const adverts = useAppSelector((state) => state.adverts.list);
+  const dispatch = useAppDispatch();
   const { slug } = useParams();
-
   const advert = useAppSelector((state) =>
     findAdvert(state.adverts.list, slug as string)
   );
+  const userId = advert?.advert_creator.id;
 
   if (!advert) {
     // eslint-disable-next-line @typescript-eslint/no-throw-literal
@@ -34,11 +38,18 @@ export default function Annonce({ id }: Advert) {
     });
   }
 
+  useEffect(() => {
+    dispatch(fetchUserAdverts(userId));
+  }, [dispatch, userId]);
+
+  const adverts = useAppSelector((state) => state.adverts.userAdverts);
+
   return (
     <>
       <AppHeader />
       <Menu />
-      <Box
+      <Grid
+        container
         sx={{
           height: '100vh',
           width: '100rem',
@@ -50,55 +61,63 @@ export default function Annonce({ id }: Advert) {
         <Paper
           elevation={0}
           sx={{
-            width: '55rem',
-            maxHeight: '50rem',
+            width: '82rem',
             mx: 'auto',
             borderRadius: '2rem',
+            p: '2rem',
           }}
         >
           <Stack direction="column">
             <Stack
-              spacing={12}
               direction="row"
-              justifyContent="space-around"
-              my="2rem"
+              justifyContent="space-between"
+              my="1rem"
+              alignItems="center"
+              alignSelf="stretch"
             >
-              <Avatar
-                alt="User-Avatar"
-                src={advert.advert_creator.thumbnail}
-                sx={{ width: 50, height: 50, ml: '1rem' }}
-              />
-              <Stack direction="column">
-                <Typography
-                  sx={{
-                    fontFamily: 'Manrope',
-                    fontSize: '1.4rem',
-                    fontStyle: 'normal',
-                    fontWeight: 700,
-                    lineHeight: 'normal',
-                    mb: '0.5rem',
-                  }}
-                >
-                  {advert.advert_creator.firstname}{' '}
-                  {advert.advert_creator.lastname}
-                </Typography>
-                <Typography
-                  sx={{
-                    fontFamily: 'Manrope',
-                    fontSize: '1rem',
-                    fontStyle: 'normal',
-                    fontWeight: 500,
-                    lineHeight: 'normal',
-                  }}
-                >
-                  Il y a {calculateTimeSpent(advert.created_at)}
-                </Typography>
+              <Stack direction="row" alignItems="center" gap="1rem">
+                <Avatar
+                  alt="User-Avatar"
+                  src={advert.advert_creator.thumbnail}
+                  sx={{ width: 75, height: 75 }}
+                />
+                <Stack direction="column">
+                  <Typography
+                    sx={{
+                      fontFamily: 'Manrope',
+                      fontSize: '1.4rem',
+                      fontStyle: 'normal',
+                      fontWeight: 700,
+                      lineHeight: 'normal',
+                      mb: '0.5rem',
+                    }}
+                  >
+                    <Link
+                      to={`/profil/${advert.advert_creator.slug}`}
+                      style={{ textDecoration: 'none', color: '#000' }}
+                    >
+                      {advert.advert_creator.firstname}{' '}
+                      {advert.advert_creator.lastname}
+                    </Link>
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontFamily: 'Manrope',
+                      fontSize: '1rem',
+                      fontStyle: 'normal',
+                      fontWeight: 500,
+                      lineHeight: 'normal',
+                    }}
+                  >
+                    Il y a {calculateTimeSpent(advert.created_at)}
+                  </Typography>
+                </Stack>
               </Stack>
               <FavouriteButton id={id} />
             </Stack>
             <CardMedia
               component="img"
-              height="200rem"
+              sx={{ objectFit: 'contain' }}
               src={advert.images.map((image) => image.thumbnail)}
               alt="green iguana"
             />
@@ -131,21 +150,9 @@ export default function Annonce({ id }: Advert) {
             <ContactButton />
           </Stack>
         </Paper>
-        <Paper
-          sx={{
-            textAlign: 'center',
-            fontSize: '3rem',
-            mt: '2rem',
-            mb: '2rem',
-            p: '0.2rem',
-            borderRadius: '2rem',
-            borderBottom: '0.5rem solid #03665C',
-          }}
-        >
-          <p>Les autres annonces proposées par ce vendeur.</p>
-        </Paper>
-        <ContentAdvert adverts={adverts} />
-      </Box>
+        <SeparateBar />
+        <ContentUserAdvert userAdverts={adverts} />
+      </Grid>
     </>
   );
 }

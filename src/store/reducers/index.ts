@@ -5,10 +5,10 @@ import publicationsReducer from './publications';
 import userReducer from './user';
 
 const reducer = {
-  messagerie: messagerieReducer,
   user: userReducer,
-  adverts: advertsReducer,
   publications: publicationsReducer,
+  messagerie: messagerieReducer,
+  adverts: advertsReducer,
   profile: profileReducer,
 };
 

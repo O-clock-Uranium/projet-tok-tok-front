@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 //import { sendMessage } from '../../../socket/messagerie';
 
 import send from '../../../assets/icons/paper_plane.svg';
+import { sendMessage } from '../../../socket/messagerie';
 
 import './Form.scss';
 import { sendMessage } from '../../../store/reducers/messagerie';
