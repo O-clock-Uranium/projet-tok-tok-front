@@ -11,10 +11,10 @@ import ContentUserAdvert from '../Adverts/ContentUserAdvert/ContentUserAdvert';
 // import FavouriteButton2 from '../Adverts/FavouriteButton/FavouriteButton2';
 // import TriplePointButton from '../TriplePointButton/TriplePointButton';
 // import AdvertCaroussel from './AdvertCaroussel/AdvertCaroussel';
+import AdvertCaroussel from './AdvertCaroussel/AdvertCaroussel';
 import Caroussel from './AdvertCaroussel/Caroussel';
 import ContactButton from './ContactButton/ContactButton.ContactButton';
 import SeparateBar from './SeparateBar/SeparateBar';
-import AdvertCaroussel from './AdvertCaroussel/AdvertCaroussel';
 
 export default function Annonce({ id }: Advert) {
   const dispatch = useAppDispatch();
@@ -37,8 +37,6 @@ export default function Annonce({ id }: Advert) {
   }, [dispatch, userId]);
 
   const adverts = useAppSelector((state) => state.adverts.userAdverts);
-  console.log('advert', advert);
-  console.log('adverts', adverts);
   return (
     <Grid
       container
@@ -116,7 +114,7 @@ export default function Annonce({ id }: Advert) {
             sx={{
               display: 'flex',
               justifyContent: 'center',
-              maxWidth: '76rem',
+              // maxWidth: '76rem',
               borderRadius: '2rem',
               pt: '2rem',
               pb: '2.5rem',
@@ -124,17 +122,12 @@ export default function Annonce({ id }: Advert) {
           >
             <img
               src={
-                advert.images.length === 0 ? (
-                  'http://localhost:3000/images/default-advert-picture.png'
-                ) : (
-                  <>
-                    <AdvertCaroussel advert={advert} />
-                    {/* <Caroussel advert={advert} /> */}
-                  </>
-                )
+                advert.images.length === 0
+                  ? 'http://localhost:3000/images/default-advert-picture.png'
+                  : advert.images.map((image) => image.thumbnail)
               }
-              alt="caroussel images advert"
-              style={{ objectFit: 'cover', borderRadius: '2rem' }}
+              alt="images advert"
+              style={{ objectFit: 'contain', borderRadius: '2rem' }}
             />
           </Box>
 
