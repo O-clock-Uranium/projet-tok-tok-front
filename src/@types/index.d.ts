@@ -28,6 +28,7 @@ export interface Advert {
   created_at: number;
   advert_creator: AdvertCreator;
   images: Image[];
+  favorited_by: Favourite[];
 }
 
 export interface User {
