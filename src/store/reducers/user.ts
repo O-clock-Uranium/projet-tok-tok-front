@@ -5,6 +5,7 @@ import {
 } from '@reduxjs/toolkit';
 
 import axiosInstance from '../../utils/axios';
+import { socket } from '../../socket/io';
 
 interface UserState {
   logged: boolean;
@@ -52,6 +53,12 @@ export const login = createAsyncThunk(
       const objData = Object.fromEntries(formData);
       const { data } = await axiosInstance.post('/login', objData);
       axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
+
+      /* Connexion Socket ---------------------------*/
+      socket.auth = { userId: data.user.id};
+      socket.connect();
+      /* Connexion Socket ---------------------------*/
+
       return data as {
         message: string;
         auth: boolean;
@@ -134,6 +141,8 @@ const userReducer = createReducer(initialState, (builder) => {
       state.token = '';
       state.id = initialState.id;
       state.error = initialState.error;
+
+      socket.disconnect();
       state.firstname = initialState.firstname;
       state.lastname = initialState.lastname;
       state.address = initialState.address;
@@ -159,7 +168,7 @@ const userReducer = createReducer(initialState, (builder) => {
       state.longitude = action.payload.user.longitude;
       state.slug = action.payload.user.slug;
       state.description = action.payload.user.description;
-      state.email = action.payload.user.email;
+      state.email = action.payload.user.email; 
     })
     .addCase(signup.pending, (state) => {
       state.isLoading = false;
