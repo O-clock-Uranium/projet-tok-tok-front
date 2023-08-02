@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useAppSelector } from '../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import {
   subscribeToNewMessage,
   unsubscribeToNewMessage,
@@ -7,13 +7,19 @@ import {
 import MessagesItem from './MessagesItem';
 
 import './Messages.scss';
+import { fetchMessages } from '../../../store/reducers/messagerie';
 
-function Messages() {
+interface MessagesProps {
+  room: number;
+}
+
+function Messages({ room }: MessagesProps) {
   const messages = useAppSelector((state) => state.messagerie.messages);
-
   const messagesRef = useRef<HTMLElement>(null);
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
+    dispatch(fetchMessages(room))
     subscribeToNewMessage();
     return () => {
       unsubscribeToNewMessage();

@@ -8,6 +8,13 @@ import { Message } from '../@types';
 import { addMessage } from '../store/reducers/messagerie';
 
 
+/* SERVER SENDS AN ID ------------------------------*/
+export const receiveId = () => {
+  socket.on('server_send_personal_id', (id) => {
+    console.log(id)
+  })
+}
+
 /* USER JOINS A ROOM ------------------------------*/
 export const joinRoom = (roomId: number) => {
   socket.emit('join_room', roomId);
@@ -19,12 +26,14 @@ interface SendMessageProps {
   content: string,
   room?: string
 }
+
 export const sendMessage = ({expéditeur, content, room}: SendMessageProps) => {
   socket.emit('client_send_message', {
     expéditeur,
     content,
     room
   });
+
 };
 
 

@@ -30,6 +30,7 @@ export interface Advert {
   images: Image[];
 }
 
+// Pour le profil
 export interface User {
   id: number;
   firstname: string;
@@ -69,7 +70,14 @@ export interface Message {
   expéditeur: string;
   destinataire: string;
   content: string;
-  room?: number;
+  room_id?: number;
+}
+
+export interface ContactUser {
+  id: number;
+  firstname: string;
+  lastname: string;
+  room_id?: number;
 }
 
 export interface Flash {

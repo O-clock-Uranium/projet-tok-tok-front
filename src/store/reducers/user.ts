@@ -54,10 +54,10 @@ export const login = createAsyncThunk(
       const { data } = await axiosInstance.post('/login', objData);
       axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
 
-      /* Connexion Socket ---------------------------*/
-      socket.auth = { userId: data.user.id};
-      socket.connect();
-      /* Connexion Socket ---------------------------*/
+      // /* Connexion Socket ---------------------------*/
+      // socket.auth = { userId: data.user.id};
+      // socket.connect();
+      // /* Connexion Socket ---------------------------*/
 
       return data as {
         message: string;
@@ -141,8 +141,6 @@ const userReducer = createReducer(initialState, (builder) => {
       state.token = '';
       state.id = initialState.id;
       state.error = initialState.error;
-
-      socket.disconnect();
       state.firstname = initialState.firstname;
       state.lastname = initialState.lastname;
       state.address = initialState.address;
@@ -154,6 +152,8 @@ const userReducer = createReducer(initialState, (builder) => {
       state.description = initialState.description;
       state.email = initialState.email;
       localStorage.removeItem('persist:root');
+      
+      socket.disconnect();
     })
     .addCase(signup.fulfilled, (state, action) => {
       state.isLoading = false;

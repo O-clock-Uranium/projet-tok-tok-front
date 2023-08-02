@@ -1,9 +1,42 @@
+import { useEffect, useState } from 'react';
+
 import { Box, Paper, Stack } from '@mui/material';
 import Form from './Form/Form';
 import MenuContact from './MenuContact/MenuContact';
 import Messages from './Messages/Messages';
+import axiosInstance from '../../utils/axios';
+import { socket } from '../../socket/io';
+import { useAppSelector } from '../../hooks/redux';
 
 export default function Messagerie() {
+  const { id } = useAppSelector((state) => state.user);
+  const [contacts, setContacts] = useState([]);
+  const [room, setRoom] = useState(0);
+
+  //!-----------------------------------------------------*/
+  const [isConnected, setIsConnected] = useState(false);
+
+  const connectToSocket = () => {
+    socket.auth = { userId: id };
+    socket.connect();
+    setIsConnected(true);
+  };
+
+  !isConnected ? connectToSocket() : false;
+  //!-----------------------------------------------------*/
+
+  useEffect(() => {
+    const fetchContacts = async () => {
+      try {
+        const { data } = await axiosInstance.get('/contacts');
+        setContacts(data);
+      } catch (error: any) {
+        throw new Error(error.response.data.error);
+      }
+    };
+    fetchContacts();
+  }, [contacts]);
+
   return (
     <Box
       sx={{
@@ -15,7 +48,7 @@ export default function Messagerie() {
       }}
     >
       <Stack direction="row">
-        <MenuContact />
+        <MenuContact contacts={contacts} room={room} setRoom={setRoom} />
         <Stack sx={{ flexGrow: 1 }}>
           <div className="chat">
             <Paper
@@ -40,7 +73,9 @@ export default function Messagerie() {
                 },
               }}
             >
-              <Messages />
+              {/* ici on passera roomId */}
+              <Messages room={room} />
+              {/* ici on passera roomId, userId, destId*/}
               <Form />
             </Paper>
           </div>

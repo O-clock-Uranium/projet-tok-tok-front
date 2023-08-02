@@ -6,14 +6,13 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 //import { sendMessage } from '../../../socket/messagerie';
 
 import send from '../../../assets/icons/paper_plane.svg';
-import { sendMessage } from '../../../socket/messagerie';
 
 import './Form.scss';
-import { sendMessage } from '../../../store/reducers/messagerie';
+import { addMessage, sendMessage } from '../../../store/reducers/messagerie';
 
 function Form() {
   const [currentMessage, setCurrentMessage] = useState('');
-  const [currentDestinataire, setCurrentDestinataire] = useState(''); // props qui devra venir d'en haut
+  const {currentDestinataire} = useAppSelector((state) => state.messagerie); 
 
   const {id} = useAppSelector((state) => state.user);
 
@@ -30,6 +29,7 @@ function Form() {
 
     if (currentMessage.trim()) {
       dispatch(sendMessage(formData));
+      dispatch(addMessage(objData));
       setCurrentMessage('');
     }
   }
@@ -45,16 +45,11 @@ function Form() {
         value={currentMessage}
         onChange={handleChange}
       />
+      <input type="number" name="expéditeur" value={id} readOnly />
       <input
         type="number"
-        name="expéditeur"
-        value={id}
-        readOnly
-      />
-      <input
-        type="text"
-        name="room"
-        value={currentDestinataire}
+        name="destinataire"
+        value={currentDestinataire.id}
         readOnly
       />
 

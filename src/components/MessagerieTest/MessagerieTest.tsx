@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Box } from '@mui/system';
 
@@ -7,17 +7,29 @@ import { useEffect } from 'react';
 // importe la connexion à socket
 import { socket } from '../../socket/io';
 import { useAppSelector } from '../../hooks/redux';
-import { sendMessage } from '../../socket/messagerie';
+import { receiveId, sendMessage } from '../../socket/messagerie';
 
 export default function MessagerieTest() {
   const [room, setRoom] = React.useState('');
   const [message, setMessage] = React.useState('');
   const { id } = useAppSelector((state) => state.user);
 
-  const send = (e: any) => {
+  //!-----------------------------------------------------*/
+  const [isConnected, setIsConnected] = useState(false);
+
+  const connectToSocket = () => {
+    socket.connect();
+    receiveId()
+    setIsConnected(true);
+  };
+
+  !isConnected ? connectToSocket() : false;
+  //!-----------------------------------------------------*/
+
+  const send = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
 
-    sendMessage({expéditeur:id, message: message.trim(), room})
+    sendMessage({ expéditeur: id, content: message, room });
     //socket.emit('client_send_message', { expéditeur: id, message, room });
 
     //* alternative avec formdata. Dans ce cas, il faudra un champ caché pour l'id du user loggué et un pour la room
@@ -26,10 +38,10 @@ export default function MessagerieTest() {
     //? quand on clique sur une conversation dans la liste, on transmet en props l'id de la room/conversation à cet input ?
   };
 
-  const changeRoom = (e: any) => {
+  const changeRoom = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
 
-    //* idem 
+    //* idem
     // const formData = new FormData(e.currentTarget);
     // const objData = Object.fromEntries(formData);
     // console.log(objData, objData.room);

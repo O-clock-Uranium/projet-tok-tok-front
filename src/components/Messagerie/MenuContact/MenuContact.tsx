@@ -1,8 +1,37 @@
+import { useEffect, useState } from 'react';
+
 import { Paper, Stack } from '@mui/material';
 import AddContact from './AddContact/AddContact';
+import { ContactUser } from '../../../@types';
 import Contact from './Contact/Contact';
+import { joinRoom } from '../../../socket/messagerie';
+import { useAppSelector } from '../../../hooks/redux';
 
-function MenuContact() {
+interface MenuContactProps {
+  contacts: ContactUser[];
+  room: number;
+  setRoom: React.Dispatch<React.SetStateAction<number>>;
+}
+
+function MenuContact({ contacts, room, setRoom }: MenuContactProps) {
+  const {messagerie} = useAppSelector((state) => state)
+  
+  const contactList = contacts.map((contact: any) => {
+
+    const handleClick = (e: React.ChangeEvent<HTMLInputElement>) => {
+      messagerie.currentRoom = contact.room_id
+      joinRoom(messagerie.currentRoom)
+    };
+
+    return (
+      <Contact
+        firstname={messagerie.currentDestinataire.firstname}
+        lastname={messagerie.currentDestinataire.lastname}
+        onClick={handleClick}
+      />
+    );
+  });
+
   return (
     <Paper
       sx={{
@@ -29,20 +58,7 @@ function MenuContact() {
     >
       <Stack direction="column">
         <AddContact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
+        {contactList}
       </Stack>
     </Paper>
   );

@@ -1,6 +1,12 @@
 import { Paper } from '@mui/material';
 
-function Contact() {
+interface ContactProps {
+  firstname: string;
+  lastname: string;
+  onClick: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+function Contact({ firstname, lastname }: ContactProps) {
   return (
     <Paper
       sx={{
@@ -14,7 +20,9 @@ function Contact() {
         mb: '0.5rem',
       }}
     >
-      <p> Nom Prénom</p>
+      <p>
+        {firstname} {lastname}
+      </p>
     </Paper>
   );
 }
