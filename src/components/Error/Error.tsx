@@ -1,5 +1,17 @@
+import React from 'react';
+import { Box } from '@mui/material';
+
 function Error() {
-  return <p>Nous sommes désolés, Une erreur s&apos;est produite.</p>;
+  return (
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      height="100vh"
+    >
+      <img src="/illustatus.svg" alt="Error_404" />
+    </Box>
+  );
 }
 
 export default Error;
