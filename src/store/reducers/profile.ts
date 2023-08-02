@@ -15,11 +15,13 @@ interface ProfileState {
   posts: Publication[];
   likes: Publication[];
   adverts: Advert[];
+  created_at: string;
+  liked: Publication[];
+
 
   error?: string;
   isLoading: boolean;
 }
-
 export const initialState: ProfileState = {
   id: 0,
   firstname: '',
@@ -31,6 +33,8 @@ export const initialState: ProfileState = {
   posts: [],
   likes: [],
   adverts: [],
+  created_at: '',
+  liked: [],
 
   error: '',
   isLoading: false,
@@ -40,7 +44,11 @@ export const fetchProfile = createAsyncThunk(
   'user/fetchProfile',
   async (slug: string | undefined) => {
     try {
+      console.log('slug : ', slug);
+      
       const { data } = await axiosInstance.get(`/profile/${slug}`);
+      console.log(data);
+      
       return data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {

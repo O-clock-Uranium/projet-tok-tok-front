@@ -10,14 +10,7 @@ interface ContentPostProps {
   publications?: Publication[];
 }
 
-function ContentPost() {
-  const publications = useAppSelector((state) => state.publications.list);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(fetchPosts());
-  }, [dispatch]);
-
+function ContentPost({publications}: ContentPostProps) {
   return (
     <div>
       {publications && (
