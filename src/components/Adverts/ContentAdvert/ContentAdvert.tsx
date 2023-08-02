@@ -15,7 +15,7 @@ function ContentAdvert({ adverts }: ContentAdvertProps) {
           justifyContent="flex start"
           container
           spacing={{ xs: 1, sm: 2, md: 4, lg: 6, xl: 7 }}
-          columns={{ xs: 1, sm: 10, md: 14, lg: 10, xl: 21 }}
+          columns={{ xs: 1, sm: 10, md: 14, lg: 15, xl: 21 }}
         >
           {adverts.map((advert) => (
             <Grid item xs={2} sm={3} md={4} lg={6} xl={7} key={advert.id}>

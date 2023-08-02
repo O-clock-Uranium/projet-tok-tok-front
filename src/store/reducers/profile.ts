@@ -6,7 +6,7 @@ import axiosInstance from '../../utils/axios';
 
 interface ProfileState {
   id: number;
-  banner : string;
+  banner: string;
   firstname: string;
   lastname: string;
   description: string;

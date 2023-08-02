@@ -93,7 +93,27 @@ export default function EditProfile() {
             border: '0.5rem solid #FFF',
           }}
         />
-        <Stack direction="row" gap="2rem">
+        <Stack direction="row" gap="2rem" paddingTop="2.5rem">
+          <label htmlFor="banner">
+            <Chip
+              sx={{
+                cursor: 'pointer',
+                color: '#03665C',
+                borderColor: '#03665C',
+                fontSize: '1.2rem',
+              }}
+              variant="outlined"
+              color="primary"
+              label="Changer la bannière"
+            />
+          </label>
+          <input
+            type="file"
+            id="banner"
+            name="banner"
+            accept="image/*"
+            hidden
+          />
           <label htmlFor="thumbnail">
             <Chip
               sx={{
@@ -114,19 +134,6 @@ export default function EditProfile() {
             accept="image/*"
             hidden
           />
-          <label htmlFor="thumbnail">
-            <Chip
-              sx={{
-                cursor: 'pointer',
-                color: '#03665C',
-                borderColor: '#03665C',
-                fontSize: '1.2rem',
-              }}
-              variant="outlined"
-              color="primary"
-              label="Changer la photo"
-            />
-          </label>
         </Stack>
       </Stack>
 

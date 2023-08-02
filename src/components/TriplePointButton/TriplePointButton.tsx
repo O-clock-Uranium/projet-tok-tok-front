@@ -40,19 +40,22 @@ export default function TriplePointButton({ id, context }: MenuProps) {
     setAnchorEl(null);
   };
 
-  const handleClickDel = () => {
+  const handleClickDel = async () => {
+    // Utilisé pour changer le comportement du bouton "supprimer" selon la page
     if (context === 'posts') {
-      // Utilisé pour changer le comportement du bouton "supprimer" selon la page
       dispatch(delPost(id));
+      await new Promise((resolve) => setTimeout(resolve, 800));
       dispatch(fetchPosts());
       // console.log('post', id);
     } else if (context === 'adverts') {
       dispatch(delAdvert(id));
+      await new Promise((resolve) => setTimeout(resolve, 800));
       dispatch(fetchFavourites());
       dispatch(fetchAdverts());
       // console.log('adv', id);
     } else if (context === 'advert') {
       dispatch(delAdvert(id));
+      await new Promise((resolve) => setTimeout(resolve, 800));
       navigate('/adverts');
     }
   };

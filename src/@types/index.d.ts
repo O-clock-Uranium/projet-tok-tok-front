@@ -18,7 +18,7 @@ export interface Image {
 }
 
 export interface Advert {
-  id: number | null;
+  id: number;
   slug: string;
   title: string;
   content: string;
@@ -29,6 +29,7 @@ export interface Advert {
   advert_creator: AdvertCreator;
   images: Image[];
   favorited_by: Favourite[];
+  tag: Tag[];
 }
 
 export interface User {

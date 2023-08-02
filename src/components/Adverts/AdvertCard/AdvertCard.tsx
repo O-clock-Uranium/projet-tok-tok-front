@@ -230,7 +230,7 @@ export default function AdvertCard({
               lineHeight: '2.6rem',
             }}
           >
-            {tag.name}
+            {/* {tag.name} */}
           </Typography>
         </Paper>
       </Stack>
