@@ -1,14 +1,11 @@
 import { Stack } from '@mui/material';
-import { useEffect } from 'react';
 import { Publication } from '../../../../@types/publication';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
-import { fetchPosts } from '../../../../store/reducers/publications';
 import Post from '../Post';
 
 interface ContentPostProps {
   // eslint-disable-next-line react/require-default-props
   publications?: Publication[];
-}
+};
 
 function ContentPost({publications}: ContentPostProps) {
   return (
@@ -22,6 +19,6 @@ function ContentPost({publications}: ContentPostProps) {
       )}
     </div>
   );
-}
+};
 
 export default ContentPost;

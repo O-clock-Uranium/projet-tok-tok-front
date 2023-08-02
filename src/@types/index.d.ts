@@ -31,6 +31,7 @@ export interface Advert {
   favorited_by: Favourite[];
 }
 
+//! PAS LE USER LOGGE MAIS CELUI EN BDD 
 export interface User {
   id: number;
   firstname: string;
@@ -38,6 +39,7 @@ export interface User {
   description: string | null;
   city: string;
   thumbnail: string;
+  banner: string;
   slug: string;
   created_at: string;
   liked: Publication[];

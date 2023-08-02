@@ -35,7 +35,7 @@ export default function Informations({ userInfo }: InformationsProps) {
       {/* Bannière */}
       <Stack>
         <img
-          src="../../../src/fakedata/banner.jpg"
+          src={userInfo?.banner}
           alt="banner"
           style={{
             width: '76rem',
@@ -61,7 +61,7 @@ export default function Informations({ userInfo }: InformationsProps) {
         >
           {/* Photo de profil */}
           <img
-            src={userInfo.thumbnail}
+            src={userInfo?.thumbnail}
             alt="profile_picture"
             style={{
               position: 'relative',

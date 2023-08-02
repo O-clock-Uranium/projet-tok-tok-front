@@ -11,13 +11,13 @@ interface ProfileState {
   description: string;
   city: string;
   thumbnail: string;
+  banner: string
   slug: string;
   posts: Publication[];
   likes: Publication[];
   adverts: Advert[];
   created_at: string;
   liked: Publication[];
-
 
   error?: string;
   isLoading: boolean;
@@ -29,6 +29,7 @@ export const initialState: ProfileState = {
   description: '',
   city: '',
   thumbnail: '',
+  banner: '',
   slug: '',
   posts: [],
   likes: [],
@@ -44,11 +45,7 @@ export const fetchProfile = createAsyncThunk(
   'user/fetchProfile',
   async (slug: string | undefined) => {
     try {
-      console.log('slug : ', slug);
-      
       const { data } = await axiosInstance.get(`/profile/${slug}`);
-      console.log(data);
-      
       return data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -68,6 +65,7 @@ const profileReducer = createReducer(initialState, (builder) => {
       state.firstname = action.payload.firstname;
       state.lastname = action.payload.lastname;
       state.thumbnail = action.payload.thumbnail;
+      state.banner = action.payload.banner;
       state.city = action.payload.city;
       state.slug = action.payload.slug;
       state.description = action.payload.description;

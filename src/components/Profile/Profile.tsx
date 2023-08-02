@@ -17,7 +17,7 @@ export default function Profile() {
 
   useEffect(() => {
     dispatch(fetchProfile(slug));
-  }, [dispatch, slug]);
+  }, [dispatch]);
 
   if (!user) {
     // eslint-disable-next-line @typescript-eslint/no-throw-literal
