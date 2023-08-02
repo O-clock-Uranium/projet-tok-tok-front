@@ -4,7 +4,7 @@ import { useAppSelector } from '../../../../hooks/redux';
 export default function UserIdentity() {
   const loggedPseudo = useAppSelector((state) => {
     const fullName = `${state.user.firstname} ${state.user.lastname} `;
-    const capitalizeFirstLetter = (str) => {
+    const capitalizeFirstLetter = (str: string) => {
       return str.replace(/\b\w/g, (match) => match.toUpperCase());
     };
     const formattedName = capitalizeFirstLetter(fullName);

@@ -1,5 +1,5 @@
 import { CssBaseline, Grid } from '@mui/material';
-import React from 'react';
+import { useEffect, useState } from 'react';
 
 import img1 from '../../../fakedata/carrousel/voisin_1.png';
 import img10 from '../../../fakedata/carrousel/voisin_10.png';
@@ -36,19 +36,21 @@ const images = [
 ];
 
 export default function Carrousel() {
-  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  React.useEffect(() => {
+  useEffect(() => {
+    const nextIndex = (currentIndex + 1) % images.length;
+    const img = new Image();
+    img.src = images[nextIndex];
+  }, [currentIndex]);
+
+  useEffect(() => {
     const intervalId = setInterval(() => {
-      if (currentIndex === images.length - 1) {
-        setCurrentIndex(0);
-      } else {
-        setCurrentIndex(currentIndex + 1);
-      }
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 5000);
 
     return () => clearInterval(intervalId);
-  }, [currentIndex]);
+  }, []);
 
   return (
     <Grid container component="main" sx={{ width: '2/3', height: '100vh' }}>

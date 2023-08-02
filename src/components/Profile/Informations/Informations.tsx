@@ -19,6 +19,7 @@ export default function Informations({ userInfo }: InformationsProps) {
   const handleSettings = () => {
     setOpen(true);
   };
+  console.log("test", userInfo.banner)
   return (
     <Stack
       sx={{
@@ -35,7 +36,7 @@ export default function Informations({ userInfo }: InformationsProps) {
       {/* Bannière */}
       <Stack>
         <img
-          src="../../../src/fakedata/banner.jpg"
+          src={userInfo.banner}
           alt="banner"
           style={{
             width: '76rem',

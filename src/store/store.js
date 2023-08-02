@@ -10,8 +10,9 @@ import profileReducer from './reducers/profile';
 
 const persistConfig = {
   key: 'root',
-  version: 1,
+  // version: 1,
   storage,
+  rehydrated: false,
 };
 
 const reducer = combineReducers({

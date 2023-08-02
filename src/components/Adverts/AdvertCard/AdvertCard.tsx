@@ -1,7 +1,7 @@
 import { Avatar, Paper, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { Link, useLocation } from 'react-router-dom';
-import { AdvertCreator, Favourite, Image } from '../../../@types';
+import { AdvertCreator, Favourite, Image, Tag } from '../../../@types';
 
 import { calculateTimeSpent } from '../../../utils/date';
 import TriplePointButton from '../../TriplePointButton/TriplePointButton';
@@ -20,6 +20,7 @@ interface AdvertCardProps {
   images: Image[];
   created_at: any;
   favorited_by: Favourite[];
+  tag: Tag;
 }
 
 export default function AdvertCard({
@@ -32,6 +33,7 @@ export default function AdvertCard({
   images,
   created_at,
   favorited_by,
+  tag,
 }: AdvertCardProps) {
   const userState = useAppSelector((state) => state.user);
   const location = useLocation();
@@ -171,18 +173,18 @@ export default function AdvertCard({
           {price} €
         </Typography>
       </Stack>
-      <Paper
-        elevation={0}
-        sx={{
-          display: 'flex',
-          p: '0.5rem 2rem',
-          alignItems: 'center',
-          gap: '1rem',
-          backgroundColor: 'rgba(0, 0, 0, 0.05)',
-          borderRadius: '9.5rem',
-        }}
-      >
-        <Stack direction="row" gap="1rem" justifyContent="center">
+      <Stack direction="row" justifyContent="space-between" gap="4rem">
+        <Paper
+          elevation={0}
+          sx={{
+            display: 'flex',
+            p: '0.5rem 2rem',
+            alignItems: 'center',
+            gap: '1rem',
+            backgroundColor: 'rgba(0, 0, 0, 0.05)',
+            borderRadius: '9.5rem',
+          }}
+        >
           <Typography
             sx={{
               fontFamily: 'Manrope',
@@ -207,8 +209,31 @@ export default function AdvertCard({
           >
             {distance} km
           </Typography>
-        </Stack>
-      </Paper>
+        </Paper>
+        <Paper
+          elevation={0}
+          sx={{
+            display: 'flex',
+            p: '0.5rem 2rem',
+            alignItems: 'center',
+            gap: '1rem',
+            backgroundColor: 'rgba(0, 0, 0, 0.05)',
+            borderRadius: '9.5rem',
+          }}
+        >
+          <Typography
+            sx={{
+              fontFamily: 'Manrope',
+              fontSize: '1.3rem',
+              fontStyle: 'normal',
+              fontWeight: 600,
+              lineHeight: '2.6rem',
+            }}
+          >
+            {tag.name}
+          </Typography>
+        </Paper>
+      </Stack>
     </Paper>
   );
 }

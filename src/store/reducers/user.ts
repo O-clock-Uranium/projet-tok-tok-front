@@ -10,6 +10,7 @@ interface UserState {
   logged: boolean;
   token: string;
   id: number;
+  banner: string;
   firstname: string;
   lastname: string;
   description: string;
@@ -29,6 +30,7 @@ export const initialState: UserState = {
   logged: false,
   token: '',
   id: 0,
+  banner: '',
   firstname: '',
   lastname: '',
   description: '',
@@ -108,12 +110,8 @@ const userReducer = createReducer(initialState, (builder) => {
       state.isLoading = false;
       state.token = action.payload.token;
       state.logged = true;
-
-      // state.userState = action.payload.user;
-      // console.log(action.payload.user);
-      // console.log('test', action.payload.user.id);
-
       state.id = action.payload.user.id;
+      state.banner = action.payload.user.banner;
       state.firstname = action.payload.user.firstname;
       state.lastname = action.payload.user.lastname;
       state.address = action.payload.user.address;
@@ -149,6 +147,7 @@ const userReducer = createReducer(initialState, (builder) => {
     .addCase(signup.fulfilled, (state, action) => {
       state.isLoading = false;
       state.logged = true;
+      state.banner = action.payload.user.banner;
       state.id = action.payload.user.id;
       state.firstname = action.payload.user.firstname;
       state.lastname = action.payload.user.lastname;
@@ -172,6 +171,7 @@ const userReducer = createReducer(initialState, (builder) => {
     .addCase(edit.fulfilled, (state, action) => {
       state.isLoading = false;
       state.id = action.payload.id;
+      state.banner = action.payload.banner;
       state.firstname = action.payload.firstname;
       state.lastname = action.payload.lastname;
       state.address = action.payload.address;

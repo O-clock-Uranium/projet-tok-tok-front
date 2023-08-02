@@ -33,6 +33,7 @@ export interface Advert {
 
 export interface User {
   id: number;
+  banner: string;
   firstname: string;
   lastname: string;
   description: string | null;
