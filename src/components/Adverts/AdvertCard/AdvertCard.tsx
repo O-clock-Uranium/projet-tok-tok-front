@@ -1,4 +1,4 @@
-import { Avatar, Paper, Stack } from '@mui/material';
+import { Avatar, Box, Paper, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { Link, useLocation } from 'react-router-dom';
 import { AdvertCreator, Favourite, Image, Tag } from '../../../@types';
@@ -36,6 +36,7 @@ export default function AdvertCard({
   tag,
 }: AdvertCardProps) {
   const userState = useAppSelector((state) => state.user);
+  const advertState = useAppSelector((state) => state.adverts.list);
   const location = useLocation();
   const isProfilePage = location.pathname === `/profil/${advert_creator.slug}`;
   const context = 'adverts';
@@ -47,6 +48,8 @@ export default function AdvertCard({
     advert_creator.longitude
   );
 
+  console.log(advertState);
+  console.log(advertState[0].tag.name);
   return (
     <Paper
       elevation={0}
@@ -117,7 +120,7 @@ export default function AdvertCard({
         <TriplePointButton id={id} context={context} />
       </Stack>
       {/* Lien + image */}
-      <a href={`/adverts/${slug}`}>
+      <Link to={`/adverts/${slug}`}>
         <img
           src={
             images.length === 0
@@ -132,15 +135,8 @@ export default function AdvertCard({
           }}
           alt="advert illustration"
         />
-      </a>
-      <Stack
-        direction="row"
-        display="flex"
-        alignItems="center"
-        gap="1.5rem"
-        align-self="stretch"
-        width="100%"
-      >
+      </Link>
+      <Stack direction="row" justifyContent="space-between" width="100%">
         <Typography
           sx={{
             flex: '1 0 0',
@@ -152,12 +148,12 @@ export default function AdvertCard({
           }}
         >
           {/* Lien + titre annonce */}
-          <a
-            href={`/adverts/${slug}`}
+          <Link
+            to={`/adverts/${slug}`}
             style={{ textDecoration: 'none', color: 'black' }}
           >
             {title}
-          </a>
+          </Link>
         </Typography>
         <Typography
           sx={{
@@ -173,9 +169,14 @@ export default function AdvertCard({
           {price} €
         </Typography>
       </Stack>
-      <Stack direction="row" justifyContent="space-between" gap="4rem">
-        <Paper
-          elevation={0}
+      <Stack
+        direction="row"
+        justifyContent="space-between"
+        gap="2rem"
+        width="100%"
+      >
+        <Stack
+          direction="row"
           sx={{
             display: 'flex',
             p: '0.5rem 2rem',
@@ -209,13 +210,11 @@ export default function AdvertCard({
           >
             {distance} km
           </Typography>
-        </Paper>
-        <Paper
-          elevation={0}
+        </Stack>
+        <Stack
+          direction="row"
           sx={{
-            display: 'flex',
             p: '0.5rem 2rem',
-            alignItems: 'center',
             gap: '1rem',
             backgroundColor: 'rgba(0, 0, 0, 0.05)',
             borderRadius: '9.5rem',
@@ -230,9 +229,12 @@ export default function AdvertCard({
               lineHeight: '2.6rem',
             }}
           >
+            {/* {advertState.map((advert) => {
+              returnadvert.tag.name;
+            })} */}
             {/* {tag.name} */}
           </Typography>
-        </Paper>
+        </Stack>
       </Stack>
     </Paper>
   );

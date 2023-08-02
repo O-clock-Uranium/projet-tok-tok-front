@@ -1,9 +1,12 @@
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import RoomTwoToneIcon from '@mui/icons-material/RoomTwoTone';
-import { Button, Stack, Typography } from '@mui/material';
+import { Button, IconButton, Stack, Typography } from '@mui/material';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { User } from '../../../@types';
 import EditProfileModal from '../../Modals/EditProfileModal/EditProfileModal';
+import { fetchProfile } from '../../../store/reducers/profile';
+import EditBannerModal from './EditBannerModal/EditBannerModal';
 
 interface InformationsProps {
   userInfo: User;
@@ -12,6 +15,7 @@ interface InformationsProps {
 export default function Informations({ userInfo }: InformationsProps) {
   const { slug } = useParams();
   const [open, setOpen] = useState(false);
+  const [openBanner, setOpenBanner] = useState(false);
 
   const isMine = (slugToTest: string) => {
     return userInfo.slug === slugToTest;
@@ -19,7 +23,21 @@ export default function Informations({ userInfo }: InformationsProps) {
   const handleSettings = () => {
     setOpen(true);
   };
-  console.log("test", userInfo.banner)
+  const handleOpenBanner = () => {
+    setOpenBanner(true);
+  };
+  // const handleCloseBanner = () => setOpenBanner(false);
+
+  // const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+
+  //   const formData = new FormData(event.currentTarget);
+  //   dispatch("blablaBanner"(formData))
+  //   await new Promise((resolve) => setTimeout(resolve, 800));
+  //   dispatch(fetchProfile());
+  //   setOpen(false);
+  // };
+
   return (
     <Stack
       sx={{
@@ -34,7 +52,7 @@ export default function Informations({ userInfo }: InformationsProps) {
       }}
     >
       {/* Bannière */}
-      <Stack>
+      <Stack sx={{ position: 'relative' }}>
         <img
           src={userInfo.banner}
           alt="banner"
@@ -44,6 +62,22 @@ export default function Informations({ userInfo }: InformationsProps) {
             objectFit: 'cover',
             borderRadius: '2rem',
           }}
+        />
+        <IconButton
+          onClick={handleOpenBanner}
+          component="label"
+          sx={{
+            position: 'absolute',
+            left: '94%',
+            top: '5%',
+            color: '#02B8AC',
+          }}
+        >
+          <ModeEditIcon sx={{ fontSize: '2rem' }} />
+        </IconButton>
+        <EditBannerModal
+          openBanner={openBanner}
+          setOpenBanner={setOpenBanner}
         />
       </Stack>
       {/* Photo de profil + nom + bouton edit */}
@@ -59,6 +93,7 @@ export default function Informations({ userInfo }: InformationsProps) {
           gap="2rem"
           alignItems="start"
           height="5rem"
+          position="relative"
         >
           {/* Photo de profil */}
           <img
@@ -74,6 +109,16 @@ export default function Informations({ userInfo }: InformationsProps) {
               border: '0.5rem solid #FFF',
             }}
           />
+          {/* <IconButton
+            sx={{
+              position: 'absolute',
+              left: '30%',
+              top: '-7rem',
+              color: '#02B8AC',
+            }}
+          >
+            <ModeEditIcon sx={{ fontSize: '2rem' }} />
+          </IconButton> */}
           <Stack direction="column" justifyContent="center">
             <Typography
               fontFamily="Manrope"

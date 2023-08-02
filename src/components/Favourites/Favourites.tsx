@@ -51,27 +51,30 @@ export default function Favourites() {
               width="100rem"
               sx={{ backgroundColor: '#fff', my: '2rem', borderRadius: '2rem' }}
             >
-              <Typography
-                sx={{
-                  fontSize: '1.8rem',
-                  fontFamily: 'DM Sans',
-                  fontStyle: 'normal',
-                  fontWeight: '500',
-                  lineHeight: 'normal',
-                  p: '1rem',
-                }}
-              >
-                Vous navez pas encore de favoris ? <br />
-                Cliquez sur cette icône{' '}
-                <BookmarkBorderSharpIcon style={{ fontSize: '2rem' }} /> en haut
-                à droite d&apos;une annonce pour qu&apos;elle apparaisse ici.
-                <img
-                  width="200rem"
-                  src={no_bookmarks}
-                  alt="no bookmarks"
-                  style={{ margin: 'auto' }}
-                />
-              </Typography>
+              <Stack direction="column" padding="3rem">
+                <Typography
+                  sx={{
+                    fontSize: '1.8rem',
+                    fontFamily: 'DM Sans',
+                    fontStyle: 'normal',
+                    fontWeight: '500',
+                    lineHeight: 'normal',
+                    p: '1rem',
+                  }}
+                >
+                  Vous navez pas encore de favoris ? <br />
+                  Cliquez sur cette icône{' '}
+                  <BookmarkBorderSharpIcon style={{ fontSize: '2rem' }} /> en
+                  haut à droite d&apos;une annonce pour qu&apos;elle apparaisse
+                  ici.
+                  <img
+                    width="200rem"
+                    src={no_bookmarks}
+                    alt="no bookmarks"
+                    style={{ margin: 'auto', padding: '2rem' }}
+                  />
+                </Typography>
+              </Stack>
             </Box>
           ) : (
             favouritesList

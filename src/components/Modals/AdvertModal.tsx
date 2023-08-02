@@ -144,7 +144,7 @@ export default function AdvertModal2() {
                   multiple
                   hidden
                 />
-                Ajouter une/des image(s)
+                Ajouter une image
               </Typography>
             </IconButton>
             {/* Placement image */}

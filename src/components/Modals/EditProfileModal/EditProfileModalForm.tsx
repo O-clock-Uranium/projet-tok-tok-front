@@ -1,4 +1,3 @@
-import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import {
   Alert,
   Button,
@@ -62,30 +61,11 @@ export default function EditProfile() {
 
   return (
     <>
-      <Stack
-        direction="column"
-        alignItems="center"
-        gap="2rem"
-        justifyContent="center"
-        sx={{ position: 'relative' }}
-      >
-        <img
-          src={user.banner}
-          alt="banner"
-          style={{
-            width: '76rem',
-            height: '17rem',
-            objectFit: 'cover',
-            borderRadius: '2rem',
-          }}
-        />
+      <Stack direction="column" alignItems="center" justifyContent="center">
         <img
           src={user.thumbnail}
           alt="profile_picture"
           style={{
-            position: 'absolute',
-            top: '9rem',
-            left: '5rem',
             width: '12.2rem',
             height: '12.2rem',
             objectFit: 'cover',
@@ -93,48 +73,21 @@ export default function EditProfile() {
             border: '0.5rem solid #FFF',
           }}
         />
-        <Stack direction="row" gap="2rem" paddingTop="2.5rem">
-          <label htmlFor="banner">
-            <Chip
-              sx={{
-                cursor: 'pointer',
-                color: '#03665C',
-                borderColor: '#03665C',
-                fontSize: '1.2rem',
-              }}
-              variant="outlined"
-              color="primary"
-              label="Changer la bannière"
-            />
-          </label>
-          <input
-            type="file"
-            id="banner"
-            name="banner"
-            accept="image/*"
-            hidden
+        <input
+          type="file"
+          id="thumbnail"
+          name="thumbnail"
+          accept="image/*"
+          hidden
+        />
+        <label htmlFor="thumbnail">
+          <Chip
+            sx={{ cursor: 'pointer', color: '#03665C', borderColor: '#03665C' }}
+            variant="outlined"
+            color="primary"
+            label="Changer la photo"
           />
-          <label htmlFor="thumbnail">
-            <Chip
-              sx={{
-                cursor: 'pointer',
-                color: '#03665C',
-                borderColor: '#03665C',
-                fontSize: '1.2rem',
-              }}
-              variant="outlined"
-              color="primary"
-              label="Changer la photo"
-            />
-          </label>
-          <input
-            type="file"
-            id="thumbnail"
-            name="thumbnail"
-            accept="image/*"
-            hidden
-          />
-        </Stack>
+        </label>
       </Stack>
 
       {errorMessage && <Alert severity="error">{errorMessage}</Alert>}

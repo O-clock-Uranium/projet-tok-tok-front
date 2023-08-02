@@ -11,36 +11,33 @@ import {
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import picture from '../../../assets/icons/picture.svg';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import { editAdvert, fetchAdverts } from '../../../store/reducers/adverts';
+// import { editAdvert } from '../../../store/reducers/adverts';
 import FormField from '../../Accueil/FormField/FormField';
 
-export default function EditAdvertModalForm() {
+interface EditAdvertModalProps {
+  id: number;
+}
+
+export default function EditAdvertModalForm({ id }: EditAdvertModalProps) {
   const [categorie, setCategorie] = useState('');
   const advert = useAppSelector((state) => state.adverts);
-  const { slug } = useParams();
-
-  const dispatch = useAppDispatch();
-  //   const handleOpen = () => setOpen(true);
+  // const { slug } = useParams();
+  // const dispatch = useAppDispatch();
 
   const handleChangeCategories = (event: SelectChangeEvent) => {
     setCategorie(event.target.value);
   };
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const formData = new FormData(event.currentTarget);
-    // SetTimeout pour permettre au back de processer une image
-    dispatch(editAdverts(formData));
-    await new Promise((resolve) => setTimeout(resolve, 800));
-    // if (slug) {
-    //   dispatch(fetchAdverts(slug));
-    // }
-    // dispatch(fetchAdverts());
-  };
+  // const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   const formData = new FormData(event.currentTarget);
+  //   dispatch(editAdvert(formData));
+  //   await new Promise((resolve) => setTimeout(resolve, 800));
+  //   handleCloseModal();
+  // };
 
   return (
     <div>
@@ -51,6 +48,7 @@ export default function EditAdvertModalForm() {
         </Typography>
         {/* Champ Titre */}
         <FormField
+          data-id={id}
           name="title"
           label="Titre"
           type="text"
@@ -96,15 +94,15 @@ export default function EditAdvertModalForm() {
               multiple
               hidden
             />
-            Ajouter une/des image(s)
+            Ajouter une image
           </Typography>
         </IconButton>
         {/* Placement image */}
-        <Stack py="2rem" direction="row" justifyContent="space-around">
+        {/* <Stack py="2rem" direction="row" justifyContent="space-around">
           <Typography>apercu 1</Typography>
           <Typography>apercu 2</Typography>
           <Typography>apercu 2</Typography>
-        </Stack>
+        </Stack> */}
         {/* Selecteur de catégories */}
         <FormControl sx={{ backgroundColor: '#F5F6FA' }} size="small">
           <Select
@@ -118,7 +116,7 @@ export default function EditAdvertModalForm() {
             input={<OutlinedInput />}
             inputProps={{ 'aria-label': 'Without label' }}
           >
-            <MenuItem value={advert.tag}>
+            <MenuItem value="">
               <em>Catégories</em>
             </MenuItem>
             <MenuItem value={1}>maison</MenuItem>
