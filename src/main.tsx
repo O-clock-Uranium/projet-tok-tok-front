@@ -36,6 +36,7 @@ const router = createBrowserRouter(
           <Route path="/adverts/:slug" element={<Annonce />} />
           <Route path="/favoris" element={<Favourites />} />
           <Route path="/messagerie" element={<Messagerie />} />
+          <Route path="*" element={<Error />} />
         </Route>
       </Route>
     </>
