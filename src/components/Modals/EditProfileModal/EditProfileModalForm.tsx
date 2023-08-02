@@ -82,7 +82,7 @@ export default function EditProfile() {
         />
         <label htmlFor="thumbnail">
           <Chip
-            sx={{ cursor: 'pointer' }}
+            sx={{ cursor: 'pointer', color: '#03665C', borderColor: '#03665C' }}
             variant="outlined"
             color="primary"
             label="Changer la photo"

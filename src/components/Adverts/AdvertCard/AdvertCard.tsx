@@ -36,7 +36,6 @@ export default function AdvertCard({
   const userState = useAppSelector((state) => state.user);
   const location = useLocation();
   const isProfilePage = location.pathname === `/profil/${advert_creator.slug}`;
-
   const context = 'adverts';
 
   const distance = calculateDistance(

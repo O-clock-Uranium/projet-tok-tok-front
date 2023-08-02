@@ -96,6 +96,7 @@ export default function Post({
               fontStyle: 'normal',
               fontWeight: 500,
               lineHeight: 'normal',
+              color: '#A5A5A5',
             }}
           >
             {/* Date de création */}

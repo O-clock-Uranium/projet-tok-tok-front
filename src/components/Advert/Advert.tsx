@@ -1,6 +1,6 @@
 import { Avatar, Box, Grid, Paper, Stack, Typography } from '@mui/material';
 import { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { Advert } from '../../@types';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchUserAdverts } from '../../store/reducers/adverts';
@@ -8,20 +8,27 @@ import { findAdvert } from '../../store/selectors/adverts';
 import { calculateTimeSpent } from '../../utils/date';
 import ContentUserAdvert from '../Adverts/ContentUserAdvert/ContentUserAdvert';
 
-// import FavouriteButton2 from '../Adverts/FavouriteButton/FavouriteButton2';
-// import TriplePointButton from '../TriplePointButton/TriplePointButton';
-// import AdvertCaroussel from './AdvertCaroussel/AdvertCaroussel';
+import formatDate from '../../utils/date2';
+import FavouriteButton2 from '../Adverts/FavouriteButton/FavouriteButton2';
+import TriplePointButton from '../TriplePointButton/TriplePointButton';
 import AdvertCaroussel from './AdvertCaroussel/AdvertCaroussel';
 import Caroussel from './AdvertCaroussel/Caroussel';
 import ContactButton from './ContactButton/ContactButton.ContactButton';
 import SeparateBar from './SeparateBar/SeparateBar';
 
-export default function Annonce({ id }: Advert) {
+export default function Annonce({ id, created_at }: Advert) {
   const dispatch = useAppDispatch();
   const { slug } = useParams();
   const advert = useAppSelector((state) =>
     findAdvert(state.adverts.list, slug as string)
   );
+
+  const location = useLocation();
+  // const AdvertPage = location.pathname === `/adverts/${slug}`;
+
+  const context = 'advert';
+  const date = formatDate(created_at);
+
   const userId = advert?.advert_creator.id;
 
   if (!advert) {
@@ -95,19 +102,14 @@ export default function Annonce({ id }: Advert) {
                   fontStyle: 'normal',
                   fontWeight: 500,
                   lineHeight: 'normal',
+                  color: '#a5a5a5',
                 }}
               >
                 Il y a {calculateTimeSpent(advert.created_at)}
               </Typography>
             </Stack>
-            {/* {!isProfilePage && (
-            <FavouriteButton2
-            id={id} favorited_by={favorited_by}
-            />
-            )}
-            <TriplePointButton
-            id={id} context={context}
-            /> */}
+            {/* <FavouriteButton2 id={id} favorited_by={favorited_by} /> */}
+            <TriplePointButton id={advert.id} context={context} />
           </Stack>
 
           <Box
@@ -127,7 +129,11 @@ export default function Annonce({ id }: Advert) {
                   : advert.images.map((image) => image.thumbnail)
               }
               alt="images advert"
-              style={{ objectFit: 'contain', borderRadius: '2rem' }}
+              style={{
+                maxHeight: '50rem',
+                objectFit: 'contain',
+                borderRadius: '2rem',
+              }}
             />
           </Box>
 
