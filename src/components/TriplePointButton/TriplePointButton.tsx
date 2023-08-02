@@ -2,11 +2,10 @@ import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined
 import MoreVertSharpIcon from '@mui/icons-material/MoreVertSharp';
 import ReportGmailerrorredOutlinedIcon from '@mui/icons-material/ReportGmailerrorredOutlined';
 import { IconButton, Menu, MenuItem, Typography } from '@mui/material';
-import React, { useState } from 'react';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
-import { Publication } from '../../@types/publication';
+import { SetStateAction, useState } from 'react';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import settings from '../../assets/icons/settings.svg';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { useAppDispatch } from '../../hooks/redux';
 import {
   delAdvert,
   fetchAdverts,
@@ -26,15 +25,17 @@ export default function TriplePointButton({ id, context }: MenuProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const [openModal, setOpenModal] = useState(false);
+  const slug = useParams();
 
   const location = useLocation();
   // const isAdvertsPage = location.pathname === '/adverts';
   // const isFavouritePage = location.pathname === '/favoris';
-  const isProfilePage = location.pathname === '/';
+  const isAdvertPage = location.pathname === '/adverts' || `/adverts/${slug}`;
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -101,7 +102,7 @@ export default function TriplePointButton({ id, context }: MenuProps) {
           'aria-labelledby': 'basic-button',
         }}
       >
-        {!isProfilePage && (
+        {isAdvertPage && (
           <MenuItem
             component="form"
             onClick={handleClickUpd}
