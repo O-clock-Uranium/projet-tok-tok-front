@@ -9,8 +9,10 @@ interface ToggleProps {
   setDisplay: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function ToggleButtonNotEmpty({display, setDisplay}: ToggleProps) {
-
+export default function ToggleButtonNotEmpty({
+  display,
+  setDisplay,
+}: ToggleProps) {
   const handleDisplay = (
     event: React.MouseEvent<HTMLElement>,
     newDisplay: string | null
@@ -20,7 +22,6 @@ export default function ToggleButtonNotEmpty({display, setDisplay}: ToggleProps)
     }
   };
 
-
   return (
     <Stack direction="row" spacing={4}>
       <ToggleButtonGroup
@@ -29,10 +30,44 @@ export default function ToggleButtonNotEmpty({display, setDisplay}: ToggleProps)
         onChange={handleDisplay}
         size="large"
       >
-        <ToggleButton value="publications" aria-label="publications">
+        <ToggleButton
+          value="publications"
+          aria-label="publications"
+          sx={{
+            backgroundColor: '#fff',
+            color: '#000',
+            border: '0px',
+            textTransform: 'none',
+            fontSize: '1.5rem',
+            borderRadius: '2rem',
+            fontFamily: 'DM Sans',
+            fontStyle: 'normal',
+            fontWeight: '500',
+            lineHeight: 'normal',
+            p: '2rem',
+            height: '6rem',
+          }}
+        >
           Publications
         </ToggleButton>
-        <ToggleButton value="annonces" aria-label="annonces">
+        <ToggleButton
+          value="annonces"
+          aria-label="annonces"
+          sx={{
+            backgroundColor: '#fff',
+            color: '#000',
+            border: '0px',
+            textTransform: 'none',
+            fontSize: '1.5rem',
+            borderRadius: '2rem',
+            fontFamily: 'DM Sans',
+            fontStyle: 'normal',
+            fontWeight: '500',
+            lineHeight: 'normal',
+            p: '2rem',
+            height: '6rem',
+          }}
+        >
           Annonces
         </ToggleButton>
       </ToggleButtonGroup>

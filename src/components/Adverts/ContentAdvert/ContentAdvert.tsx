@@ -12,12 +12,13 @@ function ContentAdvert({ adverts }: ContentAdvertProps) {
     <div>
       {adverts && (
         <Grid
+          justifyContent="flex start"
           container
-          spacing={{ xs: 1, sm: 1, md: 1, lg: 1, xl: 1 }}
-          columns={{ xs: 1, sm: 10, md: 14, lg: 10, xl: 20 }}
+          spacing={{ xs: 1, sm: 2, md: 4, lg: 6, xl: 7 }}
+          columns={{ xs: 1, sm: 10, md: 14, lg: 10, xl: 21 }}
         >
           {adverts.map((advert) => (
-            <Grid item xs={2} sm={3} md={4} lg={3} xl={6} key={advert.id}>
+            <Grid item xs={2} sm={3} md={4} lg={6} xl={7} key={advert.id}>
               <AdvertCard {...advert} />
             </Grid>
           ))}

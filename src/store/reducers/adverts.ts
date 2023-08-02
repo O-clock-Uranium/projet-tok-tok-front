@@ -8,6 +8,7 @@ import { Advert } from '../../@types';
 import axiosInstance from '../../utils/axios';
 
 interface AdvertsState {
+  advert: Advert;
   list: Advert[];
   favourites: Advert[];
   userAdverts: Advert[];
@@ -17,6 +18,30 @@ interface AdvertsState {
 }
 
 export const initialState: AdvertsState = {
+  advert: {
+    id: null,
+    slug: '',
+    title: '',
+    content: '',
+    price: null,
+    user_id: null,
+    tag_id: null,
+    created_at: null,
+    advert_creator: {
+      id: null,
+      firstname: '',
+      lastname: '',
+      address: '',
+      city: '',
+      longitude: '',
+      latitude: '',
+      thumbnail: '',
+      slug: '',
+      adverts: [],
+    },
+    images: [],
+    favorited_by: [],
+  },
   list: [],
   favourites: [],
   userAdverts: [],
@@ -46,7 +71,6 @@ export const fetchUserAdverts = createAsyncThunk(
       const { data } = await axiosInstance.get<Advert[]>(
         `/profile/${id}/adverts`
       );
-      console.log(data);
       return data as Advert[];
     } catch (error: any) {
       throw new Error(error.message.data.error);
@@ -72,6 +96,19 @@ export const delAdvert = createAsyncThunk(
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { data } = await axiosInstance.delete(`/adverts/${id}`);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      throw new Error(error.response.data.error);
+    }
+  }
+);
+
+export const editAdvert = createAsyncThunk(
+  'adverts/editAdvert',
+  async (formData: FormData) => {
+    try {
+      const { data } = await axiosInstance.patch('/my-profile/edit', formData);
+      return data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       throw new Error(error.response.data.error);
@@ -142,6 +179,12 @@ const advertsReducer = createReducer(initialState, (builder) => {
     })
     .addCase(delAdvert.rejected, (state, action) => {
       state.error = action.error.message;
+    })
+    .addCase(editAdvert.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.advert.title = action.payload.title;
+      state.advert.content = action.payload.content;
+      state.advert.price = action.payload.price;
     })
     .addCase(addFavourite.fulfilled, (state) => {
       // state.like = true;

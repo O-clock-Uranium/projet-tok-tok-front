@@ -1,5 +1,5 @@
 export interface AdvertCreator {
-  id: number;
+  id: number | null;
   firstname: string;
   lastname: string;
   address: string;
@@ -18,14 +18,14 @@ export interface Image {
 }
 
 export interface Advert {
-  id: number;
+  id: number | null;
   slug: string;
   title: string;
   content: string;
-  price: number;
-  user_id: number;
-  tag_id: number;
-  created_at: number;
+  price: number | null;
+  user_id: number | null;
+  tag_id: number | null;
+  created_at: number | null;
   advert_creator: AdvertCreator;
   images: Image[];
   favorited_by: Favourite[];

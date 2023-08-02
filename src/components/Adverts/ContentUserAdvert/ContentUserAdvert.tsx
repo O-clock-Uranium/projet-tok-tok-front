@@ -13,7 +13,7 @@ function ContentUserAdvert({ userAdverts }: ContentUserAdvertProps) {
       {userAdverts && (
         <Grid
           container
-          spacing={{ xs: 1, sm: 1, md: 1, lg: 1, xl: 1 }}
+          spacing={{ xs: 1, sm: 10, md: 14, lg: 10, xl: 10 }}
           columns={{ xs: 1, sm: 10, md: 14, lg: 10, xl: 20 }}
         >
           {userAdverts.map((advert) => (

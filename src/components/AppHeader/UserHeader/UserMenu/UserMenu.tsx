@@ -1,26 +1,20 @@
-import {
-  AccordionSummary,
-  Box,
-  IconButton,
-  Menu,
-  MenuItem,
-} from '@mui/material';
-import React from 'react';
+import { AccordionSummary, IconButton, Menu, MenuItem } from '@mui/material';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import down from '../../../../assets/icons/down.svg';
 import profile from '../../../../assets/icons/profile.svg';
 import settings from '../../../../assets/icons/settings.svg';
 import signout from '../../../../assets/icons/signout.svg';
-import { logout } from '../../../../store/reducers/user';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
+import { logout } from '../../../../store/reducers/user';
 import EditProfileModal from '../../../Modals/EditProfileModal/EditProfileModal';
 
 export default function UserMenu() {
   const dispatch = useAppDispatch();
 
   const userSlug = useAppSelector((state) => state.user.slug);
-  const [open, setOpen] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [open, setOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleClick = (event: any) => {
@@ -102,7 +96,7 @@ export default function UserMenu() {
             // component={Link}
             // to="/"
             onClick={handleLogout}
-            sx={{ color: 'secondary.main', fontSize: '1.8rem' }}
+            sx={{ color: '#F46F6F', fontSize: '1.8rem' }}
           >
             <IconButton type="button" aria-label="paramètres">
               <img alt="search icon" src={signout} height={18} width={18} />

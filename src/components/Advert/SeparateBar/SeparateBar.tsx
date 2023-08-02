@@ -1,21 +1,31 @@
-import { Paper } from '@mui/material';
+import { Paper, Typography } from '@mui/material';
 
-export default function SeparateBar() {
+export default function SeparateBar({ advert }: []) {
   return (
     <Paper
+      elevation={0}
       sx={{
-        textAlign: 'center',
-        fontSize: '3rem',
-        mt: '2rem',
-        mb: '2rem',
-        mx: 'auto',
-        p: '0.2rem',
-        width: '82rem',
+        width: '100rem',
+        margin: 'auto',
         borderRadius: '2rem',
-        borderBottom: '0.5rem solid #03665C',
+        height: '6.7rem',
+        backgroundColor: 'white',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
-      <p>Les autres annonces proposées par ce vendeur.</p>
+      <Typography
+        fontFamily="Manrope"
+        fontSize="1.8rem"
+        fontStyle="normal"
+        fontWeight="500"
+        lineHeight="normal"
+        margin="auto"
+      >
+        Les autres annonces proposées par {advert.advert_creator.firstname}{' '}
+        {advert.advert_creator.lastname}
+      </Typography>
     </Paper>
   );
 }

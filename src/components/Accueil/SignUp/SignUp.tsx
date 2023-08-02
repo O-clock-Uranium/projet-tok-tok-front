@@ -88,14 +88,14 @@ export default function SignUp() {
     <Box component="form" noValidate onSubmit={handleSubmit}>
       {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
       <FormField
-        name="firstname"
+        name="lastname"
         label="Nom"
         type="text"
         autoComplete="family-name"
         required
       />
       <FormField
-        name="lastname"
+        name="firstname"
         label="Prénom"
         type="text"
         autoComplete="given-name"

@@ -47,6 +47,7 @@ export default function EditProfile() {
 
     return (
       <ListItemButton
+        key={e.properties.label}
         onClick={handleClickAddressItem}
         data-latitude={e.geometry.coordinates[1]}
         data-longitude={e.geometry.coordinates[0]}
@@ -81,7 +82,7 @@ export default function EditProfile() {
         />
         <label htmlFor="thumbnail">
           <Chip
-            sx={{ cursor: 'pointer' }}
+            sx={{ cursor: 'pointer', color: '#03665C', borderColor: '#03665C' }}
             variant="outlined"
             color="primary"
             label="Changer la photo"
@@ -92,14 +93,14 @@ export default function EditProfile() {
       {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
       <Stack direction="row" gap={2}>
         <FormField
-          name="firstname"
+          name="lastname"
           label="Nom"
           type="text"
           autoComplete="family-name"
           placeholder={user.firstname}
         />
         <FormField
-          name="lastname"
+          name="firstname"
           label="Prénom"
           type="text"
           autoComplete="given-name"

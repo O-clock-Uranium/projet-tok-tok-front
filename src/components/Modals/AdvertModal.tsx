@@ -35,7 +35,7 @@ export default function AdvertModal2() {
 
     const formData = new FormData(event.currentTarget);
     dispatch(addAdvert(formData));
-
+    // SetTimeout pour permettre au back de processer une image
     await new Promise((resolve) => setTimeout(resolve, 800));
     dispatch(fetchAdverts());
     setOpen(false);
@@ -47,17 +47,20 @@ export default function AdvertModal2() {
         onClick={handleOpen}
         sx={{
           backgroundColor: 'primary.dark',
+          '&:hover': {
+            backgroundColor: 'primary.light',
+          },
           color: '#fff',
-          textTransform: 'none',
           fontSize: '1.5rem',
           borderRadius: '2rem',
           fontFamily: 'DM Sans',
           fontStyle: 'normal',
           fontWeight: '500',
           lineHeight: 'normal',
-          p: '2rem',
-          height: '6rem',
-          boxShadow: 0,
+          p: '1rem 2rem',
+          height: '7rem',
+          // boxShadow: 0,
+          border: '0px',
         }}
       >
         Créer une Annonce
@@ -112,8 +115,19 @@ export default function AdvertModal2() {
               rows={8}
             />
             {/* Bouton ajout d'image */}
-            <IconButton type="button" aria-label="images" sx={{ gap: '1rem' }}>
-              <img alt="search icon" src={picture} />
+            <IconButton
+              component="label"
+              type="button"
+              aria-label="images"
+              sx={{
+                alignItems: 'center',
+                gap: '1rem',
+                '&:hover': {
+                  borderRadius: '5rem',
+                },
+              }}
+            >
+              <img alt="add pictures" src={picture} />
               <Typography
                 fontFamily="Manrope"
                 fontSize="1.3rem"
@@ -127,7 +141,9 @@ export default function AdvertModal2() {
                   type="file"
                   name="thumbnails"
                   multiple
+                  hidden
                 />
+                Ajouter une/des image(s)
               </Typography>
             </IconButton>
             {/* Placement image */}
@@ -160,7 +176,8 @@ export default function AdvertModal2() {
             <AddAdvertField
               name="price"
               label="Prix"
-              type="text"
+              type="number"
+              min="0"
               autoComplete="none"
               InputProps={{
                 startAdornment: (

@@ -1,35 +1,42 @@
-import { Modal, Box } from '@mui/material';
+import { Box, Modal } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../../hooks/redux';
-import { fetchProfile } from '../../../store/reducers/profile';
-import { edit } from '../../../store/reducers/user';
-import EditProfileModalForm from './EditProfileModalForm';
+import { editAdvert } from '../../../store/reducers/adverts';
+import EditAdvertModalForm from './EditAdvertModalForm';
 
-interface EditProfileModalProps {
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+interface EditAdvertModalProps {
+  openModal: boolean;
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  id: number;
 }
 
 export default function EditProfileModal({
-  open,
-  setOpen,
-}: EditProfileModalProps) {
+  openModal,
+  setOpenModal,
+  id,
+}: EditAdvertModalProps) {
   const dispatch = useAppDispatch();
-  const { slug } = useParams();
+  //   const { slug } = useParams();
 
-  const handleCloseModal = () => setOpen(false);
+  const handleCloseModal = () => setOpenModal(false);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     const formData = new FormData(event.currentTarget);
-    dispatch(edit(formData));
-    dispatch(fetchProfile(slug));
+    // SetTimeout pour permettre au back de processer une image
+    dispatch(editAdvert(formData));
+    await new Promise((resolve) => setTimeout(resolve, 800));
+    // if (slug) {
+    //   dispatch(fetchAdverts(id));
+    // }
+    // dispatch(fetchAdverts(id));
     handleCloseModal();
   };
 
   return (
     <Modal
-      open={open}
+      open={openModal}
       onClose={handleCloseModal}
       component="form"
       onSubmit={handleSubmit}
@@ -57,7 +64,7 @@ export default function EditProfileModal({
             borderRadius: '2rem',
           }}
         >
-          <EditProfileModalForm />
+          <EditAdvertModalForm />
         </Box>
       </Box>
     </Modal>

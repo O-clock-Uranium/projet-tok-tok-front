@@ -4,14 +4,22 @@ export default function ContactButton() {
   return (
     <Stack mx="auto" direction="row">
       <Button
-        variant="contained"
-        endIcon=""
         sx={{
-          mt: '1rem',
-          mb: '1rem',
-          width: '50rem',
-          fontSize: '1.4rem',
+          backgroundColor: 'primary.dark',
+          '&:hover': {
+            backgroundColor: 'primary.light',
+          },
+          color: '#fff',
+          fontSize: '1.5rem',
           borderRadius: '2rem',
+          fontFamily: 'DM Sans',
+          fontStyle: 'normal',
+          fontWeight: '500',
+          lineHeight: 'normal',
+          p: '1rem 2rem',
+          height: '6rem',
+          // boxShadow: 0,
+          border: '0px',
         }}
       >
         Contacter le vendeur

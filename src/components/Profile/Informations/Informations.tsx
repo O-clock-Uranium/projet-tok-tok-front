@@ -1,5 +1,6 @@
+import RoomTwoToneIcon from '@mui/icons-material/RoomTwoTone';
 import { Button, Stack, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { User } from '../../../@types';
 import EditProfileModal from '../../Modals/EditProfileModal/EditProfileModal';
@@ -31,6 +32,7 @@ export default function Informations({ userInfo }: InformationsProps) {
         borderRadius: '2rem',
       }}
     >
+      {/* Bannière */}
       <Stack>
         <img
           src="../../../src/fakedata/banner.jpg"
@@ -43,6 +45,7 @@ export default function Informations({ userInfo }: InformationsProps) {
           }}
         />
       </Stack>
+      {/* Photo de profil + nom + bouton edit */}
       <Stack
         direction="row"
         flex="1"
@@ -56,6 +59,7 @@ export default function Informations({ userInfo }: InformationsProps) {
           alignItems="start"
           height="5rem"
         >
+          {/* Photo de profil */}
           <img
             src={userInfo.thumbnail}
             alt="profile_picture"
@@ -69,16 +73,32 @@ export default function Informations({ userInfo }: InformationsProps) {
               border: '0.5rem solid #FFF',
             }}
           />
-          <Typography
-            fontFamily="Manrope"
-            fontSize="2rem"
-            fontStyle="normal"
-            fontWeight="700"
-            lineHeight="normal"
-          >
-            {userInfo.firstname} {userInfo.lastname}
-          </Typography>
+          <Stack direction="column" justifyContent="center">
+            <Typography
+              fontFamily="Manrope"
+              fontSize="2rem"
+              fontStyle="normal"
+              fontWeight="700"
+              lineHeight="normal"
+            >
+              {/* Nom de l'utilisateur */}
+              {userInfo.firstname} {userInfo.lastname}
+            </Typography>
+            <Typography
+              fontFamily="Manrope"
+              fontSize="1.6rem"
+              fontStyle="normal"
+              fontWeight="400"
+              lineHeight="normal"
+              color="#888"
+              sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+            >
+              <RoomTwoToneIcon sx={{ fontSize: '1.8rem', color: '#888' }} />
+              {userInfo.city}
+            </Typography>
+          </Stack>
         </Stack>
+        {/* Boutton edit s'il s'agit du profil user loggued sinon bouton message ?? */}
         {isMine(slug) && (
           <>
             <Button
@@ -110,6 +130,7 @@ export default function Informations({ userInfo }: InformationsProps) {
           lineHeight="150%"
           px="1rem"
         >
+          {/* Blabla descriptif */}
           {userInfo.description}
         </Typography>
       </Stack>
