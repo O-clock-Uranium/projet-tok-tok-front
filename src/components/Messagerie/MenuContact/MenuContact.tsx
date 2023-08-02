@@ -1,8 +1,14 @@
 import { Paper, Stack } from '@mui/material';
+import { ContactUser } from '../../../@types';
 import AddContact from './AddContact/AddContact';
 import Contact from './Contact/Contact';
 
-function MenuContact() {
+interface MenuContactProps {
+  // eslint-disable-next-line react/require-default-props
+  contacts?: ContactUser[];
+}
+
+function MenuContact({ contacts }: MenuContactProps) {
   return (
     <Paper
       sx={{
@@ -29,20 +35,9 @@ function MenuContact() {
     >
       <Stack direction="column">
         <AddContact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
+        {contacts?.map((contact) => (
+          <Contact key={contact.id} {...contact} />
+        ))}
       </Stack>
     </Paper>
   );

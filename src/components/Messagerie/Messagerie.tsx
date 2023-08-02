@@ -1,9 +1,19 @@
 import { Box, Paper, Stack } from '@mui/material';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { fetchContacts } from '../../store/reducers/messagerie';
 import Form from './Form/Form';
 import MenuContact from './MenuContact/MenuContact';
 import Messages from './Messages/Messages';
 
 export default function Messagerie() {
+  const dispatch = useAppDispatch();
+  const contacts = useAppSelector((state) => state.messagerie.contacts);
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
   return (
     <Box
       sx={{
@@ -15,7 +25,7 @@ export default function Messagerie() {
       }}
     >
       <Stack direction="row">
-        <MenuContact />
+        <MenuContact contacts={contacts} />
         <Stack sx={{ flexGrow: 1 }}>
           <div className="chat">
             <Paper

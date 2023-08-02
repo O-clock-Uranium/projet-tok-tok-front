@@ -107,7 +107,7 @@ export const editAdvert = createAsyncThunk(
   'adverts/editAdvert',
   async (formData: FormData) => {
     try {
-      const { data } = await axiosInstance.patch('/my-profile/edit', formData);
+      const { data } = await axiosInstance.patch(`/adverts/${id}`, formData);
       return data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {

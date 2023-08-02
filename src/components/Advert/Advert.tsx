@@ -15,6 +15,7 @@ import AdvertCaroussel from './AdvertCaroussel/AdvertCaroussel';
 import Caroussel from './AdvertCaroussel/Caroussel';
 import ContactButton from './ContactButton/ContactButton.ContactButton';
 import SeparateBar from './SeparateBar/SeparateBar';
+import ContactModal from '../Modals/ContactModal/ContactModal';
 
 export default function Annonce({ id, created_at }: Advert) {
   const dispatch = useAppDispatch();
@@ -219,7 +220,7 @@ export default function Annonce({ id, created_at }: Advert) {
           >
             {advert.content}
           </Typography>
-          <ContactButton />
+          <ContactModal id={advert.advert_creator.id} />
         </Stack>
       </Paper>
       <SeparateBar advert={advert} />
