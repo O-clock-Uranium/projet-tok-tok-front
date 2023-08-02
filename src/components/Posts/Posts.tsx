@@ -1,8 +1,19 @@
 import Stack from '@mui/material/Stack';
 import NewPost from './NewPost/NewPost';
 import ContentPost from './Post/ContentPost/ContentPost';
+import { useEffect } from 'react';
+import { fetchPosts } from '../../store/reducers/publications';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+
 
 export default function Posts() {
+  const publications = useAppSelector(state=>state.publications.list)
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchPosts());
+  }, [dispatch]);
+
   return (
     <Stack
       direction="column"
@@ -12,7 +23,7 @@ export default function Posts() {
       sx={{ py: '13rem' }}
     >
       <NewPost />
-      <ContentPost />
+      <ContentPost publications={publications} />
     </Stack>
   );
 }
