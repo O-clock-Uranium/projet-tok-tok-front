@@ -75,7 +75,10 @@ export interface Message {
 
 export interface ContactUser {
   id: number;
-  user_one_info: {
+  firstname: string;
+  lastname: string;
+  thumbnail: string;
+  contact: {
     id: number;
     firstname: string;
     lastname: string;

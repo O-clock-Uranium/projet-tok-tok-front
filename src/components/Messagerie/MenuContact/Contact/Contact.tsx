@@ -1,47 +1,50 @@
-import { Paper, Typography } from '@mui/material';
+import { Button, Paper, Typography } from '@mui/material';
 import { ContactUser } from '../../../../@types';
-import { useAppSelector } from '../../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
+import { fetchMessages } from '../../../../store/reducers/messagerie';
 
 interface ContactProps {
-  firstname: string;
-  lastname: string;
-  thumbnail: string;
-  contact: {
-    user_one_info: {
-      firstname: string;
-      lastname: string;
-      thumbnail: string;
-    };
-  };
+  contact: ContactUser;
+  id: number;
+  setDestinataireId: React.Dispatch<React.SetStateAction<number>>;
 }
 
-function Contact() {
-  const contacts = useAppSelector((state) => state.messagerie.contacts);
-  // ici, il faut mettre un ternaire : parfois c'est le user_one_info, parfois le user_two_info
-  const userInfos = contacts.map((contact) => contact.user_one_info);
-  console.log(userInfos);
-  console.log(contacts);
-  
+function Contact({ contact, id, setDestinataireId }: ContactProps) {
+  const dispatch = useAppDispatch();
+  console.log(id);
+
+  const handleClick = () => {
+    dispatch(fetchMessages(contact.id));
+    setDestinataireId(contact.id);
+    console.log(contact.id);
+  };
 
   return (
-    <Paper
-      sx={{
-        width: '10rem',
-        height: '4rem',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: '1.2rem',
-        backgroundColor: 'default',
-        mb: '0.5rem',
-      }}
-    >
-      <div>
-        {userInfos.map((info) => (
-          <Typography key={info.id}>test </Typography>
-        ))}
-      </div>
-    </Paper>
+    <div>
+      <Button
+        onClick={handleClick}
+        key={id}
+        sx={{
+          backgroundColor: 'primary.dark',
+          '&:hover': {
+            backgroundColor: 'primary.light',
+          },
+          color: '#fff',
+          width: '10rem',
+          height: '4rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '1.2rem',
+          mb: '0.5rem',
+        }}
+      >
+        <Typography>
+          {' '}
+          {contact.firstname} {contact.lastname}{' '}
+        </Typography>
+      </Button>
+    </div>
   );
 }
 

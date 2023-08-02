@@ -10,9 +10,9 @@ import profileReducer from './reducers/profile';
 
 const persistConfig = {
   key: 'root',
-  // version: 1,
+  version: 1,
   storage,
-  rehydrated: false,
+  blacklist: ['messagerie'],
 };
 
 const reducer = combineReducers({
@@ -27,8 +27,7 @@ const persistedReducer = persistReducer(persistConfig, reducer);
 
 const store = configureStore({
   reducer: persistedReducer,
-  applyMiddleware: applyMiddleware(),
-  middleware: (getDefaultMiddleware) =>
+  applyMiddleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
     }),

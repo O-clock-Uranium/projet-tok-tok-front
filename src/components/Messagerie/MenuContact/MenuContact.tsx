@@ -6,9 +6,16 @@ import Contact from './Contact/Contact';
 interface MenuContactProps {
   // eslint-disable-next-line react/require-default-props
   contacts?: ContactUser[];
+  destinataireId: number;
+  setDestinataireId: React.Dispatch<React.SetStateAction<number>>;
 }
 
-function MenuContact({ contacts }: MenuContactProps) {
+function MenuContact({
+  contacts,
+  destinataireId,
+  setDestinataireId,
+}: MenuContactProps) {
+  console.log(destinataireId);
   return (
     <Paper
       sx={{
@@ -34,9 +41,13 @@ function MenuContact({ contacts }: MenuContactProps) {
       }}
     >
       <Stack direction="column">
-        <AddContact />
         {contacts?.map((contact) => (
-          <Contact key={contact.id} {...contact} />
+          <Contact
+            key={contact.id}
+            {...contact}
+            id={destinataireId}
+            setDestinataireId={setDestinataireId}
+          />
         ))}
       </Stack>
     </Paper>

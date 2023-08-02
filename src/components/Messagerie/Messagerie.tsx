@@ -1,5 +1,5 @@
 import { Box, Paper, Stack } from '@mui/material';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchContacts } from '../../store/reducers/messagerie';
 import Form from './Form/Form';
@@ -7,8 +7,15 @@ import MenuContact from './MenuContact/MenuContact';
 import Messages from './Messages/Messages';
 
 export default function Messagerie() {
+  const [destinataireId, setDestinataireId] = useState(0);
   const dispatch = useAppDispatch();
   const contacts = useAppSelector((state) => state.messagerie.contacts);
+
+  const contactId = contacts.map((contact) => contact.id);
+  console.log(contactId);
+
+  // 0:2
+  // 1:3
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -25,7 +32,11 @@ export default function Messagerie() {
       }}
     >
       <Stack direction="row">
-        <MenuContact contacts={contacts} />
+        <MenuContact
+          contacts={contacts}
+          destinatireId={destinataireId}
+          setDestinataireId={setDestinataireId}
+        />
         <Stack sx={{ flexGrow: 1 }}>
           <div className="chat">
             <Paper
@@ -51,7 +62,10 @@ export default function Messagerie() {
               }}
             >
               <Messages />
-              <Form />
+              <Form
+                destinatireId={destinataireId}
+                setDestinataireId={setDestinataireId}
+              />
             </Paper>
           </div>
         </Stack>
