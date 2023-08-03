@@ -34,6 +34,8 @@ export default function TriplePointButton({ id, context }: MenuProps) {
     location.pathname.startsWith('/adverts') ||
     location.pathname === '/favoris';
 
+  const isHomePage = location.pathname === '/';
+
   const isCurrentUserCreator = id === userInfo.id;
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -49,6 +51,7 @@ export default function TriplePointButton({ id, context }: MenuProps) {
       dispatch(delPost(id));
       await new Promise((resolve) => setTimeout(resolve, 800));
       dispatch(fetchPosts());
+      dispatch(fetchProfile());
     } else if (context === 'adverts') {
       dispatch(delAdvert(id));
       await new Promise((resolve) => setTimeout(resolve, 800));
@@ -146,6 +149,20 @@ export default function TriplePointButton({ id, context }: MenuProps) {
               </MenuItem>
             </>
           )}
+
+          {/* {isHomePage && (
+            <MenuItem
+              component="form"
+              onClick={handleClickDel}
+              data-id={id}
+              sx={{ justifyContent: 'start' }}
+            >
+              <DeleteForeverOutlinedIcon sx={{ color: 'red', fontSize: 20 }} />
+              <Typography sx={{ pl: '1rem', fontSize: '1.5rem' }}>
+                Supprimer
+              </Typography>
+            </MenuItem>
+          )} */}
         </div>
         <MenuItem
           onClick={handleClickDel}

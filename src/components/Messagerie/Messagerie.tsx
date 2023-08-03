@@ -33,7 +33,7 @@ export default function Messagerie() {
         margin: 'auto',
       }}
     >
-      {contacts ? (
+      {contacts.length > 0 ? (
         <Stack direction="row">
           <MenuContact
             contacts={contacts}

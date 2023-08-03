@@ -1,5 +1,15 @@
-import { Avatar, Box, Grid, Paper, Stack, Typography } from '@mui/material';
-import { useEffect } from 'react';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import {
+  Avatar,
+  Box,
+  Grid,
+  IconButton,
+  Paper,
+  Stack,
+  Typography,
+} from '@mui/material';
+import { useEffect, useState } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { Advert } from '../../@types';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
@@ -10,10 +20,10 @@ import formatDate from '../../utils/date2';
 import { calculateDistance } from '../../utils/gps';
 import ContentUserAdvert from '../Adverts/ContentUserAdvert/ContentUserAdvert';
 import FavouriteButton2 from '../Adverts/FavouriteButton/FavouriteButton2';
+import ContactModal from '../Modals/ContactModal/ContactModal';
 import TriplePointButton from '../TriplePointButton/TriplePointButton';
 import ContactButton from './ContactButton/ContactButton.ContactButton';
 import SeparateBar from './SeparateBar/SeparateBar';
-import ContactModal from '../Modals/ContactModal/ContactModal';
 
 export default function Annonce({ id, created_at }: Advert) {
   const userState = useAppSelector((state) => state.user);
@@ -23,6 +33,24 @@ export default function Annonce({ id, created_at }: Advert) {
   const advert = useAppSelector((state) =>
     findAdvert(state.adverts.list, slug as string)
   );
+
+  const [indexImg, setIndexImg] = useState(0);
+
+  const handleClickNext = () => {
+    if (indexImg === advert?.images.length - 1) {
+      setIndexImg(0);
+    } else {
+      setIndexImg(indexImg + 1);
+    }
+  };
+
+  const handleClickPrevious = () => {
+    if (indexImg === 0) {
+      setIndexImg(advert?.images.length - 1);
+    } else {
+      setIndexImg(indexImg - 1);
+    }
+  };
 
   const distance = calculateDistance(
     userState.latitude,
@@ -130,11 +158,16 @@ export default function Annonce({ id, created_at }: Advert) {
               pb: '2.5rem',
             }}
           >
+            {advert.images.length > 1 && (
+              <IconButton aria-label="delete" onClick={handleClickPrevious}>
+                <ArrowBackIosIcon />
+              </IconButton>
+            )}
             <img
               src={
                 advert.images.length === 0
                   ? 'http://localhost:3000/images/default-advert-picture.png'
-                  : advert.images[0].thumbnail
+                  : advert.images[indexImg].thumbnail
               }
               alt="images advert"
               style={{
@@ -143,6 +176,11 @@ export default function Annonce({ id, created_at }: Advert) {
                 borderRadius: '2rem',
               }}
             />
+            {advert.images.length > 1 && (
+              <IconButton aria-label="delete" onClick={handleClickNext}>
+                <ArrowForwardIosIcon />
+              </IconButton>
+            )}
           </Box>
 
           <Stack
@@ -255,7 +293,9 @@ export default function Annonce({ id, created_at }: Advert) {
           >
             {advert.content}
           </Typography>
-          <ContactModal id={advert.advert_creator.id} />
+          <Stack direction="row" justifyContent="center">
+            <ContactModal id={advert.advert_creator.id} />
+          </Stack>
         </Stack>
       </Paper>
       <SeparateBar advert={advert} />

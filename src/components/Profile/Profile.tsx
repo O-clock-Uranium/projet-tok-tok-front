@@ -13,13 +13,17 @@ export default function Profile() {
   const user = useAppSelector((state) => state.profile);
   const dispatch = useAppDispatch();
 
+  const userPosts = user.posts.filter((p) => {
+    return p.reply_to === null;
+  });
+
   const { slug } = useParams();
   const [display, setDisplay] = useState('publications');
   const context = 'profile';
 
   useEffect(() => {
     dispatch(fetchProfile(slug));
-  }, [dispatch]);
+  }, [dispatch, slug]);
 
   if (!user) {
     // eslint-disable-next-line @typescript-eslint/no-throw-literal
@@ -40,7 +44,7 @@ export default function Profile() {
       mx="auto"
     >
       {/* Banniere + infos profil + boutton edit */}
-      <Informations userInfo={userInfo} />
+      <Informations userInfo={user} />
 
       {/* Toggle button Publications / Annonces */}
       <Stack direction="row" paddingY="2rem" width="100%">
@@ -49,7 +53,7 @@ export default function Profile() {
       <Stack width="100rem">
         {/* Publications content ou Adverts content */}
         {display === 'publications' ? (
-          <ContentPost publications={user.posts} />
+          <ContentPost publications={userPosts} />
         ) : (
           <ContentAdvert adverts={user.adverts} context={context} />
         )}

@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import Collapse from '@mui/material/Collapse';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 
 import { Publication } from '../../../@types/publication';
@@ -87,7 +88,12 @@ export default function Post({
             }}
           >
             {/* Nom et prénom */}
-            {post_creator?.firstname} {post_creator?.lastname}
+            <Link
+              to={`/profil/${post_creator.slug}`}
+              style={{ textDecoration: 'none', color: '#000' }}
+            >
+              {post_creator?.firstname} {post_creator?.lastname}
+            </Link>
           </Typography>
           <Typography
             sx={{

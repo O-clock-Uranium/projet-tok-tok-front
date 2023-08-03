@@ -82,7 +82,12 @@ export default function EditProfile() {
         />
         <label htmlFor="thumbnail">
           <Chip
-            sx={{ cursor: 'pointer', color: '#03665C', borderColor: '#03665C' }}
+            sx={{
+              cursor: 'pointer',
+              color: '#03665C',
+              borderColor: '#03665C',
+              fontSize: '1.3rem',
+            }}
             variant="outlined"
             color="primary"
             label="Changer la photo"
@@ -97,14 +102,14 @@ export default function EditProfile() {
           label="Nom"
           type="text"
           autoComplete="family-name"
-          placeholder={user.firstname}
+          placeholder={user.lastname}
         />
         <FormField
           name="firstname"
           label="Prénom"
           type="text"
           autoComplete="given-name"
-          placeholder={user.lastname}
+          placeholder={user.firstname}
         />
       </Stack>
 
@@ -178,7 +183,20 @@ export default function EditProfile() {
         type="submit"
         fullWidth
         variant="contained"
-        sx={{ mt: 3, mb: 2, color: 'white', fontSize: '1.3rem' }}
+        sx={{
+          color: 'white',
+          backgroundColor: 'primary.dark',
+          textTransform: 'none',
+          fontSize: '1.5rem',
+          borderRadius: '1.3rem',
+          fontFamily: 'DM Sans',
+          fontStyle: 'normal',
+          fontWeight: '500',
+          lineHeight: 'normal',
+          mt: '1rem',
+          p: '1.2rem',
+          boxShadow: 0,
+        }}
       >
         Enregister les modifications
       </Button>

@@ -31,7 +31,6 @@ export const initialState: ProfileState = {
   description: '',
   city: '',
   thumbnail: '',
-  banner: '',
   slug: '',
   posts: [],
   likes: [],
@@ -64,7 +63,6 @@ const profileReducer = createReducer(initialState, (builder) => {
     .addCase(fetchProfile.fulfilled, (state, action) => {
       state.isLoading = false;
       state.id = action.payload.id;
-      state.banner = "test"
       state.firstname = action.payload.firstname;
       state.lastname = action.payload.lastname;
       state.thumbnail = action.payload.thumbnail;
