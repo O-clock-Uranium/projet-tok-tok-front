@@ -5,8 +5,8 @@ import { getIsMine } from '../../../store/selectors/messages';
 
 import { Message } from '../../../@types';
 
-function MessagesItem({ author, content }: Message) {
-  const isMine = useAppSelector(getIsMine(author));
+function MessagesItem({ sender, content }: Message) {
+  const isMine = useAppSelector(getIsMine(Number(sender)));
 
   return (
     <article
@@ -14,7 +14,7 @@ function MessagesItem({ author, content }: Message) {
         'messages-item--mine': isMine,
       })}
     >
-      <p className="messages-item__author">{author}</p>
+      {/* <p className="messages-item__author">{sender}</p> */}
       <p className="messages-item__content">{content}</p>
     </article>
   );

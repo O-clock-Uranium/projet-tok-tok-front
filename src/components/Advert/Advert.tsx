@@ -13,6 +13,7 @@ import FavouriteButton2 from '../Adverts/FavouriteButton/FavouriteButton2';
 import TriplePointButton from '../TriplePointButton/TriplePointButton';
 import ContactButton from './ContactButton/ContactButton.ContactButton';
 import SeparateBar from './SeparateBar/SeparateBar';
+import ContactModal from '../Modals/ContactModal/ContactModal';
 
 export default function Annonce({ id, created_at }: Advert) {
   const userState = useAppSelector((state) => state.user);
@@ -254,7 +255,7 @@ export default function Annonce({ id, created_at }: Advert) {
           >
             {advert.content}
           </Typography>
-          <ContactButton />
+          <ContactModal id={advert.advert_creator.id} />
         </Stack>
       </Paper>
       <SeparateBar advert={advert} />

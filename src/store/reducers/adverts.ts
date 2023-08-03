@@ -107,8 +107,6 @@ export const editAdvert = createAsyncThunk(
   'adverts/editAdvert',
   async ({ id, formData }: { id: number; formData: FormData }) => {
     try {
-      // const objData = Object.fromEntries(formData);
-      console.log(id);
       const { data } = await axiosInstance.patch(`/adverts/${id}`, formData);
       return data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

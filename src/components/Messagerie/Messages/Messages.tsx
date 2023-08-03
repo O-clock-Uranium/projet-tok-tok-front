@@ -13,12 +13,12 @@ function Messages() {
 
   const messagesRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    subscribeToNewMessage();
-    return () => {
-      unsubscribeToNewMessage();
-    };
-  }, []);
+  // useEffect(() => {
+  //   subscribeToNewMessage();
+  //   return () => {
+  //     unsubscribeToNewMessage();
+  //   };
+  // }, []);
 
   //! Revoir comment aimanté le scroll tout en bas à chaque nouveau message
   useEffect(() => {

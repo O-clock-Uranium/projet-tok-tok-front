@@ -1,7 +1,7 @@
 import {
   createAction,
   createAsyncThunk,
-  createReducer,
+  createReducer
 } from '@reduxjs/toolkit';
 
 import axiosInstance from '../../utils/axios';
@@ -21,6 +21,7 @@ interface UserState {
   thumbnail: string;
   slug: string;
   email: string;
+  banner: string;
 
   error?: string;
   isLoading: boolean;
@@ -41,6 +42,7 @@ export const initialState: UserState = {
   thumbnail: '',
   slug: '',
   email: '',
+  banner: '',
   error: '',
   isLoading: false,
 };
@@ -138,6 +140,7 @@ const userReducer = createReducer(initialState, (builder) => {
       state.slug = action.payload.user.slug;
       state.description = action.payload.user.description;
       state.email = action.payload.user.email;
+      state.banner = action.payload.user.banner;
     })
     .addCase(login.rejected, (state, action) => {
       state.isLoading = false;
@@ -162,8 +165,8 @@ const userReducer = createReducer(initialState, (builder) => {
     })
     .addCase(signup.fulfilled, (state, action) => {
       state.isLoading = false;
+      state.token = action.payload.token;
       state.logged = true;
-      state.banner = action.payload.user.banner;
       state.id = action.payload.user.id;
       state.firstname = action.payload.user.firstname;
       state.lastname = action.payload.user.lastname;
@@ -175,6 +178,7 @@ const userReducer = createReducer(initialState, (builder) => {
       state.slug = action.payload.user.slug;
       state.description = action.payload.user.description;
       state.email = action.payload.user.email;
+      state.banner = action.payload.user.banner;
     })
     .addCase(signup.pending, (state) => {
       state.isLoading = false;

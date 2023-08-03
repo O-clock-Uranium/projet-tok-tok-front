@@ -1,5 +1,5 @@
 export interface AdvertCreator {
-  id: number | null;
+  id: number;
   firstname: string;
   lastname: string;
   address: string;
@@ -22,16 +22,17 @@ export interface Advert {
   slug: string;
   title: string;
   content: string;
-  price: number | null;
-  user_id: number | null;
-  tag_id: number | null;
-  created_at: number | null;
+  price: number;
+  user_id: number;
+  tag_id: number;
+  created_at: number;
   advert_creator: AdvertCreator;
   images: Image[];
   favorited_by: Favourite[];
   tag: Tag[];
 }
 
+// Pour le profil
 export interface User {
   id: number;
   banner: string;
@@ -40,6 +41,7 @@ export interface User {
   description: string | null;
   city: string;
   thumbnail: string;
+  banner: string;
   slug: string;
   created_at: string;
   liked: Publication[];
@@ -69,8 +71,19 @@ export interface Tag {
 
 export interface Message {
   id: number;
-  author: string;
+  sender: string;
   content: string;
+  conversation_id: number;
+}
+
+export interface ContactUser {
+  id: number;
+  contactInfo: {
+    id: number;
+    firstname: string;
+    lastname: string;
+    thumbnail: string;
+  };
 }
 
 export interface Flash {

@@ -1,8 +1,38 @@
 import { Paper, Stack } from '@mui/material';
+import { ContactUser } from '../../../@types';
 import AddContact from './AddContact/AddContact';
 import Contact from './Contact/Contact';
 
-function MenuContact() {
+interface MenuContactProps {
+  // eslint-disable-next-line react/require-default-props
+  contacts?: ContactUser[];
+  destinataireId: number;
+  setDestinataireId: React.Dispatch<React.SetStateAction<number>>;
+  destinataireName: string;
+  setDestinataireName: React.Dispatch<React.SetStateAction<string>>;
+}
+
+function MenuContact({
+  contacts,
+  destinataireId,
+  setDestinataireId,
+  destinataireName,
+  setDestinataireName,
+}: MenuContactProps) {
+  const contactList = contacts?.map((e) => {
+    return (
+      <Contact
+        key={e.id}
+        conversationId={e.id}
+        contact={e}
+        destinataireId={destinataireId}
+        setDestinataireId={setDestinataireId}
+        destinataireName={destinataireName}
+        setDestinataireName={setDestinataireName}
+      />
+    );
+  });
+
   return (
     <Paper
       sx={{
@@ -27,23 +57,7 @@ function MenuContact() {
         },
       }}
     >
-      <Stack direction="column">
-        <AddContact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-      </Stack>
+      <Stack direction="column">{contactList}</Stack>
     </Paper>
   );
 }
