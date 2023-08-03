@@ -67,18 +67,14 @@ export interface Tag {
 
 export interface Message {
   id: number;
-  expéditeur: string;
-  destinataire: string;
+  sender: string;
   content: string;
-  room_id?: number;
+  conversation_id: number;
 }
 
 export interface ContactUser {
   id: number;
-  firstname: string;
-  lastname: string;
-  thumbnail: string;
-  contact: {
+  contactInfo: {
     id: number;
     firstname: string;
     lastname: string;

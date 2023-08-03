@@ -8,14 +8,31 @@ interface MenuContactProps {
   contacts?: ContactUser[];
   destinataireId: number;
   setDestinataireId: React.Dispatch<React.SetStateAction<number>>;
+  destinataireName: string;
+  setDestinataireName: React.Dispatch<React.SetStateAction<string>>;
 }
 
 function MenuContact({
   contacts,
   destinataireId,
   setDestinataireId,
+  destinataireName,
+  setDestinataireName,
 }: MenuContactProps) {
-  console.log(destinataireId);
+  const contactList = contacts?.map((e) => {
+    return (
+      <Contact
+        key={e.id}
+        conversationId={e.id}
+        contact={e}
+        destinataireId={destinataireId}
+        setDestinataireId={setDestinataireId}
+        destinataireName={destinataireName}
+        setDestinataireName={setDestinataireName}
+      />
+    );
+  });
+
   return (
     <Paper
       sx={{
@@ -40,16 +57,7 @@ function MenuContact({
         },
       }}
     >
-      <Stack direction="column">
-        {contacts?.map((contact) => (
-          <Contact
-            key={contact.id}
-            {...contact}
-            id={destinataireId}
-            setDestinataireId={setDestinataireId}
-          />
-        ))}
-      </Stack>
+      <Stack direction="column">{contactList}</Stack>
     </Paper>
   );
 }

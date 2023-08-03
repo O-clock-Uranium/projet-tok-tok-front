@@ -9,12 +9,10 @@ import './Form.scss';
 
 interface FormProps {
   destinataireId: number;
-  setDestinataireId: React.Dispatch<React.SetStateAction<number>>;
 }
 
-function Form({ destinataireId, setDestinataireId }: FormProps) {
+function Form({ destinataireId }: FormProps) {
   const [currentMessage, setCurrentMessage] = useState('');
-  // const pseudo = useAppSelector((state) => state.user.firstname);
   const contact = useAppSelector((state) => state.messagerie.contacts);
   console.log(contact);
 

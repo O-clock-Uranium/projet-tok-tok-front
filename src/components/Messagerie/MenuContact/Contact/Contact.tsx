@@ -4,26 +4,31 @@ import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { fetchMessages } from '../../../../store/reducers/messagerie';
 
 interface ContactProps {
+  conversationId: number;
   contact: ContactUser;
-  id: number;
+  destinataireId: number;
   setDestinataireId: React.Dispatch<React.SetStateAction<number>>;
+  destinataireName: string;
+  setDestinataireName: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function Contact({ contact, id, setDestinataireId }: ContactProps) {
+function Contact({ contact, setDestinataireName, setDestinataireId }: ContactProps) {
   const dispatch = useAppDispatch();
-  console.log(id);
 
   const handleClick = () => {
-    dispatch(fetchMessages(contact.id));
-    setDestinataireId(contact.id);
-    console.log(contact.id);
+    setDestinataireId(contact.contactInfo.id);
+    setDestinataireName(
+      `${contact.contactInfo.firstname} ${contact.contactInfo.lastname}`
+    );
+    
+    dispatch(fetchMessages(contact.contactInfo.id));
   };
 
   return (
     <div>
       <Button
         onClick={handleClick}
-        key={id}
+        key={contact.contactInfo.id}
         sx={{
           backgroundColor: 'primary.dark',
           '&:hover': {
@@ -41,7 +46,7 @@ function Contact({ contact, id, setDestinataireId }: ContactProps) {
       >
         <Typography>
           {' '}
-          {contact.firstname} {contact.lastname}{' '}
+          {contact.contactInfo.firstname} {contact.contactInfo.lastname}{' '}
         </Typography>
       </Button>
     </div>

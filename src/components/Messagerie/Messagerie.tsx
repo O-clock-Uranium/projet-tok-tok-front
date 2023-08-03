@@ -8,11 +8,13 @@ import Messages from './Messages/Messages';
 
 export default function Messagerie() {
   const [destinataireId, setDestinataireId] = useState(0);
+  const [destinataireName, setDestinataireName] = useState('');
+
   const dispatch = useAppDispatch();
   const contacts = useAppSelector((state) => state.messagerie.contacts);
 
-  const contactId = contacts.map((contact) => contact.id);
-  console.log(contactId);
+  // const contactId = contacts.map((contact) => contact.id);
+  // console.log(contactId);
 
   // 0:2
   // 1:3
@@ -34,11 +36,30 @@ export default function Messagerie() {
       <Stack direction="row">
         <MenuContact
           contacts={contacts}
-          destinatireId={destinataireId}
+          destinataireId={destinataireId}
           setDestinataireId={setDestinataireId}
+          destinataireName={destinataireName}
+          setDestinataireName={setDestinataireName}
         />
         <Stack sx={{ flexGrow: 1 }}>
           <div className="chat">
+            <Stack
+              direction="row"
+              sx={{
+                backgroundColor: 'primary.dark',
+                color: '#fff',
+                height: '4rem',
+                display: 'flex',
+                alignItems: 'center',
+                fontSize: '2rem',
+                fontFamily: 'DM Sans',
+                borderRadius: '1rem',
+                mb: '0.5rem',
+                pl: '2rem',
+              }}
+            >
+              {destinataireName}
+            </Stack>
             <Paper
               sx={{
                 p: '2rem',
@@ -62,10 +83,7 @@ export default function Messagerie() {
               }}
             >
               <Messages />
-              <Form
-                destinatireId={destinataireId}
-                setDestinataireId={setDestinataireId}
-              />
+              <Form destinataireId={destinataireId} />
             </Paper>
           </div>
         </Stack>

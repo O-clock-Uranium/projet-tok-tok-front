@@ -10,12 +10,14 @@ import axiosInstance from '../../utils/axios';
 interface MessagerieState {
   messages: Message[];
   contacts: ContactUser[];
+  currentDestinataire: number;
 }
 
 const initialState: MessagerieState = {
   // la liste des messages de la conversation qu'on consulte
   messages: [],
   contacts: [],
+  currentDestinataire: 0,
 };
 
 export const sendMessage = createAsyncThunk(
@@ -49,9 +51,9 @@ export const fetchContacts = createAsyncThunk(
 
 export const fetchMessages = createAsyncThunk(
   'chat/fetch-messages',
-  async (room: number) => {
+  async (destinataireId: number) => {
     try {
-      const { data } = await axiosInstance.get(`/messages/${room}`);
+      const { data } = await axiosInstance.get(`/messages/${destinataireId}`);
       return data;
     } catch (error: any) {
       throw new Error(error.response.data.error);

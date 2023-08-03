@@ -92,6 +92,7 @@ export default function ContactModal({ id }: any) {
               name="destinataire"
               aria-label="Recipient"
               type="text"
+              readOnly
               value={id}
               hidden
               autoComplete="none"
