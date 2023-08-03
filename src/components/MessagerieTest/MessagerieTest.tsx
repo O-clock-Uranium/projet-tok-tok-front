@@ -52,7 +52,7 @@ export default function MessagerieTest() {
   /* A chaque événement reçu ------------------------------- */
   useEffect(() => {
     socket.on('server_send_message', (data: any) => {
-      console.log(data);
+      // console.log(data);
     });
   }, [socket]);
 

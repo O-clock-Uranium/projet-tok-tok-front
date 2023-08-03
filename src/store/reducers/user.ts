@@ -42,7 +42,6 @@ export const initialState: UserState = {
   thumbnail: '',
   slug: '',
   email: '',
-  banner: '',
   error: '',
   isLoading: false,
 };
@@ -204,8 +203,8 @@ const userReducer = createReducer(initialState, (builder) => {
     })
     .addCase(editBanner.fulfilled, (state, action) => {
       state.banner = action.payload.banner;
-      console.log('bruce', action.payload);
-      console.log('banner', state.banner);
+      // console.log('bruce', action.payload);
+      // console.log('banner', state.banner);
     })
     .addCase(edit.pending, (state) => {
       state.isLoading = false;

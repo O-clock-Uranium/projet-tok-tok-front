@@ -7,7 +7,7 @@ interface ContentAdvertProps {
   adverts?: Advert[];
 }
 
-function ContentAdvert({ adverts }: ContentAdvertProps) {
+function ContentAdvert({ adverts, context }: ContentAdvertProps) {
   return (
     <div>
       {adverts && (
@@ -23,7 +23,7 @@ function ContentAdvert({ adverts }: ContentAdvertProps) {
         >
           {adverts.map((advert) => (
             // <Grid item xs={2} sm={3} md={4} lg={6} xl={7} key={advert.id}>
-            <AdvertCard {...advert} />
+            <AdvertCard context={context} {...advert} />
             // </Grid>
           ))}
         </Stack>

@@ -54,6 +54,7 @@ export const fetchMessages = createAsyncThunk(
   async (destinataireId: number) => {
     try {
       const { data } = await axiosInstance.get(`/messages/${destinataireId}`);
+      console.log('datamessage', data);
       return data;
     } catch (error: any) {
       throw new Error(error.response.data.error);
@@ -67,7 +68,9 @@ const messagerieReducer = createReducer(initialState, (builder) => {
       state.messages.push(action.payload);
     })
     .addCase(fetchMessages.fulfilled, (state, action) => {
-      state.messages = action.payload;
+      // state.messages = action.payload;
+      // remplace par ça
+      state.messages = action.payload.messages;
     })
     .addCase(fetchContacts.fulfilled, (state, action) => {
       state.contacts = action.payload;

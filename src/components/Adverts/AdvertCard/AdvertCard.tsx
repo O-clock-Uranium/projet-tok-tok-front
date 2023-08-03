@@ -48,8 +48,8 @@ export default function AdvertCard({
     advert_creator.longitude
   );
 
-  console.log(advertState);
-  console.log(advertState[0].tag.name);
+  // console.log(advertState);
+  // console.log(advertState[0].tag.name);
 
   return (
     <Paper

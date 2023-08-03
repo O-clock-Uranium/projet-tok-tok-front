@@ -25,7 +25,7 @@ export default function EditProfileModal({
     dispatch(editAdvert({ id, formData }));
     // SetTimeout pour permettre au back de processer une image
     await new Promise((resolve) => setTimeout(resolve, 800));
-    console.log(id, Object.fromEntries(formData));
+    // console.log(id, Object.fromEntries(formData));
     handleCloseModal();
   };
 

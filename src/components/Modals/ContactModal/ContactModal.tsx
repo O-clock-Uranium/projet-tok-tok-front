@@ -22,7 +22,7 @@ export default function ContactModal({ id }: any) {
     dispatch(sendMessage(formData));
     setOpen(false);
   };
-  console.log(id);
+  // console.log(id);
   return (
     <div>
       <Stack mx="auto" direction="row">

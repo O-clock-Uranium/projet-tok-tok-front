@@ -11,6 +11,7 @@ import {
   fetchAdverts,
   fetchFavourites,
 } from '../../store/reducers/adverts';
+import { fetchProfile } from '../../store/reducers/profile';
 import { delPost, fetchPosts } from '../../store/reducers/publications';
 import EditAdvertModal from '../Modals/EditAdvertModal/EditAdvertModal';
 
@@ -26,6 +27,7 @@ export default function TriplePointButton({ id, context }: MenuProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const [openModal, setOpenModal] = useState(false);
+  const { slug } = useParams();
 
   const location = useLocation();
   const isAdvertPage =
@@ -56,6 +58,9 @@ export default function TriplePointButton({ id, context }: MenuProps) {
       dispatch(delAdvert(id));
       await new Promise((resolve) => setTimeout(resolve, 800));
       navigate('/adverts');
+    } else if (context === 'profile') {
+      dispatch(delAdvert(id));
+      dispatch(fetchProfile(slug));
     }
   };
 

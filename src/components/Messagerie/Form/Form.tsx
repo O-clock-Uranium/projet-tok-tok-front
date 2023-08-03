@@ -14,7 +14,7 @@ interface FormProps {
 function Form({ destinataireId }: FormProps) {
   const [currentMessage, setCurrentMessage] = useState('');
   const contact = useAppSelector((state) => state.messagerie.contacts);
-  console.log(contact);
+  // console.log(contact);
 
   const dispatch = useAppDispatch();
 

@@ -5,8 +5,8 @@ function Contact() {
   const contacts = useAppSelector((state) => state.messagerie.contacts);
   // ici, il faut mettre un ternaire : parfois c'est le user_one_info, parfois le user_two_info
   const Infos = contacts.map((contact) => contact.user_one_info);
-  console.log(Infos);
-  console.log(contacts);
+  // console.log(Infos);
+  // console.log(contacts);
 
   return (
     <Paper

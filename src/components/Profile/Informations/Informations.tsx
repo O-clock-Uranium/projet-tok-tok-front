@@ -16,7 +16,7 @@ export default function Informations({ userInfo }: InformationsProps) {
   const { slug } = useParams();
   const [open, setOpen] = useState(false);
   const [openBanner, setOpenBanner] = useState(false);
-  console.log(userInfo);
+  // console.log(userInfo);
 
   const isMine = (slugToTest: string) => {
     return userInfo.slug === slugToTest;

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'react-iconly';
 
 function Carrousel({ advert }: any) {
-  console.log('caca');
+  // console.log('caca');
   const [index, setIndex] = useState(0);
   const slides = advert.images;
 

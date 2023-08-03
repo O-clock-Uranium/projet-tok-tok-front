@@ -15,6 +15,7 @@ export default function Profile() {
 
   const { slug } = useParams();
   const [display, setDisplay] = useState('publications');
+  const context = 'profile';
 
   useEffect(() => {
     dispatch(fetchProfile(slug));
@@ -50,7 +51,7 @@ export default function Profile() {
         {display === 'publications' ? (
           <ContentPost publications={user.posts} />
         ) : (
-          <ContentAdvert adverts={user.adverts} />
+          <ContentAdvert adverts={user.adverts} context={context} />
         )}
       </Stack>
     </Stack>

@@ -13,7 +13,7 @@ import { autoPlay } from 'react-swipeable-views-utils';
 function SwipeableTextMobileStepper({ advert }: any) {
   const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
   const images = advert.images[0].thumbnail;
-  console.log('test', advert.images[0]);
+  // console.log('test', advert.images[0]);
 
   const theme = useTheme();
   const [activeStep, setActiveStep] = useState(0);

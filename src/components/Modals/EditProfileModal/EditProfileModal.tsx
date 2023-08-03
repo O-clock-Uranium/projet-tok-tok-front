@@ -19,10 +19,11 @@ export default function EditProfileModal({
 
   const handleCloseModal = () => setOpen(false);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     dispatch(edit(formData));
+    await new Promise((resolve) => setTimeout(resolve, 800));
     dispatch(fetchProfile(slug));
     handleCloseModal();
   };

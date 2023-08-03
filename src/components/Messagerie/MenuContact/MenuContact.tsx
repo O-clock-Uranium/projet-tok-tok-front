@@ -35,13 +35,14 @@ function MenuContact({
 
   return (
     <Paper
+      elevation={0}
       sx={{
-        mr: '5rem',
+        mx: '2rem',
         p: '2rem',
-        maxHeight: '60rem',
+        // maxHeight: '80rem',
         id: 'test',
         borderRadius: '1rem',
-        overflowY: 'scroll',
+        overflowY: 'auto',
         '&::-webkit-scrollbar': {
           width: '1rem',
           backgroundColor: '#F5F5F5',
@@ -57,7 +58,9 @@ function MenuContact({
         },
       }}
     >
-      <Stack direction="column">{contactList}</Stack>
+      <Stack direction="column" gap="2rem">
+        {contactList}
+      </Stack>
     </Paper>
   );
 }
