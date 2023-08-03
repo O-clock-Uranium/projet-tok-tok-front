@@ -1,4 +1,4 @@
-import { Modal, Box } from '@mui/material';
+import { Box, Modal } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../../hooks/redux';
 import { fetchProfile } from '../../../store/reducers/profile';

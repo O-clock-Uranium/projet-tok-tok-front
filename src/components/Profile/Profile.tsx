@@ -9,10 +9,11 @@ import Informations from './Informations/Informations';
 import Toggle from './Toggle';
 
 export default function Profile() {
+  const userInfo = useAppSelector((state) => state.user);
+  const user = useAppSelector((state) => state.profile);
   const dispatch = useAppDispatch();
 
   const { slug } = useParams();
-  const user = useAppSelector((state) => state.profile);
   const [display, setDisplay] = useState('publications');
 
   useEffect(() => {
@@ -38,7 +39,7 @@ export default function Profile() {
       mx="auto"
     >
       {/* Banniere + infos profil + boutton edit */}
-      <Informations userInfo={user} />
+      <Informations userInfo={userInfo} />
 
       {/* Toggle button Publications / Annonces */}
       <Stack direction="row" paddingY="2rem" width="100%">

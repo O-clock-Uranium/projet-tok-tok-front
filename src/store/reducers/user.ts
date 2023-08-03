@@ -10,6 +10,7 @@ interface UserState {
   logged: boolean;
   token: string;
   id: number;
+  banner: string;
   firstname: string;
   lastname: string;
   description: string;
@@ -30,6 +31,7 @@ export const initialState: UserState = {
   logged: false,
   token: '',
   id: 0,
+  banner: '',
   firstname: '',
   lastname: '',
   description: '',
@@ -100,6 +102,22 @@ export const edit = createAsyncThunk(
   }
 );
 
+export const editBanner = createAsyncThunk(
+  'user/editBanner',
+  async (formData: FormData) => {
+    try {
+      const { data } = await axiosInstance.patch(
+        '/my-profile/edit-banner',
+        formData
+      );
+      return data;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      throw new Error(error.response.data.error);
+    }
+  }
+);
+
 const userReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(login.pending, (state) => {
@@ -111,6 +129,7 @@ const userReducer = createReducer(initialState, (builder) => {
       state.token = action.payload.token;
       state.logged = true;
       state.id = action.payload.user.id;
+      state.banner = action.payload.user.banner;
       state.firstname = action.payload.user.firstname;
       state.lastname = action.payload.user.lastname;
       state.address = action.payload.user.address;
@@ -148,7 +167,6 @@ const userReducer = createReducer(initialState, (builder) => {
       state.isLoading = false;
       state.token = action.payload.token;
       state.logged = true;
-
       state.id = action.payload.user.id;
       state.firstname = action.payload.user.firstname;
       state.lastname = action.payload.user.lastname;
@@ -173,6 +191,7 @@ const userReducer = createReducer(initialState, (builder) => {
     .addCase(edit.fulfilled, (state, action) => {
       state.isLoading = false;
       state.id = action.payload.id;
+      state.banner = action.payload.banner;
       state.firstname = action.payload.firstname;
       state.lastname = action.payload.lastname;
       state.address = action.payload.address;
@@ -182,6 +201,11 @@ const userReducer = createReducer(initialState, (builder) => {
       state.longitude = action.payload.longitude;
       state.slug = action.payload.slug;
       state.description = action.payload.description;
+    })
+    .addCase(editBanner.fulfilled, (state, action) => {
+      state.banner = action.payload.banner;
+      console.log('bruce', action.payload);
+      console.log('banner', state.banner);
     })
     .addCase(edit.pending, (state) => {
       state.isLoading = false;

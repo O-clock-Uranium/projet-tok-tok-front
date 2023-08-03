@@ -105,7 +105,7 @@ export const delAdvert = createAsyncThunk(
 
 export const editAdvert = createAsyncThunk(
   'adverts/editAdvert',
-  async (formData: FormData) => {
+  async ({ id, formData }: { id: number; formData: FormData }) => {
     try {
       const { data } = await axiosInstance.patch(`/adverts/${id}`, formData);
       return data;

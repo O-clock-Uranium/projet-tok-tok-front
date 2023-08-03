@@ -6,7 +6,7 @@ export default function formatDate(dateStr) {
   const day = addLeadingZero(date.getDate());
   const month = addLeadingZero(date.getMonth() + 1);
   const year = date.getFullYear();
-  const hours = addLeadingZero(date.getHours());
+  const hours = addLeadingZero(date.getHours() + 2);
   const minutes = addLeadingZero(date.getMinutes());
 
   return `${day}-${month}-${year} à ${hours}h${minutes}min`;

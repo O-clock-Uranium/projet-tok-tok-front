@@ -1,5 +1,4 @@
 import { Box, Modal } from '@mui/material';
-import { useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../../hooks/redux';
 import { editAdvert } from '../../../store/reducers/adverts';
 import EditAdvertModalForm from './EditAdvertModalForm';
@@ -16,7 +15,6 @@ export default function EditProfileModal({
   id,
 }: EditAdvertModalProps) {
   const dispatch = useAppDispatch();
-  //   const { slug } = useParams();
 
   const handleCloseModal = () => setOpenModal(false);
 
@@ -24,13 +22,10 @@ export default function EditProfileModal({
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
+    dispatch(editAdvert({ id, formData }));
     // SetTimeout pour permettre au back de processer une image
-    dispatch(editAdvert(formData));
     await new Promise((resolve) => setTimeout(resolve, 800));
-    // if (slug) {
-    //   dispatch(fetchAdverts(id));
-    // }
-    // dispatch(fetchAdverts(id));
+    console.log(id, Object.fromEntries(formData));
     handleCloseModal();
   };
 
@@ -64,7 +59,7 @@ export default function EditProfileModal({
             borderRadius: '2rem',
           }}
         >
-          <EditAdvertModalForm />
+          <EditAdvertModalForm id={id} />
         </Box>
       </Box>
     </Modal>

@@ -1,7 +1,7 @@
 import { Avatar, Paper, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { Link, useLocation } from 'react-router-dom';
-import { AdvertCreator, Favourite, Image } from '../../../@types';
+import { AdvertCreator, Favourite, Image, Tag } from '../../../@types';
 
 import { calculateTimeSpent } from '../../../utils/date';
 import TriplePointButton from '../../TriplePointButton/TriplePointButton';
@@ -20,6 +20,7 @@ interface AdvertCardProps {
   images: Image[];
   created_at: any;
   favorited_by: Favourite[];
+  tag: Tag;
 }
 
 export default function AdvertCard({
@@ -32,8 +33,10 @@ export default function AdvertCard({
   images,
   created_at,
   favorited_by,
+  tag,
 }: AdvertCardProps) {
   const userState = useAppSelector((state) => state.user);
+  const advertState = useAppSelector((state) => state.adverts.list);
   const location = useLocation();
   const isProfilePage = location.pathname === `/profil/${advert_creator.slug}`;
   const context = 'adverts';
@@ -44,6 +47,9 @@ export default function AdvertCard({
     advert_creator.latitude,
     advert_creator.longitude
   );
+
+  console.log(advertState);
+  console.log(advertState[0].tag.name);
 
   return (
     <Paper
@@ -115,7 +121,7 @@ export default function AdvertCard({
         <TriplePointButton id={id} context={context} />
       </Stack>
       {/* Lien + image */}
-      <a href={`/adverts/${slug}`}>
+      <Link to={`/adverts/${slug}`}>
         <img
           src={
             images.length === 0
@@ -130,15 +136,8 @@ export default function AdvertCard({
           }}
           alt="advert illustration"
         />
-      </a>
-      <Stack
-        direction="row"
-        display="flex"
-        alignItems="center"
-        gap="1.5rem"
-        align-self="stretch"
-        width="100%"
-      >
+      </Link>
+      <Stack direction="row" justifyContent="space-between" width="100%">
         <Typography
           sx={{
             flex: '1 0 0',
@@ -150,12 +149,12 @@ export default function AdvertCard({
           }}
         >
           {/* Lien + titre annonce */}
-          <a
-            href={`/adverts/${slug}`}
+          <Link
+            to={`/adverts/${slug}`}
             style={{ textDecoration: 'none', color: 'black' }}
           >
             {title}
-          </a>
+          </Link>
         </Typography>
         <Typography
           sx={{
@@ -171,18 +170,23 @@ export default function AdvertCard({
           {price} €
         </Typography>
       </Stack>
-      <Paper
-        elevation={0}
-        sx={{
-          display: 'flex',
-          p: '0.5rem 2rem',
-          alignItems: 'center',
-          gap: '1rem',
-          backgroundColor: 'rgba(0, 0, 0, 0.05)',
-          borderRadius: '9.5rem',
-        }}
+      <Stack
+        direction="row"
+        justifyContent="space-between"
+        gap="2rem"
+        width="100%"
       >
-        <Stack direction="row" gap="1rem" justifyContent="center">
+        <Stack
+          direction="row"
+          sx={{
+            display: 'flex',
+            p: '0.5rem 2rem',
+            alignItems: 'center',
+            gap: '1rem',
+            backgroundColor: 'rgba(0, 0, 0, 0.05)',
+            borderRadius: '9.5rem',
+          }}
+        >
           <Typography
             sx={{
               fontFamily: 'Manrope',
@@ -208,7 +212,31 @@ export default function AdvertCard({
             {distance} km
           </Typography>
         </Stack>
-      </Paper>
+        <Stack
+          direction="row"
+          sx={{
+            p: '0.5rem 2rem',
+            gap: '1rem',
+            backgroundColor: 'rgba(0, 0, 0, 0.05)',
+            borderRadius: '9.5rem',
+          }}
+        >
+          <Typography
+            sx={{
+              fontFamily: 'Manrope',
+              fontSize: '1.3rem',
+              fontStyle: 'normal',
+              fontWeight: 600,
+              lineHeight: '2.6rem',
+            }}
+          >
+            {/* {advertState.map((advert) => {
+              returnadvert.tag.name;
+            })} */}
+            {tag.name}
+          </Typography>
+        </Stack>
+      </Stack>
     </Paper>
   );
 }

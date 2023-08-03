@@ -1,5 +1,5 @@
-import React from 'react';
 import { Box } from '@mui/material';
+import React from 'react';
 
 function Error() {
   return (
@@ -9,7 +9,7 @@ function Error() {
       alignItems="center"
       height="100vh"
     >
-      <img src="/illustatus.svg" alt="Error_404" />
+      <img src="/illustatus.svg" alt="Error_404" style={{ width: '100rem' }} />
     </Box>
   );
 }
