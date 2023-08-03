@@ -38,6 +38,7 @@ export interface User {
   description: string | null;
   city: string;
   thumbnail: string;
+  banner: string;
   slug: string;
   created_at: string;
   liked: Publication[];

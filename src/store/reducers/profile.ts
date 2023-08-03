@@ -11,15 +11,17 @@ interface ProfileState {
   description: string;
   city: string;
   thumbnail: string;
+  banner: string
   slug: string;
   posts: Publication[];
   likes: Publication[];
   adverts: Advert[];
+  created_at: string;
+  liked: Publication[];
 
   error?: string;
   isLoading: boolean;
 }
-
 export const initialState: ProfileState = {
   id: 0,
   firstname: '',
@@ -27,10 +29,13 @@ export const initialState: ProfileState = {
   description: '',
   city: '',
   thumbnail: '',
+  banner: '',
   slug: '',
   posts: [],
   likes: [],
   adverts: [],
+  created_at: '',
+  liked: [],
 
   error: '',
   isLoading: false,
@@ -60,6 +65,7 @@ const profileReducer = createReducer(initialState, (builder) => {
       state.firstname = action.payload.firstname;
       state.lastname = action.payload.lastname;
       state.thumbnail = action.payload.thumbnail;
+      state.banner = action.payload.banner;
       state.city = action.payload.city;
       state.slug = action.payload.slug;
       state.description = action.payload.description;

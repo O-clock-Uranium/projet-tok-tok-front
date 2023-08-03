@@ -39,6 +39,7 @@ export default function AdvertModal2() {
     await new Promise((resolve) => setTimeout(resolve, 800));
     dispatch(fetchAdverts());
     setOpen(false);
+    setCategorie('');
   };
 
   return (
