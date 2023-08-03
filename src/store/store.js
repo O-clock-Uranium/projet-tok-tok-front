@@ -12,6 +12,7 @@ const persistConfig = {
   key: 'root',
   version: 1,
   storage,
+  blacklist: ['messagerie'],
 };
 
 const reducer = combineReducers({
@@ -26,8 +27,7 @@ const persistedReducer = persistReducer(persistConfig, reducer);
 
 const store = configureStore({
   reducer: persistedReducer,
-  applyMiddleware: applyMiddleware(),
-  middleware: (getDefaultMiddleware) =>
+  applyMiddleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
     }),

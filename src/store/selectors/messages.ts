@@ -1,5 +1,5 @@
 import { RootState } from '..';
 
 // eslint-disable-next-line import/prefer-default-export
-export const getIsMine = (author: string) => (state: RootState) =>
-  state.user.firstname === author;
+export const getIsMine = (authorId: number) => (state: RootState) =>
+  state.user.id === authorId;

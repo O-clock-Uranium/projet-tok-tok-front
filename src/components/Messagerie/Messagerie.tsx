@@ -1,9 +1,28 @@
 import { Box, Paper, Stack } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { fetchContacts } from '../../store/reducers/messagerie';
 import Form from './Form/Form';
 import MenuContact from './MenuContact/MenuContact';
 import Messages from './Messages/Messages';
 
 export default function Messagerie() {
+  const [destinataireId, setDestinataireId] = useState(0);
+  const [destinataireName, setDestinataireName] = useState('');
+
+  const dispatch = useAppDispatch();
+  const contacts = useAppSelector((state) => state.messagerie.contacts);
+
+  // const contactId = contacts.map((contact) => contact.id);
+  // console.log(contactId);
+
+  // 0:2
+  // 1:3
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
   return (
     <Box
       sx={{
@@ -15,9 +34,32 @@ export default function Messagerie() {
       }}
     >
       <Stack direction="row">
-        <MenuContact />
+        <MenuContact
+          contacts={contacts}
+          destinataireId={destinataireId}
+          setDestinataireId={setDestinataireId}
+          destinataireName={destinataireName}
+          setDestinataireName={setDestinataireName}
+        />
         <Stack sx={{ flexGrow: 1 }}>
           <div className="chat">
+            <Stack
+              direction="row"
+              sx={{
+                backgroundColor: 'primary.dark',
+                color: '#fff',
+                height: '4rem',
+                display: 'flex',
+                alignItems: 'center',
+                fontSize: '2rem',
+                fontFamily: 'DM Sans',
+                borderRadius: '1rem',
+                mb: '0.5rem',
+                pl: '2rem',
+              }}
+            >
+              {destinataireName}
+            </Stack>
             <Paper
               sx={{
                 p: '2rem',
@@ -41,7 +83,7 @@ export default function Messagerie() {
               }}
             >
               <Messages />
-              <Form />
+              <Form destinataireId={destinataireId} />
             </Paper>
           </div>
         </Stack>

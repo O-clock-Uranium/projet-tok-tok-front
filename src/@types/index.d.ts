@@ -1,5 +1,5 @@
 export interface AdvertCreator {
-  id: number | null;
+  id: number;
   firstname: string;
   lastname: string;
   address: string;
@@ -18,20 +18,19 @@ export interface Image {
 }
 
 export interface Advert {
-  id: number | null;
+  id: number;
   slug: string;
   title: string;
   content: string;
-  price: number | null;
-  user_id: number | null;
-  tag_id: number | null;
-  created_at: number | null;
+  price: number;
+  user_id: number;
+  tag_id: number;
+  created_at: number;
   advert_creator: AdvertCreator;
   images: Image[];
-  favorited_by: Favourite[];
 }
 
-//! PAS LE USER LOGGE MAIS CELUI EN BDD 
+// Pour le profil
 export interface User {
   id: number;
   firstname: string;
@@ -69,8 +68,19 @@ export interface Tag {
 
 export interface Message {
   id: number;
-  author: string;
+  sender: string;
   content: string;
+  conversation_id: number;
+}
+
+export interface ContactUser {
+  id: number;
+  contactInfo: {
+    id: number;
+    firstname: string;
+    lastname: string;
+    thumbnail: string;
+  };
 }
 
 export interface Flash {
