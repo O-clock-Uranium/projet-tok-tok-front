@@ -1,6 +1,8 @@
 import { Box, Button, Chip, Modal, Stack } from '@mui/material';
+import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { fetchProfile } from '../../../../store/reducers/profile';
+import { editBanner } from '../../../../store/reducers/user';
 
 interface EditBannerModalProps {
   openBanner: boolean;
@@ -12,17 +14,18 @@ export default function EditBannerModal({
   setOpenBanner,
 }: EditBannerModalProps) {
   const dispatch = useAppDispatch();
-  const profile = useAppSelector((state) => state.profile);
+  const user = useAppSelector((state) => state.user);
   const handleCloseBanner = () => setOpenBanner(false);
+  const { slug } = useParams();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
-    //! check profiled reducer
     dispatch(editBanner(formData));
+    // eslint-disable-next-line no-promise-executor-return
     await new Promise((resolve) => setTimeout(resolve, 800));
-    dispatch(fetchProfile());
+    dispatch(fetchProfile(slug));
     setOpenBanner(false);
   };
 
@@ -63,7 +66,7 @@ export default function EditBannerModal({
             gap="2rem"
           >
             <img
-              src={profile.banner}
+              src={user.banner}
               alt="profile_banner"
               style={{
                 width: '100%',

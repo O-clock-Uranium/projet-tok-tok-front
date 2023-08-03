@@ -1,6 +1,7 @@
 import { Avatar, Box, Paper, Stack, Typography } from '@mui/material';
 import { Reply } from '../../../../@types/publication';
 import TriplePointButton from '../../../TriplePointButton/TriplePointButton';
+import formatDate from '../../../../utils/date2';
 
 export default function OneComment({
   id,
@@ -8,6 +9,7 @@ export default function OneComment({
   created_at,
   post_creator,
 }: Reply) {
+  const date = formatDate(created_at);
   return (
     <Paper
       elevation={0}
@@ -52,7 +54,7 @@ export default function OneComment({
               color: '#A5A5A5',
             }}
           >
-            {created_at}
+            {date}
           </Typography>
         </Stack>
         <TriplePointButton id={id} />

@@ -4,8 +4,8 @@ import { Button, IconButton, Stack, Typography } from '@mui/material';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { User } from '../../../@types';
-import EditProfileModal from '../../Modals/EditProfileModal/EditProfileModal';
 import { fetchProfile } from '../../../store/reducers/profile';
+import EditProfileModal from '../../Modals/EditProfileModal/EditProfileModal';
 import EditBannerModal from './EditBannerModal/EditBannerModal';
 
 interface InformationsProps {
@@ -16,6 +16,7 @@ export default function Informations({ userInfo }: InformationsProps) {
   const { slug } = useParams();
   const [open, setOpen] = useState(false);
   const [openBanner, setOpenBanner] = useState(false);
+  console.log(userInfo);
 
   const isMine = (slugToTest: string) => {
     return userInfo.slug === slugToTest;

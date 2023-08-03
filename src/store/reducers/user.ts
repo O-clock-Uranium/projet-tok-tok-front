@@ -100,6 +100,22 @@ export const edit = createAsyncThunk(
   }
 );
 
+export const editBanner = createAsyncThunk(
+  'user/editBanner',
+  async (formData: FormData) => {
+    try {
+      const { data } = await axiosInstance.patch(
+        '/my-profile/edit-banner',
+        formData
+      );
+      return data;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      throw new Error(error.response.data.error);
+    }
+  }
+);
+
 const userReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(login.pending, (state) => {
@@ -181,6 +197,11 @@ const userReducer = createReducer(initialState, (builder) => {
       state.longitude = action.payload.longitude;
       state.slug = action.payload.slug;
       state.description = action.payload.description;
+    })
+    .addCase(editBanner.fulfilled, (state, action) => {
+      state.banner = action.payload.banner;
+      console.log('bruce', action.payload);
+      console.log('banner', state.banner);
     })
     .addCase(edit.pending, (state) => {
       state.isLoading = false;

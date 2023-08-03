@@ -39,7 +39,7 @@ export const initialState: ProfileState = {
 };
 
 export const fetchProfile = createAsyncThunk(
-  'user/fetchProfile',
+  'profile/fetchProfile',
   async (slug: string | undefined) => {
     try {
       const { data } = await axiosInstance.get(`/profile/${slug}`);
@@ -59,7 +59,7 @@ const profileReducer = createReducer(initialState, (builder) => {
     .addCase(fetchProfile.fulfilled, (state, action) => {
       state.isLoading = false;
       state.id = action.payload.id;
-      state.banner = action.payload.banner;
+      state.banner = "test"
       state.firstname = action.payload.firstname;
       state.lastname = action.payload.lastname;
       state.thumbnail = action.payload.thumbnail;

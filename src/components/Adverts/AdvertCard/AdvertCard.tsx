@@ -1,4 +1,4 @@
-import { Avatar, Box, Paper, Stack } from '@mui/material';
+import { Avatar, Paper, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { Link, useLocation } from 'react-router-dom';
 import { AdvertCreator, Favourite, Image, Tag } from '../../../@types';
@@ -50,6 +50,7 @@ export default function AdvertCard({
 
   console.log(advertState);
   console.log(advertState[0].tag.name);
+
   return (
     <Paper
       elevation={0}
@@ -232,7 +233,7 @@ export default function AdvertCard({
             {/* {advertState.map((advert) => {
               returnadvert.tag.name;
             })} */}
-            {/* {tag.name} */}
+            {tag.name}
           </Typography>
         </Stack>
       </Stack>

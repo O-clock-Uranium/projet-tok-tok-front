@@ -6,21 +6,28 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchUserAdverts } from '../../store/reducers/adverts';
 import { findAdvert } from '../../store/selectors/adverts';
 import { calculateTimeSpent } from '../../utils/date';
-import ContentUserAdvert from '../Adverts/ContentUserAdvert/ContentUserAdvert';
-
 import formatDate from '../../utils/date2';
+import { calculateDistance } from '../../utils/gps';
+import ContentUserAdvert from '../Adverts/ContentUserAdvert/ContentUserAdvert';
 import FavouriteButton2 from '../Adverts/FavouriteButton/FavouriteButton2';
 import TriplePointButton from '../TriplePointButton/TriplePointButton';
-import AdvertCaroussel from './AdvertCaroussel/AdvertCaroussel';
-import Caroussel from './AdvertCaroussel/Caroussel';
 import ContactButton from './ContactButton/ContactButton.ContactButton';
 import SeparateBar from './SeparateBar/SeparateBar';
 
 export default function Annonce({ id, created_at }: Advert) {
+  const userState = useAppSelector((state) => state.user);
+  const advertState = useAppSelector((state) => state.adverts.list);
   const dispatch = useAppDispatch();
   const { slug } = useParams();
   const advert = useAppSelector((state) =>
     findAdvert(state.adverts.list, slug as string)
+  );
+
+  const distance = calculateDistance(
+    userState.latitude,
+    userState.longitude,
+    advert?.advert_creator.latitude,
+    advert?.advert_creator.longitude
   );
 
   const location = useLocation();
@@ -126,7 +133,7 @@ export default function Annonce({ id, created_at }: Advert) {
               src={
                 advert.images.length === 0
                   ? 'http://localhost:3000/images/default-advert-picture.png'
-                  : advert.images.map((image) => image.thumbnail)
+                  : advert.images[0].thumbnail
               }
               alt="images advert"
               style={{
@@ -190,8 +197,7 @@ export default function Annonce({ id, created_at }: Advert) {
                   color: '#A5A5A5',
                 }}
               >
-                {/* Distance */}
-                Distance
+                {distance}
               </Typography>
               <Typography
                 sx={{
@@ -202,7 +208,36 @@ export default function Annonce({ id, created_at }: Advert) {
                   lineHeight: '2.6rem',
                 }}
               >
-                {} km
+                km
+              </Typography>
+            </Paper>
+            <Paper
+              elevation={0}
+              sx={{
+                display: 'flex',
+                p: '0.5rem 2rem',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: '1rem',
+                backgroundColor: 'rgba(0, 0, 0, 0.05)',
+                borderRadius: '9.5rem',
+              }}
+            >
+              <Typography
+                align="center"
+                width="center"
+                sx={{
+                  // display: 'flex',
+                  // justifyContent: 'center',*
+                  fontFamily: 'Manrope',
+                  fontSize: '1.3rem',
+                  fontStyle: 'normal',
+                  fontWeight: 600,
+                  lineHeight: '2.6rem',
+                  color: '#A5A5A5',
+                }}
+              >
+                {advert.tag.name}
               </Typography>
             </Paper>
           </Stack>
