@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 import {
   Avatar,
   Box,
@@ -18,11 +18,11 @@ function NewPost() {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.user);
 
-  const handleContentChange = (event) => {
+  const handleContentChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const inputValue = value.trim();
 
@@ -167,7 +167,7 @@ function NewPost() {
                 },
               }}
             >
-              <img alt="search icon" src={video} />
+              <img alt="add video" src={video} />
               <Typography
                 fontFamily="Manrope"
                 fontSize="1.3rem"

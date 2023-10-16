@@ -44,7 +44,7 @@ export default function TriplePointButton({
   const isHomePage = location.pathname === '/';
 
   const isCurrentUserCreator =
-    post_creator.id === userInfo.id || advert_creator?.id === userInfo.id;
+    post_creator?.id === userInfo.id || advert_creator?.id === userInfo.id;
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
