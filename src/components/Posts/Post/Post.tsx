@@ -109,7 +109,7 @@ export default function Post({
             {date}
           </Typography>
         </Stack>
-        <TriplePointButton id={id} context={context} />
+        <TriplePointButton id={id} post_creator={post_creator} context={context} />
       </Stack>
       <Typography
         sx={{

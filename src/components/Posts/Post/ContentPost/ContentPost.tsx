@@ -5,9 +5,9 @@ import Post from '../Post';
 interface ContentPostProps {
   // eslint-disable-next-line react/require-default-props
   publications?: Publication[];
-};
+}
 
-function ContentPost({publications}: ContentPostProps) {
+function ContentPost({ publications }: ContentPostProps) {
   return (
     <div>
       {publications && (
@@ -19,6 +19,6 @@ function ContentPost({publications}: ContentPostProps) {
       )}
     </div>
   );
-};
+}
 
 export default ContentPost;

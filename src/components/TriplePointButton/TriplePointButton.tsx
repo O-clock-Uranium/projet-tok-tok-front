@@ -18,6 +18,7 @@ import EditAdvertModal from '../Modals/EditAdvertModal/EditAdvertModal';
 interface MenuProps {
   id: number;
   advert_creator: [];
+  post_creator: [];
   context: string;
 }
 
@@ -25,6 +26,7 @@ export default function TriplePointButton({
   id,
   context,
   advert_creator,
+  post_creator,
 }: MenuProps) {
   const userInfo = useAppSelector((state) => state.user);
   const navigate = useNavigate();
@@ -42,7 +44,7 @@ export default function TriplePointButton({
   const isHomePage = location.pathname === '/';
 
   const isCurrentUserCreator =
-    id === userInfo.id || advert_creator?.id === userInfo.id;
+    post_creator.id === userInfo.id || advert_creator?.id === userInfo.id;
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -55,16 +57,19 @@ export default function TriplePointButton({
   const handleClickDel = async () => {
     if (context === 'posts') {
       dispatch(delPost(id));
+      // eslint-disable-next-line no-promise-executor-return
       await new Promise((resolve) => setTimeout(resolve, 800));
       dispatch(fetchPosts());
       dispatch(fetchProfile());
     } else if (context === 'adverts') {
       dispatch(delAdvert(id));
+      // eslint-disable-next-line no-promise-executor-return
       await new Promise((resolve) => setTimeout(resolve, 800));
       dispatch(fetchFavourites());
       dispatch(fetchAdverts());
     } else if (context === 'advert') {
       dispatch(delAdvert(id));
+      // eslint-disable-next-line no-promise-executor-return
       await new Promise((resolve) => setTimeout(resolve, 800));
       navigate('/adverts');
     } else if (context === 'profile') {

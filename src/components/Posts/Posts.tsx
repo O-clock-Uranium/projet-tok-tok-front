@@ -1,13 +1,12 @@
+import { useEffect } from 'react';
 import Stack from '@mui/material/Stack';
 import NewPost from './NewPost/NewPost';
 import ContentPost from './Post/ContentPost/ContentPost';
-import { useEffect } from 'react';
 import { fetchPosts } from '../../store/reducers/publications';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 
-
 export default function Posts() {
-  const publications = useAppSelector(state=>state.publications.list)
+  const publications = useAppSelector((state) => state.publications.list);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
