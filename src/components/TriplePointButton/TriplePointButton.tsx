@@ -55,7 +55,7 @@ export default function TriplePointButton({
   };
 
   const handleClickDel = async () => {
-    if (context === 'posts') {
+    if (context === 'posts' || context === 'comment') {
       dispatch(delPost(id));
       // eslint-disable-next-line no-promise-executor-return
       await new Promise((resolve) => setTimeout(resolve, 800));
