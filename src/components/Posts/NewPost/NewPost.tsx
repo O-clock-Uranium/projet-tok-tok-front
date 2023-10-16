@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Avatar,
   Box,
@@ -7,32 +8,34 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-import { useState } from 'react';
-import video from '../../../assets/icons/camera.svg';
-import picture from '../../../assets/icons/picture.svg';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { addPost, fetchPosts } from '../../../store/reducers/publications';
+import picture from '../../../assets/icons/picture.svg';
+import video from '../../../assets/icons/camera.svg';
 
 function NewPost() {
   const [value, setValue] = useState('');
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.user);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleContentChange = (event) => {
+    setValue(event.target.value);
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    const inputValue = value.trim();
+
+    if (!inputValue) {
+      return;
+    }
+
     setValue('');
 
     const formData = new FormData(event.currentTarget);
     event.currentTarget.reset();
-    const inputValue = formData.get('content');
+
     dispatch(addPost(formData));
-    // Devrait empecher de post vide mais ne marche pas
-    if (
-      !inputValue ||
-      (typeof inputValue === 'string' && inputValue.trim() === '')
-    ) {
-      return;
-    }
 
     await new Promise((resolve) => setTimeout(resolve, 800));
 
@@ -51,18 +54,14 @@ function NewPost() {
     >
       <Stack gap="2rem" direction="row">
         <Avatar
-          alt="Jean-Jacques Goldman"
+          alt="User Thumbnail"
           src={user.thumbnail}
           sx={{ width: 60, height: 60 }}
         />
-        <Stack
-          component="form"
+        <form
           onSubmit={handleSubmit}
           encType="multipart/form-data"
-          width="100%"
-          direction="column"
-          alignItems="flex-start"
-          gap="2rem"
+          style={{ width: '100%' }}
         >
           <Stack
             direction="row"
@@ -79,7 +78,7 @@ function NewPost() {
               maxRows={6}
               fullWidth
               value={value}
-              onChange={(event) => setValue(event.target.value)}
+              onChange={handleContentChange}
               sx={{
                 fontFamily: 'DM Sans',
                 ml: '2rem',
@@ -92,7 +91,7 @@ function NewPost() {
                 border: 'none',
                 '& fieldset': { border: 'none' },
               }}
-              placeholder="Quoi de neuf, Jean-Jacques ?"
+              placeholder="Quoi de neuf ?"
               inputProps={{
                 'aria-label': 'Champ de publication',
               }}
@@ -187,7 +186,7 @@ function NewPost() {
               </Typography>
             </IconButton>
           </Stack>
-        </Stack>
+        </form>
       </Stack>
     </Box>
   );

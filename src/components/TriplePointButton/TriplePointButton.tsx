@@ -17,10 +17,15 @@ import EditAdvertModal from '../Modals/EditAdvertModal/EditAdvertModal';
 
 interface MenuProps {
   id: number;
+  advert_creator: [];
   context: string;
 }
 
-export default function TriplePointButton({ id, context }: MenuProps) {
+export default function TriplePointButton({
+  id,
+  context,
+  advert_creator,
+}: MenuProps) {
   const userInfo = useAppSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -36,7 +41,8 @@ export default function TriplePointButton({ id, context }: MenuProps) {
 
   const isHomePage = location.pathname === '/';
 
-  const isCurrentUserCreator = id === userInfo.id;
+  const isCurrentUserCreator =
+    id === userInfo.id || advert_creator?.id === userInfo.id;
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -71,10 +77,6 @@ export default function TriplePointButton({ id, context }: MenuProps) {
     setOpenModal(true);
     handleClose();
   };
-
-  function setOpen(value: SetStateAction<boolean>): void {
-    throw new Error('Function not implemented.');
-  }
 
   return (
     <div>
@@ -113,7 +115,7 @@ export default function TriplePointButton({ id, context }: MenuProps) {
         }}
       >
         <div>
-          {!isCurrentUserCreator && (
+          {isCurrentUserCreator && (
             <>
               {isAdvertPage && (
                 <MenuItem
