@@ -8,17 +8,14 @@ function WhiteBar() {
       justifyContent="center"
       alignItems="center"
       padding="1rem"
-      flex="1 0 0"
-      //! 100% width pour facilitier les choses
       sx={{
-        // width: '100%',
+        width: '100%',
         height: '7rem',
         my: '2rem',
         borderRadius: '2rem',
         backgroundColor: 'white',
       }}
     >
-      {/* <BookmarkSharpIcon sx={{ fontSize: '3rem', color: '#03665C' }} /> */}
       <Typography
         sx={{
           alignItems: 'left',

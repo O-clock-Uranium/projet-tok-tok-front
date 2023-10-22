@@ -1,3 +1,13 @@
+.favorites-container {
+    width: 82rem;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 11rem 0;
+  }
+
+
+
 @media screen and (max-width: 1250px) {
   .app-header {
     padding: 3rem 3rem !important;
@@ -27,7 +37,12 @@
   }
   .favorites-container {
     width: 100vw !important;
-    margin: 0px !important;
+    //background-color: red;
+    // margin: 0px !important;
+  }
+
+  .advert-card {
+    margin: auto;
   }
 }
 
