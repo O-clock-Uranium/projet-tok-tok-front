@@ -145,7 +145,7 @@ export default function Annonce({ id, created_at }: Advert) {
               </Typography>
             </Stack>
             {/* <FavouriteButton2 id={id} favorited_by={favorited_by} /> */}
-            <TriplePointButton id={advert.id} context={context} />
+            <TriplePointButton id={advert.id} context={context} advert_creator={advert.advert_creator} />
           </Stack>
 
           <Box

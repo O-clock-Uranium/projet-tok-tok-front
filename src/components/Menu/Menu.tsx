@@ -42,6 +42,7 @@ export default function Menu() {
         position: 'fixed',
         top: 250,
         left: '10rem',
+        zIndex: '2',
       }}
     >
       <MenuList sx={{ gap: '2rem' }}>

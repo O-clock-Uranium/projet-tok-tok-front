@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import { useState } from 'react';
 import {
   Avatar,
   Box,
@@ -18,11 +18,11 @@ function NewPost() {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.user);
 
-  const handleContentChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleContentChange = (event) => {
     setValue(event.target.value);
   };
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const inputValue = value.trim();
 
@@ -136,7 +136,7 @@ function NewPost() {
                 },
               }}
             >
-              <img alt="add pictures" src={picture} />
+              <img alt="add picture" src={picture} />
               <Typography
                 fontFamily="Manrope"
                 fontSize="1.3rem"
@@ -145,7 +145,7 @@ function NewPost() {
                 lineHeight="2.6rem"
                 color="#A5A5A5"
               >
-                Images
+                Image
                 <input
                   style={{ fontSize: '1.8rem' }}
                   type="file"
@@ -157,7 +157,7 @@ function NewPost() {
             <IconButton
               type="button"
               component="label"
-              aria-label="vidéos"
+              aria-label="vidéo"
               sx={{
                 alignItems: 'center',
                 gap: '1rem',
@@ -176,12 +176,12 @@ function NewPost() {
                 lineHeight="2.6rem"
                 color="#A5A5A5"
               >
-                Vidéos
+                Vidéo
                 <input
                   style={{ fontSize: '1.8rem' }}
                   type="file"
                   hidden
-                  name="thumbnails"
+                  name="thumbnail"
                 />
               </Typography>
             </IconButton>

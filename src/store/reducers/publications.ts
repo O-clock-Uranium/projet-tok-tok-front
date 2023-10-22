@@ -16,14 +16,13 @@ export const initialState: PublicationState = {
   like: false,
 };
 
-// eslint-disable-next-line import/prefer-default-export
+
 export const fetchPosts = createAsyncThunk(
   'publications/fetchPosts',
   async () => {
     try {
       const { data } = await axiosInstance.get('/posts');
       return data;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       throw new Error(error.response.data.error);
     }
@@ -36,9 +35,7 @@ export const addPost = createAsyncThunk(
     try {
       const { data } = await axiosInstance.post('/posts', formData);
       return data as Publication[];
-
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
+    } catch (error) {
       throw new Error(error.response.data.error);
     }
   }
@@ -92,6 +89,9 @@ const publicationsReducer = createReducer(initialState, (builder) => {
     .addCase(fetchPosts.fulfilled, (state, action) => {
       state.list = action.payload;
       state.isLoading = false;
+    })
+    .addCase(fetchPosts.rejected, (state, action) => {
+      state.error = action.error.message;
     })
     .addCase(addPost.pending, (state) => {
       state.isLoading = true;

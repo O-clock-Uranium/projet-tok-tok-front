@@ -2,8 +2,8 @@ import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined
 import MoreVertSharpIcon from '@mui/icons-material/MoreVertSharp';
 import ReportGmailerrorredOutlinedIcon from '@mui/icons-material/ReportGmailerrorredOutlined';
 import { IconButton, Menu, MenuItem, Typography } from '@mui/material';
-import { SetStateAction, useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import settings from '../../assets/icons/settings.svg';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
@@ -11,7 +11,6 @@ import {
   fetchAdverts,
   fetchFavourites,
 } from '../../store/reducers/adverts';
-import { fetchProfile } from '../../store/reducers/profile';
 import { delPost, fetchPosts } from '../../store/reducers/publications';
 import EditAdvertModal from '../Modals/EditAdvertModal/EditAdvertModal';
 
@@ -34,14 +33,11 @@ export default function TriplePointButton({
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const [openModal, setOpenModal] = useState(false);
-  const { slug } = useParams();
 
   const location = useLocation();
   const isAdvertPage =
     location.pathname.startsWith('/adverts') ||
     location.pathname === '/favoris';
-
-  const isHomePage = location.pathname === '/';
 
   const isCurrentUserCreator =
     post_creator?.id === userInfo.id || advert_creator?.id === userInfo.id;
@@ -56,25 +52,15 @@ export default function TriplePointButton({
 
   const handleClickDel = async () => {
     if (context === 'posts' || context === 'comment') {
-      dispatch(delPost(id));
-      // eslint-disable-next-line no-promise-executor-return
-      await new Promise((resolve) => setTimeout(resolve, 800));
-      dispatch(fetchPosts());
-      dispatch(fetchProfile());
+      await dispatch(delPost(id));
+      await dispatch(fetchPosts());
     } else if (context === 'adverts') {
-      dispatch(delAdvert(id));
-      // eslint-disable-next-line no-promise-executor-return
-      await new Promise((resolve) => setTimeout(resolve, 800));
-      dispatch(fetchFavourites());
-      dispatch(fetchAdverts());
+      await dispatch(delAdvert(id));
+      await dispatch(fetchFavourites());
+      await dispatch(fetchAdverts());
     } else if (context === 'advert') {
-      dispatch(delAdvert(id));
-      // eslint-disable-next-line no-promise-executor-return
-      await new Promise((resolve) => setTimeout(resolve, 800));
+      await dispatch(delAdvert(id));
       navigate('/adverts');
-    } else if (context === 'profile') {
-      dispatch(delAdvert(id));
-      dispatch(fetchProfile(slug));
     }
   };
 
@@ -87,9 +73,6 @@ export default function TriplePointButton({
     <div>
       <IconButton
         id="triple-point-button"
-        aria-controls={open ? 'triple-point-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         sx={{ padding: '0.2rem' }}
       >
@@ -156,20 +139,6 @@ export default function TriplePointButton({
               </MenuItem>
             </>
           )}
-
-          {/* {isHomePage && (
-            <MenuItem
-              component="form"
-              onClick={handleClickDel}
-              data-id={id}
-              sx={{ justifyContent: 'start' }}
-            >
-              <DeleteForeverOutlinedIcon sx={{ color: 'red', fontSize: 20 }} />
-              <Typography sx={{ pl: '1rem', fontSize: '1.5rem' }}>
-                Supprimer
-              </Typography>
-            </MenuItem>
-          )} */}
         </div>
         <MenuItem
           onClick={handleClickDel}
