@@ -47,11 +47,11 @@ export default function AdvertCard({
     advert_creator.latitude,
     advert_creator.longitude
   );
-  // console.log(advertState);
-  // console.log(advertState[0].tag.name);
+
 
   return (
     <Paper
+      className='advert-card'
       elevation={0}
       sx={{
         display: 'flex',
