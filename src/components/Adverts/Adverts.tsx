@@ -19,13 +19,14 @@ function Adverts() {
     <Box
       sx={{
         height: '100vh',
-        width: '100rem',
+        width: '50%',
         position: 'relative',
         top: '11rem',
         margin: 'auto',
       }}
     >
       <Stack
+        className="adverts-navigation"
         direction="row"
         justifyContent="space-between"
         alignItems="center"

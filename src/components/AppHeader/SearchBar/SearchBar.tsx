@@ -5,7 +5,7 @@ import InputBase from '@mui/material/InputBase';
 import Paper from '@mui/material/Paper';
 import search from '../../../assets/icons/search.svg';
 
-import './style.scss'
+import './style.scss';
 
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = React.useState('');
@@ -27,8 +27,17 @@ export default function SearchBar() {
 
   return (
     <Paper
-    className='searchbar-container'
+      className="searchbar-container"
       elevation={0}
+      sx={{
+        p: '0px 0px 0px 10px',
+        display: 'flex',
+        alignItems: 'center',
+        width: 600,
+        borderRadius: 95,
+        border: 1,
+        borderColor: 'rgba(85,85,85,0.2)',
+      }}
     >
       <IconButton
         type="button"

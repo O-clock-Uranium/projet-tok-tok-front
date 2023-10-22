@@ -1,0 +1,30 @@
+.messages {
+  flex-grow: 1;
+  font-size: 1.6rem;
+  padding: 1rem;
+}
+.messages-item {
+  margin-bottom: 1rem;
+}
+.messages-item--mine {
+  text-align: right;
+  color: #b0b;
+}
+.messages-item--mine .messages-item__author {
+  margin-left: 0;
+  margin-right: 2.5rem;
+}
+.messages-item__author {
+  margin-bottom: 1rem;
+  margin-left: 2.5rem;
+}
+.messages-item__content {
+  background: #03665C;
+  border-radius: 1.5rem;
+  color: #fff;
+  min-width: 10em;
+  padding: 1.5rem;
+  text-align: left;
+  font-family: "DM Sans";
+  display: inline-block;
+}/*# sourceMappingURL=Messages.css.map */

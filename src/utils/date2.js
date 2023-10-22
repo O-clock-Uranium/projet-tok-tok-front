@@ -1,13 +1,13 @@
-export default function formatDate(dateStr) {
-  const date = new Date(dateStr);
+export default function formatDate(dateBDD) {
+  const date = new Date(dateBDD);
   // Fonction pour ajouter un zéro devant un nombre si celui-ci est inférieur à 10
-  const addLeadingZero = (num) => (num < 10 ? `0${num}` : num);
+  const addZero = (num) => (num < 10 ? `0${num}` : num);
 
-  const day = addLeadingZero(date.getDate());
-  const month = addLeadingZero(date.getMonth() + 1);
+  const day = addZero(date.getDate());
+  const month = addZero(date.getMonth() + 1);
   const year = date.getFullYear();
-  const hours = addLeadingZero(date.getHours() + 2);
-  const minutes = addLeadingZero(date.getMinutes());
+  const hours = addZero(date.getHours() + 2);
+  const minutes = addZero(date.getMinutes());
 
   return `${day}-${month}-${year} à ${hours}h${minutes}min`;
 }

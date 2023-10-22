@@ -63,7 +63,7 @@ export default function Post({
   return (
     <Paper
       elevation={0}
-      sx={{ width: '82rem', mx: 'auto', p: '3rem', borderRadius: '2rem' }}
+      sx={{ width: '100%', mx: 'auto', p: '3rem', borderRadius: '2rem' }}
     >
       <Stack
         paddingBottom="2.5rem"
@@ -109,7 +109,11 @@ export default function Post({
             {date}
           </Typography>
         </Stack>
-        <TriplePointButton id={id} context={context} />
+        <TriplePointButton
+          id={id}
+          post_creator={post_creator}
+          context={context}
+        />
       </Stack>
       <Typography
         sx={{

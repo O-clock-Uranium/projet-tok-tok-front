@@ -9,6 +9,7 @@ export default function OneComment({
   created_at,
   post_creator,
 }: Reply) {
+  const context = 'comment';
   const date = formatDate(created_at);
   return (
     <Paper
@@ -57,7 +58,7 @@ export default function OneComment({
             {date}
           </Typography>
         </Stack>
-        <TriplePointButton id={id} />
+        <TriplePointButton id={id} post_creator={post_creator} context={context} />
       </Stack>
       <Box
         sx={{

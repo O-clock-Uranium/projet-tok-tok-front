@@ -47,7 +47,6 @@ export default function AdvertCard({
     advert_creator.latitude,
     advert_creator.longitude
   );
-
   // console.log(advertState);
   // console.log(advertState[0].tag.name);
 
@@ -118,7 +117,7 @@ export default function AdvertCard({
         {!isProfilePage && (
           <FavouriteButton2 id={id} favorited_by={favorited_by} />
         )}
-        <TriplePointButton id={id} context={context} />
+        <TriplePointButton id={id} advert_creator={advert_creator} context={context} />
       </Stack>
       {/* Lien + image */}
       <Link to={`/adverts/${slug}`}>

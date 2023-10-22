@@ -38,7 +38,6 @@ export default function SortBar() {
       padding="1rem"
       flex="1"
       sx={{
-        width: '50rem',
         height: '7rem',
         my: '2rem',
         borderRadius: '2rem',

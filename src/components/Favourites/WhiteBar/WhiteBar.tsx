@@ -11,7 +11,7 @@ function WhiteBar() {
       flex="1 0 0"
       //! 100% width pour facilitier les choses
       sx={{
-        width: '100rem',
+        // width: '100%',
         height: '7rem',
         my: '2rem',
         borderRadius: '2rem',

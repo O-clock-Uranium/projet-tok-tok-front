@@ -1,0 +1,51 @@
+@media screen and (max-width: 1250px) {
+  .app-header {
+    padding: 3rem 3rem !important;
+  }
+
+  .user-identity {
+    display: none;
+  }
+
+  .floating-menu {
+    width: 100%;
+    bottom: 0;
+    top: auto;
+    left: 0;
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 4px 12px #0000005e;
+
+    .floating-menu--list {
+      width: 400px;
+      flex-direction: row;
+    }
+  }
+
+  .posts-container {
+    //display: none !important;
+    max-width: 80% !important;
+  }
+  .favorites-container {
+    width: 100vw !important;
+    margin: 0px !important;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .searchbar-container {
+    max-width: 250px;
+    /*display: none !important;*/
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .searchbar-container {
+    display: none !important;
+  }
+
+  .adverts-navigation {
+    flex-direction: column !important;
+    gap: 0 !important;
+    align-items: 'center' !important;
+  }
+}

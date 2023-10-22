@@ -30,7 +30,6 @@ export default function Profile() {
 
   useEffect(() => {
     dispatch(fetchProfile(slug));
-    console.log(user.posts.length);
   }, [dispatch, slug]);
 
   if (!user) {
@@ -43,6 +42,7 @@ export default function Profile() {
 
   return (
     <Stack
+      className="profile-container"
       direction="column"
       justifyContent="center"
       alignItems="center"
@@ -51,7 +51,7 @@ export default function Profile() {
       width="82rem"
       mx="auto"
     >
-      {/* Banniere + infos profil + boutton edit */}
+      {/* Banniere + infos profil + bouton edit */}
       <Informations userInfo={user} currentUserSlug={currentUserSlug} />
 
       {/* Toggle button Publications / Annonces */}
@@ -61,7 +61,7 @@ export default function Profile() {
       <Stack width="100%">
         {/* Publications ou Adverts */}
         {display === 'publications' ? (
-          // Publications ou non 
+          // Publications ou non
           user.posts.length === 0 ? (
             <div style={{ ...emptyDivStyle }}>
               <Typography variant="h5" component="p">

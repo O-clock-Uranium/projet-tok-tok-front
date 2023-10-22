@@ -21,13 +21,15 @@ export default function Favourites() {
 
   return (
     <Box
+      className="favorites-container"
       sx={{
         display: 'flex',
         direction: 'column',
         gap: '2rem',
-        width: '100rem',
+        width: '82rem',
         margin: 'auto',
         pt: '11rem',
+        backgroundColor: 'red'
       }}
     >
       <Stack
