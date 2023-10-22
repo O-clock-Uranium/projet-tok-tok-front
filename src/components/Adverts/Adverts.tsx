@@ -19,7 +19,7 @@ function Adverts() {
     <Box
       sx={{
         height: '100vh',
-        width: '50%',
+        width: '82rem',
         position: 'relative',
         top: '11rem',
         margin: 'auto',
@@ -31,12 +31,9 @@ function Adverts() {
         justifyContent="space-between"
         alignItems="center"
         gap="2rem"
-        // height="8.2rem"
       >
         <SortBar />
         <AdvertModal />
-        {/* </Stack>
-      <Stack alignItems="center" width="100%"> */}
       </Stack>
 
       <ContentAdvert adverts={adverts} />

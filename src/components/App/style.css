@@ -24,20 +24,29 @@
     width: 100vw !important;
     margin: 0px !important;
   }
+  .profile-container {
+    width: 80% !important;
+  }
 }
 @media screen and (max-width: 1000px) {
   .searchbar-container {
     max-width: 250px;
     /*display: none !important;*/
   }
+  .adverts-navigation {
+    flex-direction: column !important;
+    gap: 0 !important;
+    align-items: "center" !important;
+  }
 }
 @media screen and (max-width: 800px) {
   .searchbar-container {
     display: none !important;
   }
-  .adverts-navigation {
-    flex-direction: column !important;
-    gap: 0 !important;
-    align-items: "center" !important;
+  .edit-typo {
+    display: none !important;
+  }
+  .edit-icon {
+    display: block !important;
   }
 }/*# sourceMappingURL=style.css.map */
