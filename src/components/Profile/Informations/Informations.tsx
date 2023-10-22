@@ -20,8 +20,6 @@ export default function Informations({
   const { slug } = useParams();
   const [open, setOpen] = useState(false);
   const [openBanner, setOpenBanner] = useState(false);
-  console.log(slug);
-  console.log(userInfo);
 
   const isMine = (slugToTest: string) => {
     return userInfo.slug === slugToTest;
@@ -36,7 +34,7 @@ export default function Informations({
   return (
     <Stack
       sx={{
-        width: '82rem',
+        width: '100%',
         padding: '3rem',
         margin: 'auto',
         direction: 'column',
@@ -52,7 +50,6 @@ export default function Informations({
           src={userInfo?.banner}
           alt="banner"
           style={{
-            width: '76rem',
             height: '17rem',
             objectFit: 'cover',
             borderRadius: '2rem',
@@ -154,7 +151,24 @@ export default function Informations({
                 },
               }}
             >
-              Editer Profil
+              <Typography
+                className="edit-typo"
+                fontFamily="Manrope"
+                fontSize="1.6rem"
+                fontStyle="normal"
+                fontWeight="600"
+                lineHeight="normal"
+                color="#fff"
+              >
+                Editer Profil
+              </Typography>
+              <ModeEditIcon
+                className="edit-icon"
+                sx={{
+                  display: 'none',
+                  fontSize: '2rem',
+                }}
+              />
             </Button>
             <EditProfileModal open={open} setOpen={setOpen} />
           </>
@@ -162,7 +176,7 @@ export default function Informations({
       </Stack>
 
       {/* Description de l'utilisateur */}
-      <Stack direction="row" width="75rem">
+      <Stack direction="row">
         <Typography
           fontFamily="Manrope"
           fontSize="1.8rem"

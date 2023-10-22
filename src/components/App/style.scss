@@ -1,3 +1,11 @@
+.posts-container {
+  //display: none !important;
+  max-width: 82rem !important;
+  .passe-pourcent{
+    width: 100% !important;
+  }
+}
+
 .favorites-container {
     width: 82rem;
     margin: auto;
@@ -5,8 +13,6 @@
     flex-direction: column;
     padding: 11rem 0;
   }
-
-
 
 @media screen and (max-width: 1250px) {
   .app-header {
@@ -44,6 +50,10 @@
   .advert-card {
     margin: auto;
   }
+  .profile-container{
+    width: 80% !important;
+  }
+
 }
 
 @media screen and (max-width: 1000px) {
@@ -51,16 +61,24 @@
     max-width: 250px;
     /*display: none !important;*/
   }
-}
-
-@media screen and (max-width: 800px) {
-  .searchbar-container {
-    display: none !important;
-  }
 
   .adverts-navigation {
     flex-direction: column !important;
     gap: 0 !important;
     align-items: 'center' !important;
   }
+}
+
+@media screen and (max-width: 800px) {
+  .searchbar-container {
+    display: none !important;
+  }
+  .edit-typo{
+    display: none !important;
+  }
+  .edit-icon{
+    display: block !important;
+  }
+
+
 }

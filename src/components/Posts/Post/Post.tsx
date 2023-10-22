@@ -61,9 +61,14 @@ export default function Post({
   const date = formatDate(created_at);
 
   return (
-    <Paper
-      elevation={0}
-      sx={{ width: '100%', mx: 'auto', p: '3rem', borderRadius: '2rem' }}
+    <Box
+      sx={{
+        width: '100%',
+        p: '3rem',
+        backgroundColor: 'white',
+        mx: 'auto',
+        borderRadius: '2rem',
+      }}
     >
       <Stack
         paddingBottom="2.5rem"
@@ -216,6 +221,6 @@ export default function Post({
         <AddCommentary id={id} />
         <ContentComment replies={replies} />
       </Collapse>
-    </Paper>
+    </Box>
   );
 }
