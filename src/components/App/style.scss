@@ -5,6 +5,14 @@
     width: 100% !important;
   }
 }
+.messages-container {
+  width: 82rem;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 11rem 0;
+  background-color: greenyellow;
+}
 
 .favorites-container {
     width: 82rem;
@@ -21,6 +29,12 @@
 
   .user-identity {
     display: none;
+  }
+  
+  .messages-container {
+    width: 100vw !important;
+    //background-color: red;
+    // margin: 0px !important;
   }
 
   .floating-menu {
