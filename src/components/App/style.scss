@@ -1,3 +1,11 @@
+.posts-container {
+  //display: none !important;
+  max-width: 82rem !important;
+  .passe-pourcent{
+    width: 100% !important;
+  }
+}
+
 @media screen and (max-width: 1250px) {
   .app-header {
     padding: 3rem 3rem !important;
@@ -31,8 +39,6 @@
   }
   .profile-container{
     width: 80% !important;
-
-
   }
 
 }
