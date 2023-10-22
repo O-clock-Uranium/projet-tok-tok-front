@@ -8,11 +8,9 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   (config) => {
     const persistedState = JSON.parse(localStorage.getItem('persist:root'));
-    // console.log('machin', persistedState);
     const userState = JSON.parse(persistedState.user);
-    // console.log('truc', userState);
     const { token } = userState;
-    // console.log(token);
+    
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }

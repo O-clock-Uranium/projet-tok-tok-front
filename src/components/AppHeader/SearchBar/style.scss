@@ -1,0 +1,17 @@
+.searchbar-container {
+    display: flex;
+    padding: 0 0 0 10px;
+    align-items: center;
+    width: 400px;
+    border : solid 1px;
+    border-radius: 50%;
+    border-color: rgba(85,85,85,0.2);
+  }
+
+
+
+@media screen and (max-width: 850px) {
+  .searchbar-container {
+    display: none;
+  }
+}

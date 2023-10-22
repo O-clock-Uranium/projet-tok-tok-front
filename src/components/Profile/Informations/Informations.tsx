@@ -10,13 +10,18 @@ import EditBannerModal from './EditBannerModal/EditBannerModal';
 
 interface InformationsProps {
   userInfo: User;
+  currentUserSlug: string;
 }
 
-export default function Informations({ userInfo }: InformationsProps) {
+export default function Informations({
+  userInfo,
+  currentUserSlug,
+}: InformationsProps) {
   const { slug } = useParams();
   const [open, setOpen] = useState(false);
   const [openBanner, setOpenBanner] = useState(false);
-  // console.log(userInfo);
+  console.log(slug);
+  console.log(userInfo);
 
   const isMine = (slugToTest: string) => {
     return userInfo.slug === slugToTest;
@@ -27,17 +32,6 @@ export default function Informations({ userInfo }: InformationsProps) {
   const handleOpenBanner = () => {
     setOpenBanner(true);
   };
-  // const handleCloseBanner = () => setOpenBanner(false);
-
-  // const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault();
-
-  //   const formData = new FormData(event.currentTarget);
-  //   dispatch("blablaBanner"(formData))
-  //   await new Promise((resolve) => setTimeout(resolve, 800));
-  //   dispatch(fetchProfile());
-  //   setOpen(false);
-  // };
 
   return (
     <Stack
@@ -64,23 +58,29 @@ export default function Informations({ userInfo }: InformationsProps) {
             borderRadius: '2rem',
           }}
         />
-        <IconButton
-          onClick={handleOpenBanner}
-          component="label"
-          sx={{
-            position: 'absolute',
-            left: '94%',
-            top: '5%',
-            color: '#02B8AC',
-          }}
-        >
-          <ModeEditIcon sx={{ fontSize: '2rem' }} />
-        </IconButton>
+        {/* On vérifie si on est sur notre propre profil */}
+        {isMine(currentUserSlug) && (
+          <IconButton
+            onClick={handleOpenBanner}
+            component="label"
+            sx={{
+              position: 'absolute',
+              left: '94%',
+              top: '5%',
+              color: '#02B8AC',
+            }}
+          >
+            <ModeEditIcon sx={{ fontSize: '2rem' }} />
+          </IconButton>
+        )}
+
+        {/* Fermée par défaut et s'affiche au click sur l'icon au-dessus */}
         <EditBannerModal
           openBanner={openBanner}
           setOpenBanner={setOpenBanner}
         />
       </Stack>
+
       {/* Photo de profil + nom + bouton edit */}
       <Stack
         direction="row"
@@ -110,17 +110,8 @@ export default function Informations({ userInfo }: InformationsProps) {
               border: '0.5rem solid #FFF',
             }}
           />
-          {/* <IconButton
-            sx={{
-              position: 'absolute',
-              left: '30%',
-              top: '-7rem',
-              color: '#02B8AC',
-            }}
-          >
-            <ModeEditIcon sx={{ fontSize: '2rem' }} />
-          </IconButton> */}
           <Stack direction="column" justifyContent="center">
+            {/* Nom de l'utilisateur */}
             <Typography
               fontFamily="Manrope"
               fontSize="2rem"
@@ -128,9 +119,9 @@ export default function Informations({ userInfo }: InformationsProps) {
               fontWeight="700"
               lineHeight="normal"
             >
-              {/* Nom de l'utilisateur */}
               {userInfo.firstname} {userInfo.lastname}
             </Typography>
+            {/* Ville de l'utilisateur */}
             <Typography
               fontFamily="Manrope"
               fontSize="1.6rem"
@@ -145,8 +136,9 @@ export default function Informations({ userInfo }: InformationsProps) {
             </Typography>
           </Stack>
         </Stack>
+
         {/* Boutton edit s'il s'agit du profil user loggued sinon bouton message ?? */}
-        {isMine(slug) && (
+        {isMine(currentUserSlug) && (
           <>
             <Button
               onClick={handleSettings}
@@ -168,6 +160,8 @@ export default function Informations({ userInfo }: InformationsProps) {
           </>
         )}
       </Stack>
+
+      {/* Description de l'utilisateur */}
       <Stack direction="row" width="75rem">
         <Typography
           fontFamily="Manrope"

@@ -1,4 +1,4 @@
-import { Stack } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
@@ -8,21 +8,29 @@ import ContentPost from '../Posts/Post/ContentPost/ContentPost';
 import Informations from './Informations/Informations';
 import Toggle from './Toggle';
 
+const emptyDivStyle = {
+  backgroundColor: '#fff',
+  borderRadius: '12px',
+  padding: '2rem',
+  fontSize: '2rem',
+};
+
 export default function Profile() {
-  const userInfo = useAppSelector((state) => state.user);
   const user = useAppSelector((state) => state.profile);
+  const currentUserSlug = useAppSelector((state) => state.user.slug);
   const dispatch = useAppDispatch();
-
-  const userPosts = user.posts.filter((p) => {
-    return p.reply_to === null;
-  });
-
   const { slug } = useParams();
   const [display, setDisplay] = useState('publications');
   const context = 'profile';
 
+  // On filtre les réponses parmi toutes les publications
+  const userPosts = user.posts.filter((p) => {
+    return p.reply_to === null;
+  });
+
   useEffect(() => {
     dispatch(fetchProfile(slug));
+    console.log(user.posts.length);
   }, [dispatch, slug]);
 
   if (!user) {
@@ -44,16 +52,32 @@ export default function Profile() {
       mx="auto"
     >
       {/* Banniere + infos profil + boutton edit */}
-      <Informations userInfo={user} />
+      <Informations userInfo={user} currentUserSlug={currentUserSlug} />
 
       {/* Toggle button Publications / Annonces */}
       <Stack direction="row" paddingY="2rem" width="100%">
         <Toggle display={display} setDisplay={setDisplay} />
       </Stack>
-      <Stack width="100rem">
-        {/* Publications content ou Adverts content */}
+      <Stack width="100%">
+        {/* Publications ou Adverts */}
         {display === 'publications' ? (
-          <ContentPost publications={userPosts} />
+          // Publications ou non 
+          user.posts.length === 0 ? (
+            <div style={{ ...emptyDivStyle }}>
+              <Typography variant="h5" component="p">
+                Il semble que cet utilisateur n'ait rien posté pour le moment !
+              </Typography>
+            </div>
+          ) : (
+            <ContentPost publications={userPosts} />
+          )
+        ) : user.adverts.length === 0 ? (
+          <div style={{ ...emptyDivStyle }}>
+            <Typography variant="h5" component="p">
+              Il semble que cet utilisateur n'ait pas d'annonces pour le moment
+              !
+            </Typography>
+          </div>
         ) : (
           <ContentAdvert adverts={user.adverts} context={context} />
         )}

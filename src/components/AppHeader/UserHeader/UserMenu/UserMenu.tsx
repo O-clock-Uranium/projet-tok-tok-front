@@ -93,9 +93,10 @@ export default function UserMenu() {
             Settings
           </MenuItem>
           <MenuItem
-            // component={Link}
-            // to="/"
-            onClick={handleLogout}
+            onClick={() => {
+              dispatch(logout());
+              setAnchorEl(null);
+            }}
             sx={{ color: '#F46F6F', fontSize: '1.8rem' }}
           >
             <IconButton type="button" aria-label="paramètres">

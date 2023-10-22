@@ -12,15 +12,13 @@ interface ProfileState {
   description: string;
   city: string;
   thumbnail: string;
-  banner: string
   slug: string;
   posts: Publication[];
   likes: Publication[];
   adverts: Advert[];
   created_at: string;
   liked: Publication[];
-
-  error?: string;
+  error?: string; // champ facultatif
   isLoading: boolean;
 }
 export const initialState: ProfileState = {

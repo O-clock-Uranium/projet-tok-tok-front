@@ -65,6 +65,7 @@ export default function EditBannerModal({
             justifyContent="center"
             gap="2rem"
           >
+            {/* Image actuelle de bannière */}
             <img
               src={user.banner}
               alt="profile_banner"
@@ -75,6 +76,7 @@ export default function EditBannerModal({
                 border: '0.5rem solid #FFF',
               }}
             />
+            {/* L'input caché pour soumettre une photo */}
             <input
               type="file"
               id="banner"
@@ -82,6 +84,7 @@ export default function EditBannerModal({
               accept="image/*"
               hidden
             />
+            {/* La "chip" affiché comme label de l'input */}
             <label htmlFor="banner">
               <Chip
                 sx={{
@@ -95,7 +98,7 @@ export default function EditBannerModal({
                 label="Changer la photo"
               />
             </label>
-
+            {/* Bouton submit */}
             <Button
               type="submit"
               fullWidth

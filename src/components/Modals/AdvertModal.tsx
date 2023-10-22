@@ -2,6 +2,7 @@ import {
   FormControl,
   IconButton,
   InputAdornment,
+  InputLabel,
   MenuItem,
   OutlinedInput,
   Select,
@@ -17,14 +18,29 @@ import picture from '../../assets/icons/picture.svg';
 import { useAppDispatch } from '../../hooks/redux';
 import { addAdvert, fetchAdverts } from '../../store/reducers/adverts';
 import AddAdvertField from './AddAdvertField/AddAdvertField';
+import { useEffect } from 'react';
+import axiosInstance from '../../utils/axios';
 
 export default function AdvertModal2() {
   const [open, setOpen] = React.useState(false);
   const [categorie, setCategorie] = React.useState('');
+  const [categorieList, setCategorieList] = React.useState([]);
 
   const dispatch = useAppDispatch();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  useEffect(() => {
+    try {
+      const fetchCategories = async () => {
+        const { data } = await axiosInstance.get('/categories');
+        setCategorieList(data);
+      };
+      fetchCategories();
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
 
   const handleChangeCategories = (event: SelectChangeEvent) => {
     setCategorie(event.target.value);
@@ -155,6 +171,7 @@ export default function AdvertModal2() {
             </Stack>
             {/* Selecteur de catégories */}
             <FormControl sx={{ backgroundColor: '#F5F6FA' }} size="small">
+              <InputLabel id="select-categorie">Catégories</InputLabel>
               <Select
                 labelId="select-categorie"
                 name="tag_id"
@@ -162,16 +179,17 @@ export default function AdvertModal2() {
                 value={categorie}
                 label="Catégories"
                 onChange={handleChangeCategories}
-                displayEmpty
                 input={<OutlinedInput />}
                 inputProps={{ 'aria-label': 'Without label' }}
+                required
               >
-                <MenuItem value="">
-                  <em>Catégories</em>
-                </MenuItem>
-                <MenuItem value={1}>maison</MenuItem>
-                <MenuItem value={2}>jardin</MenuItem>
-                <MenuItem value={3}>vetements</MenuItem>
+                {categorieList.map((cat: any) => {
+                  return (
+                    <MenuItem key={cat.name} value={cat.id}>
+                      {cat.name}
+                    </MenuItem>
+                  );
+                })}
               </Select>
             </FormControl>
             <AddAdvertField

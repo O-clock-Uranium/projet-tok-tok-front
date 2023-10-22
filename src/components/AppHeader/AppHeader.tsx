@@ -5,9 +5,12 @@ import NotificationHeader from './Notifications/NotificationHeader';
 import SearchBar from './SearchBar/SearchBar';
 import UserHeader from './UserHeader/UserHeader';
 
+import './style.scss';
+
 export default function AppHeader() {
   return (
     <Box
+      className="app-header"
       sx={{
         backgroundColor: 'white',
         height: '10rem',
