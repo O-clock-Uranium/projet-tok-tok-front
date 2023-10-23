@@ -68,7 +68,10 @@ export default function Informations({
               color: '#02B8AC',
             }}
           >
-            <ModeEditIcon sx={{ fontSize: '2rem' }} />
+            <ModeEditIcon
+              className="profile-edit-banner"
+              sx={{ fontSize: '2rem !important' }}
+            />
           </IconButton>
         )}
 
