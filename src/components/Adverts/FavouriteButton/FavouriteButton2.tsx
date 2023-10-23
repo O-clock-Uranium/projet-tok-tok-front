@@ -33,12 +33,12 @@ export default function FavoriteButton({ id, favorited_by }: Advert) {
     console.log(bookmark);
     if (bookmark === true) {
       dispatch(addFavourite(id));
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      await new Promise((resolve) => setTimeout(resolve, 200));
       dispatch(fetchAdverts());
       dispatch(fetchFavourites());
     } else {
       dispatch(delFavourite(id));
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      await new Promise((resolve) => setTimeout(resolve, 200));
       dispatch(fetchAdverts());
       dispatch(fetchFavourites());
     }
