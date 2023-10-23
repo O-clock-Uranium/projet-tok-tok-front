@@ -7,12 +7,31 @@
 }
 .messages-container {
   width: 82rem;
+  height: 88vh;
   margin: auto;
   display: flex;
   flex-direction: column;
-  padding: 11rem 0;
-  background-color: greenyellow;
+  padding-top: 11rem;
 }
+
+//.contacts-menu {
+  //background-color: hotpink;
+  //height: 100%;
+  // &::-webkit-scrollbar {
+  //         width: 1rem;
+  //         background-color: #F5F5F5;
+  //       };
+
+  // &::-webkit-scrollbar-track {
+  //     &::-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+  //         background-color: #49c1ad;
+  //         border-radius: 10px;
+  //       },
+  //       '&::-webkit-scrollbar-thumb': {
+  //         background-color: '#03665C',
+  //         border-radius: '25px',
+  //       },
+//}
 
 .favorites-container {
     width: 82rem;

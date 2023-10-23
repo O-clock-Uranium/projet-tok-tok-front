@@ -21,78 +21,96 @@ export default function Messagerie() {
     <>
       <div className="messages-container">
         {contacts.length > 0 ? (
-          <Stack direction="row">
-            <MenuContact
-              contacts={contacts}
-              destinataireId={destinataireId}
-              setDestinataireId={setDestinataireId}
-              destinataireName={destinataireName}
-              setDestinataireName={setDestinataireName}
-            />
-            <Stack>
-              <div className="chat">
-                {/* barre du haut */}
+          <Stack
+            direction="row"
+            sx={{ height: '100%', border: 'solid 1px #03665C', borderRadius: '1rem' }}
+          >
+            {/* Liste de contacts */}
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '2rem',
+                width: '300px',
+                height: '100%',
+                padding: '1rem',
+              }}
+            >
+              <MenuContact
+                contacts={contacts}
+                destinataireId={destinataireId}
+                setDestinataireId={setDestinataireId}
+                destinataireName={destinataireName}
+                setDestinataireName={setDestinataireName}
+              />
+            </div>
+
+            <div
+              style={{ display: 'flex', flexDirection: 'column', width: '70%' }}
+            >
+              <Stack
+                direction="row"
+                sx={{
+                  backgroundColor: '#fff',
+                  p: '1rem',
+                  mb: '0.5rem',
+                  pl: '2rem',
+                  borderRadius: '1rem',
+                }}
+              >
+                <Typography
+                  sx={{
+                    color: 'primary.dark',
+                    height: '4rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    fontSize: '2rem',
+                    fontFamily: 'DM Sans',
+                  }}
+                >
+                  {destinataireName}
+                </Typography>
+              </Stack>
+
+              <Paper
+                elevation={0}
+                sx={{
+                  width: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  position: 'relative',
+                  p: '2rem',
+                  borderRadius: '1rem',
+                  //backgroundColor: '#fff',
+                  height: '60rem',
+                  // overflowY: 'auto',
+                  // '&::-webkit-scrollbar': {
+                  //   width: '1rem',
+                  //   backgroundColor: '#F5F5F5',
+                  // },
+                  // '&::-webkit-scrollbar-track': {
+                  //   '&::-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.1)',
+                  //   backgroundColor: '#49c1ad',
+                  //   borderRadius: '10px',
+                  // },
+                  // '&::-webkit-scrollbar-thumb': {
+                  //   backgroundColor: '#03665C',
+                  //   borderRadius: '25px',
+                  // },
+                }}
+              >
+                <Messages />
                 <Stack
                   direction="row"
-                  sx={{
-                    backgroundColor: '#fff',
-                    p: '1rem',
-                    mb: '0.5rem',
-                    pl: '2rem',
-                    borderRadius: '1rem',
-                  }}
+                  alignItems="flex-end"
+                  justifyContent="flex-end"
                 >
-                  <Typography
-                    sx={{
-                      color: 'primary.dark',
-                      height: '4rem',
-                      display: 'flex',
-                      alignItems: 'center',
-                      fontSize: '2rem',
-                      fontFamily: 'DM Sans',
-                    }}
-                  >
-                    {destinataireName}
-                  </Typography>
+                  <Form destinataireId={destinataireId} />
                 </Stack>
-                {/* Bloc */}
-                <Paper
-                  elevation={0}
-                  sx={{
-                    width: '80rem',
-                    display: 'flex',
-                    position: 'relative',
-                    p: '2rem',
-                    borderRadius: '1rem',
-                    backgroundColor: '#fff',
-                    height: '60rem',
-                    overflowY: 'auto',
-                    '&::-webkit-scrollbar': {
-                      width: '1rem',
-                      backgroundColor: '#F5F5F5',
-                    },
-                    '&::-webkit-scrollbar-track': {
-                      '&::-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.1)',
-                      backgroundColor: '#49c1ad',
-                      borderRadius: '10px',
-                    },
-                    '&::-webkit-scrollbar-thumb': {
-                      backgroundColor: '#03665C',
-                      borderRadius: '25px',
-                    },
-                  }}
-                >
-                  <Messages />
-                  <Stack
-                    direction="row"
-                    alignItems="flex-end"
-                    justifyContent="flex-end"
-                  >
-                    <Form destinataireId={destinataireId} />
-                  </Stack>
-                </Paper>
-              </div>
-            </Stack>
+              </Paper>
+            </div>
+
+            <div></div>
           </Stack>
         ) : (
           /* Composant quand pas de messages ------------------------*/
@@ -123,6 +141,7 @@ export default function Messagerie() {
         )}
       </div>
     </>
+
     // <Box
     //   sx={{
     //     height: '80vh',
@@ -231,4 +250,71 @@ export default function Messagerie() {
     //   )}
     // </Box>
   );
+}
+
+{
+  /* <Stack>
+              <div className="chat">
+                <Stack
+                  direction="row"
+                  sx={{
+                    backgroundColor: '#fff',
+                    p: '1rem',
+                    mb: '0.5rem',
+                    pl: '2rem',
+                    borderRadius: '1rem',
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      color: 'primary.dark',
+                      height: '4rem',
+                      display: 'flex',
+                      alignItems: 'center',
+                      fontSize: '2rem',
+                      fontFamily: 'DM Sans',
+                    }}
+                  >
+                    {destinataireName}
+                  </Typography>
+                </Stack>
+
+                
+                <Paper
+                  elevation={0}
+                  sx={{
+                    // width: '80rem',
+                    display: 'flex',
+                    position: 'relative',
+                    p: '2rem',
+                    borderRadius: '1rem',
+                    backgroundColor: '#fff',
+                    height: '60rem',
+                    overflowY: 'auto',
+                    '&::-webkit-scrollbar': {
+                      width: '1rem',
+                      backgroundColor: '#F5F5F5',
+                    },
+                    '&::-webkit-scrollbar-track': {
+                      '&::-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.1)',
+                      backgroundColor: '#49c1ad',
+                      borderRadius: '10px',
+                    },
+                    '&::-webkit-scrollbar-thumb': {
+                      backgroundColor: '#03665C',
+                      borderRadius: '25px',
+                    },
+                  }}
+                >
+                  <Messages />
+                  <Stack
+                    direction="row"
+                    alignItems="flex-end"
+                    justifyContent="flex-end"
+                  >
+                    <Form destinataireId={destinataireId} />
+                  </Stack>
+                </Paper>
+              </div>
+            </Stack> */
 }

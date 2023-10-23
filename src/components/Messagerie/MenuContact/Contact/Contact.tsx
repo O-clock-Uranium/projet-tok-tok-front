@@ -46,7 +46,7 @@ function Contact({
           //   backgroundColor: 'primary.light',
           // },
           // color: '#fff',
-          // width: '10rem',
+          width: '100%',
           // height: '4rem',
           // display: 'flex',
           // alignItems: 'center',
