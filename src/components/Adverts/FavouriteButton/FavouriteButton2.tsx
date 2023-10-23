@@ -14,23 +14,9 @@ import {
   fetchFavourites,
 } from '../../../store/reducers/adverts';
 
-export default function FavoriteButton({
-  id,
-  slug,
-  title,
-  content,
-  price,
-  user_id,
-  tag_id,
-  created_at,
-  advert_creator,
-  images,
-  favorited_by,
-}: Advert) {
+export default function FavoriteButton({ id, favorited_by }: Advert) {
   const location = useLocation();
   const isAdvertsPage = location.pathname === '/adverts';
-
-  const [bookmark, setBookmark] = useState(false);
 
   const dispatch = useAppDispatch();
   const userId = useAppSelector((state) => state.user.id);
@@ -39,13 +25,23 @@ export default function FavoriteButton({
   const isBookmarked = favorited_by
     ?.map((fav) => fav.id === userId)
     .some((ele) => ele === true);
+  console.log(isBookmarked);
+  const [bookmark, setBookmark] = useState(isBookmarked);
 
-  const handleBookmarkClick = () => {
+  const handleBookmarkClick = async () => {
     setBookmark(!bookmark);
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    bookmark ? dispatch(delFavourite(id)) : dispatch(addFavourite(id));
-    dispatch(fetchAdverts());
-    dispatch(fetchFavourites());
+    console.log(bookmark);
+    if (bookmark === true) {
+      dispatch(addFavourite(id));
+      await new Promise((resolve) => setTimeout(resolve, 200));
+      dispatch(fetchAdverts());
+      dispatch(fetchFavourites());
+    } else {
+      dispatch(delFavourite(id));
+      await new Promise((resolve) => setTimeout(resolve, 200));
+      dispatch(fetchAdverts());
+      dispatch(fetchFavourites());
+    }
   };
 
   return (

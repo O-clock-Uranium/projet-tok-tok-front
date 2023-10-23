@@ -3,7 +3,6 @@ import {
   Avatar,
   Box,
   IconButton,
-  Paper,
   Stack,
   Typography,
 } from '@mui/material';
@@ -37,7 +36,7 @@ export default function Post({
   replies,
 }: Publication) {
   const [expanded, setExpanded] = useState(false);
-  const [like, setLike] = useState(false);
+
   const userId = useAppSelector((state) => state.user.id);
   const dispatch = useAppDispatch();
 
@@ -50,11 +49,13 @@ export default function Post({
   const isLiked = users_liked
     ?.map((user) => user.id === userId)
     .some((ele) => ele === true);
+  const [like, setLike] = useState(isLiked);
 
-  const handleLikeClick = () => {
+  const handleLikeClick = async () => {
     setLike(!like);
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     like ? dispatch(delLike(id)) : dispatch(addLike(id));
+    await new Promise((resolve) => setTimeout(resolve, 200));
     dispatch(fetchPosts());
   };
 
