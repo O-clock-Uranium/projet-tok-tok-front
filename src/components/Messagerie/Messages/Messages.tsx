@@ -7,6 +7,7 @@ import {
 import MessagesItem from './MessagesItem';
 
 import './Messages.scss';
+import { fetchMessages } from '../../../store/reducers/messagerie';
 
 function Messages() {
   const messages = useAppSelector((state) => state.messagerie.messages);
@@ -26,7 +27,11 @@ function Messages() {
   }, [messages]);
 
   return (
-    <section className="messages" ref={messagesRef}>
+    <section
+      className="messages"
+      ref={messagesRef}
+      style={{ overflowY: 'auto'}}
+    >
       {messages.map((message) => (
         <MessagesItem key={message.id} {...message} />
       ))}

@@ -10,9 +10,10 @@ function MessagesItem({ sender, content }: Message) {
 
   return (
     <article
-      className={classNames('messages-item', {
-        'messages-item--mine': isMine,
-      })}
+      className={isMine ? 'messages-item messages-item--mine' : 'messages-item'}
+      // className={classNames('messages-item', {
+      //   'messages-item--mine': isMine,
+      // })}
     >
       {/* <p className="messages-item__author">{sender}</p> */}
       <p className="messages-item__content">{content}</p>
