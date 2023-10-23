@@ -17,11 +17,12 @@ function Adverts() {
 
   return (
     <Box
+      className="adverts-container"
       sx={{
         height: '100vh',
         width: '82rem',
         position: 'relative',
-        top: '11rem',
+        padding: '11rem 0',
         margin: 'auto',
       }}
     >

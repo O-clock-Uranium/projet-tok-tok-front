@@ -1,9 +1,15 @@
+.searchbar-icon{
+  display: none !important;   
+}
+
 .posts-container {
-  //display: none !important;
-  max-width: 82rem !important;
   .passe-pourcent{
     width: 100% !important;
   }
+}
+
+.publish-icon-newpost{
+  display: none !important;
 }
 
 .favorites-container {
@@ -37,42 +43,33 @@
     }
   }
 
-  .posts-container {
-    //display: none !important;
-    max-width: 80% !important;
-  }
-  .favorites-container {
+  .favorites-container, .adverts-container, .profile-container, .posts-container {
     width: 100vw !important;
-    //background-color: red;
-    // margin: 0px !important;
   }
 
   .advert-card {
     margin: auto;
   }
-  .profile-container{
-    width: 80% !important;
-  }
+
 
 }
 
 @media screen and (max-width: 1000px) {
   .searchbar-container {
     max-width: 250px;
-    /*display: none !important;*/
   }
 
   .adverts-navigation {
+    
     flex-direction: column !important;
     gap: 0 !important;
+    padding-bottom: 2rem !important;
     align-items: 'center' !important;
   }
 }
 
 @media screen and (max-width: 800px) {
-  .searchbar-container {
-    display: none !important;
-  }
+
   .edit-typo{
     display: none !important;
   }
@@ -81,4 +78,55 @@
   }
 
 
+
+}
+
+@media screen and (max-width: 620px) {
+.adverts-sortbar{
+gap: 0 !important;
+padding: 0 ;
+}
+.adverts-formcontrol{
+ width: 7.3rem !important; 
+}
+.publish-icon-newpost{
+  display: block !important;
+  margin: auto !important;
+}
+.publish-text-newpost{
+  display: none !important;
+}
+.searchbar-container {
+  display: none !important;
+}
+.searchbar-icon{
+  display: block !important;
+  text-align: right !important;   
+}
+.profile-toggle-button{
+  margin: auto !important;
+}
+}
+
+@media screen and (max-width: 500px) {
+  .user-avatar-newpost{
+    display: none !important;
+  }
+  .profile-avatar{
+    width: 100px !important;
+    height: auto !important;
+  }
+  .profile-banner{
+    height: auto !important;
+    width: auto !important;
+    transition: ease-in 2s !important;
+  }
+  .profile-name-city{
+    display: flex;
+    position: absolute !important;
+    top: 40px !important;
+  }
+  .profile-city{
+    flex: 1 !important;
+  }
 }

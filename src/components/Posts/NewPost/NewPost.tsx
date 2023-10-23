@@ -12,6 +12,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { addPost, fetchPosts } from '../../../store/reducers/publications';
 import picture from '../../../assets/icons/picture.svg';
 import video from '../../../assets/icons/camera.svg';
+import plane from '../../../assets/icons/paper_plane.svg';
 
 function NewPost() {
   const [value, setValue] = useState('');
@@ -54,6 +55,7 @@ function NewPost() {
     >
       <Stack gap="2rem" direction="row">
         <Avatar
+          className="user-avatar-newpost"
           alt="User Thumbnail"
           src={user.thumbnail}
           sx={{ width: 60, height: 60 }}
@@ -112,6 +114,7 @@ function NewPost() {
               }}
             >
               <Typography
+                className="publish-text-newpost"
                 fontSize="1.5rem"
                 color="white"
                 fontStyle="normal"
@@ -121,6 +124,13 @@ function NewPost() {
               >
                 Publier
               </Typography>
+              <IconButton
+                className="publish-icon-newpost"
+                sx={{ m: '0px 0px 0px 10px', color: 'primary.dark' }}
+                aria-label="publish"
+              >
+                <img alt="search icon" src={plane} height={18} width={18} />
+              </IconButton>
             </Button>
           </Stack>
           <Stack direction="row" pl="2rem">
