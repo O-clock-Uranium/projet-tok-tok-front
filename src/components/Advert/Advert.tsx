@@ -75,6 +75,7 @@ export default function Annonce({ created_at }: Advert) {
   const adverts = useAppSelector((state) => state.adverts.userAdverts);
   return (
     <Box
+      className="advert-container"
       sx={{
         display: 'flex',
         flexDirection: 'column',
