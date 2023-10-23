@@ -23,7 +23,6 @@ export default function Favourites() {
     <>
       <div className="favorites-container">
         <WhiteBar />
-
         <Box
           width="100%"
           sx={{
@@ -32,7 +31,7 @@ export default function Favourites() {
             display: 'flex',
             flexWrap: 'wrap',
             gap: '2rem',
-            justifyContent: 'flex-start'
+            justifyContent: 'flex-start',
           }}
         >
           {favouritesList.length === 0 ? (

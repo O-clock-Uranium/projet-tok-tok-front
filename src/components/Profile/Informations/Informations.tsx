@@ -47,6 +47,7 @@ export default function Informations({
       {/* Bannière */}
       <Stack sx={{ position: 'relative' }}>
         <img
+          className="profile-banner"
           src={userInfo?.banner}
           alt="banner"
           style={{
@@ -67,7 +68,10 @@ export default function Informations({
               color: '#02B8AC',
             }}
           >
-            <ModeEditIcon sx={{ fontSize: '2rem' }} />
+            <ModeEditIcon
+              className="profile-edit-banner"
+              sx={{ fontSize: '2rem !important' }}
+            />
           </IconButton>
         )}
 
@@ -80,6 +84,7 @@ export default function Informations({
 
       {/* Photo de profil + nom + bouton edit */}
       <Stack
+        className="profile-informartions-container"
         direction="row"
         flex="1"
         alignItems="start"
@@ -96,6 +101,7 @@ export default function Informations({
         >
           {/* Photo de profil */}
           <img
+            className="profile-avatar"
             src={userInfo?.thumbnail}
             alt="profile_picture"
             style={{
@@ -109,9 +115,13 @@ export default function Informations({
             }}
           />
           <Stack
-            className="profile-information-name"
             direction="column"
             justifyContent="center"
+            className="profile-name-city"
+            /* className="profile-information-name"
+            direction="column"
+            justifyContent="center"
+*/
           >
             {/* Nom de l'utilisateur */}
             <Typography
@@ -125,6 +135,7 @@ export default function Informations({
             </Typography>
             {/* Ville de l'utilisateur */}
             <Typography
+              className="profile-city"
               fontFamily="Manrope"
               fontSize="1.6rem"
               fontStyle="normal"

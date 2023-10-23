@@ -16,15 +16,6 @@ export default function SearchBar() {
     setSearchTerm(event.target.value);
   };
 
-  // TODO le submit après une recherche
-  /* // function handleSubmit(event: any) {
-  //   if (!searchTerm.trim().length) {
-  //    return;
-  //   }
-  //   fetchqqc();  Changer quand branché au back
-  // }
- */
-
   return (
     <Paper
       className="searchbar-container"

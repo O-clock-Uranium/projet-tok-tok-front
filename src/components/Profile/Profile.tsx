@@ -55,7 +55,7 @@ export default function Profile() {
       <Informations userInfo={user} currentUserSlug={currentUserSlug} />
 
       {/* Toggle button Publications / Annonces */}
-      <Stack direction="row" paddingY="2rem" width="100%">
+      <Stack className="profile-toggle-button" direction="row" paddingY="2rem">
         <Toggle display={display} setDisplay={setDisplay} />
       </Stack>
       <Stack width="100%">
