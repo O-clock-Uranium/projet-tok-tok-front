@@ -192,8 +192,9 @@ export default function Informations({
       </Stack>
 
       {/* Description de l'utilisateur */}
-      <Stack direction="row" className="profile-information-description">
+      <Stack direction="row">
         <Typography
+          className="profile-information-description"
           fontFamily="Manrope"
           fontSize="1.8rem"
           fontStyle="normal"

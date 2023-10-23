@@ -83,7 +83,6 @@ export default function Annonce({ created_at }: Advert) {
         top: '11rem',
         margin: 'auto',
         gap: '2.5rem',
-        backgroundColor: 'red',
         paddingBottom: '10rem',
       }}
     >
