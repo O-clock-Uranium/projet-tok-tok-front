@@ -20,57 +20,55 @@ export default function Favourites() {
   });
 
   return (
-    <>
-      <div className="favorites-container">
-        <WhiteBar />
-        <Box
-          width="100%"
-          sx={{
-            my: '2rem',
-            borderRadius: '2rem',
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '2rem',
-            justifyContent: 'flex-start',
-          }}
-        >
-          {favouritesList.length === 0 ? (
-            <Stack
-              direction="column"
-              padding="3rem"
+    <div className="favorites-container">
+      <WhiteBar />
+      <Box
+        width="100%"
+        sx={{
+          my: '2rem',
+          borderRadius: '2rem',
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '2rem',
+          justifyContent: 'flex-start',
+        }}
+      >
+        {favouritesList.length === 0 ? (
+          <Stack
+            direction="column"
+            padding="3rem"
+            sx={{
+              backgroundColor: 'white',
+              borderRadius: '2rem',
+              width: '100%',
+            }}
+          >
+            <Typography
               sx={{
-                backgroundColor: 'white',
-                borderRadius: '2rem',
-                width: '100%',
+                fontSize: '1.8rem',
+                fontFamily: 'DM Sans',
+                fontStyle: 'normal',
+                fontWeight: '500',
+                lineHeight: 'normal',
+                p: '1rem',
               }}
             >
-              <Typography
-                sx={{
-                  fontSize: '1.8rem',
-                  fontFamily: 'DM Sans',
-                  fontStyle: 'normal',
-                  fontWeight: '500',
-                  lineHeight: 'normal',
-                  p: '1rem',
-                }}
-              >
-                Vous navez pas encore de favoris ? <br />
-                Cliquez sur cette icône{' '}
-                <BookmarkBorderSharpIcon style={{ fontSize: '2rem' }} /> en haut
-                à droite d&apos;une annonce pour qu&apos;elle apparaisse ici.
-                <img
-                  width="200rem"
-                  src={no_bookmarks}
-                  alt="no bookmarks"
-                  style={{ margin: 'auto', padding: '2rem' }}
-                />
-              </Typography>
-            </Stack>
-          ) : (
-            favouritesList
-          )}
-        </Box>
-      </div>
-    </>
+              Vous navez pas encore de favoris ? <br />
+              Cliquez sur cette icône{' '}
+              <BookmarkBorderSharpIcon style={{ fontSize: '2rem' }} /> en haut à
+              droite d&apos;une annonce pour qu&apos;elle apparaisse ici.
+              <img
+                width="200rem"
+                src={no_bookmarks}
+                alt="no bookmarks"
+                style={{ margin: 'auto', padding: '2rem' }}
+              />
+            </Typography>
+          </Stack>
+        ) : (
+          favouritesList
+        )}
+      </Box>
+    </div>
   );
 }

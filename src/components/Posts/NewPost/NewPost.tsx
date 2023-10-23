@@ -124,19 +124,19 @@ function NewPost() {
               >
                 Publier
               </Typography>
-              <IconButton
+
+              <img
                 className="publish-icon-newpost"
-                sx={{ m: '0px 0px 0px 10px', color: 'primary.dark' }}
-                aria-label="publish"
-              >
-                <img alt="search icon" src={plane} height={18} width={18} />
-              </IconButton>
+                alt="publish icon"
+                src={plane}
+                height={18}
+                width={18}
+              />
             </Button>
           </Stack>
           <Stack direction="row" pl="2rem">
             <IconButton
               component="label"
-              type="button"
               aria-label="images"
               sx={{
                 alignItems: 'center',
@@ -165,7 +165,6 @@ function NewPost() {
               </Typography>
             </IconButton>
             <IconButton
-              type="button"
               component="label"
               aria-label="vidéo"
               sx={{

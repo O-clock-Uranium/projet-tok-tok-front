@@ -22,7 +22,7 @@ function Adverts() {
         height: '100vh',
         width: '82rem',
         position: 'relative',
-        padding: '11rem 0',
+        padding: '11rem 0rem',
         margin: 'auto',
       }}
     >
