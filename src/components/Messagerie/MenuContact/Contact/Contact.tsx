@@ -31,28 +31,17 @@ function Contact({
   return (
     <div>
       <Button
+      className='contact-btn'
         onClick={handleClick}
         key={contact.contactInfo.id}
         sx={{
-          backgroundColor: 'primary.dark',
+          backgroundColor: '#49c1ac',
           '&:hover': {
-            backgroundColor: 'primary.light',
+            backgroundColor: '#6dd4c4',
           },
           borderRadius: '2rem',
-          // boxShadow: 0,
           border: '0px',
-          // backgroundColor: 'primary.dark',
-          // '&:hover': {
-          //   backgroundColor: 'primary.light',
-          // },
-          // color: '#fff',
-          width: '100%',
-          // height: '4rem',
-          // display: 'flex',
-          // alignItems: 'center',
-          // justifyContent: 'center',
-          // fontSize: '1.2rem',
-          // mb: '0.5rem',
+          width: '80%',
         }}
       >
         <Typography

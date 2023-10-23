@@ -6,9 +6,14 @@ import Form from './Form/Form';
 import MenuContact from './MenuContact/MenuContact';
 import Messages from './Messages/Messages';
 
+import { Icon } from '@iconify/react';
+
+import '../App/style.scss';
+
 export default function Messagerie() {
   const [destinataireId, setDestinataireId] = useState(0);
   const [destinataireName, setDestinataireName] = useState('');
+  const [isOpen, setIsOpen] = useState(true);
 
   const dispatch = useAppDispatch();
   const contacts = useAppSelector((state) => state.messagerie.contacts);
@@ -23,30 +28,77 @@ export default function Messagerie() {
         {contacts.length > 0 ? (
           <Stack
             direction="row"
-            sx={{ height: '100%', border: 'solid 1px #03665C', borderRadius: '1rem' }}
+            sx={{
+              height: '100%',
+              borderRadius: '1rem',
+            }}
           >
             {/* Liste de contacts */}
             <div
               style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '2rem',
-                width: '300px',
-                height: '100%',
-                padding: '1rem',
+                backgroundColor: '#03665c',
+                borderRadius: '12px',
+                maxWidth: '30%',
               }}
+              className={
+                isOpen ? 'messages-contacts--open' : 'messages-contacts'
+              }
             >
-              <MenuContact
-                contacts={contacts}
-                destinataireId={destinataireId}
-                setDestinataireId={setDestinataireId}
-                destinataireName={destinataireName}
-                setDestinataireName={setDestinataireName}
-              />
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'right',
+                  marginTop: '10px',
+                }}
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                <Icon
+                  className={
+                    !isOpen
+                      ? 'open-contact-button'
+                      : 'open-contact-button--is-open'
+                  }
+                  icon="solar:alt-arrow-right-line-duotone"
+                  color="#fff"
+                  fontSize={'42px'}
+                />
+              </div>
+              <div
+                style={
+                  isOpen
+                    ? {
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '2rem',
+                        width: '300px',
+                        height: '100%',
+                        padding: '1rem',
+                      }
+                    : { display: 'none' }
+                }
+              >
+                <div>
+                  <MenuContact
+                    contacts={contacts}
+                    destinataireId={destinataireId}
+                    setDestinataireId={setDestinataireId}
+                    destinataireName={destinataireName}
+                    setDestinataireName={setDestinataireName}
+                  />
+                </div>
+              </div>
             </div>
 
             <div
-              style={{ display: 'flex', flexDirection: 'column', width: '70%' }}
+              className={
+                isOpen ? 'messages-content--close' : 'messages-content'
+              }
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                minWidth: '70%',
+                height: '100%',
+              }}
             >
               <Stack
                 direction="row"
@@ -81,9 +133,8 @@ export default function Messagerie() {
                   position: 'relative',
                   p: '2rem',
                   borderRadius: '1rem',
-                  //backgroundColor: '#fff',
-                  height: '60rem',
-                  // overflowY: 'auto',
+                  height: '89.2%',
+
                   // '&::-webkit-scrollbar': {
                   //   width: '1rem',
                   //   backgroundColor: '#F5F5F5',

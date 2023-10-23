@@ -21,6 +21,8 @@ import AddAdvertField from './AddAdvertField/AddAdvertField';
 import { useEffect } from 'react';
 import axiosInstance from '../../utils/axios';
 
+import '../App/style.scss';
+
 export default function AdvertModal2() {
   const [open, setOpen] = React.useState(false);
   const [categorie, setCategorie] = React.useState('');
@@ -92,6 +94,7 @@ export default function AdvertModal2() {
         aria-describedby="modal-modal-description"
       >
         <Box
+          className="edit-modal"
           sx={{
             backgroundColor: 'transparent',
             margin: 'auto',
@@ -100,6 +103,7 @@ export default function AdvertModal2() {
             justifyContent: 'center',
             alignItems: 'center',
             minHeight: '100vh',
+            //minWidth: '400px'
           }}
         >
           <Box

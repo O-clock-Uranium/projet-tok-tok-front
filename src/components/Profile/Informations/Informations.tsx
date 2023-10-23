@@ -86,6 +86,7 @@ export default function Informations({
         justifyContent="space-between"
       >
         <Stack
+          className="profile-information"
           direction="row"
           paddingLeft="2rem"
           gap="2rem"
@@ -107,7 +108,11 @@ export default function Informations({
               border: '0.5rem solid #FFF',
             }}
           />
-          <Stack direction="column" justifyContent="center">
+          <Stack
+            className="profile-information-name"
+            direction="column"
+            justifyContent="center"
+          >
             {/* Nom de l'utilisateur */}
             <Typography
               fontFamily="Manrope"
@@ -176,7 +181,7 @@ export default function Informations({
       </Stack>
 
       {/* Description de l'utilisateur */}
-      <Stack direction="row">
+      <Stack direction="row" className="profile-information-description">
         <Typography
           fontFamily="Manrope"
           fontSize="1.8rem"
@@ -184,6 +189,7 @@ export default function Informations({
           fontWeight="600"
           lineHeight="150%"
           px="1rem"
+          width={'100%'}
         >
           {/* Blabla descriptif */}
           {userInfo.description}

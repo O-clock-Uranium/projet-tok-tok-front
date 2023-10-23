@@ -1,7 +1,7 @@
 .posts-container {
   //display: none !important;
   max-width: 82rem !important;
-  .passe-pourcent{
+  .passe-pourcent {
     width: 100% !important;
   }
 }
@@ -14,32 +14,47 @@
   padding-top: 11rem;
 }
 
-//.contacts-menu {
-  //background-color: hotpink;
-  //height: 100%;
-  // &::-webkit-scrollbar {
-  //         width: 1rem;
-  //         background-color: #F5F5F5;
-  //       };
+.open-contact-button {
+  border-radius: 50%;
+  transition: all 0.6s ease-out;
 
-  // &::-webkit-scrollbar-track {
-  //     &::-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
-  //         background-color: #49c1ad;
-  //         border-radius: 10px;
-  //       },
-  //       '&::-webkit-scrollbar-thumb': {
-  //         background-color: '#03665C',
-  //         border-radius: '25px',
-  //       },
+  &:hover {
+    background-color: #d5d5d567;
+  }
+}
+
+.open-contact-button--is-open {
+  border-radius: 50%;
+  transform: rotateZ(180deg);
+  transition: all 0.6s ease-out;
+}
+
+//.contacts-menu {
+//background-color: hotpink;
+//height: 100%;
+// &::-webkit-scrollbar {
+//         width: 1rem;
+//         background-color: #F5F5F5;
+//       };
+
+// &::-webkit-scrollbar-track {
+//     &::-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+//         background-color: #49c1ad;
+//         border-radius: 10px;
+//       },
+//       '&::-webkit-scrollbar-thumb': {
+//         background-color: '#03665C',
+//         border-radius: '25px',
+//       },
 //}
 
 .favorites-container {
-    width: 82rem;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    padding: 11rem 0;
-  }
+  width: 82rem;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 11rem 0;
+}
 
 @media screen and (max-width: 1250px) {
   .app-header {
@@ -49,7 +64,7 @@
   .user-identity {
     display: none;
   }
-  
+
   .messages-container {
     width: 100vw !important;
     //background-color: red;
@@ -83,10 +98,9 @@
   .advert-card {
     margin: auto;
   }
-  .profile-container{
+  .profile-container {
     width: 80% !important;
   }
-
 }
 
 @media screen and (max-width: 1000px) {
@@ -100,18 +114,48 @@
     gap: 0 !important;
     align-items: 'center' !important;
   }
+
+  // modal
+  .edit-profile-modal {
+    min-width : 400px !important;
+  }
 }
 
 @media screen and (max-width: 800px) {
   .searchbar-container {
     display: none !important;
   }
-  .edit-typo{
+  .edit-typo {
     display: none !important;
   }
-  .edit-icon{
+  .edit-icon {
     display: block !important;
   }
 
+  .messages-contacts--open {
+    min-width: 100% !important;
 
+    .contact-btn {
+      width: 90vw;
+    }
+  }
+
+  .messages-content--close {
+    display: none !important;
+  }
+
+
+  .profile-information {
+    flex-direction: column !important;
+
+    .profile-information-name {
+      margin-top: -9rem;
+    }
+
+    
+  }
+
+  .profile-information-description {
+    margin-top: 5rem;
+  }
 }
