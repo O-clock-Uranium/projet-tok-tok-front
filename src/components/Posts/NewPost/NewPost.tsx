@@ -12,12 +12,14 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { addPost, fetchPosts } from '../../../store/reducers/publications';
 import picture from '../../../assets/icons/picture.svg';
 import video from '../../../assets/icons/camera.svg';
+
 import plane from '../../../assets/icons/paper_plane.svg';
 
 function NewPost() {
   const [value, setValue] = useState('');
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.user);
+
 
   const handleContentChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);

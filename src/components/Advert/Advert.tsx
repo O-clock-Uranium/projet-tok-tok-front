@@ -133,6 +133,7 @@ export default function Annonce({ created_at }: Advert) {
             >
               Il y a {calculateTimeSpent(advert.created_at)}
             </Typography>
+
           </Stack>
           {/* <FavouriteButton2 id={id} favorited_by={favorited_by} /> */}
           <TriplePointButton

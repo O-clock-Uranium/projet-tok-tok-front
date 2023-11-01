@@ -10,7 +10,7 @@ axiosInstance.interceptors.request.use(
     const persistedState = JSON.parse(localStorage.getItem('persist:root'));
     const userState = JSON.parse(persistedState.user);
     const { token } = userState;
-    
+
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }

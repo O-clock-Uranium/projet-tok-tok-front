@@ -45,7 +45,6 @@ export default function AdvertCard({
     advert_creator.latitude,
     advert_creator.longitude
   );
-
   return (
     <Paper
       className="advert-card"
