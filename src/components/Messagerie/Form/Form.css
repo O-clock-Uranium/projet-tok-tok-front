@@ -1,0 +1,33 @@
+.form {
+  background: #f0f3fa;
+  display: flex;
+  font-size: 1.6rem;
+  height: 4rem;
+  line-height: 4rem;
+  border-radius: 25px;
+  padding: 0.2rem;
+  width: 80rem;
+}
+.form-input, .form-button {
+  background: transparent;
+  border: 0;
+  height: 100%;
+  outline: none;
+}
+.form-input {
+  flex-grow: 1;
+  padding: 0 2rem;
+}
+.form-button {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  color: #3e7fb7;
+  cursor: pointer;
+  font-weight: 700;
+  transition: color 0.3s linear;
+  width: 4rem;
+}
+.form-button:hover {
+  color: #1f405c;
+}/*# sourceMappingURL=Form.css.map */

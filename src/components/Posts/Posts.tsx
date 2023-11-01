@@ -15,9 +15,12 @@ export default function Posts() {
 
   return (
     <Stack
+      className="posts-container"
       direction="column"
       justifyContent="center"
       alignItems="center"
+      width="82rem"
+      mx="auto"
       spacing={2}
       sx={{ py: '13rem' }}
     >

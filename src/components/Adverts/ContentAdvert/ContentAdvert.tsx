@@ -5,26 +5,16 @@ import AdvertCard from '../AdvertCard/AdvertCard';
 interface ContentAdvertProps {
   // eslint-disable-next-line react/require-default-props
   adverts?: Advert[];
+  context: string;
 }
 
 function ContentAdvert({ adverts, context }: ContentAdvertProps) {
   return (
-    <div>
+    <div className="padding-bottom">
       {adverts && (
-        <Stack
-          direction="row"
-          // display="flex"
-          // justifyContent="start"
-          gap="2rem"
-          flexWrap="wrap"
-          // container
-          // spacing={{ xs: 1, sm: 2, md: 4, lg: 6, xl: 7 }}
-          // columns={{ xs: 1, sm: 10, md: 14, lg: 15, xl: 21 }}
-        >
+        <Stack direction="row" gap="2rem" flexWrap="wrap">
           {adverts.map((advert) => (
-            // <Grid item xs={2} sm={3} md={4} lg={6} xl={7} key={advert.id}>
-            <AdvertCard context={context} {...advert} />
-            // </Grid>
+            <AdvertCard key={advert.id} context={context} {...advert} />
           ))}
         </Stack>
       )}

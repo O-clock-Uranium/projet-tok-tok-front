@@ -5,6 +5,8 @@ import InputBase from '@mui/material/InputBase';
 import Paper from '@mui/material/Paper';
 import search from '../../../assets/icons/search.svg';
 
+import './style.scss';
+
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = React.useState('');
 
@@ -14,17 +16,9 @@ export default function SearchBar() {
     setSearchTerm(event.target.value);
   };
 
-  // TODO le submit après une recherche
-  /* // function handleSubmit(event: any) {
-  //   if (!searchTerm.trim().length) {
-  //    return;
-  //   }
-  //   fetchqqc();  Changer quand branché au back
-  // }
- */
-
   return (
     <Paper
+      className="searchbar-container"
       elevation={0}
       sx={{
         p: '0px 0px 0px 10px',

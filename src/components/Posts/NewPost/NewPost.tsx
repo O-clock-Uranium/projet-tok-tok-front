@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import {
   Avatar,
   Box,
@@ -13,16 +13,19 @@ import { addPost, fetchPosts } from '../../../store/reducers/publications';
 import picture from '../../../assets/icons/picture.svg';
 import video from '../../../assets/icons/camera.svg';
 
+import plane from '../../../assets/icons/paper_plane.svg';
+
 function NewPost() {
   const [value, setValue] = useState('');
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.user);
 
-  const handleContentChange = (event) => {
+
+  const handleContentChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const inputValue = value.trim();
 
@@ -45,7 +48,7 @@ function NewPost() {
   return (
     <Box
       sx={{
-        width: '82rem',
+        width: '100%',
         p: '3rem',
         backgroundColor: 'white',
         mx: 'auto',
@@ -54,6 +57,7 @@ function NewPost() {
     >
       <Stack gap="2rem" direction="row">
         <Avatar
+          className="user-avatar-newpost"
           alt="User Thumbnail"
           src={user.thumbnail}
           sx={{ width: 60, height: 60 }}
@@ -112,6 +116,7 @@ function NewPost() {
               }}
             >
               <Typography
+                className="publish-text-newpost"
                 fontSize="1.5rem"
                 color="white"
                 fontStyle="normal"
@@ -121,12 +126,19 @@ function NewPost() {
               >
                 Publier
               </Typography>
+
+              <img
+                className="publish-icon-newpost"
+                alt="publish icon"
+                src={plane}
+                height={18}
+                width={18}
+              />
             </Button>
           </Stack>
           <Stack direction="row" pl="2rem">
             <IconButton
               component="label"
-              type="button"
               aria-label="images"
               sx={{
                 alignItems: 'center',
@@ -155,7 +167,6 @@ function NewPost() {
               </Typography>
             </IconButton>
             <IconButton
-              type="button"
               component="label"
               aria-label="vidéo"
               sx={{

@@ -10,13 +10,16 @@ import EditBannerModal from './EditBannerModal/EditBannerModal';
 
 interface InformationsProps {
   userInfo: User;
+  currentUserSlug: string;
 }
 
-export default function Informations({ userInfo }: InformationsProps) {
+export default function Informations({
+  userInfo,
+  currentUserSlug,
+}: InformationsProps) {
   const { slug } = useParams();
   const [open, setOpen] = useState(false);
   const [openBanner, setOpenBanner] = useState(false);
-  // console.log(userInfo);
 
   const isMine = (slugToTest: string) => {
     return userInfo.slug === slugToTest;
@@ -27,22 +30,11 @@ export default function Informations({ userInfo }: InformationsProps) {
   const handleOpenBanner = () => {
     setOpenBanner(true);
   };
-  // const handleCloseBanner = () => setOpenBanner(false);
-
-  // const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault();
-
-  //   const formData = new FormData(event.currentTarget);
-  //   dispatch("blablaBanner"(formData))
-  //   await new Promise((resolve) => setTimeout(resolve, 800));
-  //   dispatch(fetchProfile());
-  //   setOpen(false);
-  // };
 
   return (
     <Stack
       sx={{
-        width: '82rem',
+        width: '100%',
         padding: '3rem',
         margin: 'auto',
         direction: 'column',
@@ -55,40 +47,51 @@ export default function Informations({ userInfo }: InformationsProps) {
       {/* Bannière */}
       <Stack sx={{ position: 'relative' }}>
         <img
+          className="profile-banner"
           src={userInfo?.banner}
           alt="banner"
           style={{
-            width: '76rem',
             height: '17rem',
             objectFit: 'cover',
             borderRadius: '2rem',
           }}
         />
-        <IconButton
-          onClick={handleOpenBanner}
-          component="label"
-          sx={{
-            position: 'absolute',
-            left: '94%',
-            top: '5%',
-            color: '#02B8AC',
-          }}
-        >
-          <ModeEditIcon sx={{ fontSize: '2rem' }} />
-        </IconButton>
+        {/* On vérifie si on est sur notre propre profil */}
+        {isMine(currentUserSlug) && (
+          <IconButton
+            onClick={handleOpenBanner}
+            component="label"
+            sx={{
+              position: 'absolute',
+              left: '94%',
+              top: '5%',
+              color: '#02B8AC',
+            }}
+          >
+            <ModeEditIcon
+              className="profile-edit-banner"
+              sx={{ fontSize: '2rem !important' }}
+            />
+          </IconButton>
+        )}
+
+        {/* Fermée par défaut et s'affiche au click sur l'icon au-dessus */}
         <EditBannerModal
           openBanner={openBanner}
           setOpenBanner={setOpenBanner}
         />
       </Stack>
+
       {/* Photo de profil + nom + bouton edit */}
       <Stack
+        className="profile-informartions-container"
         direction="row"
         flex="1"
         alignItems="start"
         justifyContent="space-between"
       >
         <Stack
+          className="profile-information"
           direction="row"
           paddingLeft="2rem"
           gap="2rem"
@@ -98,6 +101,7 @@ export default function Informations({ userInfo }: InformationsProps) {
         >
           {/* Photo de profil */}
           <img
+            className="profile-avatar"
             src={userInfo?.thumbnail}
             alt="profile_picture"
             style={{
@@ -110,17 +114,16 @@ export default function Informations({ userInfo }: InformationsProps) {
               border: '0.5rem solid #FFF',
             }}
           />
-          {/* <IconButton
-            sx={{
-              position: 'absolute',
-              left: '30%',
-              top: '-7rem',
-              color: '#02B8AC',
-            }}
+          <Stack
+            direction="column"
+            justifyContent="center"
+            className="profile-name-city"
+            /* className="profile-information-name"
+            direction="column"
+            justifyContent="center"
+*/
           >
-            <ModeEditIcon sx={{ fontSize: '2rem' }} />
-          </IconButton> */}
-          <Stack direction="column" justifyContent="center">
+            {/* Nom de l'utilisateur */}
             <Typography
               fontFamily="Manrope"
               fontSize="2rem"
@@ -128,10 +131,11 @@ export default function Informations({ userInfo }: InformationsProps) {
               fontWeight="700"
               lineHeight="normal"
             >
-              {/* Nom de l'utilisateur */}
               {userInfo.firstname} {userInfo.lastname}
             </Typography>
+            {/* Ville de l'utilisateur */}
             <Typography
+              className="profile-city"
               fontFamily="Manrope"
               fontSize="1.6rem"
               fontStyle="normal"
@@ -145,8 +149,9 @@ export default function Informations({ userInfo }: InformationsProps) {
             </Typography>
           </Stack>
         </Stack>
+
         {/* Boutton edit s'il s'agit du profil user loggued sinon bouton message ?? */}
-        {isMine(slug) && (
+        {isMine(currentUserSlug) && (
           <>
             <Button
               onClick={handleSettings}
@@ -162,20 +167,41 @@ export default function Informations({ userInfo }: InformationsProps) {
                 },
               }}
             >
-              Editer Profil
+              <Typography
+                className="edit-typo"
+                fontFamily="Manrope"
+                fontSize="1.6rem"
+                fontStyle="normal"
+                fontWeight="600"
+                lineHeight="normal"
+                color="#fff"
+              >
+                Editer Profil
+              </Typography>
+              <ModeEditIcon
+                className="edit-icon"
+                sx={{
+                  display: 'none',
+                  fontSize: '2rem',
+                }}
+              />
             </Button>
             <EditProfileModal open={open} setOpen={setOpen} />
           </>
         )}
       </Stack>
-      <Stack direction="row" width="75rem">
+
+      {/* Description de l'utilisateur */}
+      <Stack direction="row">
         <Typography
+          className="profile-information-description"
           fontFamily="Manrope"
           fontSize="1.8rem"
           fontStyle="normal"
           fontWeight="600"
           lineHeight="150%"
           px="1rem"
+          width={'100%'}
         >
           {/* Blabla descriptif */}
           {userInfo.description}

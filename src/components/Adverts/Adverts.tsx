@@ -17,25 +17,24 @@ function Adverts() {
 
   return (
     <Box
+      className="adverts-container"
       sx={{
         height: '100vh',
-        width: '100rem',
+        width: '82rem',
         position: 'relative',
-        top: '11rem',
+        padding: '11rem 0rem',
         margin: 'auto',
       }}
     >
       <Stack
+        className="adverts-navigation"
         direction="row"
         justifyContent="space-between"
         alignItems="center"
         gap="2rem"
-        // height="8.2rem"
       >
         <SortBar />
         <AdvertModal />
-        {/* </Stack>
-      <Stack alignItems="center" width="100%"> */}
       </Stack>
 
       <ContentAdvert adverts={adverts} />

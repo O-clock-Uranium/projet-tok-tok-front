@@ -5,6 +5,8 @@ import Accueil from '../Accueil/Accueil';
 import AppHeader from '../AppHeader/AppHeader';
 import Menu from '../Menu/Menu';
 
+import './style.scss';
+
 function App() {
   const isLogged = useAppSelector((state) => state.user.logged);
   // const userState = useAppSelector((state) => state.user);

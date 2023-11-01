@@ -62,6 +62,7 @@ export default function TriplePointButton({
       await dispatch(delAdvert(id));
       navigate('/adverts');
     }
+    await new Promise((resolve) => setTimeout(resolve, 800));
   };
 
   const handleClickUpd = () => {

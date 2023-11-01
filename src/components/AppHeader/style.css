@@ -1,0 +1,8 @@
+@media screen and (max-width: 1250px) {
+  .app-header {
+    padding: 3rem 3rem !important;
+  }
+  .user-identity {
+    display: none;
+  }
+}/*# sourceMappingURL=style.css.map */

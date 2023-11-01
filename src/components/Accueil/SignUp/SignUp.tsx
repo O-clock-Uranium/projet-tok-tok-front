@@ -16,33 +16,39 @@ export default function SignUp() {
   const isLogged = useAppSelector((state) => state.user.logged);
   const errorMessage = useAppSelector((state) => state.user.error);
 
+  // Stockage des valeurs à renseigner lors des appels API
   const [addressValue, setAddressValue] = useState('');
   const [addressProps, setAddressProps] = useState([]);
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
   const [city, setCity] = useState('');
-  const [isEmpty, setIsEmpty] = useState(true);
+  const [isEmpty, setIsEmpty] =
+    useState(true); /*State pour afficher ou non la liste des propositions*/
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  // Cet effet de bord se déclenche chaque fois que la valeur de l'input "adress" est modifiée
   useEffect(() => {
+    // On recherche les 5 premières addresses correspondant à la valeur
     async function fetchAddress() {
       try {
         const { data } = await axios.get(
           `https://api-adresse.data.gouv.fr/search/?q=${addressValue}&limit=5&autocomplete=0`
         );
+        // et on les stock dans un state pour les afficher ensuite
         setAddressProps(data.features);
       } catch (error) {
-        // console.log(error);
+        console.log(error);
       }
     }
     fetchAddress();
   }, [addressValue, addressProps]);
 
-  // TODO revoir le code en dessous (Chloé)
-  const addressPropsList = addressProps.map((e: any) => {
-    const handleClickAddressItem = (e: any) => {
+  // On boucle sur la liste de 5 adresses pour les afficher
+  const addressPropsList = addressProps.map((e) => {
+    // Au click l'une des adresse, on stock les valeurs
+    const handleClickAddressItem = (e) => {
       setLatitude(e.currentTarget.dataset.latitude);
       setLongitude(e.currentTarget.dataset.longitude);
       setCity(e.currentTarget.dataset.city);
@@ -50,6 +56,7 @@ export default function SignUp() {
       setIsEmpty(false);
     };
 
+    // On affiche un item pour chaque adresse de la liste
     return (
       <ListItemButton
         key={e.properties.label}
@@ -67,7 +74,9 @@ export default function SignUp() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    // On récupère les données du formulaire
     const formData = new FormData(event.currentTarget);
+    // On appelle la fonction signup présente dans le userReducer
     dispatch(signup(formData));
   };
 
@@ -75,9 +84,9 @@ export default function SignUp() {
     setAddressValue(event.target.value);
   };
 
+  // On redirige vers le profil une fois que l'utilisateur est loggué
   useEffect(() => {
     if (!isLogged) {
-      // return <Navigate to="/" replace />;
       navigate('/', { replace: true });
     } else {
       navigate('/profil', { replace: true });
@@ -113,7 +122,7 @@ export default function SignUp() {
 
       {isEmpty && addressPropsList}
 
-      {/* ---------- champs cachés ---------- */}
+      {/* ---------- input = champs cachés ---------- */}
       <input
         type="text"
         name="city"
@@ -139,7 +148,13 @@ export default function SignUp() {
         readOnly
       />
 
-      <FormField name="email" label="Email" type="mail" autoComplete="" />
+      <FormField
+        name="email"
+        label="Email"
+        type="mail"
+        autoComplete=""
+        required
+      />
       <FormField
         name="password"
         label="Mot de passe"

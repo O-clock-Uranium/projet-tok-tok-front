@@ -38,15 +38,22 @@ export default function SortBar() {
       padding="1rem"
       flex="1"
       sx={{
-        width: '50rem',
+        width: '100%',
         height: '7rem',
         my: '2rem',
         borderRadius: '2rem',
         backgroundColor: 'white',
       }}
     >
-      <Stack direction="row" display="flex" alignItems="center" gap="2rem">
+      <Stack
+        className="adverts-sortbar"
+        direction="row"
+        display="flex"
+        alignItems="center"
+        gap="2rem"
+      >
         <FormControl
+          className="adverts-formcontrol"
           sx={{
             m: 1,
             width: '10rem',
@@ -77,6 +84,7 @@ export default function SortBar() {
           </Select>
         </FormControl>
         <FormControl
+          className="adverts-formcontrol"
           sx={{
             m: 1,
             width: '10rem',
@@ -108,6 +116,7 @@ export default function SortBar() {
           </Select>
         </FormControl>
         <FormControl
+          className="adverts-formcontrol"
           sx={{
             m: 1,
             width: '10rem',
@@ -139,7 +148,8 @@ export default function SortBar() {
         </FormControl>
       </Stack>
       <FormControl
-        sx={{ m: 1, minWidth: 120, backgroundColor: '#F5F6FA' }}
+        className="adverts-formcontrol"
+        sx={{ m: 1, width: '10rem', backgroundColor: '#F5F6FA' }}
         size="small"
       >
         <Select

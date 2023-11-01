@@ -9,7 +9,7 @@ interface ContentPostProps {
 
 function ContentPost({ publications }: ContentPostProps) {
   return (
-    <div>
+    <div className="passe-pourcent">
       {publications && (
         <Stack direction="column" gap="2rem">
           {publications.map((publicationElement) => (

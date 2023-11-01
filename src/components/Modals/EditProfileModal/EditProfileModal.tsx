@@ -39,6 +39,7 @@ export default function EditProfileModal({
       aria-describedby="modal-modal-edit"
     >
       <Box
+      className= "edit-modal"
         sx={{
           backgroundColor: 'transparent',
           margin: 'auto',

@@ -5,7 +5,7 @@ export default function SeparateBar({ advert }: []) {
     <Paper
       elevation={0}
       sx={{
-        width: '100rem',
+        width: '100%',
         margin: 'auto',
         borderRadius: '2rem',
         height: '6.7rem',

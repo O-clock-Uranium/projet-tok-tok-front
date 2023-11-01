@@ -57,8 +57,8 @@ export default function Carrousel() {
       <CssBaseline />
       <Grid
         item
-        xs={false}
-        sm={5}
+        xs={0}
+        sm={0}
         md={12}
         sx={{
           backgroundImage: `url(${images[currentIndex]})`,

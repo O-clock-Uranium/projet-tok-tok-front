@@ -3,7 +3,6 @@ import {
   Avatar,
   Box,
   IconButton,
-  Paper,
   Stack,
   Typography,
 } from '@mui/material';
@@ -37,7 +36,7 @@ export default function Post({
   replies,
 }: Publication) {
   const [expanded, setExpanded] = useState(false);
-  const [like, setLike] = useState(false);
+
   const userId = useAppSelector((state) => state.user.id);
   const dispatch = useAppDispatch();
 
@@ -50,20 +49,27 @@ export default function Post({
   const isLiked = users_liked
     ?.map((user) => user.id === userId)
     .some((ele) => ele === true);
+  const [like, setLike] = useState(isLiked);
 
-  const handleLikeClick = () => {
+  const handleLikeClick = async () => {
     setLike(!like);
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     like ? dispatch(delLike(id)) : dispatch(addLike(id));
+    await new Promise((resolve) => setTimeout(resolve, 200));
     dispatch(fetchPosts());
   };
 
   const date = formatDate(created_at);
 
   return (
-    <Paper
-      elevation={0}
-      sx={{ width: '82rem', mx: 'auto', p: '3rem', borderRadius: '2rem' }}
+    <Box
+      sx={{
+        width: '100%',
+        p: '3rem',
+        backgroundColor: 'white',
+        mx: 'auto',
+        borderRadius: '2rem',
+      }}
     >
       <Stack
         paddingBottom="2.5rem"
@@ -109,7 +115,11 @@ export default function Post({
             {date}
           </Typography>
         </Stack>
-        <TriplePointButton id={id} post_creator={post_creator} context={context} />
+        <TriplePointButton
+          id={id}
+          post_creator={post_creator}
+          context={context}
+        />
       </Stack>
       <Typography
         sx={{
@@ -212,6 +222,6 @@ export default function Post({
         <AddCommentary id={id} />
         <ContentComment replies={replies} />
       </Collapse>
-    </Paper>
+    </Box>
   );
 }

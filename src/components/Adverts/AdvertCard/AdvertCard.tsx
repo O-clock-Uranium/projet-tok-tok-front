@@ -14,7 +14,6 @@ interface AdvertCardProps {
   id: number;
   slug: string;
   title: string;
-  // content: string;
   price: number;
   advert_creator: AdvertCreator;
   images: Image[];
@@ -28,12 +27,11 @@ export default function AdvertCard({
   price,
   advert_creator,
   title,
-  // content,
   slug,
   images,
   created_at,
   favorited_by,
-  tag,
+  tag
 }: AdvertCardProps) {
   const userState = useAppSelector((state) => state.user);
   const advertState = useAppSelector((state) => state.adverts.list);
@@ -47,11 +45,9 @@ export default function AdvertCard({
     advert_creator.latitude,
     advert_creator.longitude
   );
-  // console.log(advertState);
-  // console.log(advertState[0].tag.name);
-
   return (
     <Paper
+      className="advert-card"
       elevation={0}
       sx={{
         display: 'flex',
@@ -117,7 +113,11 @@ export default function AdvertCard({
         {!isProfilePage && (
           <FavouriteButton2 id={id} favorited_by={favorited_by} />
         )}
-        <TriplePointButton id={id} advert_creator={advert_creator} context={context} />
+        <TriplePointButton
+          id={id}
+          advert_creator={advert_creator}
+          context={context}
+        />
       </Stack>
       {/* Lien + image */}
       <Link to={`/adverts/${slug}`}>

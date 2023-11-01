@@ -30,6 +30,7 @@ function Form({ destinataireId }: FormProps) {
     if (currentMessage.trim()) {
       dispatch(sendMessage(formData));
       setCurrentMessage('');
+      console.log('ça fetch');
       dispatch(fetchMessages(destinataireId));
     }
   }

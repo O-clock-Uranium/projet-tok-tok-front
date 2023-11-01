@@ -14,6 +14,8 @@ import Home from './MenuSVG/HomeSVG';
 import MessagerieSVG from './MenuSVG/MessagerieSVG';
 import ProfileSVG from './MenuSVG/ProfileSVG';
 
+import './style.scss';
+
 const listItemButtonStyles = {
   p: '1.5rem',
   borderRadius: '1.5rem',
@@ -33,24 +35,23 @@ const listItemButtonStyles = {
 export default function Menu() {
   const userSlug = useAppSelector((state) => state.user.slug);
   return (
-    <Paper
-      elevation={0}
-      sx={{
-        width: '9rem',
-        borderRadius: 4,
-        backgroundColor: '#FFF',
-        position: 'fixed',
-        top: 250,
-        left: '10rem',
-        zIndex: '2',
-      }}
+    <div
+      className="floating-menu"
+      // style={{
+      //   width: '9rem',
+      //   borderRadius: 4,
+      //   //backgroundColor: '#FFF',
+      //   position: 'fixed',
+      //   top: 250,
+      //   left: '10%',
+      //   zIndex: 1000
+      // }}
     >
       <MenuList sx={{ gap: '2rem' }}>
         <MenuItem
+          className="floating-menu--list"
           sx={{
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            gap: '2rem',
+            margin: 'auto',
             '&:hover': {
               backgroundColor: 'transparent',
             },
@@ -65,6 +66,7 @@ export default function Menu() {
           >
             <Home />
           </ListItemButton>
+
           <ListItemButton
             sx={{
               ...listItemButtonStyles,
@@ -74,6 +76,7 @@ export default function Menu() {
           >
             <ProfileSVG />
           </ListItemButton>
+
           <ListItemButton
             sx={{
               ...listItemButtonStyles,
@@ -83,6 +86,7 @@ export default function Menu() {
           >
             <AdvertsSVG />
           </ListItemButton>
+
           <ListItemButton
             sx={{
               ...listItemButtonStyles,
@@ -92,6 +96,7 @@ export default function Menu() {
           >
             <FavouritesSVG />
           </ListItemButton>
+
           <ListItemButton
             sx={{
               ...listItemButtonStyles,
@@ -114,6 +119,6 @@ export default function Menu() {
           </ListItemButton>
         </MenuItem>
       </MenuList>
-    </Paper>
+    </div>
   );
 }
