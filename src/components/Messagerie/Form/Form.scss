@@ -1,0 +1,41 @@
+@use '../../../styles/mixins' as m;
+@use '../../../styles/variables' as v;
+
+.form {
+  background: #f0f3fa;
+  display: flex;
+
+  font-size: 1.6rem;
+  height: v.$form-height;
+  line-height: v.$form-height;
+  border-radius: 25px;
+  padding: 0.2rem;
+  width:80rem;
+
+  &-input,
+  &-button {
+    background: transparent;
+    border: 0;
+    height: 100%;
+    outline: none;
+  }
+
+  &-input {
+    flex-grow: 1;
+    padding: 0 v.$gutter * 2;
+  }
+
+  &-button {
+    @include m.flex-center;
+
+    color: v.$color;
+    cursor: pointer;
+    font-weight: 700;
+    transition: color 0.3s linear;
+    width: v.$form-height;
+
+    &:hover {
+      color: v.$color-dark;
+    }
+  }
+}

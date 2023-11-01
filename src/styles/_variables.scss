@@ -1,3 +1,16 @@
-$color: #fff;
-$color-primary: #61dafb;
-$color-bg: #282c34;
+@use 'sass:color';
+
+$color: #3e7fb7;
+$color-dark: color.scale($color, $lightness: -50%);
+$color-light: color.scale($color, $lightness: 70%);
+
+$color-darkest: #333;
+$color-lightest: #fff;
+
+$gutter: 1rem;
+
+$form-height: 4rem;
+
+
+
+

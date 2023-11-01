@@ -1,26 +1,35 @@
-import logo from '../../assets/logo.svg';
+import { useEffect } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
+import { useAppSelector } from '../../hooks/redux';
+import Accueil from '../Accueil/Accueil';
+import AppHeader from '../AppHeader/AppHeader';
+import Menu from '../Menu/Menu';
 
-import './App.scss';
+import './style.scss';
 
 function App() {
+  const isLogged = useAppSelector((state) => state.user.logged);
+  // const userState = useAppSelector((state) => state.user);
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+    // console.log(userState);
+  }, [location]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-
-        <p>
-          Edit <code>src/components/App/App.tsx</code> and save to reload.
-        </p>
-
-        <a
-          className="App-link"
-          href="https://react.dev/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {!isLogged && <Accueil />}
+      {isLogged && (
+        <>
+          <AppHeader />
+          <Menu />
+          <Outlet />
+        </>
+      )}
     </div>
   );
 }
