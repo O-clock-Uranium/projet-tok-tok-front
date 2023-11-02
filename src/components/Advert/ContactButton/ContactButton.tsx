@@ -18,7 +18,6 @@ export default function ContactButton() {
           lineHeight: 'normal',
           p: '1rem 2rem',
           height: '6rem',
-          // boxShadow: 0,
           border: '0px',
         }}
       >

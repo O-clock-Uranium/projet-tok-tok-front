@@ -1,10 +1,10 @@
+import { Link, useLocation } from 'react-router-dom';
 import { Avatar, Paper, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import { Link, useLocation } from 'react-router-dom';
 import { Advert } from '../../../@types';
 import calculateTimeSpent from '../../../utils/date';
 import TriplePointButton from '../../TriplePointButton/TriplePointButton';
-import FavouriteButton2 from '../FavouriteButton/FavouriteButton2';
+import FavouriteButton2 from '../FavouriteButton/FavouriteButton';
 import { useAppSelector } from '../../../hooks/redux';
 import { calculateDistance } from '../../../utils/gps';
 
@@ -22,7 +22,7 @@ export default function AdvertCard({
   const userState = useAppSelector((state) => state.user);
   const location = useLocation();
   const isProfilePage = location.pathname === `/profil/${advert_creator.slug}`;
-  const context = 'adverts';
+  const context = isProfilePage ? 'profile' : 'adverts';
 
   const distance = calculateDistance(
     userState.latitude,
@@ -34,7 +34,7 @@ export default function AdvertCard({
   const thumbnailSrc =
     images && images.length > 0
       ? images[0].thumbnail
-      : 'http://localhost:3000/images/default-advert-picture.png';
+      : 'https://tok-tok-api.onrender.com/images/default-advert-picture.png';
 
   return (
     <Paper
@@ -101,9 +101,9 @@ export default function AdvertCard({
           </Stack>
         </Stack>
         {/* Bookmark icon et del icon */}
-        {!isProfilePage && (
-          <FavouriteButton2 id={id} favorited_by={favorited_by} />
-        )}
+        {/* {!isProfilePage && ( */}
+        <FavouriteButton2 id={id} favorited_by={favorited_by} />
+        {/* )} */}
         <TriplePointButton
           id={id}
           advert_creator={advert_creator}

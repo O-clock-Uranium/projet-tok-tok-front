@@ -1,6 +1,6 @@
-import { AccordionSummary, IconButton, Menu, MenuItem } from '@mui/material';
-import { useState } from 'react';
+import { useState, MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
+import { AccordionSummary, IconButton, Menu, MenuItem } from '@mui/material';
 import down from '../../../../assets/icons/down.svg';
 import profile from '../../../../assets/icons/profile.svg';
 import settings from '../../../../assets/icons/settings.svg';
@@ -11,13 +11,11 @@ import EditProfileModal from '../../../Modals/EditProfileModal/EditProfileModal'
 
 export default function UserMenu() {
   const dispatch = useAppDispatch();
-
   const userSlug = useAppSelector((state) => state.user.slug);
   const [open, setOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleClick = (event: any) => {
+  const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -30,12 +28,10 @@ export default function UserMenu() {
     setAnchorEl(null);
   };
 
-  // Modal edit profile --------------------------
   const handleSettings = () => {
     setOpen(true);
     handleClose();
   };
-  // Modal edit profile --------------------------
 
   return (
     <>
@@ -53,7 +49,6 @@ export default function UserMenu() {
         aria-controls="menu dropdown header"
         id="menu-dropdown-header"
       >
-        {/* //! Check pour ancrer le menu en position relative (pb actuel la pos change selon la résolution du user) */}
         <Menu
           anchorReference="anchorPosition"
           anchorPosition={{ top: 135, left: 1700 }}
@@ -93,10 +88,7 @@ export default function UserMenu() {
             Settings
           </MenuItem>
           <MenuItem
-            onClick={() => {
-              dispatch(logout());
-              setAnchorEl(null);
-            }}
+            onClick={handleLogout}
             sx={{ color: '#F46F6F', fontSize: '1.8rem' }}
           >
             <IconButton type="button" aria-label="paramètres">

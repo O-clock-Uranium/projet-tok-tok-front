@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/redux';
 import Accueil from '../Accueil/Accueil';
 import AppHeader from '../AppHeader/AppHeader';
@@ -9,7 +9,6 @@ import './style.scss';
 
 function App() {
   const isLogged = useAppSelector((state) => state.user.logged);
-  // const userState = useAppSelector((state) => state.user);
   const location = useLocation();
 
   useEffect(() => {
@@ -17,8 +16,14 @@ function App() {
       top: 0,
       behavior: 'smooth',
     });
-    // console.log(userState);
   }, [location]);
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!isLogged) {
+      navigate('/', { replace: true });
+    }
+  }, [isLogged, navigate]);
 
   return (
     <div className="App">

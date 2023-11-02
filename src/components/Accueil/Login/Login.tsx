@@ -11,25 +11,19 @@ import FormField from '../FormField/FormField';
 export default function Login() {
   const isLogged = useAppSelector((state) => state.user.logged);
   const errorMessage = useAppSelector((state) => state.user.error);
-
   const dispatch = useAppDispatch();
 
-  // Se déclenche quand l'utilsateur valide le formulaire
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    // on récupère les données du formulaire
     const formData = new FormData(event.currentTarget);
-    // on appel l'action login présente dans le userReducer
     dispatch(login(formData));
   };
 
   return (
     <>
-      {/* On redirige sur la même page pour la recharger et afficher l'accueil */}
       {isLogged && <Navigate to="/" />}
 
-      <Box component="form" noValidate onSubmit={handleSubmit} sx={{}}>
+      <Box component="form" noValidate onSubmit={handleSubmit}>
         {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
         <FormField
           name="email"

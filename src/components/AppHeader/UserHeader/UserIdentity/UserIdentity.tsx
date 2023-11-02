@@ -1,7 +1,7 @@
 import { Avatar, Typography } from '@mui/material';
 import { useAppSelector } from '../../../../hooks/redux';
 
-import '../../style.scss'
+import '../../style.scss';
 
 export default function UserIdentity() {
   const loggedPseudo = useAppSelector((state) => {
@@ -23,7 +23,7 @@ export default function UserIdentity() {
         sx={{ mx: 2, p: 0, width: '4.7rem', height: '4.7rem' }}
       />
       <Typography
-      className='user-identity'
+        className="user-identity"
         sx={{
           mb: 0,
           pb: 0,

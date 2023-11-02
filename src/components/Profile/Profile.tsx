@@ -1,6 +1,6 @@
+import { useParams } from 'react-router-dom';
 import { Stack, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchProfile } from '../../store/reducers/profile';
 import ContentAdvert from '../Adverts/ContentAdvert/ContentAdvert';

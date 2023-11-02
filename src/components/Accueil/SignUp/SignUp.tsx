@@ -5,7 +5,6 @@ import {
   ListItemButton,
   ListItemText,
 } from '@mui/material';
-import axios from 'axios';
 import {
   useEffect,
   useState,
@@ -14,7 +13,7 @@ import {
   KeyboardEvent,
   ChangeEvent,
 } from 'react';
-import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { signup } from '../../../store/reducers/user';
 import FormField from '../FormField/FormField';
@@ -30,7 +29,6 @@ interface AddressProps {
 }
 
 export default function SignUp() {
-  const isLogged = useAppSelector((state) => state.user.logged);
   const errorMessage = useAppSelector((state) => state.user.error);
 
   // Stockage des valeurs à renseigner lors des appels API
@@ -42,9 +40,7 @@ export default function SignUp() {
   const [isEmpty, setIsEmpty] = useState(true);
   /* State pour afficher ou non la liste des propositions */
 
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
-
   // Cet effet de bord se déclenche chaque fois que la valeur de l'input "adress" est modifiée
   useEffect(() => {
     // On recherche les 5 premières addresses correspondant à la valeur
@@ -60,7 +56,7 @@ export default function SignUp() {
       }
     }
     fetchAddress();
-  }, [addressValue, addressProps]);
+  }, [addressValue]);
 
   // On boucle sur la liste de 5 adresses pour les afficher
   const addressPropsList = addressProps.map((e: AddressProps) => {
@@ -106,24 +102,13 @@ export default function SignUp() {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // On récupère les données du formulaire
     const formData = new FormData(event.currentTarget);
-    // On appelle la fonction signup présente dans le userReducer
     dispatch(signup(formData));
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setAddressValue(event.target.value);
   };
-
-  // On redirige vers le profil une fois que l'utilisateur est loggué
-  useEffect(() => {
-    if (!isLogged) {
-      navigate('/', { replace: true });
-    } else {
-      navigate('/profil', { replace: true });
-    }
-  }, [isLogged, navigate]);
 
   return (
     <Box component="form" noValidate onSubmit={handleSubmit}>

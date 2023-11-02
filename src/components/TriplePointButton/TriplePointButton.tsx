@@ -15,6 +15,7 @@ import { delPost, fetchPosts } from '../../store/reducers/publications';
 import EditAdvertModal from '../Modals/EditAdvertModal/EditAdvertModal';
 import { AdvertCreator } from '../../@types';
 import { Creator } from '../../@types/publication';
+import { fetchProfile } from '../../store/reducers/profile';
 
 interface MenuProps {
   id: number;
@@ -62,6 +63,9 @@ export default function TriplePointButton({
       await dispatch(delAdvert(id));
       await dispatch(fetchFavourites());
       await dispatch(fetchAdverts());
+    } else if (context === 'profile') {
+      await dispatch(delAdvert(id));
+      await dispatch(fetchProfile(userInfo.slug));
     } else if (context === 'advert') {
       await dispatch(delAdvert(id));
       navigate('/adverts');

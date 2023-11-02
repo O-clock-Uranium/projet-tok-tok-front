@@ -5,7 +5,8 @@ interface FieldProps {
   name: string;
   type: string;
   autoComplete: string;
-  inputText?: string | null;
+  // eslint-disable-next-line react/require-default-props
+  inputText?: string;
   [prop: string]: unknown;
 }
 
@@ -16,14 +17,12 @@ function LoginField({
   inputText,
   ...props
 }: FieldProps) {
-  const [value, setValue] = useState(inputText ? inputText : '');
-
+  const [value, setValue] = useState(inputText || '');
   const inputId = useId();
 
   return (
     <TextField
       margin="normal"
-      // required
       fullWidth
       label={name}
       autoComplete={autoComplete}

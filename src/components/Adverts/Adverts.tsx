@@ -1,5 +1,5 @@
-import { Box, Stack } from '@mui/material';
 import { useEffect } from 'react';
+import { Box, Stack } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchAdverts } from '../../store/reducers/adverts';
 import AdvertModal from '../Modals/AdvertModal';

@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import {
@@ -8,10 +10,7 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { fetchUserAdverts } from '../../store/reducers/adverts';
+import { useAppSelector } from '../../hooks/redux';
 import { findAdvert } from '../../store/selectors/adverts';
 import calculateTimeSpent from '../../utils/date';
 import { calculateDistance } from '../../utils/gps';
@@ -20,9 +19,8 @@ import ContactModal from '../Modals/ContactModal/ContactModal';
 import TriplePointButton from '../TriplePointButton/TriplePointButton';
 import SeparateBar from './SeparateBar/SeparateBar';
 
-export default function Annonce() {
+export default function Advert() {
   const userState = useAppSelector((state) => state.user);
-  const dispatch = useAppDispatch();
   const { slug } = useParams();
   const advert = useAppSelector((state) =>
     findAdvert(state.adverts.list, slug as string)
@@ -54,7 +52,6 @@ export default function Annonce() {
   );
 
   const context = 'advert';
-  const userId = advert?.advert_creator.id;
 
   if (!advert) {
     throw new Error(
@@ -66,10 +63,6 @@ export default function Annonce() {
       )
     );
   }
-
-  useEffect(() => {
-    dispatch(fetchUserAdverts(userId));
-  }, [dispatch, userId]);
 
   const adverts = useAppSelector((state) => state.adverts.userAdverts);
   return (
@@ -157,7 +150,7 @@ export default function Annonce() {
           <img
             src={
               advert?.images?.length === 0
-                ? 'http://localhost:3000/images/default-advert-picture.png'
+                ? 'https://tok-tok-api.onrender.com/images/default-advert-picture.png'
                 : advert?.images?.[indexImg]?.thumbnail
             }
             alt="images advert"

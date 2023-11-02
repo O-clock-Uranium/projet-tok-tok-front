@@ -10,7 +10,7 @@ export default function AccueilFooter() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: '2rem'
+            gap: '2rem',
           }}
         >
           <Link href="/" variant="body2">

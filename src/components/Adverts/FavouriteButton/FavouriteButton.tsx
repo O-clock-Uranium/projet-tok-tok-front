@@ -1,122 +1,55 @@
-import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
-import BookmarkRemoveIcon from '@mui/icons-material/BookmarkRemove';
-import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
-import MoreVertSharpIcon from '@mui/icons-material/MoreVertSharp';
-import { IconButton, Menu, MenuItem, Typography } from '@mui/material';
-import React from 'react';
-import { useAppDispatch } from '../../../hooks/redux';
-
-import { Advert } from '../../../@types';
+import { useState } from 'react';
+import BookmarkBorderSharpIcon from '@mui/icons-material/BookmarkBorderSharp';
+import BookmarkSharpIcon from '@mui/icons-material/BookmarkSharp';
+import { IconButton } from '@mui/material';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import { AdvertSubset } from '../../../@types';
 import {
   addFavourite,
-  delAdvert,
   delFavourite,
   fetchAdverts,
   fetchFavourites,
 } from '../../../store/reducers/adverts';
 
-export default function FavoriteButton({ id }: Advert) {
+export default function FavouriteButton({ id, favorited_by }: AdvertSubset) {
   const dispatch = useAppDispatch();
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
+  const userId = useAppSelector((state) => state.user.id);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  const handleClickAddFavourite = () => {
-    dispatch(addFavourite(id));
-    setAnchorEl(null);
-  };
-  const handleClickDelFavourite = () => {
-    dispatch(delFavourite(id));
-    dispatch(fetchFavourites());
-    setAnchorEl(null);
-  };
-  const handleClickDelAdvert = () => {
-    dispatch(delAdvert(id));
-    dispatch(fetchFavourites());
-    dispatch(fetchAdverts());
-    setAnchorEl(null);
+  // Boucle sur favorited_by pour vérifier si le user loggué a mis en favoris l'annonce
+  const isBookmarked = favorited_by
+    ?.map((fav) => fav.id === userId)
+    .some((ele) => ele === true);
+  const [bookmark, setBookmark] = useState(isBookmarked);
+
+  const handleBookmarkClick = async () => {
+    setBookmark(!bookmark);
+    if (bookmark === true) {
+      await dispatch(addFavourite(id));
+      await dispatch(fetchFavourites());
+      await dispatch(fetchAdverts());
+    } else {
+      await dispatch(delFavourite(id));
+      await dispatch(fetchAdverts());
+      await dispatch(fetchFavourites());
+    }
   };
 
   return (
     <div>
       <IconButton
-        id="triple-point-button"
-        aria-controls={open ? 'triple-point-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
+        aria-label="bookmark"
         sx={{
-          Size: '14rem',
+          p: '0.2rem',
         }}
+        onClick={handleBookmarkClick}
+        color={isBookmarked ? 'secondary' : 'default'}
       >
-        <MoreVertSharpIcon sx={{}} />
+        (isBookmarked ? (
+        <BookmarkSharpIcon sx={{ fontSize: '3rem' }} />
+        ) : (
+        <BookmarkBorderSharpIcon sx={{ fontSize: '3rem' }} />
+        ))
       </IconButton>
-
-      <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        disableScrollLock
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'left',
-        }}
-        sx={{
-          '& .MuiMenu-paper': {
-            borderRadius: '2rem',
-          },
-        }}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
-        }}
-      >
-        <MenuItem
-          component="form"
-          data-id={id}
-          onClick={handleClickAddFavourite}
-          sx={{ justifyContent: 'start' }}
-        >
-          <BookmarkAddIcon sx={{ color: '#49c1ad', fontSize: 20 }} />
-          <Typography
-            align="left"
-            sx={{ pl: '1rem', fontSize: '1.5rem', color: 'noir' }}
-          >
-            Ajouter l&apos;annonce à mes favoris
-          </Typography>
-        </MenuItem>
-        <MenuItem
-          component="form"
-          onClick={handleClickDelFavourite}
-          data-id={id}
-          sx={{ justifyContent: 'start' }}
-        >
-          <BookmarkRemoveIcon sx={{ color: '#03665C', fontSize: 20 }} />
-          <Typography sx={{ pl: '1rem', fontSize: '1.5rem' }}>
-            Retirer l&apos;annonce de mes favoris
-          </Typography>
-        </MenuItem>
-        <MenuItem
-          component="form"
-          onClick={handleClickDelAdvert}
-          data-id={id}
-          sx={{ justifyContent: 'start' }}
-        >
-          <DeleteForeverOutlinedIcon sx={{ color: 'red', fontSize: 20 }} />
-          <Typography sx={{ pl: '1rem', fontSize: '1.5rem' }}>
-            Supprimer l&apos;annonce
-          </Typography>
-        </MenuItem>
-      </Menu>
     </div>
   );
 }

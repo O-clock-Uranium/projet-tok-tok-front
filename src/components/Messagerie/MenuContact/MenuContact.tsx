@@ -1,3 +1,4 @@
+import { SetStateAction } from 'react';
 import { ContactUser } from '../../../@types';
 import Contact from './Contact/Contact';
 
@@ -7,9 +8,9 @@ interface MenuContactProps {
   // eslint-disable-next-line react/require-default-props
   contacts?: ContactUser[];
   destinataireId: number;
-  setDestinataireId: React.Dispatch<React.SetStateAction<number>>;
+  setDestinataireId: React.Dispatch<SetStateAction<number>>;
   destinataireName: string;
-  setDestinataireName: React.Dispatch<React.SetStateAction<string>>;
+  setDestinataireName: React.Dispatch<SetStateAction<string>>;
 }
 
 function MenuContact({
@@ -19,46 +20,22 @@ function MenuContact({
   destinataireName,
   setDestinataireName,
 }: MenuContactProps) {
-  const contactList = contacts?.map((e) => {
-    return (
-      <Contact
-        key={e.id}
-        conversationId={e.id}
-        contact={e}
-        destinataireId={destinataireId}
-        setDestinataireId={setDestinataireId}
-        destinataireName={destinataireName}
-        setDestinataireName={setDestinataireName}
-      />
-    );
-  });
-
   return (
-    //<div
-    //className='contacts-menu'
-    // style={{
-    //   margin: '2rem',
-    //   padding: '10px',
-    //   // maxHeight: '80rem',
-    //   borderRadius: '1rem',
-    //   overflowY: 'auto',
-    //   '&::-webkit-scrollbar': {
-    //     width: '1rem',
-    //     backgroundColor: '#F5F5F5',
-    //   },
-    //   '&::-webkit-scrollbar-track': {
-    //     '&::-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.1)',
-    //     backgroundColor: '#49c1ad',
-    //     borderRadius: '10px',
-    //   },
-    //   '&::-webkit-scrollbar-thumb': {
-    //     backgroundColor: '#03665C',
-    //     borderRadius: '25px',
-    //   },
-    // }}
-    //>
-    <>{contactList}</>
-    //</div>
+    <div>
+      {contacts?.map((e) => {
+        return (
+          <Contact
+            key={e.id}
+            conversationId={e.id}
+            contact={e}
+            destinataireId={destinataireId}
+            setDestinataireId={setDestinataireId}
+            destinataireName={destinataireName}
+            setDestinataireName={setDestinataireName}
+          />
+        );
+      })}
+    </div>
   );
 }
 
