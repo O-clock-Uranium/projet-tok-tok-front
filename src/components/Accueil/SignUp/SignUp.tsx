@@ -6,11 +6,28 @@ import {
   ListItemText,
 } from '@mui/material';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import {
+  useEffect,
+  useState,
+  MouseEvent,
+  FormEvent,
+  KeyboardEvent,
+  ChangeEvent,
+} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { signup } from '../../../store/reducers/user';
 import FormField from '../FormField/FormField';
+
+interface AddressProps {
+  properties: {
+    label: string;
+    city: string;
+  };
+  geometry: {
+    coordinates: [number, number];
+  };
+}
 
 export default function SignUp() {
   const isLogged = useAppSelector((state) => state.user.logged);
@@ -22,8 +39,8 @@ export default function SignUp() {
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
   const [city, setCity] = useState('');
-  const [isEmpty, setIsEmpty] =
-    useState(true); /*State pour afficher ou non la liste des propositions*/
+  const [isEmpty, setIsEmpty] = useState(true);
+  /* State pour afficher ou non la liste des propositions */
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -39,39 +56,54 @@ export default function SignUp() {
         // et on les stock dans un state pour les afficher ensuite
         setAddressProps(data.features);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     }
     fetchAddress();
   }, [addressValue, addressProps]);
 
   // On boucle sur la liste de 5 adresses pour les afficher
-  const addressPropsList = addressProps.map((e) => {
-    // Au click l'une des adresse, on stock les valeurs
-    const handleClickAddressItem = (e) => {
-      setLatitude(e.currentTarget.dataset.latitude);
-      setLongitude(e.currentTarget.dataset.longitude);
-      setCity(e.currentTarget.dataset.city);
-      setAddressValue(e.currentTarget.dataset.address);
+  const addressPropsList = addressProps.map((e: AddressProps) => {
+    // Au clic sur l'une des adresses, on stocke les valeurs
+    const handleClickAddressItem = (
+      event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>
+    ) => {
+      const target = event.currentTarget;
+      setLatitude(target.dataset.latitude || '');
+      setLongitude(target.dataset.longitude || '');
+      setCity(target.dataset.city || '');
+      setAddressValue(target.dataset.address || '');
       setIsEmpty(false);
+    };
+
+    // Gestion des événements clavier
+    const handleKeyPress = (event: KeyboardEvent<HTMLDivElement>) => {
+      if (event.key === 'Enter') {
+        handleClickAddressItem(event);
+      }
     };
 
     // On affiche un item pour chaque adresse de la liste
     return (
-      <ListItemButton
-        key={e.properties.label}
-        onClick={handleClickAddressItem}
-        data-latitude={e.geometry.coordinates[1]}
-        data-longitude={e.geometry.coordinates[0]}
-        data-city={e.properties.city}
-        data-address={e.properties.label}
-      >
-        <ListItemText primary={e.properties.label} />
+      <ListItemButton key={e.properties.label}>
+        <div
+          role="button"
+          onClick={handleClickAddressItem}
+          onKeyUp={handleKeyPress}
+          onKeyDown={handleKeyPress}
+          data-latitude={e.geometry.coordinates[1]}
+          data-longitude={e.geometry.coordinates[0]}
+          data-city={e.properties.city}
+          data-address={e.properties.label}
+          tabIndex={0}
+        >
+          <ListItemText primary={e.properties.label} />
+        </div>
       </ListItemButton>
     );
   });
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     // On récupère les données du formulaire
@@ -80,7 +112,7 @@ export default function SignUp() {
     dispatch(signup(formData));
   };
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setAddressValue(event.target.value);
   };
 

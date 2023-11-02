@@ -1,17 +1,16 @@
 import { Avatar, Box, IconButton, InputBase, Stack } from '@mui/material';
-import { useState } from 'react';
-import { Publication } from '../../../../@types/publication';
+import { useState, FormEvent } from 'react';
+import { CommentarySubset } from '../../../../@types/publication';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { addPost, fetchPosts } from '../../../../store/reducers/publications';
-
 import send from '../../../../assets/icons/paper_plane.svg';
 
-export default function AddCommentary({ id }: Publication) {
+export default function AddCommentary({ id }: CommentarySubset) {
   const [value, setValue] = useState('');
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.user);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setValue('');
 
@@ -23,7 +22,7 @@ export default function AddCommentary({ id }: Publication) {
     <Box sx={{ width: '99%', pt: '4.5rem', pb: '2rem', px: '0.8rem' }}>
       <Stack spacing={2} direction="row">
         <Avatar
-          alt="Jean-Jacques Goldman"
+          alt="user avatar"
           src={user.thumbnail}
           sx={{ width: 45, height: 45 }}
         />

@@ -19,7 +19,9 @@ module.exports = {
     },
     ecmaVersion: 'latest',
     sourceType: 'module',
-    project: './tsconfig.json',
+    // project: './tsconfig.json',
+    project:
+      'f:/john/documents/developpement projets/TokTok/tok-tok-front/tsconfig.json',
   },
   overrides: [
     {

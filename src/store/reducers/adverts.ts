@@ -8,27 +8,28 @@ import { Advert } from '../../@types';
 import axiosInstance from '../../utils/axios';
 
 interface AdvertsState {
+  // title: string;
   advert: Advert;
   list: Advert[];
   favourites: Advert[];
   userAdverts: Advert[];
   favourite: boolean;
   isLoading: boolean;
-  error: string;
+  error?: string;
 }
 
 export const initialState: AdvertsState = {
   advert: {
-    id: null,
+    id: 0,
     slug: '',
     title: '',
     content: '',
-    price: null,
-    user_id: null,
-    tag_id: null,
-    created_at: null,
+    price: 0,
+    user_id: 0,
+    tag_id: 0,
+    created_at: 0,
     advert_creator: {
-      id: null,
+      id: 0,
       firstname: '',
       lastname: '',
       address: '',
@@ -39,6 +40,10 @@ export const initialState: AdvertsState = {
       slug: '',
       adverts: [],
     },
+    tag: {
+      id: 0,
+      name: '',
+    },
     images: [],
     favorited_by: [],
   },
@@ -48,6 +53,7 @@ export const initialState: AdvertsState = {
   favourite: false,
   isLoading: false,
   error: '',
+  // title: '',
 };
 
 export const setLoading = createAction<boolean>('adverts/setLoading');
@@ -185,12 +191,6 @@ const advertsReducer = createReducer(initialState, (builder) => {
       state.advert.title = action.payload.title;
       state.advert.content = action.payload.content;
       state.advert.price = action.payload.price;
-    })
-    .addCase(addFavourite.fulfilled, (state) => {
-      // state.like = true;
-    })
-    .addCase(delFavourite.fulfilled, (state) => {
-      // state.like = false;
     })
     .addCase(fetchUserAdverts.pending, (state) => {
       state.isLoading = true;

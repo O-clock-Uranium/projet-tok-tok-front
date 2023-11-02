@@ -1,12 +1,12 @@
+import { useState } from 'react';
 import BookmarkBorderSharpIcon from '@mui/icons-material/BookmarkBorderSharp';
 import BookmarkSharpIcon from '@mui/icons-material/BookmarkSharp';
 
 import { IconButton } from '@mui/material';
-import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 
-import { Advert } from '../../../@types';
+import { AdvertSubset } from '../../../@types';
 import {
   addFavourite,
   delFavourite,
@@ -14,7 +14,7 @@ import {
   fetchFavourites,
 } from '../../../store/reducers/adverts';
 
-export default function FavoriteButton({ id, favorited_by }: Advert) {
+export default function FavouriteButton2({ id, favorited_by }: AdvertSubset) {
   const location = useLocation();
   const isAdvertsPage = location.pathname === '/adverts';
 
@@ -25,22 +25,19 @@ export default function FavoriteButton({ id, favorited_by }: Advert) {
   const isBookmarked = favorited_by
     ?.map((fav) => fav.id === userId)
     .some((ele) => ele === true);
-  console.log(isBookmarked);
   const [bookmark, setBookmark] = useState(isBookmarked);
 
   const handleBookmarkClick = async () => {
+    // const bookmark = !isBookmarked;
     setBookmark(!bookmark);
-    console.log(bookmark);
     if (bookmark === true) {
-      dispatch(addFavourite(id));
-      await new Promise((resolve) => setTimeout(resolve, 200));
-      dispatch(fetchAdverts());
-      dispatch(fetchFavourites());
+      await dispatch(addFavourite(id));
+      await dispatch(fetchFavourites());
+      await dispatch(fetchAdverts());
     } else {
-      dispatch(delFavourite(id));
-      await new Promise((resolve) => setTimeout(resolve, 200));
-      dispatch(fetchAdverts());
-      dispatch(fetchFavourites());
+      await dispatch(delFavourite(id));
+      await dispatch(fetchAdverts());
+      await dispatch(fetchFavourites());
     }
   };
 

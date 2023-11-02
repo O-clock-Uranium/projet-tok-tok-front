@@ -2,7 +2,6 @@ import { Box, Stack } from '@mui/material';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchAdverts } from '../../store/reducers/adverts';
-
 import AdvertModal from '../Modals/AdvertModal';
 import ContentAdvert from './ContentAdvert/ContentAdvert';
 import SortBar from './SortBar/SortBar';
@@ -10,6 +9,7 @@ import SortBar from './SortBar/SortBar';
 function Adverts() {
   const adverts = useAppSelector((state) => state.adverts.list);
   const dispatch = useAppDispatch();
+  const context = 'adverts';
 
   useEffect(() => {
     dispatch(fetchAdverts());
@@ -37,7 +37,7 @@ function Adverts() {
         <AdvertModal />
       </Stack>
 
-      <ContentAdvert adverts={adverts} />
+      <ContentAdvert adverts={adverts} context={context} />
     </Box>
   );
 }

@@ -1,3 +1,4 @@
+import { Dispatch, FormEvent, SetStateAction } from 'react';
 import { Box, Modal } from '@mui/material';
 import { useAppDispatch } from '../../../hooks/redux';
 import { editAdvert } from '../../../store/reducers/adverts';
@@ -5,7 +6,7 @@ import EditAdvertModalForm from './EditAdvertModalForm';
 
 interface EditAdvertModalProps {
   openModal: boolean;
-  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpenModal: Dispatch<SetStateAction<boolean>>;
   id: number;
 }
 
@@ -18,12 +19,13 @@ export default function EditProfileModal({
 
   const handleCloseModal = () => setOpenModal(false);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
     dispatch(editAdvert({ id, formData }));
     // SetTimeout pour permettre au back de processer une image
+    // eslint-disable-next-line no-promise-executor-return
     await new Promise((resolve) => setTimeout(resolve, 800));
     // console.log(id, Object.fromEntries(formData));
     handleCloseModal();

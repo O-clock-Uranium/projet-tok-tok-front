@@ -1,6 +1,6 @@
-import { Button, Paper, Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { ContactUser } from '../../../../@types';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
+import { useAppDispatch } from '../../../../hooks/redux';
 import { fetchMessages } from '../../../../store/reducers/messagerie';
 
 interface ContactProps {
@@ -31,7 +31,7 @@ function Contact({
   return (
     <div>
       <Button
-      className='contact-btn'
+        className="contact-btn"
         onClick={handleClick}
         key={contact.contactInfo.id}
         sx={{

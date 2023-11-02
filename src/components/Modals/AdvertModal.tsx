@@ -1,32 +1,29 @@
+import { useEffect, useState, FormEvent } from 'react';
 import {
   FormControl,
-  IconButton,
   InputAdornment,
   InputLabel,
   MenuItem,
   OutlinedInput,
   Select,
   SelectChangeEvent,
-  Stack,
 } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
-import * as React from 'react';
-import picture from '../../assets/icons/picture.svg';
 import { useAppDispatch } from '../../hooks/redux';
 import { addAdvert, fetchAdverts } from '../../store/reducers/adverts';
 import AddAdvertField from './AddAdvertField/AddAdvertField';
-import { useEffect } from 'react';
 import axiosInstance from '../../utils/axios';
 
 import '../App/style.scss';
+import ImageUploader from '../ImageUploader/ImageUploader';
 
-export default function AdvertModal2() {
-  const [open, setOpen] = React.useState(false);
-  const [categorie, setCategorie] = React.useState('');
-  const [categorieList, setCategorieList] = React.useState([]);
+export default function AdvertModal() {
+  const [open, setOpen] = useState(false);
+  const [categorie, setCategorie] = useState('');
+  const [categorieList, setCategorieList] = useState([]);
 
   const dispatch = useAppDispatch();
   const handleOpen = () => setOpen(true);
@@ -40,7 +37,7 @@ export default function AdvertModal2() {
       };
       fetchCategories();
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     }
   }, []);
 
@@ -48,16 +45,22 @@ export default function AdvertModal2() {
     setCategorie(event.target.value);
   };
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
     dispatch(addAdvert(formData));
     // SetTimeout pour permettre au back de processer une image
-    await new Promise((resolve) => setTimeout(resolve, 800));
-    dispatch(fetchAdverts());
-    setOpen(false);
-    setCategorie('');
+    // await new Promise((resolve) => setTimeout(resolve, 800));
+    // dispatch(fetchAdverts());
+    // setOpen(false);
+    // setCategorie('');
+
+    setTimeout(async () => {
+      await dispatch(fetchAdverts());
+      setOpen(false);
+      setCategorie('');
+    }, 800);
   };
 
   return (
@@ -78,7 +81,6 @@ export default function AdvertModal2() {
           lineHeight: 'normal',
           p: '1rem 2rem',
           height: '7rem',
-          // boxShadow: 0,
           border: '0px',
         }}
       >
@@ -103,7 +105,6 @@ export default function AdvertModal2() {
             justifyContent: 'center',
             alignItems: 'center',
             minHeight: '100vh',
-            //minWidth: '400px'
           }}
         >
           <Box
@@ -136,44 +137,7 @@ export default function AdvertModal2() {
               rows={8}
             />
             {/* Bouton ajout d'image */}
-            <IconButton
-              component="label"
-              type="button"
-              aria-label="images"
-              sx={{
-                alignItems: 'center',
-                gap: '1rem',
-                '&:hover': {
-                  borderRadius: '5rem',
-                },
-              }}
-            >
-              <img alt="add pictures" src={picture} />
-              <Typography
-                fontFamily="Manrope"
-                fontSize="1.3rem"
-                fontStyle="normal"
-                fontWeight="600"
-                lineHeight="2.6rem"
-                color="#A5A5A5"
-              >
-                <input
-                  style={{ fontSize: '1.8rem' }}
-                  type="file"
-                  name="thumbnails"
-                  multiple
-                  hidden
-                />
-                Ajouter une image
-              </Typography>
-            </IconButton>
-            {/* Placement image */}
-            <Stack py="2rem" direction="row" justifyContent="space-around">
-              {/* <Typography>apercu 1</Typography>
-              <Typography>apercu 2</Typography>
-              <Typography>apercu 2</Typography> */}
-            </Stack>
-            {/* Selecteur de catégories */}
+            <ImageUploader />
             <FormControl sx={{ backgroundColor: '#F5F6FA' }} size="small">
               <InputLabel id="select-categorie">Catégories</InputLabel>
               <Select

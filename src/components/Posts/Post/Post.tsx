@@ -1,29 +1,19 @@
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import {
-  Avatar,
-  Box,
-  IconButton,
-  Stack,
-  Typography,
-} from '@mui/material';
+import { Avatar, Box, IconButton, Stack, Typography } from '@mui/material';
 import Collapse from '@mui/material/Collapse';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-
 import { Publication } from '../../../@types/publication';
 import {
   addLike,
   delLike,
   fetchPosts,
 } from '../../../store/reducers/publications';
-
 import comment from '../../../assets/icons/comment.svg';
 import TriplePointButton from '../../TriplePointButton/TriplePointButton';
-
 import AddCommentary from './AddComment/AddComment';
 import ContentComment from './Comment/ContentComment/ContentComment';
-
 import formatDate from '../../../utils/date2';
 
 export default function Post({
@@ -53,10 +43,14 @@ export default function Post({
 
   const handleLikeClick = async () => {
     setLike(!like);
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    like ? dispatch(delLike(id)) : dispatch(addLike(id));
-    await new Promise((resolve) => setTimeout(resolve, 200));
-    dispatch(fetchPosts());
+    if (like) {
+      dispatch(delLike(id));
+    } else {
+      dispatch(addLike(id));
+    }
+    setTimeout(() => {
+      dispatch(fetchPosts());
+    }, 200);
   };
 
   const date = formatDate(created_at);
@@ -80,7 +74,7 @@ export default function Post({
         {/* Photo de profil */}
         <Avatar
           alt={`${post_creator?.firstname} ${post_creator?.lastname} avatar`}
-          src={post_creator?.thumbnail}
+          src={`${post_creator?.thumbnail}`}
           sx={{ width: 60, height: 60 }}
         />
         <Stack direction="column" flex="1" justifyContent="center">
@@ -95,7 +89,7 @@ export default function Post({
           >
             {/* Nom et prénom */}
             <Link
-              to={`/profil/${post_creator.slug}`}
+              to={`/profil/${post_creator?.slug}`}
               style={{ textDecoration: 'none', color: '#000' }}
             >
               {post_creator?.firstname} {post_creator?.lastname}

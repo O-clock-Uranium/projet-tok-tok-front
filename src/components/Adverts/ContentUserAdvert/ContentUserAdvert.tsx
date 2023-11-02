@@ -3,8 +3,7 @@ import { Advert } from '../../../@types';
 import AdvertCard from '../AdvertCard/AdvertCard';
 
 interface ContentUserAdvertProps {
-  // eslint-disable-next-line react/require-default-props
-  userAdverts?: Advert[];
+  userAdverts: Advert[];
 }
 
 function ContentUserAdvert({ userAdverts }: ContentUserAdvertProps) {

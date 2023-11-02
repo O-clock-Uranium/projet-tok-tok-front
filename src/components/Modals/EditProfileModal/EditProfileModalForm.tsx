@@ -1,4 +1,11 @@
 import {
+  useEffect,
+  useState,
+  MouseEvent,
+  KeyboardEvent,
+  ChangeEvent,
+} from 'react';
+import {
   Alert,
   Button,
   Chip,
@@ -7,9 +14,18 @@ import {
   Stack,
 } from '@mui/material';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
 import { useAppSelector } from '../../../hooks/redux';
 import FormField from '../../Accueil/FormField/FormField';
+
+interface AddressProps {
+  properties: {
+    label: string;
+    city: string;
+  };
+  geometry: {
+    coordinates: [number, number];
+  };
+}
 
 export default function EditProfile() {
   const errorMessage = useAppSelector((state) => state.user.error);
@@ -36,25 +52,39 @@ export default function EditProfile() {
     fetchAddress();
   }, [addressValue, addressProps]);
 
-  const addressPropsList = addressProps.map((e: any) => {
-    const handleClickAddressItem = (e: any) => {
-      setLatitude(e.currentTarget.dataset.latitude);
-      setLongitude(e.currentTarget.dataset.longitude);
-      setCity(e.currentTarget.dataset.city);
-      setAddressValue(e.currentTarget.dataset.address);
+  const addressPropsList = addressProps.map((e: AddressProps) => {
+    const handleClickAddressItem = (
+      event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>
+    ) => {
+      const target = event.currentTarget;
+      setLatitude(target.dataset.latitude || '');
+      setLongitude(target.dataset.longitude || '');
+      setCity(target.dataset.city || '');
+      setAddressValue(target.dataset.address || '');
       setIsEmpty(false);
     };
 
+    const handleKeyPress = (event: KeyboardEvent<HTMLDivElement>) => {
+      if (event.key === 'Enter') {
+        handleClickAddressItem(event);
+      }
+    };
+
     return (
-      <ListItemButton
-        key={e.properties.label}
-        onClick={handleClickAddressItem}
-        data-latitude={e.geometry.coordinates[1]}
-        data-longitude={e.geometry.coordinates[0]}
-        data-city={e.properties.city}
-        data-address={e.properties.label}
-      >
-        <ListItemText primary={e.properties.label} />
+      <ListItemButton key={e.properties.label}>
+        <div
+          role="button"
+          onClick={handleClickAddressItem}
+          onKeyUp={handleKeyPress}
+          onKeyDown={handleKeyPress}
+          data-latitude={e.geometry.coordinates[1]}
+          data-longitude={e.geometry.coordinates[0]}
+          data-city={e.properties.city}
+          data-address={e.properties.label}
+          tabIndex={0}
+        >
+          <ListItemText primary={e.properties.label} />
+        </div>
       </ListItemButton>
     );
   });
@@ -129,7 +159,7 @@ export default function EditProfile() {
         autoComplete="none"
         placeholder={user.address}
         value={addressValue}
-        onChange={(event: any) => {
+        onChange={(event: ChangeEvent<HTMLInputElement>) => {
           setAddressValue(event.currentTarget.value);
         }}
       />

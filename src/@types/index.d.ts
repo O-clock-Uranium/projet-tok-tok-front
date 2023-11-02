@@ -27,9 +27,16 @@ export interface Advert {
   tag_id: number;
   created_at: number;
   advert_creator: AdvertCreator;
-  images: Image[];
+  images?: Image[];
   favorited_by: Favourite[];
-  tag: Tag[];
+  tag: Tag;
+  context?: string;
+}
+
+// Interface mini pour FavouriteButton
+interface AdvertSubset {
+  id: number;
+  favorited_by: Favourite[];
 }
 
 // Pour le profil

@@ -1,6 +1,11 @@
 import { Paper, Typography } from '@mui/material';
+import { Advert } from '../../../@types';
 
-export default function SeparateBar({ advert }: []) {
+interface SeparateBarProps {
+  advert: Advert;
+}
+
+export default function SeparateBar({ advert }: SeparateBarProps) {
   return (
     <Paper
       elevation={0}

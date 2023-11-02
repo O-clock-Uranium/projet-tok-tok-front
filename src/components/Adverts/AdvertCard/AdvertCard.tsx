@@ -1,26 +1,12 @@
 import { Avatar, Paper, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { Link, useLocation } from 'react-router-dom';
-import { AdvertCreator, Favourite, Image, Tag } from '../../../@types';
-
-import { calculateTimeSpent } from '../../../utils/date';
+import { Advert } from '../../../@types';
+import calculateTimeSpent from '../../../utils/date';
 import TriplePointButton from '../../TriplePointButton/TriplePointButton';
 import FavouriteButton2 from '../FavouriteButton/FavouriteButton2';
-
 import { useAppSelector } from '../../../hooks/redux';
 import { calculateDistance } from '../../../utils/gps';
-
-interface AdvertCardProps {
-  id: number;
-  slug: string;
-  title: string;
-  price: number;
-  advert_creator: AdvertCreator;
-  images: Image[];
-  created_at: any;
-  favorited_by: Favourite[];
-  tag: Tag;
-}
 
 export default function AdvertCard({
   id,
@@ -31,10 +17,9 @@ export default function AdvertCard({
   images,
   created_at,
   favorited_by,
-  tag
-}: AdvertCardProps) {
+  tag,
+}: Advert) {
   const userState = useAppSelector((state) => state.user);
-  const advertState = useAppSelector((state) => state.adverts.list);
   const location = useLocation();
   const isProfilePage = location.pathname === `/profil/${advert_creator.slug}`;
   const context = 'adverts';
@@ -45,6 +30,12 @@ export default function AdvertCard({
     advert_creator.latitude,
     advert_creator.longitude
   );
+
+  const thumbnailSrc =
+    images && images.length > 0
+      ? images[0].thumbnail
+      : 'http://localhost:3000/images/default-advert-picture.png';
+
   return (
     <Paper
       className="advert-card"
@@ -122,11 +113,7 @@ export default function AdvertCard({
       {/* Lien + image */}
       <Link to={`/adverts/${slug}`}>
         <img
-          src={
-            images.length === 0
-              ? 'http://localhost:3000/images/default-advert-picture.png'
-              : images[0].thumbnail
-          }
+          src={thumbnailSrc}
           style={{
             height: '16rem',
             width: '26rem',
@@ -186,19 +173,7 @@ export default function AdvertCard({
             borderRadius: '9.5rem',
           }}
         >
-          <Typography
-            sx={{
-              fontFamily: 'Manrope',
-              fontSize: '1.3rem',
-              fontStyle: 'normal',
-              fontWeight: 600,
-              lineHeight: '2.6rem',
-              color: '#A5A5A5',
-            }}
-          >
-            {/* Distance */}
-            Distance
-          </Typography>
+          {/* Distance */}
           <Typography
             sx={{
               fontFamily: 'Manrope',
@@ -229,9 +204,6 @@ export default function AdvertCard({
               lineHeight: '2.6rem',
             }}
           >
-            {/* {advertState.map((advert) => {
-              returnadvert.tag.name;
-            })} */}
             {tag.name}
           </Typography>
         </Stack>

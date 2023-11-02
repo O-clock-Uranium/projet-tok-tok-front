@@ -1,8 +1,8 @@
+import { useEffect } from 'react';
 import BookmarkBorderSharpIcon from '@mui/icons-material/BookmarkBorderSharp';
 import { Box, Stack, Typography } from '@mui/material';
-import { useEffect } from 'react';
-import no_bookmarks from '../../fakedata/no_bookmarks.png';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import no_bookmarks from '../../fakedata/no_bookmarks.png';
 import { fetchFavourites } from '../../store/reducers/adverts';
 import AdvertCard from '../Adverts/AdvertCard/AdvertCard';
 import WhiteBar from './WhiteBar/WhiteBar';

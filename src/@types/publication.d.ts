@@ -1,40 +1,46 @@
 export interface Publication {
   id: number;
-  content: string | null;
-  thumbnail: string | null;
-  user_id: number | null;
-  created_at: number | null;
-  reply_to: number | null;
-  post_creator: Creator | null;
-  users_liked: Likes[] | null;
+  content: string;
+  thumbnail: string;
+  user_id: number;
+  created_at: number;
+  reply_to: number;
+  post_creator: Creator;
+  users_liked: Likes[];
   replies: Reply[];
 }
 
 export interface Creator {
   id: number;
-  firstname: string | null;
-  lastname: string | null;
-  address: string | null;
-  thumbnail: string | null;
+  firstname: string;
+  lastname: string;
+  address: string;
+  thumbnail: string;
+  slug: string;
 }
 
 export interface Likes {
   id: number;
-  firstname: string | null;
-  lastname: string | null;
-  description: string | null;
-  address: string | null;
-  city: string | null;
-  thumbnail: string | null;
-  slug: string | null;
+  firstname: string;
+  lastname: string;
+  description: string;
+  address: string;
+  city: string;
+  thumbnail: string;
+  slug: string;
 }
 
 export interface Reply {
   id: number;
-  content: string | null;
-  thumbnail: string | null;
-  user_id: number | null;
-  created_at: number | null;
+  content: string;
+  thumbnail: string;
+  user_id: number;
+  created_at: number;
   reply_to: number;
-  post_creator: Creator | null;
+  post_creator: Creator;
+}
+
+// mini interface id pour créer un com
+export interface CommentarySubset {
+  id: number;
 }

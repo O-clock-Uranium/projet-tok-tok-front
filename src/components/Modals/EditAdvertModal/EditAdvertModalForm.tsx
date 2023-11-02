@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 // import { useParams } from 'react-router-dom';
 import picture from '../../../assets/icons/picture.svg';
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import { useAppSelector } from '../../../hooks/redux';
 // import { editAdvert } from '../../../store/reducers/adverts';
 import FormField from '../../Accueil/FormField/FormField';
 
@@ -53,7 +53,7 @@ export default function EditAdvertModalForm({ id }: EditAdvertModalProps) {
           label="Titre"
           type="text"
           autoComplete="none"
-          placeholder={advert.title}
+          placeholder={advert.advert.title}
         />
         {/* Champ contenu */}
         <FormField
@@ -63,12 +63,11 @@ export default function EditAdvertModalForm({ id }: EditAdvertModalProps) {
           autoComplete="none"
           multiline
           rows={8}
-          placeholder={advert.content}
+          placeholder={advert.advert.content}
         />
         {/* Bouton ajout d'image */}
         <IconButton
           component="label"
-          type="button"
           aria-label="images"
           sx={{
             alignItems: 'center',

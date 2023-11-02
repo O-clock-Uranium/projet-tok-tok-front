@@ -28,12 +28,10 @@ export default function AppHeader() {
         <Stack direction="row" alignItems="center">
           <IconButton
             className="searchbar-icon"
-            display="none"
-            type="button"
             sx={{ m: '0px 0px 0px 10px' }}
             aria-label="search"
           >
-            <img alt="search icon" src={search} height={25} width={25} />
+            <img alt="searchbar icon" src={search} height={25} width={25} />
           </IconButton>
           <NotificationHeader />
           <UserHeader />

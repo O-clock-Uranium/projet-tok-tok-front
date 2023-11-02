@@ -1,19 +1,28 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:3000/',
+  baseURL: 'https://tok-tok-api.onrender.com/',
 });
 
 // Interceptor pour ajouter le Bearer Token aux requêtes sortantes
 axiosInstance.interceptors.request.use(
   (config) => {
-    const persistedState = JSON.parse(localStorage.getItem('persist:root'));
-    const userState = JSON.parse(persistedState.user);
-    const { token } = userState;
+    const persistedStateString = localStorage.getItem('persist:root');
+    const persistedState = persistedStateString
+      ? JSON.parse(persistedStateString)
+      : null;
 
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+    if (persistedState && typeof persistedState.user === 'string') {
+      const userState = JSON.parse(persistedState.user);
+      const { token } = userState;
+
+      if (token) {
+        const modifiedConfig = { ...config };
+        modifiedConfig.headers.Authorization = `Bearer ${token}`;
+        return modifiedConfig;
+      }
     }
+
     return config;
   },
   (error) => {

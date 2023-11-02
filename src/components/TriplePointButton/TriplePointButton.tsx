@@ -13,11 +13,15 @@ import {
 } from '../../store/reducers/adverts';
 import { delPost, fetchPosts } from '../../store/reducers/publications';
 import EditAdvertModal from '../Modals/EditAdvertModal/EditAdvertModal';
+import { AdvertCreator } from '../../@types';
+import { Creator } from '../../@types/publication';
 
 interface MenuProps {
   id: number;
-  advert_creator: [];
-  post_creator: [];
+  // eslint-disable-next-line react/require-default-props
+  advert_creator?: AdvertCreator;
+  // eslint-disable-next-line react/require-default-props
+  post_creator?: Creator;
   context: string;
 }
 
@@ -62,7 +66,11 @@ export default function TriplePointButton({
       await dispatch(delAdvert(id));
       navigate('/adverts');
     }
-    await new Promise((resolve) => setTimeout(resolve, 800));
+    // await new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     resolve(resolve);
+    //   }, 800);
+    // });
   };
 
   const handleClickUpd = () => {

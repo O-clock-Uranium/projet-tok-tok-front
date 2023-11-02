@@ -16,13 +16,12 @@ export const initialState: PublicationState = {
   like: false,
 };
 
-
 export const fetchPosts = createAsyncThunk(
   'publications/fetchPosts',
   async () => {
     try {
       const { data } = await axiosInstance.get('/posts');
-      return data;
+      return data as Publication[];
     } catch (error: any) {
       throw new Error(error.response.data.error);
     }
@@ -35,7 +34,7 @@ export const addPost = createAsyncThunk(
     try {
       const { data } = await axiosInstance.post('/posts', formData);
       return data as Publication[];
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(error.response.data.error);
     }
   }
@@ -45,9 +44,7 @@ export const delPost = createAsyncThunk(
   'publications/delPost',
   async (id: number) => {
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { data } = await axiosInstance.delete(`/posts/${id}`);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      await axiosInstance.delete(`/posts/${id}`);
     } catch (error: any) {
       throw new Error(error.response.data.error);
     }
@@ -58,9 +55,7 @@ export const addLike = createAsyncThunk(
   'publications/AddLike',
   async (id: number) => {
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { data } = await axiosInstance.post(`/likes/${id}`);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      await axiosInstance.post(`/likes/${id}`);
     } catch (error: any) {
       throw new Error(error.response.data.error);
     }
@@ -71,10 +66,8 @@ export const delLike = createAsyncThunk(
   'publications/delLike',
   async (id: number) => {
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { data } = await axiosInstance.delete(`/likes/${id}`);
       axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       throw new Error(error.response.data.error);
     }
@@ -85,6 +78,7 @@ const publicationsReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fetchPosts.pending, (state) => {
       state.isLoading = true;
+      state.error = '';
     })
     .addCase(fetchPosts.fulfilled, (state, action) => {
       state.list = action.payload;
@@ -95,12 +89,14 @@ const publicationsReducer = createReducer(initialState, (builder) => {
     })
     .addCase(addPost.pending, (state) => {
       state.isLoading = true;
+      state.error = '';
     })
     .addCase(addPost.fulfilled, (state) => {
       state.isLoading = false;
     })
     .addCase(delPost.pending, (state) => {
       state.isLoading = true;
+      state.error = '';
     })
     .addCase(delPost.fulfilled, (state) => {
       state.isLoading = false;

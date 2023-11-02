@@ -58,7 +58,11 @@ export default function OneComment({
             {date}
           </Typography>
         </Stack>
-        <TriplePointButton id={id} post_creator={post_creator} context={context} />
+        <TriplePointButton
+          id={id}
+          post_creator={post_creator}
+          context={context}
+        />
       </Stack>
       <Box
         sx={{

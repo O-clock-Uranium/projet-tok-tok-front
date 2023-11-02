@@ -7,27 +7,27 @@ import {
   Stack,
 } from '@mui/material';
 import { useState } from 'react';
-import { useAppDispatch } from '../../../hooks/redux';
-import { fetchAdverts } from '../../../store/reducers/adverts';
+// import { useAppDispatch } from '../../../hooks/redux';
+// import { fetchAdverts } from '../../../store/reducers/adverts';
 
 export default function SortBar() {
   const [categorie, setCategorie] = useState('');
   const [distance, setDistance] = useState('');
   const [sort, setSort] = useState('');
 
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
   const handleChangeCategories = (event: SelectChangeEvent) => {
     setCategorie(event.target.value);
-    dispatch(fetchAdverts(category));
+    // dispatch(fetchAdverts(category));
   };
   const handleChangeDistance = (event: SelectChangeEvent) => {
     setDistance(event.target.value);
-    dispatch(fetchAdverts(distance));
+    // dispatch(fetchAdverts(distance));
   };
   const handleChangeSortBy = (event: SelectChangeEvent) => {
     setSort(event.target.value);
-    dispatch(fetchAdverts(sortby));
+    // dispatch(fetchAdverts(sortby));
   };
 
   return (
