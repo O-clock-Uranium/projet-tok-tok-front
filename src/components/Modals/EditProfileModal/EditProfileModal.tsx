@@ -23,8 +23,11 @@ export default function EditProfileModal({
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     dispatch(edit(formData));
-    await new Promise((resolve) => setTimeout(resolve, 800));
-    dispatch(fetchProfile(slug));
+    setTimeout(async () => {
+      if (slug) {
+        dispatch(fetchProfile(slug));
+      }
+    }, 800);
     handleCloseModal();
   };
 
@@ -39,7 +42,7 @@ export default function EditProfileModal({
       aria-describedby="modal-modal-edit"
     >
       <Box
-      className= "edit-modal"
+        className="edit-modal"
         sx={{
           backgroundColor: 'transparent',
           margin: 'auto',

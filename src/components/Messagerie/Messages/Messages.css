@@ -8,7 +8,9 @@
 }
 .messages-item--mine {
   text-align: right;
-  color: #b0b;
+}
+.messages-item--mine .messages-item__content {
+  background-color: #49c1ac;
 }
 .messages-item--mine .messages-item__author {
   margin-left: 0;

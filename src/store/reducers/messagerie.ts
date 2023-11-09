@@ -68,8 +68,6 @@ const messagerieReducer = createReducer(initialState, (builder) => {
       state.messages.push(action.payload);
     })
     .addCase(fetchMessages.fulfilled, (state, action) => {
-      // state.messages = action.payload;
-      // remplace par ça
       state.messages = action.payload.messages;
     })
     .addCase(fetchContacts.fulfilled, (state, action) => {

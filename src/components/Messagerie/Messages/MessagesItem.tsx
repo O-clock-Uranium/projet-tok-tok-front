@@ -1,5 +1,3 @@
-import classNames from 'classnames';
-
 import { useAppSelector } from '../../../hooks/redux';
 import { getIsMine } from '../../../store/selectors/messages';
 
@@ -11,11 +9,7 @@ function MessagesItem({ sender, content }: Message) {
   return (
     <article
       className={isMine ? 'messages-item messages-item--mine' : 'messages-item'}
-      // className={classNames('messages-item', {
-      //   'messages-item--mine': isMine,
-      // })}
     >
-      {/* <p className="messages-item__author">{sender}</p> */}
       <p className="messages-item__content">{content}</p>
     </article>
   );

@@ -1,6 +1,6 @@
-import React from 'react';
+import { FC } from 'react';
 
-const messagerieSVG: React.FC = () => {
+const messagerieSVG: FC = () => {
   return (
     <svg
       id="filled"

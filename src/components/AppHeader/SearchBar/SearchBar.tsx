@@ -4,8 +4,6 @@ import InputBase from '@mui/material/InputBase';
 import Paper from '@mui/material/Paper';
 import search from '../../../assets/icons/search.svg';
 
-import './style.scss';
-
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState('');
 

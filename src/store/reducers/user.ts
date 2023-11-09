@@ -3,7 +3,6 @@ import {
   createAsyncThunk,
   createReducer,
 } from '@reduxjs/toolkit';
-
 import axiosInstance from '../../utils/axios';
 
 interface UserState {
@@ -216,8 +215,6 @@ const userReducer = createReducer(initialState, (builder) => {
     })
     .addCase(editBanner.fulfilled, (state, action) => {
       state.banner = action.payload.banner;
-      // console.log('bruce', action.payload);
-      // console.log('banner', state.banner);
     })
     .addCase(edit.pending, (state) => {
       state.isLoading = false;

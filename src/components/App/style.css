@@ -1,0 +1,186 @@
+.preview-image {
+  max-width: 100px;
+  max-height: 100px;
+  margin: 5px;
+}
+
+.image-previews {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.searchbar-icon {
+  display: none !important;
+}
+
+.padding-bottom {
+  padding-bottom: 11rem;
+}
+
+.posts-container .passe-pourcent {
+  width: 100% !important;
+}
+
+.messages-container {
+  width: 82rem;
+  height: 88vh;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  padding-top: 11rem;
+}
+
+.publish-icon-newpost {
+  display: none !important;
+}
+
+.favorites-container {
+  width: 82rem;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 11rem 0;
+}
+
+.open-contact-button {
+  border-radius: 50%;
+  transition: all 0.6s ease-out;
+}
+.open-contact-button:hover {
+  background-color: rgba(213, 213, 213, 0.4039215686);
+}
+
+.open-contact-button--is-open {
+  border-radius: 50%;
+  transform: rotateZ(180deg);
+  transition: all 0.6s ease-out;
+}
+
+.favorites-container {
+  width: 82rem;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 11rem 0;
+}
+
+@media screen and (max-width: 1250px) {
+  .app-header {
+    padding: 3rem 3rem !important;
+  }
+  .user-identity {
+    display: none;
+  }
+  .messages-container {
+    width: 100vw !important;
+  }
+  .floating-menu {
+    width: 100%;
+    bottom: 0;
+    top: auto;
+    left: 0;
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.368627451);
+  }
+  .floating-menu .floating-menu--list {
+    width: 400px;
+    flex-direction: row;
+  }
+  .favorites-container, .advert-container, .adverts-container, .profile-container, .posts-container {
+    width: 100vw !important;
+  }
+  .advert-card {
+    margin: auto;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .searchbar-container {
+    max-width: 250px;
+  }
+  .adverts-navigation {
+    flex-direction: column !important;
+    gap: 0 !important;
+    padding-bottom: 2rem !important;
+    align-items: "center" !important;
+  }
+  .edit-profile-modal {
+    min-width: 400px !important;
+  }
+}
+@media screen and (max-width: 800px) {
+  .edit-typo {
+    display: none !important;
+  }
+  .edit-icon {
+    display: block !important;
+  }
+  .messages-contacts--open {
+    min-width: 100% !important;
+  }
+  .messages-contacts--open .contact-btn {
+    width: 90vw;
+  }
+  .messages-content--close {
+    display: none !important;
+  }
+}
+@media screen and (max-width: 620px) {
+  .adverts-sortbar {
+    gap: 0 !important;
+    padding: 0;
+  }
+  .adverts-formcontrol {
+    width: 7.3rem !important;
+  }
+  .publish-icon-newpost {
+    display: block !important;
+    margin: auto !important;
+    /* .profile-information {
+        flex-direction: column !important;
+
+        .profile-information-name {
+          margin-top: -9rem;
+        }
+
+      }
+    */
+  }
+  .profile-information-description {
+    padding-top: 2rem !important;
+  }
+  .publish-text-newpost {
+    display: none !important;
+  }
+  .searchbar-container {
+    display: none !important;
+  }
+  .searchbar-icon {
+    display: block !important;
+    text-align: right !important;
+  }
+  .profile-toggle-button {
+    margin: auto !important;
+  }
+}
+@media screen and (max-width: 500px) {
+  .user-avatar-newpost {
+    display: none !important;
+  }
+  .profile-avatar {
+    width: 100px !important;
+    height: auto !important;
+  }
+  .profile-banner {
+    height: auto !important;
+    width: auto !important;
+    transition: ease-in 2s !important;
+  }
+  .profile-name-city {
+    display: flex;
+    position: absolute !important;
+    top: 40px !important;
+  }
+  .profile-city {
+    flex: 1 !important;
+  }
+}/*# sourceMappingURL=style.css.map */

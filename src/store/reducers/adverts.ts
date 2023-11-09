@@ -72,7 +72,7 @@ export const fetchAdverts = createAsyncThunk(
 
 export const fetchUserAdverts = createAsyncThunk(
   'adverts/fetchUserAdverts',
-  async (id: number | undefined) => {
+  async (id: number) => {
     try {
       const { data } = await axiosInstance.get<Advert[]>(
         `/profile/${id}/adverts`

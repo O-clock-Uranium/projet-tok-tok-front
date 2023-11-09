@@ -8,13 +8,6 @@ import ContentPost from '../Posts/Post/ContentPost/ContentPost';
 import Informations from './Informations/Informations';
 import Toggle from './Toggle';
 
-const emptyDivStyle = {
-  backgroundColor: '#fff',
-  borderRadius: '12px',
-  padding: '2rem',
-  fontSize: '2rem',
-};
-
 export default function Profile() {
   const user = useAppSelector((state) => state.profile);
   const currentUserSlug = useAppSelector((state) => state.user.slug);
@@ -28,17 +21,17 @@ export default function Profile() {
     return p.reply_to === null;
   });
 
-  useEffect(() => {
-    dispatch(fetchProfile(slug));
-  }, [dispatch, slug]);
-
-  if (!user) {
+  if (!slug) {
     // eslint-disable-next-line @typescript-eslint/no-throw-literal
     throw new Response('', {
       status: 404,
       statusText: 'Not Found',
     });
   }
+
+  useEffect(() => {
+    dispatch(fetchProfile(slug));
+  }, [dispatch, slug]);
 
   return (
     <Stack
@@ -60,27 +53,44 @@ export default function Profile() {
       </Stack>
       <Stack width="100%">
         {/* Publications ou Adverts */}
-        {display === 'publications' ? (
+        {display === 'publications' &&
           // Publications ou non
-          user.posts.length === 0 ? (
-            <div style={{ ...emptyDivStyle }}>
-              <Typography variant="h5" component="p">
-                Il semble que cet utilisateur n'ait rien posté pour le moment !
-              </Typography>
-            </div>
-          ) : (
-            <ContentPost publications={userPosts} />
-          )
-        ) : user.adverts.length === 0 ? (
-          <div style={{ ...emptyDivStyle }}>
-            <Typography variant="h5" component="p">
-              Il semble que cet utilisateur n'ait pas d'annonces pour le moment
+          (user.posts.length === 0 ? (
+            <Typography
+              variant="h5"
+              component="p"
+              sx={{
+                backgroundColor: '#fff',
+                borderRadius: '12px',
+                padding: '2rem',
+                fontSize: '2rem',
+              }}
+            >
+              Il semble que cet utilisateur n&apos;ait rien posté pour le moment
               !
             </Typography>
-          </div>
-        ) : (
-          <ContentAdvert adverts={user.adverts} context={context} />
-        )}
+          ) : (
+            <ContentPost publications={userPosts} />
+          ))}
+
+        {display === 'annonces' &&
+          (user.adverts.length === 0 ? (
+            <Typography
+              variant="h5"
+              component="p"
+              sx={{
+                backgroundColor: '#fff',
+                borderRadius: '12px',
+                padding: '2rem',
+                fontSize: '2rem',
+              }}
+            >
+              Il semble que cet utilisateur n&apos;ait pas d&apos;annonces pour
+              le moment !
+            </Typography>
+          ) : (
+            <ContentAdvert adverts={user.adverts} context={context} />
+          ))}
       </Stack>
     </Stack>
   );

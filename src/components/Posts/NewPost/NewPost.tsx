@@ -20,7 +20,6 @@ function NewPost() {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.user);
 
-
   const handleContentChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
@@ -40,9 +39,9 @@ function NewPost() {
 
     dispatch(addPost(formData));
 
-    await new Promise((resolve) => setTimeout(resolve, 800));
-
-    dispatch(fetchPosts());
+    setTimeout(async () => {
+      await dispatch(fetchPosts());
+    }, 800);
   };
 
   return (
@@ -148,7 +147,7 @@ function NewPost() {
                 },
               }}
             >
-              <img alt="add picture" src={picture} />
+              <img alt="add images" src={picture} />
               <Typography
                 fontFamily="Manrope"
                 fontSize="1.3rem"

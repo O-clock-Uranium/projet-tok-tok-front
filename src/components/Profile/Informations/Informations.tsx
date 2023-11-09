@@ -2,9 +2,7 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import RoomTwoToneIcon from '@mui/icons-material/RoomTwoTone';
 import { Button, IconButton, Stack, Typography } from '@mui/material';
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { User } from '../../../@types';
-import { fetchProfile } from '../../../store/reducers/profile';
 import EditProfileModal from '../../Modals/EditProfileModal/EditProfileModal';
 import EditBannerModal from './EditBannerModal/EditBannerModal';
 
@@ -17,7 +15,6 @@ export default function Informations({
   userInfo,
   currentUserSlug,
 }: InformationsProps) {
-  const { slug } = useParams();
   const [open, setOpen] = useState(false);
   const [openBanner, setOpenBanner] = useState(false);
 
@@ -201,7 +198,7 @@ export default function Informations({
           fontWeight="600"
           lineHeight="150%"
           px="1rem"
-          width={'100%'}
+          width="100%"
         >
           {/* Blabla descriptif */}
           {userInfo.description}

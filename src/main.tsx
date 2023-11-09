@@ -1,4 +1,3 @@
-import { ThemeProvider } from '@mui/material/styles';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import {
@@ -9,6 +8,7 @@ import {
 } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
+import { ThemeProvider } from '@mui/material/styles';
 
 import App from './components/App/App';
 import Error from './components/Error/Error';

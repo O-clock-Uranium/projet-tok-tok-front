@@ -1,5 +1,5 @@
-import { Avatar, Box, IconButton, InputBase, Stack } from '@mui/material';
 import { useState, FormEvent } from 'react';
+import { Avatar, Box, IconButton, InputBase, Stack } from '@mui/material';
 import { CommentarySubset } from '../../../../@types/publication';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { addPost, fetchPosts } from '../../../../store/reducers/publications';

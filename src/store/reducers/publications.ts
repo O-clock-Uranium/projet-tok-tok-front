@@ -5,7 +5,7 @@ import axiosInstance from '../../utils/axios';
 interface PublicationState {
   list: Publication[];
   isLoading: boolean;
-  error: string | undefined;
+  error?: string;
   like: boolean;
 }
 

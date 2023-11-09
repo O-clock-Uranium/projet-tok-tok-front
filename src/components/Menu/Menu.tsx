@@ -1,12 +1,5 @@
-import {
-  Badge,
-  ListItemButton,
-  MenuItem,
-  MenuList,
-  Paper,
-} from '@mui/material';
 import { NavLink } from 'react-router-dom';
-
+import { Badge, ListItemButton, MenuItem, MenuList } from '@mui/material';
 import { useAppSelector } from '../../hooks/redux';
 import AdvertsSVG from './MenuSVG/AdvertsSVG';
 import FavouritesSVG from './MenuSVG/FavouritesSVG';
@@ -35,18 +28,7 @@ const listItemButtonStyles = {
 export default function Menu() {
   const userSlug = useAppSelector((state) => state.user.slug);
   return (
-    <div
-      className="floating-menu"
-      // style={{
-      //   width: '9rem',
-      //   borderRadius: 4,
-      //   //backgroundColor: '#FFF',
-      //   position: 'fixed',
-      //   top: 250,
-      //   left: '10%',
-      //   zIndex: 1000
-      // }}
-    >
+    <div className="floating-menu">
       <MenuList sx={{ gap: '2rem' }}>
         <MenuItem
           className="floating-menu--list"

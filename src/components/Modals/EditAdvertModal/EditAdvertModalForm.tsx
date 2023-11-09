@@ -96,12 +96,6 @@ export default function EditAdvertModalForm({ id }: EditAdvertModalProps) {
             Ajouter une image
           </Typography>
         </IconButton>
-        {/* Placement image */}
-        {/* <Stack py="2rem" direction="row" justifyContent="space-around">
-          <Typography>apercu 1</Typography>
-          <Typography>apercu 2</Typography>
-          <Typography>apercu 2</Typography>
-        </Stack> */}
         {/* Selecteur de catégories */}
         <FormControl sx={{ backgroundColor: '#F5F6FA' }} size="small">
           <Select

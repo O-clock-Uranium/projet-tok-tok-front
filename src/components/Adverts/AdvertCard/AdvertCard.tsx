@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import { Advert } from '../../../@types';
 import calculateTimeSpent from '../../../utils/date';
 import TriplePointButton from '../../TriplePointButton/TriplePointButton';
-import FavouriteButton2 from '../FavouriteButton/FavouriteButton';
+import FavouriteButton from '../FavouriteButton/FavouriteButton';
 import { useAppSelector } from '../../../hooks/redux';
 import { calculateDistance } from '../../../utils/gps';
 
@@ -102,7 +102,7 @@ export default function AdvertCard({
         </Stack>
         {/* Bookmark icon et del icon */}
         {/* {!isProfilePage && ( */}
-        <FavouriteButton2 id={id} favorited_by={favorited_by} />
+        <FavouriteButton id={id} favorited_by={favorited_by} />
         {/* )} */}
         <TriplePointButton
           id={id}

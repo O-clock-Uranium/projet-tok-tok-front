@@ -30,7 +30,7 @@ function Messages() {
     <section
       className="messages"
       ref={messagesRef}
-      style={{ overflowY: 'auto'}}
+      style={{ overflowY: 'auto' }}
     >
       {messages.map((message) => (
         <MessagesItem key={message.id} {...message} />

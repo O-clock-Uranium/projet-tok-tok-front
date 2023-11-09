@@ -1,12 +1,11 @@
-import * as React from 'react';
-
+import { Dispatch, MouseEvent } from 'react';
 import Stack from '@mui/material/Stack';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 interface ToggleProps {
   display: string;
-  setDisplay: React.Dispatch<React.SetStateAction<string>>;
+  setDisplay: Dispatch<React.SetStateAction<string>>;
 }
 
 export default function ToggleButtonNotEmpty({
@@ -14,7 +13,7 @@ export default function ToggleButtonNotEmpty({
   setDisplay,
 }: ToggleProps) {
   const handleDisplay = (
-    event: React.MouseEvent<HTMLElement>,
+    event: MouseEvent<HTMLElement>,
     newDisplay: string | null
   ) => {
     if (newDisplay !== null) {

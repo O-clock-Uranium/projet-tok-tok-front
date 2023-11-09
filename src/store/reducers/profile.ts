@@ -1,5 +1,4 @@
 import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
-
 import { Advert } from '../../@types';
 import { Publication } from '../../@types/publication';
 import axiosInstance from '../../utils/axios';

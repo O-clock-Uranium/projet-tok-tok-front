@@ -1,6 +1,6 @@
-import React from 'react';
+import { FC } from 'react';
 
-const profileSVG: React.FC = () => {
+const profileSVG: FC = () => {
   return (
     <svg
       id="filled"

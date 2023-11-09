@@ -44,11 +44,11 @@ export default function FavouriteButton({ id, favorited_by }: AdvertSubset) {
         onClick={handleBookmarkClick}
         color={isBookmarked ? 'secondary' : 'default'}
       >
-        (isBookmarked ? (
-        <BookmarkSharpIcon sx={{ fontSize: '3rem' }} />
+        {isBookmarked ? (
+          <BookmarkSharpIcon sx={{ fontSize: '3rem' }} />
         ) : (
-        <BookmarkBorderSharpIcon sx={{ fontSize: '3rem' }} />
-        ))
+          <BookmarkBorderSharpIcon sx={{ fontSize: '3rem' }} />
+        )}
       </IconButton>
     </div>
   );

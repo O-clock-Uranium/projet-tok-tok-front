@@ -16,9 +16,9 @@ import { useAppDispatch } from '../../hooks/redux';
 import { addAdvert, fetchAdverts } from '../../store/reducers/adverts';
 import AddAdvertField from './AddAdvertField/AddAdvertField';
 import axiosInstance from '../../utils/axios';
+import ImageUploader from '../ImageUploader/ImageUploader';
 
 import '../App/style.scss';
-import ImageUploader from '../ImageUploader/ImageUploader';
 
 export default function AdvertModal() {
   const [open, setOpen] = useState(false);
@@ -50,11 +50,6 @@ export default function AdvertModal() {
 
     const formData = new FormData(event.currentTarget);
     dispatch(addAdvert(formData));
-    // SetTimeout pour permettre au back de processer une image
-    // await new Promise((resolve) => setTimeout(resolve, 800));
-    // dispatch(fetchAdverts());
-    // setOpen(false);
-    // setCategorie('');
 
     setTimeout(async () => {
       await dispatch(fetchAdverts());

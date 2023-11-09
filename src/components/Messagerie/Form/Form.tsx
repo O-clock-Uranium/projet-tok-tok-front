@@ -1,8 +1,7 @@
+import { useState, ChangeEvent, FormEvent } from 'react';
 import { IconButton } from '@mui/material';
-import { useState } from 'react';
-
 import send from '../../../assets/icons/paper_plane.svg';
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import { useAppDispatch} from '../../../hooks/redux';
 import { fetchMessages, sendMessage } from '../../../store/reducers/messagerie';
 
 import './Form.scss';
@@ -13,16 +12,14 @@ interface FormProps {
 
 function Form({ destinataireId }: FormProps) {
   const [currentMessage, setCurrentMessage] = useState('');
-  const contact = useAppSelector((state) => state.messagerie.contacts);
-  // console.log(contact);
 
   const dispatch = useAppDispatch();
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
     setCurrentMessage(event.target.value);
   }
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
@@ -30,7 +27,6 @@ function Form({ destinataireId }: FormProps) {
     if (currentMessage.trim()) {
       dispatch(sendMessage(formData));
       setCurrentMessage('');
-      console.log('ça fetch');
       dispatch(fetchMessages(destinataireId));
     }
   }

@@ -1,9 +1,9 @@
+import { useState, MouseEvent } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { IconButton, Menu, MenuItem, Typography } from '@mui/material';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import MoreVertSharpIcon from '@mui/icons-material/MoreVertSharp';
 import ReportGmailerrorredOutlinedIcon from '@mui/icons-material/ReportGmailerrorredOutlined';
-import { IconButton, Menu, MenuItem, Typography } from '@mui/material';
-import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 import settings from '../../assets/icons/settings.svg';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
@@ -47,7 +47,7 @@ export default function TriplePointButton({
   const isCurrentUserCreator =
     post_creator?.id === userInfo.id || advert_creator?.id === userInfo.id;
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
 

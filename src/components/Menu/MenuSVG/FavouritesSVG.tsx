@@ -1,6 +1,6 @@
-import React from 'react';
+import { FC } from 'react';
 
-const favouritesSVG: React.FC = () => {
+const favouritesSVG: FC = () => {
   return (
     <svg
       id="filled"

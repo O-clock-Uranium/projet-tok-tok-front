@@ -1,4 +1,3 @@
-import BookmarkSharpIcon from '@mui/icons-material/BookmarkSharp';
 import { Stack, Typography } from '@mui/material';
 
 function WhiteBar() {

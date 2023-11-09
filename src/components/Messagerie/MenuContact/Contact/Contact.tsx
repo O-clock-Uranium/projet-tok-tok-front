@@ -27,7 +27,6 @@ function Contact({
     dispatch(fetchMessages(contact.contactInfo.id));
   };
 
-  // console.log(dispatch(fetchMessages(contact.contactInfo.id)));
   return (
     <div>
       <Button

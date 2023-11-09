@@ -1,28 +1,31 @@
+import { useState, FormEvent } from 'react';
 import { Stack } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
-import * as React from 'react';
 import { useAppDispatch } from '../../../hooks/redux';
 import { sendMessage } from '../../../store/reducers/messagerie';
 import ContactModalField from './ContactModalField/ContactModalField';
 
-export default function ContactModal({ id }: any) {
-  const [open, setOpen] = React.useState(false);
+interface ContactModalProps {
+  id: number;
+}
+
+export default function ContactModal({ id }: ContactModalProps) {
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const dispatch = useAppDispatch();
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
     dispatch(sendMessage(formData));
     setOpen(false);
   };
-  // console.log(id);
   return (
     <div>
       <Stack mx="auto" direction="row">
@@ -42,7 +45,6 @@ export default function ContactModal({ id }: any) {
             lineHeight: 'normal',
             p: '1rem 2rem',
             height: '6rem',
-            // boxShadow: 0,
             border: '0px',
           }}
         >

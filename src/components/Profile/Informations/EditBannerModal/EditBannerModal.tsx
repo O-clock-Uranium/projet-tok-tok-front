@@ -1,12 +1,12 @@
+import { Dispatch, FormEvent, SetStateAction } from 'react';
 import { Box, Button, Chip, Modal, Stack } from '@mui/material';
-import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { fetchProfile } from '../../../../store/reducers/profile';
 import { editBanner } from '../../../../store/reducers/user';
 
 interface EditBannerModalProps {
   openBanner: boolean;
-  setOpenBanner: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpenBanner: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function EditBannerModal({
@@ -16,16 +16,15 @@ export default function EditBannerModal({
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.user);
   const handleCloseBanner = () => setOpenBanner(false);
-  const { slug } = useParams();
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
     dispatch(editBanner(formData));
     // eslint-disable-next-line no-promise-executor-return
     await new Promise((resolve) => setTimeout(resolve, 800));
-    dispatch(fetchProfile(slug));
+    dispatch(fetchProfile(user.slug));
     setOpenBanner(false);
   };
 
